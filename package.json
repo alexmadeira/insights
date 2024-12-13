@@ -1,0 +1,52 @@
+{
+  "name": "insights",
+  "version": "0.0.0",
+  "author": "",
+  "description": "",
+  "license": "ISC",
+  "main": "index.js",
+  "keywords": [],
+  "scripts": {
+    "lint:check": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "test": "vitest run --coverage.enabled",
+    "test:watch": "vitest",
+    "prepare": "husky",
+    "lint-staged": "lint-staged"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.6.0",
+    "@commitlint/config-conventional": "19.6.0",
+    "@faker-js/faker": "9.3.0",
+    "@types/node": "22.10.2",
+    "@vitest/coverage-v8": "2.1.8",
+    "@wooden-script/eslint-config": "1.0.4",
+    "commitizen": "4.3.1",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "8",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-vitest-globals": "1.5.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.2.11",
+    "tsup": "8.3.5",
+    "tsx": "4.19.2",
+    "typescript": "5.7.2",
+    "vitest": "2.1.8"
+  }
+}

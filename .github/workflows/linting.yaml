@@ -1,0 +1,57 @@
+name: Linting
+on: pull_request
+
+jobs:
+  eslint:
+    name: Eslint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: 📦 Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: 📦 Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: 📀 Install dependencies
+        run: pnpm install
+
+      - name: 🧹 Run linting with Eslint
+        run: pnpm lint:check
+
+  commitlint:
+    name: Commitlint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        name: 📦 Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: 📦 Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: 📀 Install dependencies
+        run: pnpm install
+
+      - name: 🧪 Run linting with Commitlint
+        run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
