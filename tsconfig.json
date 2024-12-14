@@ -35,12 +35,11 @@
         "./src/core/*"
       ],
       "_TEST/*": [
-        "./test/*"
+        "./src/__tests__/*"
       ],
     }
   },
   "include": [
-    "src",
-    "test"
+    "src"
   ]
 }
