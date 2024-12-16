@@ -14,7 +14,7 @@ export class CreateNetworkUseCase implements ICreateNetworkUseCase {
   constructor(private readonly networkRepository: INetworkRepository) {}
 
   async execute({ status, ...rest }: TCreateNetworkUseCaseRequest): Promise<TCreateNetworkUseCaseResponse> {
-    const networkStatus = new NetworkStatus(status ?? 'active')
+    const networkStatus = NetworkStatus.create(status ?? 'active')
 
     if (!networkStatus.code) {
       return left(new InvalidTypeError())

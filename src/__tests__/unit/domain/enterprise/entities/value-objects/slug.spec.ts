@@ -2,7 +2,7 @@ import { Slug } from '_DOMEnt/entities/value-objects/slug'
 
 describe('Domain', () => {
   describe('Entities', () => {
-    describe('Value Objects', () => {
+    describe('Value objects', () => {
       describe('Slug', () => {
         it('should be able to create a new slug from text', async () => {
           const slug = Slug.createFromText('An example text')

@@ -1,4 +1,5 @@
-import { NetworkStatus } from '_DOMEnt/entities/value-objects/network-status'
+import type { NetworkStatus } from '_DOMEnt/entities/value-objects/network-status'
+
 import z from 'zod'
 
 export const ZNetworkProps = z.object({

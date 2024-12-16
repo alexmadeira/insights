@@ -17,7 +17,7 @@ export function makeNetwork(overrides: Partial<TNetworkProps> = {}, id?: UniqueE
         firstName,
         lastName,
       }),
-      status: new NetworkStatus(faker.helpers.arrayElement(NETWORK_STATUS)),
+      status: NetworkStatus.create(faker.helpers.arrayElement(NETWORK_STATUS)),
       createdAt: new Date(),
       ...overrides,
     },
