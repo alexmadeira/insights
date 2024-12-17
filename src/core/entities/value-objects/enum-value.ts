@@ -1,12 +1,12 @@
 import type { ZodTypeAny } from 'zod'
 
-export abstract class Status<TStatus extends string> {
-  private readonly _code?: TStatus
+export abstract class EnumValue<TEnumValue extends string> {
+  private readonly _code?: TEnumValue
 
   protected constructor(
     private readonly value: string,
     private readonly validator: ZodTypeAny,
-    private readonly codeParse?: Record<TStatus, string>,
+    private readonly codeParse?: Record<TEnumValue, string>,
   ) {
     this._code = this.checkCode()
   }

@@ -21,8 +21,16 @@ export class Reference extends Entity<TReferenceProps> implements IReference {
     return this._props.name
   }
 
+  public get slug() {
+    return this._props.slug
+  }
+
   public get status() {
     return this._props.status
+  }
+
+  public get network() {
+    return this._props.network
   }
 
   public get createdAt() {

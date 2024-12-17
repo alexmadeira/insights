@@ -25,8 +25,16 @@ export class Network extends Entity<TNetworkProps> implements INetwork {
     return this._props.userName
   }
 
-  public get status() {
-    return this._props.status
+  public get avatar() {
+    return this._props.avatar
+  }
+
+  public get type() {
+    return this._props.type
+  }
+
+  public get posts() {
+    return this._props.posts
   }
 
   public get createdAt() {

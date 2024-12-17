@@ -1,11 +1,12 @@
-import type { NetworkStatus } from '_DOMEnt/entities/value-objects/network-status'
-
 import z from 'zod'
 
 export const ZNetworkProps = z.object({
   name: z.string(),
   userName: z.string(),
-  status: z.custom<NetworkStatus>(),
+  type: z.string(),
+  avatar: z.string(),
+  posts: z.array(z.string()),
+
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
@@ -13,7 +14,9 @@ export const ZNetworkProps = z.object({
 export const ZNetwork = z.object({
   name: z.string(),
   userName: z.string(),
-  status: z.custom<NetworkStatus>(),
+  type: z.string(),
+  avatar: z.string(),
+  posts: z.array(z.string()),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })

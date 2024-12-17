@@ -1,10 +1,12 @@
-import type { Slug } from '_DOMEnt/entities/value-objects/slug'
+import type { Slug } from '_DOMEnt/entities/value-objects'
 
 import z from 'zod'
 
 export const ZProfileProps = z.object({
   name: z.string(),
   slug: z.custom<Slug>(),
+  network: z.string(),
+  references: z.array(z.string()),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
@@ -12,6 +14,8 @@ export const ZProfileProps = z.object({
 export const ZProfile = z.object({
   name: z.string(),
   slug: z.custom<Slug>(),
+  network: z.string(),
+  references: z.array(z.string()),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })

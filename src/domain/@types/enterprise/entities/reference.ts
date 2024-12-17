@@ -1,17 +1,21 @@
-import type { ReferenceStatus } from '_DOMEnt/entities/value-objects/reference-status'
+import type { ReferenceStatus, Slug } from '_DOMEnt/entities/value-objects'
 
 import z from 'zod'
 
 export const ZReferenceProps = z.object({
   name: z.string(),
+  slug: z.custom<Slug>(),
   status: z.custom<ReferenceStatus>(),
+  network: z.string(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
 
 export const ZReference = z.object({
   name: z.string(),
+  slug: z.custom<Slug>(),
   status: z.custom<ReferenceStatus>(),
+  network: z.string(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
