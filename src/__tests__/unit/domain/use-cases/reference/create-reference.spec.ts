@@ -16,17 +16,21 @@ describe('Domain', () => {
       describe('Create', () => {
         it('should be able', async () => {
           const result = await sut.execute({
-            name: 'reference name',
+            name: 'Reference name',
             status: 'active',
+            networkId: 'network-01',
           })
 
           expect(result.isRight()).toBe(true)
-          expect(inMemoryReferenceRepository.itens[0].name).toEqual('reference name')
+          expect(inMemoryReferenceRepository.itens[0].name).toEqual('Reference name')
+          expect(inMemoryReferenceRepository.itens[0].status.code).toEqual('active')
+          expect(inMemoryReferenceRepository.itens[0].network).toEqual('network-01')
         })
 
         it('should be able without status', async () => {
           const result = await sut.execute({
             name: 'reference name',
+            networkId: 'network-01',
           })
 
           expect(result.isRight()).toBe(true)
@@ -37,6 +41,7 @@ describe('Domain', () => {
           const result = await sut.execute({
             name: 'reference name',
             status: 'invalid-status',
+            networkId: 'network-01',
           })
 
           expect(result.isLeft()).toBe(true)

@@ -5,6 +5,8 @@ import z from 'zod'
 
 export const ZCreateProfileUseCaseRequest = z.object({
   name: z.string(),
+  networkId: z.string(),
+  referencesIds: z.array(z.string()),
 })
 
 export const ZCreateProfileUseCaseResponse = z.custom<Either<null, { profile: Profile }>>()

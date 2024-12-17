@@ -20,4 +20,9 @@ export class InMemoryProfileRepository implements IProfileRepository {
     const itemIndex = this.itens.findIndex((item) => item.id === profile.id)
     this.itens[itemIndex] = profile
   }
+
+  async delete(profile: Profile) {
+    const itemIndex = this.itens.findIndex((item) => item.id === profile.id)
+    this.itens.splice(itemIndex, 1)
+  }
 }

@@ -1,8 +1,8 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import type { Optional } from '_COR/types/optional'
 import type { ICompany, TCompanyProps } from '@DOMTypes/enterprise/entities/company'
 
 import { Entity } from '_COR/entities/entity'
-import { Optional } from '_COR/types/optional'
 
 import { Slug } from './value-objects/slug'
 

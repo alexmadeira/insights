@@ -6,8 +6,9 @@ import z from 'zod'
 
 export const ZCreateNetworkUseCaseRequest = z.object({
   name: z.string(),
-  userName: z.string(),
-  status: z.string().optional(),
+  username: z.string(),
+  typeId: z.string(),
+  postsIds: z.array(z.string()),
 })
 
 export const ZCreateNetworkUseCaseResponse = z.custom<Either<InvalidTypeError, { network: Network }>>()

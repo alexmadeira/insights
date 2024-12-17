@@ -1,8 +1,8 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import type { Optional } from '_COR/types/optional'
 import type { INetwork, TNetworkProps } from '@DOMTypes/enterprise/entities/network'
 
 import { Entity } from '_COR/entities/entity'
-import { Optional } from '_COR/types/optional'
 
 export type * from '@DOMTypes/enterprise/entities/network'
 
@@ -21,8 +21,8 @@ export class Network extends Entity<TNetworkProps> implements INetwork {
     return this._props.name
   }
 
-  public get userName() {
-    return this._props.userName
+  public get username() {
+    return this._props.username
   }
 
   public get avatar() {

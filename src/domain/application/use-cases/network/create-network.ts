@@ -5,23 +5,16 @@ import type {
   TCreateNetworkUseCaseResponse,
 } from '@DOMTypes/application/use-cases/network/create-network'
 
-import { left, right } from '_COR/either'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
+import { right } from '_COR/either'
 import { Network } from '_DOMEnt/entities/network'
-import { NetworkStatus } from '_DOMEnt/entities/value-objects/network-status'
 
 export class CreateNetworkUseCase implements ICreateNetworkUseCase {
   constructor(private readonly networkRepository: INetworkRepository) {}
 
-  async execute({ status, ...rest }: TCreateNetworkUseCaseRequest): Promise<TCreateNetworkUseCaseResponse> {
-    const networkStatus = NetworkStatus.create(status ?? 'active')
-
-    if (!networkStatus.code) {
-      return left(new InvalidTypeError())
-    }
-
+  async execute({ typeId, postsIds, ...rest }: TCreateNetworkUseCaseRequest): Promise<TCreateNetworkUseCaseResponse> {
     const network = Network.create({
-      status: networkStatus,
+      type: typeId,
+      posts: postsIds,
       ...rest,
     })
 

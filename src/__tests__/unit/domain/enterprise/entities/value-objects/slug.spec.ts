@@ -1,4 +1,4 @@
-import { Slug } from '_DOMEnt/entities/value-objects/slug'
+import { Slug } from '_DOMEnt/entities/value-objects'
 
 describe('Domain', () => {
   describe('Entities', () => {

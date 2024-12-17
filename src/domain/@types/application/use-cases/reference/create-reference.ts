@@ -6,6 +6,7 @@ import z from 'zod'
 
 export const ZCreateReferenceUseCaseRequest = z.object({
   name: z.string(),
+  networkId: z.string(),
   status: z.string().optional(),
 })
 

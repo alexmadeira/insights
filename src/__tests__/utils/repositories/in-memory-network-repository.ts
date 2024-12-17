@@ -20,4 +20,9 @@ export class InMemoryNetworkRepository implements INetworkRepository {
     const itemIndex = this.itens.findIndex((item) => item.id === network.id)
     this.itens[itemIndex] = network
   }
+
+  async delete(network: Network) {
+    const itemIndex = this.itens.findIndex((item) => item.id === network.id)
+    this.itens.splice(itemIndex, 1)
+  }
 }

@@ -20,4 +20,9 @@ export class InMemoryReferenceRepository implements IReferenceRepository {
     const itemIndex = this.itens.findIndex((item) => item.id === reference.id)
     this.itens[itemIndex] = reference
   }
+
+  async delete(reference: Reference) {
+    const itemIndex = this.itens.findIndex((item) => item.id === reference.id)
+    this.itens.splice(itemIndex, 1)
+  }
 }
