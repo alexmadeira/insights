@@ -24,28 +24,52 @@ export class Company extends Entity<TCompanyProps> implements ICompany {
     return this._props.name
   }
 
+  public set name(name: string) {
+    this._props.name = name
+  }
+
   public get avantar() {
     return this._props.avantar
   }
 
-  public get slug() {
-    return this._props.slug
+  public set avantar(avantar: string | undefined) {
+    this._props.avantar = avantar
   }
 
   public get owner() {
     return this._props.owner
   }
 
+  public set owner(owner: string) {
+    this._props.owner = owner
+  }
+
   public get teams() {
     return this._props.teams
+  }
+
+  public set teams(teams: string[]) {
+    this._props.teams = teams
   }
 
   public get members() {
     return this._props.members
   }
 
+  public set members(members: string[]) {
+    this._props.members = members
+  }
+
   public get profiles() {
     return this._props.profiles
+  }
+
+  public set profiles(profiles: string[]) {
+    this._props.profiles = profiles
+  }
+
+  public get slug() {
+    return this._props.slug
   }
 
   public get createdAt() {
