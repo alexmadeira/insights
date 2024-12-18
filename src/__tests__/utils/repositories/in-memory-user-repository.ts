@@ -1,9 +1,12 @@
 import type { IUserRepository } from '@DOMTypes/application/repositories/user-repository'
 
 import { User } from '_DOMEnt/entities/user'
+import { IUserTeamRepository } from '@DOMTypes/application/repositories/user-team-repository'
 
 export class InMemoryUserRepository implements IUserRepository {
   public itens: User[] = []
+
+  constructor(private readonly userTeamRepository: IUserTeamRepository) {}
 
   async findById(userId: string) {
     const user = this.itens.find((item) => item.id.toString() === userId)
@@ -24,5 +27,6 @@ export class InMemoryUserRepository implements IUserRepository {
   async delete(user: User) {
     const itemIndex = this.itens.findIndex((item) => item.id === user.id)
     this.itens.splice(itemIndex, 1)
+    this.userTeamRepository.deleteManyByUserId(user.id.toString())
   }
 }

@@ -6,15 +6,17 @@ import type {
 } from '@DOMTypes/application/use-cases/user/create-user'
 
 import { left, right } from '_COR/either'
+import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { User } from '_DOMEnt/entities/user'
+import { UserTeamList } from '_DOMEnt/entities/user-team-list'
 import { Role } from '_DOMEnt/entities/value-objects'
 
 export class CreateUserUseCase implements ICreateUserUseCase {
   constructor(private readonly userRepository: IUserRepository) {}
 
   async execute({
-    teamId,
+    teamsIds,
     companyId,
     role: roleCode,
     ...rest
@@ -27,10 +29,11 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 
     const user = User.create({
       role,
-      company: companyId,
-      team: teamId,
+      company: new UniqueEntityID(companyId),
       ...rest,
     })
+
+    user.teams = UserTeamList.create(user.id, teamsIds)
 
     await this.userRepository.create(user)
 

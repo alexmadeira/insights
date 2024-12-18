@@ -3,19 +3,21 @@ import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '_COR/types/optional'
 import type { IUser, TUserProps } from '@DOMTypes/enterprise/entities/user'
 
-import { Entity } from '_COR/entities/entity'
+import { AggregateRoot } from '_COR/entities/aggregate-root'
 
+import { UserTeamList } from './user-team-list'
 import { Slug } from './value-objects'
 
 export type * from '@DOMTypes/enterprise/entities/user'
 
-export class User extends Entity<TUserProps> implements IUser {
-  static create({ slug, createdAt, ...rest }: Optional<TUserProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
+export class User extends AggregateRoot<TUserProps> implements IUser {
+  static create(props: Optional<TUserProps, 'createdAt' | 'slug' | 'teams'>, id?: UniqueEntityID) {
     return new User(
       {
-        ...rest,
-        slug: slug ?? Slug.createFromText(rest.name),
-        createdAt: createdAt ?? new Date(),
+        ...props,
+        slug: props.slug ?? Slug.createFromText(props.name),
+        teams: props.teams || new UserTeamList(),
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
@@ -53,19 +55,19 @@ export class User extends Entity<TUserProps> implements IUser {
     this._props.email = email
   }
 
-  public get team() {
-    return this._props.team
+  public get teams() {
+    return this._props.teams
   }
 
-  public set team(team: string) {
-    this._props.team = team
+  public set teams(teams: UserTeamList) {
+    this._props.teams = teams
   }
 
   public get company() {
     return this._props.company
   }
 
-  public set company(company: string) {
+  public set company(company: UniqueEntityID) {
     this._props.company = company
   }
 

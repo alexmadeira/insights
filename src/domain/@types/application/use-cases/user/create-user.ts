@@ -8,7 +8,7 @@ export const ZCreateUserUseCaseRequest = z.object({
   name: z.string(),
   role: z.string(),
   email: z.string().email(),
-  teamId: z.string(),
+  teamsIds: z.array(z.string()),
   companyId: z.string(),
 })
 

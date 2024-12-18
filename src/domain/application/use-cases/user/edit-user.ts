@@ -1,4 +1,5 @@
 import type { IUserRepository } from '@DOMTypes/application/repositories/user-repository'
+import type { IUserTeamRepository } from '@DOMTypes/application/repositories/user-team-repository'
 import type {
   IEditUserUseCase,
   TEditUserUseCaseRequest,
@@ -6,38 +7,50 @@ import type {
 } from '@DOMTypes/application/use-cases/user/edit-user'
 
 import { left, right } from '_COR/either'
+import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import { UserTeam } from '_DOMEnt/entities/user-team'
+import { UserTeamList } from '_DOMEnt/entities/user-team-list'
 import { Role } from '_DOMEnt/entities/value-objects'
 
 export class EditUserUseCase implements IEditUserUseCase {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor(
+    private readonly userRepository: IUserRepository,
+    private readonly userTeamRepository: IUserTeamRepository,
+  ) {}
 
   async execute({
     userId,
     name,
     email,
-    teamId,
+    teamsIds,
     companyId,
     role: roleCode,
   }: TEditUserUseCaseRequest): Promise<TEditUserUseCaseResponse> {
     const user = await this.userRepository.findById(userId)
-
-    if (!user) {
-      return left(new ResourceNotFoundError())
-    }
+    if (!user) return left(new ResourceNotFoundError())
 
     const role = Role.create(roleCode)
+    if (!role.code) return left(new InvalidTypeError())
 
-    if (!role.code) {
-      return left(new InvalidTypeError())
-    }
+    const teams = await this.userTeamRepository.findManyByUserId(userId)
+    const userTeamList = new UserTeamList(teams)
 
+    userTeamList.update(
+      teamsIds.map((teamId) => {
+        return UserTeam.create({
+          userId: user.id,
+          teamId: new UniqueEntityID(teamId),
+        })
+      }),
+    )
+
+    user.role = role
     user.name = name
     user.email = email
-    user.role = role
-    user.team = teamId
-    user.company = companyId
+    user.teams = userTeamList
+    user.company = new UniqueEntityID(companyId)
 
     await this.userRepository.save(user)
 
