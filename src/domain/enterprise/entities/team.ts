@@ -24,24 +24,44 @@ export class Team extends Entity<TTeamProps> implements ITeam {
     return this._props.name
   }
 
+  public set name(name: string) {
+    this._props.name = name
+  }
+
   public get avantar() {
     return this._props.avantar
   }
 
-  public get slug() {
-    return this._props.slug
+  public set avantar(avantar: string | undefined) {
+    this._props.avantar = avantar
   }
 
   public get company() {
     return this._props.company
   }
 
+  public set company(company: string) {
+    this._props.company = company
+  }
+
   public get members() {
     return this._props.members
   }
 
+  public set members(members: string[]) {
+    this._props.members = members
+  }
+
   public get profiles() {
     return this._props.profiles
+  }
+
+  public set profiles(profiles: string[]) {
+    this._props.profiles = profiles
+  }
+
+  public get slug() {
+    return this._props.slug
   }
 
   public get createdAt() {

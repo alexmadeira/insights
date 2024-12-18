@@ -21,6 +21,7 @@ describe('Domain', () => {
           })
           expect(result.isRight()).toBe(true)
           expect(inMemoryProfileRepository.itens[0]).toEqual(result.value?.profile)
+          expect(inMemoryProfileRepository.itens[0].slug.value).toEqual('profile-name')
         })
       })
     })

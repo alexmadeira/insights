@@ -27,6 +27,7 @@ describe('Domain', () => {
           expect(inMemoryUserRepository.itens[0].name).toEqual('User Name')
           expect(inMemoryUserRepository.itens[0].email).toEqual('user@emal.com')
           expect(inMemoryUserRepository.itens[0].role.code).toEqual('owner')
+          expect(inMemoryUserRepository.itens[0].slug.value).toEqual('user-name')
 
           expect(inMemoryUserRepository.itens[0].company).toEqual('company-1')
           expect(inMemoryUserRepository.itens[0].team).toEqual('team-1')

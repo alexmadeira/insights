@@ -25,6 +25,7 @@ describe('Domain', () => {
           expect(inMemoryReferenceRepository.itens[0].name).toEqual('Reference name')
           expect(inMemoryReferenceRepository.itens[0].status.code).toEqual('active')
           expect(inMemoryReferenceRepository.itens[0].network).toEqual('network-01')
+          expect(inMemoryReferenceRepository.itens[0].slug.value).toEqual('reference-name')
         })
 
         it('should be able without status', async () => {

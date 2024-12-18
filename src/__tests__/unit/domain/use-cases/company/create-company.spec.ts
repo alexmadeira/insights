@@ -24,6 +24,7 @@ describe('Domain', () => {
 
           expect(result.isRight()).toBe(true)
           expect(inMemoryCompanyRepository.itens[0]).toEqual(result.value?.company)
+          expect(inMemoryCompanyRepository.itens[0].slug.value).toEqual('company-name')
         })
       })
     })

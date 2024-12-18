@@ -3,22 +3,22 @@ import z from 'zod'
 
 export const ZTeamProps = z.object({
   name: z.string(),
-  avantar: z.string(),
   slug: z.custom<Slug>(),
-  company: z.array(z.string()),
+  company: z.string(),
   members: z.array(z.string()),
   profiles: z.array(z.string()),
+  avantar: z.string().optional(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
 
 export const ZTeam = z.object({
   name: z.string(),
-  avantar: z.string(),
   slug: z.custom<Slug>(),
-  company: z.array(z.string()),
+  company: z.string(),
   members: z.array(z.string()),
   profiles: z.array(z.string()),
+  avantar: z.string().optional(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
