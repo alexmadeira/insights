@@ -1,4 +1,4 @@
-import type { ITeamRepository } from '@DOMTypes/application/repositories/team-repository'
+import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 import type {
   ICreateTeamUseCase,
   TCreateTeamUseCaseRequest,
@@ -9,7 +9,7 @@ import { right } from '_COR/either'
 import { Team } from '_DOMEnt/entities/team'
 
 export class CreateTeamUseCase implements ICreateTeamUseCase {
-  constructor(private readonly teamRepository: ITeamRepository) {}
+  constructor(private readonly teamRepository: TeamRepository) {}
 
   async execute({
     companyId,

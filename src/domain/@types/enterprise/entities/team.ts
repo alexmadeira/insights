@@ -1,4 +1,5 @@
-import { Slug } from '_DOMEnt/entities/value-objects'
+import type { Slug } from '_DOMEnt/entities/value-objects'
+
 import z from 'zod'
 
 export const ZTeamProps = z.object({

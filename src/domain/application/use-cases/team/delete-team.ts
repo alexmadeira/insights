@@ -1,4 +1,4 @@
-import type { ITeamRepository } from '@DOMTypes/application/repositories/team-repository'
+import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 import type {
   IDeleteTeamUseCase,
   TDeleteTeamUseCaseRequest,
@@ -9,7 +9,7 @@ import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 
 export class DeleteTeamUseCase implements IDeleteTeamUseCase {
-  constructor(private readonly teamRepository: ITeamRepository) {}
+  constructor(private readonly teamRepository: TeamRepository) {}
 
   async execute({ teamId }: TDeleteTeamUseCaseRequest): Promise<TDeleteTeamUseCaseResponse> {
     const team = await this.teamRepository.findById(teamId)

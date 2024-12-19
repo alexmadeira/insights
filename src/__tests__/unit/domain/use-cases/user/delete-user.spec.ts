@@ -38,10 +38,9 @@ describe('Domain', () => {
             userId: 'user-01',
           })
 
-          console.log(inMemoryUserTeamRepository.itens)
           expect(result.isRight()).toBe(true)
           expect(inMemoryUserRepository.itens).toHaveLength(0)
-          // expect(inMemoryUserTeamRepository.itens).toHaveLength(0)
+          expect(inMemoryUserTeamRepository.itens).toHaveLength(0)
         })
 
         it('should`t be able if not found', async () => {

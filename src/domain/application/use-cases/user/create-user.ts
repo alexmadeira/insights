@@ -1,4 +1,4 @@
-import type { IUserRepository } from '@DOMTypes/application/repositories/user-repository'
+import type { UserRepository } from '_DOMApp/repositories/user-repository'
 import type {
   ICreateUserUseCase,
   TCreateUserUseCaseRequest,
@@ -13,7 +13,7 @@ import { UserTeamList } from '_DOMEnt/entities/user-team-list'
 import { Role } from '_DOMEnt/entities/value-objects'
 
 export class CreateUserUseCase implements ICreateUserUseCase {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   async execute({
     teamsIds,

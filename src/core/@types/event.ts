@@ -2,11 +2,11 @@ import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 
 import z from 'zod'
 
-export const ZDomainEventCallback = z.function().args().returns(z.void())
+export const ZDomainEventCallback = z.function().args(z.any()).returns(z.void())
 
 export const ZDomainEvent = z.object({
   ocurredAt: z.coerce.date(),
-  getAggregateId: z.function().returns(z.custom<UniqueEntityID>()),
+  aggregateId: z.custom<UniqueEntityID>(),
 })
 
 export const ZEventHandler = z.object({

@@ -1,4 +1,4 @@
-import type { IProfileRepository } from '@DOMTypes/application/repositories/profile-repository'
+import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
 import type {
   ICreateProfileUseCase,
   TCreateProfileUseCaseRequest,
@@ -9,7 +9,7 @@ import { right } from '_COR/either'
 import { Profile } from '_DOMEnt/entities/profile'
 
 export class CreateProfileUseCase implements ICreateProfileUseCase {
-  constructor(private readonly profileRepository: IProfileRepository) {}
+  constructor(private readonly profileRepository: ProfileRepository) {}
 
   async execute({
     networkId,

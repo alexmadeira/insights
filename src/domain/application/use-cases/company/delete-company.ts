@@ -1,4 +1,4 @@
-import type { ICompanyRepository } from '@DOMTypes/application/repositories/company-repository'
+import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
 import type {
   IDeleteCompanyUseCase,
   TDeleteCompanyUseCaseRequest,
@@ -9,7 +9,7 @@ import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 
 export class DeleteCompanyUseCase implements IDeleteCompanyUseCase {
-  constructor(private readonly companyRepository: ICompanyRepository) {}
+  constructor(private readonly companyRepository: CompanyRepository) {}
 
   async execute({ companyId }: TDeleteCompanyUseCaseRequest): Promise<TDeleteCompanyUseCaseResponse> {
     const company = await this.companyRepository.findById(companyId)

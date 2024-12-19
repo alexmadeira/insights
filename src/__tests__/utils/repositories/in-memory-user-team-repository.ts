@@ -1,8 +1,8 @@
-import type { IUserTeamRepository } from '@DOMTypes/application/repositories/user-team-repository'
+import type { UserTeamRepository } from '_DOMApp/repositories/user-team-repository'
 
 import { UserTeam } from '_DOMEnt/entities/user-team'
 
-export class InMemoryUserTeamRepository implements IUserTeamRepository {
+export class InMemoryUserTeamRepository implements UserTeamRepository {
   public itens: UserTeam[] = []
 
   async create(userTeam: UserTeam) {

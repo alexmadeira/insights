@@ -1,8 +1,8 @@
-import type { ICompanyRepository } from '@DOMTypes/application/repositories/company-repository'
+import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
 
 import { Company } from '_DOMEnt/entities/company'
 
-export class InMemoryCompanyRepository implements ICompanyRepository {
+export class InMemoryCompanyRepository implements CompanyRepository {
   public itens: Company[] = []
 
   async findById(companyId: string) {

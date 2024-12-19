@@ -1,4 +1,4 @@
-import type { Acronym } from '_DOMEnt/entities/value-objects/acronym'
+import type { Acronym } from '_DOMEnt/entities/value-objects'
 
 import z from 'zod'
 

@@ -1,8 +1,8 @@
-import type { INetworkRepository } from '@DOMTypes/application/repositories/network-repository'
+import type { NetworkRepository } from '_DOMApp/repositories/network-repository'
 
 import { Network } from '_DOMEnt/entities/network'
 
-export class InMemoryNetworkRepository implements INetworkRepository {
+export class InMemoryNetworkRepository implements NetworkRepository {
   public itens: Network[] = []
 
   async findById(networkId: string) {

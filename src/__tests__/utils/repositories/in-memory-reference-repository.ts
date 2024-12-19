@@ -1,8 +1,8 @@
-import type { IReferenceRepository } from '@DOMTypes/application/repositories/reference-repository'
+import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
 
 import { Reference } from '_DOMEnt/entities/reference'
 
-export class InMemoryReferenceRepository implements IReferenceRepository {
+export class InMemoryReferenceRepository implements ReferenceRepository {
   public itens: Reference[] = []
 
   async findById(referenceId: string) {

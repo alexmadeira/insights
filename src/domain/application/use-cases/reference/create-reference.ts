@@ -1,4 +1,4 @@
-import type { IReferenceRepository } from '@DOMTypes/application/repositories/reference-repository'
+import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
 import type {
   ICreateReferenceUseCase,
   TCreateReferenceUseCaseRequest,
@@ -12,7 +12,7 @@ import { Slug } from '_DOMEnt/entities/value-objects'
 import { ReferenceStatus } from '_DOMEnt/entities/value-objects/reference-status'
 
 export class CreateReferenceUseCase implements ICreateReferenceUseCase {
-  constructor(private readonly referenceRepository: IReferenceRepository) {}
+  constructor(private readonly referenceRepository: ReferenceRepository) {}
 
   async execute({
     name,

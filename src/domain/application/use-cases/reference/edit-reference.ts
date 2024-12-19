@@ -1,4 +1,4 @@
-import type { IReferenceRepository } from '@DOMTypes/application/repositories/reference-repository'
+import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
 import type {
   IEditReferenceUseCase,
   TEditReferenceUseCaseRequest,
@@ -11,7 +11,7 @@ import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-fou
 import { ReferenceStatus } from '_DOMEnt/entities/value-objects'
 
 export class EditReferenceUseCase implements IEditReferenceUseCase {
-  constructor(private readonly referenceRepository: IReferenceRepository) {}
+  constructor(private readonly referenceRepository: ReferenceRepository) {}
 
   async execute({
     referenceId,

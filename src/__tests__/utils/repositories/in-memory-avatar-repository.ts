@@ -1,8 +1,8 @@
-import type { IAvatarRepository } from '@DOMTypes/application/repositories/avatar-repository'
+import type { AvatarRepository } from '_DOMApp/repositories/avatar-repository'
 
 import { Avatar } from '_DOMEnt/entities/avatar'
 
-export class InMemoryAvatarRepository implements IAvatarRepository {
+export class InMemoryAvatarRepository implements AvatarRepository {
   public itens: Avatar[] = []
 
   async findById(avatarId: string) {

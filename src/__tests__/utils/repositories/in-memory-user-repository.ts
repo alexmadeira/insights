@@ -1,12 +1,13 @@
-import type { IUserRepository } from '@DOMTypes/application/repositories/user-repository'
+import type { UserRepository } from '_DOMApp/repositories/user-repository'
 
+import { DomainEvents } from '_COR/events/domain-events'
+import { UserTeamRepository } from '_DOMApp/repositories/user-team-repository'
 import { User } from '_DOMEnt/entities/user'
-import { IUserTeamRepository } from '@DOMTypes/application/repositories/user-team-repository'
 
-export class InMemoryUserRepository implements IUserRepository {
+export class InMemoryUserRepository implements UserRepository {
   public itens: User[] = []
 
-  constructor(private readonly userTeamRepository: IUserTeamRepository) {}
+  constructor(private readonly userTeamRepository: UserTeamRepository) {}
 
   async findById(userId: string) {
     const user = this.itens.find((item) => item.id.toString() === userId)
@@ -17,6 +18,7 @@ export class InMemoryUserRepository implements IUserRepository {
 
   async create(user: User) {
     this.itens.push(user)
+    DomainEvents.dispatchEventsForAggregate(user.id)
   }
 
   async save(user: User) {

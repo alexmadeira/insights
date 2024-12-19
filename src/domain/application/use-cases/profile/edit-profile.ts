@@ -1,4 +1,4 @@
-import type { IProfileRepository } from '@DOMTypes/application/repositories/profile-repository'
+import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
 import type {
   IEditProfileUseCase,
   TEditProfileUseCaseRequest,
@@ -9,7 +9,7 @@ import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 
 export class EditProfileUseCase implements IEditProfileUseCase {
-  constructor(private readonly profileRepository: IProfileRepository) {}
+  constructor(private readonly profileRepository: ProfileRepository) {}
 
   async execute({
     profileId,

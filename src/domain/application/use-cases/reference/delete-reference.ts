@@ -1,4 +1,4 @@
-import type { IReferenceRepository } from '@DOMTypes/application/repositories/reference-repository'
+import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
 import type {
   IDeleteReferenceUseCase,
   TDeleteReferenceUseCaseRequest,
@@ -9,7 +9,7 @@ import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 
 export class DeleteReferenceUseCase implements IDeleteReferenceUseCase {
-  constructor(private readonly referenceRepository: IReferenceRepository) {}
+  constructor(private readonly referenceRepository: ReferenceRepository) {}
 
   async execute({ referenceId }: TDeleteReferenceUseCaseRequest): Promise<TDeleteReferenceUseCaseResponse> {
     const reference = await this.referenceRepository.findById(referenceId)

@@ -4,6 +4,7 @@ import type { Optional } from '@CORTypes/optional'
 import type { IUser, TUserProps } from '@DOMTypes/enterprise/entities/user'
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
+import { UserEvent } from '_DOMEnt/events/user-event'
 
 import { Avatar } from './avatar'
 import { UserTeamList } from './user-team-list'
@@ -13,7 +14,7 @@ export type * from '@DOMTypes/enterprise/entities/user'
 
 export class User extends AggregateRoot<TUserProps> implements IUser {
   static create(props: Optional<TUserProps, 'createdAt' | 'slug' | 'teams'>, id?: UniqueEntityID) {
-    return new User(
+    const user = new User(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
@@ -22,6 +23,10 @@ export class User extends AggregateRoot<TUserProps> implements IUser {
       },
       id,
     )
+
+    if (!id) user.addDomainEvent(UserEvent.create(user))
+
+    return user
   }
 
   public get name() {
@@ -36,7 +41,7 @@ export class User extends AggregateRoot<TUserProps> implements IUser {
     return this._props.avantar
   }
 
-  public set avantar(avantar: Avatar) {
+  public set avantar(avantar: Avatar | undefined) {
     this._props.avantar = avantar
   }
 

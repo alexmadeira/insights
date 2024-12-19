@@ -1,4 +1,4 @@
-import type { ICompanyRepository } from '@DOMTypes/application/repositories/company-repository'
+import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
 import type {
   ICreateCompanyUseCase,
   TCreateCompanyUseCaseRequest,
@@ -9,7 +9,7 @@ import { right } from '_COR/either'
 import { Company } from '_DOMEnt/entities/company'
 
 export class CreateCompanyUseCase implements ICreateCompanyUseCase {
-  constructor(private readonly companyRepository: ICompanyRepository) {}
+  constructor(private readonly companyRepository: CompanyRepository) {}
 
   async execute({
     ownerId,

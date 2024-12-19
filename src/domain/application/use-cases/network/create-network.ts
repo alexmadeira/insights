@@ -1,4 +1,4 @@
-import type { INetworkRepository } from '@DOMTypes/application/repositories/network-repository'
+import type { NetworkRepository } from '_DOMApp/repositories/network-repository'
 import type {
   ICreateNetworkUseCase,
   TCreateNetworkUseCaseRequest,
@@ -9,7 +9,7 @@ import { right } from '_COR/either'
 import { Network } from '_DOMEnt/entities/network'
 
 export class CreateNetworkUseCase implements ICreateNetworkUseCase {
-  constructor(private readonly networkRepository: INetworkRepository) {}
+  constructor(private readonly networkRepository: NetworkRepository) {}
 
   async execute({ typeId, postsIds, ...rest }: TCreateNetworkUseCaseRequest): Promise<TCreateNetworkUseCaseResponse> {
     const network = Network.create({

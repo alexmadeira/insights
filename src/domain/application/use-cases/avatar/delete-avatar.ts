@@ -1,4 +1,4 @@
-import type { IAvatarRepository } from '@DOMTypes/application/repositories/avatar-repository'
+import type { AvatarRepository } from '_DOMApp/repositories/avatar-repository'
 import type {
   IDeleteAvatarUseCase,
   TDeleteAvatarUseCaseRequest,
@@ -9,7 +9,7 @@ import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 
 export class DeleteAvatarUseCase implements IDeleteAvatarUseCase {
-  constructor(private readonly avatarRepository: IAvatarRepository) {}
+  constructor(private readonly avatarRepository: AvatarRepository) {}
 
   async execute({ avatarId }: TDeleteAvatarUseCaseRequest): Promise<TDeleteAvatarUseCaseResponse> {
     const avatar = await this.avatarRepository.findById(avatarId)

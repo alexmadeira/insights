@@ -1,4 +1,4 @@
-import type { IAvatarRepository } from '@DOMTypes/application/repositories/avatar-repository'
+import type { AvatarRepository } from '_DOMApp/repositories/avatar-repository'
 import type {
   ICreateAvatarUseCase,
   TCreateAvatarUseCaseRequest,
@@ -9,7 +9,7 @@ import { right } from '_COR/either'
 import { Avatar } from '_DOMEnt/entities/avatar'
 
 export class CreateAvatarUseCase implements ICreateAvatarUseCase {
-  constructor(private readonly avatarRepository: IAvatarRepository) {}
+  constructor(private readonly avatarRepository: AvatarRepository) {}
 
   async execute(props: TCreateAvatarUseCaseRequest): Promise<TCreateAvatarUseCaseResponse> {
     const avatar = Avatar.create(props)

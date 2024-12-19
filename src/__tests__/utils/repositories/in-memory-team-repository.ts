@@ -1,8 +1,8 @@
-import type { ITeamRepository } from '@DOMTypes/application/repositories/team-repository'
+import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 
 import { Team } from '_DOMEnt/entities/team'
 
-export class InMemoryTeamRepository implements ITeamRepository {
+export class InMemoryTeamRepository implements TeamRepository {
   public itens: Team[] = []
 
   async findById(teamId: string) {

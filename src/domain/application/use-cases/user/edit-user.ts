@@ -1,5 +1,5 @@
-import type { IUserRepository } from '@DOMTypes/application/repositories/user-repository'
-import type { IUserTeamRepository } from '@DOMTypes/application/repositories/user-team-repository'
+import type { UserRepository } from '_DOMApp/repositories/user-repository'
+import type { UserTeamRepository } from '_DOMApp/repositories/user-team-repository'
 import type {
   IEditUserUseCase,
   TEditUserUseCaseRequest,
@@ -16,8 +16,8 @@ import { Role } from '_DOMEnt/entities/value-objects'
 
 export class EditUserUseCase implements IEditUserUseCase {
   constructor(
-    private readonly userRepository: IUserRepository,
-    private readonly userTeamRepository: IUserTeamRepository,
+    private readonly userRepository: UserRepository,
+    private readonly userTeamRepository: UserTeamRepository,
   ) {}
 
   async execute({

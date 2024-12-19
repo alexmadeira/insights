@@ -1,4 +1,4 @@
-import type { ITeamRepository } from '@DOMTypes/application/repositories/team-repository'
+import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 import type {
   IEditTeamUseCase,
   TEditTeamUseCaseRequest,
@@ -9,7 +9,7 @@ import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 
 export class EditTeamUseCase implements IEditTeamUseCase {
-  constructor(private readonly teamRepository: ITeamRepository) {}
+  constructor(private readonly teamRepository: TeamRepository) {}
 
   async execute({
     teamId,

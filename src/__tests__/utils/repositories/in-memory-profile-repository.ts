@@ -1,8 +1,8 @@
-import type { IProfileRepository } from '@DOMTypes/application/repositories/profile-repository'
+import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
 
 import { Profile } from '_DOMEnt/entities/profile'
 
-export class InMemoryProfileRepository implements IProfileRepository {
+export class InMemoryProfileRepository implements ProfileRepository {
   public itens: Profile[] = []
 
   async findById(profileId: string) {
