@@ -14,8 +14,8 @@ export const ZNetwork = z.object({
   name: z.string(),
   username: z.string(),
   type: z.string(),
-  avatar: z.string(),
   posts: z.array(z.string()),
+  avantar: z.string().optional(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })

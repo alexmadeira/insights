@@ -26,7 +26,7 @@ export class Network extends Entity<TNetworkProps> implements INetwork {
   }
 
   public get avatar() {
-    return this._props.avatar
+    return this._props.avantar
   }
 
   public get type() {
