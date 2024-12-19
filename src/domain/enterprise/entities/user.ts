@@ -1,10 +1,11 @@
 import type { Role } from './value-objects'
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { Optional } from '_COR/types/optional'
+import type { Optional } from '@CORTypes/optional'
 import type { IUser, TUserProps } from '@DOMTypes/enterprise/entities/user'
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 
+import { Avatar } from './avatar'
 import { UserTeamList } from './user-team-list'
 import { Slug } from './value-objects'
 
@@ -35,7 +36,7 @@ export class User extends AggregateRoot<TUserProps> implements IUser {
     return this._props.avantar
   }
 
-  public set avantar(avantar: string | undefined) {
+  public set avantar(avantar: Avatar) {
     this._props.avantar = avantar
   }
 

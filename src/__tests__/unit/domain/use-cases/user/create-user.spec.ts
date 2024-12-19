@@ -2,13 +2,16 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { CreateUserUseCase } from '_DOMApp/use-cases/user/create-user'
 import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { InMemoryUserRepository } from '_TEST/utils/repositories/in-memory-user-repository'
+import { InMemoryUserTeamRepository } from '_TEST/utils/repositories/in-memory-user-team-repository'
 
 let inMemoryUserRepository: InMemoryUserRepository
+let inMemoryUserTeamRepository: InMemoryUserTeamRepository
 let sut: CreateUserUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
-    inMemoryUserRepository = new InMemoryUserRepository()
+    inMemoryUserTeamRepository = new InMemoryUserTeamRepository()
+    inMemoryUserRepository = new InMemoryUserRepository(inMemoryUserTeamRepository)
     sut = new CreateUserUseCase(inMemoryUserRepository)
   })
 

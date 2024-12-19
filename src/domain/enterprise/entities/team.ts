@@ -1,5 +1,5 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { Optional } from '_COR/types/optional'
+import type { Optional } from '@CORTypes/optional'
 import type { ITeam, TTeamProps } from '@DOMTypes/enterprise/entities/team'
 
 import { Entity } from '_COR/entities/entity'

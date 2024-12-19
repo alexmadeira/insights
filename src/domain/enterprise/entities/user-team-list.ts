@@ -5,7 +5,7 @@ import { UserTeam } from './user-team'
 
 export class UserTeamList extends WatchedList<UserTeam> {
   compareItems(a: UserTeam, b: UserTeam): boolean {
-    return a.teamId === b.teamId
+    return a.teamId.equals(b.teamId)
   }
 
   static create(userId: UniqueEntityID, teamsIds: string[]) {

@@ -29,7 +29,7 @@
         "./src/domain/*"
       ],
       "@CORTypes/*": [
-        "./src/core/@types*"
+        "./src/core/@types/*"
       ],
       "_COR/*": [
         "./src/core/*"
