@@ -4,15 +4,14 @@ import z from 'zod'
 
 export const ZAvatarProps = z.object({
   name: z.string(),
-  url: z.string(),
-  acronym: z.custom<Acronym>(),
+  url: z.string().nullable(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
 
 export const ZAvatar = z.object({
   name: z.string(),
-  url: z.string(),
+  url: z.string().nullable(),
   acronym: z.custom<Acronym>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
