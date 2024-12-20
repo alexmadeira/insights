@@ -22,7 +22,7 @@ describe('Domain', () => {
       describe('Delete', () => {
         it('should be able', async () => {
           const user = makeUser({}, new UniqueEntityID('user-01'))
-          await inMemoryUserRepository.create(makeUser({}, new UniqueEntityID('user-01')))
+          await inMemoryUserRepository.create(user)
           await inMemoryUserTeamRepository.createMany(
             makeUserTeam({
               userId: user.id,

@@ -28,7 +28,7 @@ export abstract class Avatar<TProps extends TAvatarProps> extends Entity<TProps>
     return this._props.url
   }
 
-  public set url(url: string | null) {
+  public set url(url: string | null | undefined) {
     this._props.url = url
   }
 

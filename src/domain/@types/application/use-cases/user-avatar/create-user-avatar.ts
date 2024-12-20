@@ -1,4 +1,5 @@
 import type { Either } from '_COR/either'
+import type { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import type { UserAvatar } from '_DOMEnt/entities/user-avatar'
 
 import z from 'zod'
@@ -9,7 +10,7 @@ export const ZCreateUserAvatarUseCaseRequest = z.object({
   name: z.string(),
 })
 
-export const ZCreateUserAvatarUseCaseResponse = z.custom<Either<null, { avatar: UserAvatar }>>()
+export const ZCreateUserAvatarUseCaseResponse = z.custom<Either<ResourceNotFoundError, { avatar: UserAvatar }>>()
 
 export const ZCreateUserAvatarUseCase = z.object({
   execute: z.function(z.tuple([ZCreateUserAvatarUseCaseRequest])).returns(z.promise(ZCreateUserAvatarUseCaseResponse)),

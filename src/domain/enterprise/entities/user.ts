@@ -4,9 +4,8 @@ import type { Optional } from '@CORTypes/optional'
 import type { IUser, TUserProps } from '@DOMTypes/enterprise/entities/user'
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
-import { UserEvent } from '_DOMEnt/events/user-event'
 
-import { Avatar } from './avatar'
+import { UserAvatar } from './user-avatar'
 import { UserTeamList } from './user-team-list'
 import { Slug } from './value-objects'
 
@@ -24,8 +23,6 @@ export class User extends AggregateRoot<TUserProps> implements IUser {
       id,
     )
 
-    if (!id) user.addDomainEvent(UserEvent.create(user))
-
     return user
   }
 
@@ -38,11 +35,20 @@ export class User extends AggregateRoot<TUserProps> implements IUser {
   }
 
   public get avantar() {
-    return this._props.avantar
+    if (this._props.avantar) return this._props.avantar
+
+    return UserAvatar.create({
+      name: this.name,
+      userId: this.id,
+    })
   }
 
-  public set avantar(avantar: Avatar | undefined) {
+  public set avantar(avantar: UserAvatar) {
     this._props.avantar = avantar
+  }
+
+  public removeAvantar() {
+    this._props.avantar = undefined
   }
 
   public get role() {

@@ -23,9 +23,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
   }: TCreateUserUseCaseRequest): Promise<TCreateUserUseCaseResponse> {
     const role = Role.create(roleCode)
 
-    if (!role.code) {
-      return left(new InvalidTypeError())
-    }
+    if (!role.code) return left(new InvalidTypeError())
 
     const user = User.create({
       role,
