@@ -8,8 +8,12 @@ export class InMemoryUserTeamRepository implements UserTeamRepository {
     this.itens.push(userTeam)
   }
 
-  async createMany(...userTeam: UserTeam[]) {
-    this.itens.push(...userTeam)
+  async createMany(teams: UserTeam[]) {
+    this.itens.push(...teams)
+  }
+
+  async deleteMany(teams: UserTeam[]) {
+    this.itens = this.itens.filter((item) => !teams.some((team) => team.equals(item)))
   }
 
   async findManyByUserId(userId: string) {

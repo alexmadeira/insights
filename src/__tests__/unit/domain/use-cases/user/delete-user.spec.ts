@@ -4,15 +4,19 @@ import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-fou
 import { makeUser } from '_TEST/utils/factories/make-user'
 import { InMemoryUserAvatarRepository } from '_TEST/utils/repositories/in-memory-user-avatar-repository'
 import { InMemoryUserRepository } from '_TEST/utils/repositories/in-memory-user-repository'
+import { InMemoryUserTeamRepository } from '_TEST/utils/repositories/in-memory-user-team-repository'
 
 let inMemoryUserAvatarRepository: InMemoryUserAvatarRepository
+let inMemoryUserTeamRepository: InMemoryUserTeamRepository
 let inMemoryUserRepository: InMemoryUserRepository
 let sut: DeleteUserUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
     inMemoryUserAvatarRepository = new InMemoryUserAvatarRepository()
-    inMemoryUserRepository = new InMemoryUserRepository(inMemoryUserAvatarRepository)
+    inMemoryUserTeamRepository = new InMemoryUserTeamRepository()
+    inMemoryUserRepository = new InMemoryUserRepository(inMemoryUserAvatarRepository, inMemoryUserTeamRepository)
+
     sut = new DeleteUserUseCase(inMemoryUserRepository)
   })
 
@@ -30,6 +34,7 @@ describe('Domain', () => {
           expect(result.isRight()).toBe(true)
           expect(inMemoryUserRepository.itens).toHaveLength(0)
           expect(inMemoryUserAvatarRepository.itens).toHaveLength(0)
+          expect(inMemoryUserTeamRepository.itens).toHaveLength(0)
         })
 
         it('should`t be able if not found', async () => {

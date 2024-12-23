@@ -18,7 +18,8 @@ describe('Domain', () => {
   beforeEach(() => {
     inMemoryUserAvatarRepository = new InMemoryUserAvatarRepository()
     inMemoryUserTeamRepository = new InMemoryUserTeamRepository()
-    inMemoryUserRepository = new InMemoryUserRepository(inMemoryUserAvatarRepository)
+    inMemoryUserRepository = new InMemoryUserRepository(inMemoryUserAvatarRepository, inMemoryUserTeamRepository)
+
     sut = new EditUserUseCase(inMemoryUserRepository, inMemoryUserTeamRepository)
   })
 
@@ -29,7 +30,7 @@ describe('Domain', () => {
           const user = makeUser({}, new UniqueEntityID('user-01'))
 
           await inMemoryUserRepository.create(user)
-          await inMemoryUserTeamRepository.createMany(
+          await inMemoryUserTeamRepository.createMany([
             makeUserTeam({
               userId: user.id,
               teamId: new UniqueEntityID('team-1'),
@@ -38,7 +39,7 @@ describe('Domain', () => {
               userId: user.id,
               teamId: new UniqueEntityID('team-2'),
             }),
-          )
+          ])
 
           const result = await sut.execute({
             userId: 'user-01',
@@ -69,6 +70,46 @@ describe('Domain', () => {
               expect.objectContaining({ teamId: new UniqueEntityID('team-1') }),
               expect.objectContaining({ teamId: new UniqueEntityID('team-3') }),
             ])
+          }
+        })
+        it('should be able sync teams', async () => {
+          const user = makeUser({}, new UniqueEntityID('user-01'))
+
+          await inMemoryUserRepository.create(user)
+          await inMemoryUserTeamRepository.createMany([
+            makeUserTeam({
+              userId: user.id,
+              teamId: new UniqueEntityID('team-1'),
+            }),
+            makeUserTeam({
+              userId: user.id,
+              teamId: new UniqueEntityID('team-2'),
+            }),
+          ])
+
+          const result = await sut.execute({
+            userId: 'user-01',
+            name: 'User Name',
+            email: 'user@emal.com',
+            role: 'member',
+            companyId: 'company-1',
+            teamsIds: ['team-1', 'team-3'],
+            avatarUrl: 'http://user-avatar.com/image.png',
+          })
+
+          expect(result.isRight()).toBe(true)
+          if (result.isRight()) {
+            expect(inMemoryUserTeamRepository.itens).toHaveLength(2)
+            expect(inMemoryUserTeamRepository.itens).toEqual(
+              expect.arrayContaining([
+                expect.objectContaining({
+                  teamId: new UniqueEntityID('team-1'),
+                }),
+                expect.objectContaining({
+                  teamId: new UniqueEntityID('team-3'),
+                }),
+              ]),
+            )
           }
         })
 
