@@ -1,6 +1,5 @@
 import type { UserTeamRepository } from '_DOMApp/repositories/user-team-repository'
-
-import { UserTeam } from '_DOMEnt/entities/user-team'
+import type { UserTeam } from '_DOMEnt/entities/user-team'
 
 export class InMemoryUserTeamRepository implements UserTeamRepository {
   public itens: UserTeam[] = []

@@ -14,13 +14,13 @@ export class CreateTeamUseCase implements ICreateTeamUseCase {
 
   async execute({
     companyId,
-    membesIds,
+    membersIds,
     profilesIds,
     ...rest
   }: TCreateTeamUseCaseRequest): Promise<TCreateTeamUseCaseResponse> {
     const team = Team.create({
       company: companyId,
-      members: membesIds,
+      members: membersIds,
       profiles: profilesIds,
       avatar: TeamAvatar.create({ name: rest.name }),
       ...rest,

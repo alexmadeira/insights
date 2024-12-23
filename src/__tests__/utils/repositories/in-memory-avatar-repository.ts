@@ -1,10 +1,10 @@
 import type { AvatarRepository } from '_DOMApp/repositories/avatar-repository'
+import type { Avatar, TAvatarProps } from '_DOMEnt/entities/avatar'
 
 import { DomainEvents } from '_COR/events/domain-events'
-import { Avatar } from '_DOMEnt/entities/avatar'
 
 export class InMemoryAvatarRepository implements AvatarRepository {
-  public itens: Avatar[] = []
+  public itens: Avatar<TAvatarProps>[] = []
 
   async findById(avatarId: string) {
     const avatar = this.itens.find((item) => item.id.toString() === avatarId)
@@ -13,17 +13,17 @@ export class InMemoryAvatarRepository implements AvatarRepository {
     return avatar
   }
 
-  async create(avatar: Avatar) {
+  async create(avatar: Avatar<TAvatarProps>) {
     this.itens.push(avatar)
     DomainEvents.dispatchEventsForAggregate(avatar.id)
   }
 
-  async save(avatar: Avatar) {
+  async save(avatar: Avatar<TAvatarProps>) {
     const itemIndex = this.itens.findIndex((item) => item.id === avatar.id)
     this.itens[itemIndex] = avatar
   }
 
-  async delete(avatar: Avatar) {
+  async delete(avatar: Avatar<TAvatarProps>) {
     const itemIndex = this.itens.findIndex((item) => item.id === avatar.id)
     this.itens.splice(itemIndex, 1)
   }

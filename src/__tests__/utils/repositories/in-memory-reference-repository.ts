@@ -1,6 +1,5 @@
 import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
-
-import { Reference } from '_DOMEnt/entities/reference'
+import type { Reference } from '_DOMEnt/entities/reference'
 
 export class InMemoryReferenceRepository implements ReferenceRepository {
   public itens: Reference[] = []

@@ -1,6 +1,5 @@
 import type { NetworkRepository } from '_DOMApp/repositories/network-repository'
-
-import { Network } from '_DOMEnt/entities/network'
+import type { Network } from '_DOMEnt/entities/network'
 
 export class InMemoryNetworkRepository implements NetworkRepository {
   public itens: Network[] = []

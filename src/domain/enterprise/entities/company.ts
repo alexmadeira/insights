@@ -1,3 +1,4 @@
+import type { CompanyAvatar } from './company-avatar'
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
 import type { ICompany, TCompanyProps } from '@DOMTypes/enterprise/entities/company'
@@ -26,14 +27,15 @@ export class Company extends Entity<TCompanyProps> implements ICompany {
 
   public set name(name: string) {
     this._props.name = name
+    this._props.avatar.name = name
   }
 
-  public get avantar() {
-    return this._props.avantar
+  public get avatar() {
+    return this._props.avatar
   }
 
-  public set avantar(avantar: string | undefined) {
-    this._props.avantar = avantar
+  public set avatar(avatar: CompanyAvatar) {
+    this._props.avatar = avatar
   }
 
   public get owner() {

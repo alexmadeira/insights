@@ -1,3 +1,4 @@
+import type { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
 import type { Slug } from '_DOMEnt/entities/value-objects'
 
 import z from 'zod'
@@ -9,7 +10,7 @@ export const ZCompanyProps = z.object({
   members: z.array(z.string()),
   profiles: z.array(z.string()),
   owner: z.string(),
-  avantar: z.string().optional(),
+  avatar: z.custom<CompanyAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
@@ -21,7 +22,7 @@ export const ZCompany = z.object({
   members: z.array(z.string()),
   profiles: z.array(z.string()),
   owner: z.string(),
-  avantar: z.string().optional(),
+  avatar: z.custom<CompanyAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })

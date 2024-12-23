@@ -22,7 +22,6 @@ describe('Domain', () => {
         it('should be able', async () => {
           await inMemoryTeamRepository.create(makeTeam({}, new UniqueEntityID('team-01')))
 
-          console.log(inMemoryTeamAvatarRepository.itens)
           const result = await sut.execute({
             teamId: 'team-01',
           })

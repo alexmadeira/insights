@@ -15,6 +15,7 @@ export class EditCompanyUseCase implements IEditCompanyUseCase {
     companyId,
     name,
     ownerId,
+    avatarUrl,
     teamsIds,
     membersIds,
     profilesIds,
@@ -30,6 +31,8 @@ export class EditCompanyUseCase implements IEditCompanyUseCase {
     company.teams = teamsIds
     company.members = membersIds
     company.profiles = profilesIds
+
+    company.avatar.url = avatarUrl
 
     await this.companyRepository.save(company)
 

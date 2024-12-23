@@ -7,6 +7,7 @@ import type {
 
 import { right } from '_COR/either'
 import { Company } from '_DOMEnt/entities/company'
+import { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
 
 export class CreateCompanyUseCase implements ICreateCompanyUseCase {
   constructor(private readonly companyRepository: CompanyRepository) {}
@@ -14,15 +15,16 @@ export class CreateCompanyUseCase implements ICreateCompanyUseCase {
   async execute({
     ownerId,
     teamsIds,
-    membesIds,
+    membersIds,
     profilesIds,
     ...rest
   }: TCreateCompanyUseCaseRequest): Promise<TCreateCompanyUseCaseResponse> {
     const company = Company.create({
       owner: ownerId,
       teams: teamsIds,
-      members: membesIds,
+      members: membersIds,
       profiles: profilesIds,
+      avatar: CompanyAvatar.create({ name: rest.name }),
       ...rest,
     })
 

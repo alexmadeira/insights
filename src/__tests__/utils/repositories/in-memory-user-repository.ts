@@ -1,7 +1,6 @@
+import type { UserAvatarRepository } from '_DOMApp/repositories/user-avatar-repository'
 import type { UserRepository } from '_DOMApp/repositories/user-repository'
-
-import { UserAvatarRepository } from '_DOMApp/repositories/user-avatar-repository'
-import { User } from '_DOMEnt/entities/user'
+import type { User } from '_DOMEnt/entities/user'
 
 export class InMemoryUserRepository implements UserRepository {
   public itens: User[] = []

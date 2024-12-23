@@ -1,7 +1,6 @@
 import type { TeamAvatarRepository } from '_DOMApp/repositories/team-avatar-repository'
 import type { TeamRepository } from '_DOMApp/repositories/team-repository'
-
-import { Team } from '_DOMEnt/entities/team'
+import type { Team } from '_DOMEnt/entities/team'
 
 export class InMemoryTeamRepository implements TeamRepository {
   public itens: Team[] = []

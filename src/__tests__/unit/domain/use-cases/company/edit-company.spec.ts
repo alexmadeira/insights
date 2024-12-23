@@ -1,14 +1,17 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { EditCompanyUseCase } from '_DOMApp/use-cases/company/edit-company'
 import { makeCompany } from '_TEST/utils/factories/make-company'
+import { InMemoryCompanyAvatarRepository } from '_TEST/utils/repositories/in-memory-company-avatar-repository'
 import { InMemoryCompanyRepository } from '_TEST/utils/repositories/in-memory-company-repository'
 
+let inMemoryCompanyAvatarRepository: InMemoryCompanyAvatarRepository
 let inMemoryCompanyRepository: InMemoryCompanyRepository
 let sut: EditCompanyUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
-    inMemoryCompanyRepository = new InMemoryCompanyRepository()
+    inMemoryCompanyAvatarRepository = new InMemoryCompanyAvatarRepository()
+    inMemoryCompanyRepository = new InMemoryCompanyRepository(inMemoryCompanyAvatarRepository)
     sut = new EditCompanyUseCase(inMemoryCompanyRepository)
   })
 
@@ -25,16 +28,24 @@ describe('Domain', () => {
             teamsIds: ['team-1'],
             membersIds: ['member-1'],
             profilesIds: ['profile-1'],
+            avatarUrl: 'http://company-avatar.com/image.png',
           })
 
           expect(result.isRight()).toBe(true)
-          expect(inMemoryCompanyRepository.itens[0]).toMatchObject({
-            name: 'Company Name',
-            owner: 'owner-1',
-            teams: ['team-1'],
-            members: ['member-1'],
-            profiles: ['profile-1'],
-          })
+
+          if (result.isRight()) {
+            expect(inMemoryCompanyRepository.itens[0].name).toEqual('Company Name')
+            expect(inMemoryCompanyRepository.itens[0].owner).toEqual('owner-1')
+            expect(inMemoryCompanyRepository.itens[0].teams).toEqual(['team-1'])
+            expect(inMemoryCompanyRepository.itens[0].members).toEqual(['member-1'])
+            expect(inMemoryCompanyRepository.itens[0].profiles).toEqual(['profile-1'])
+
+            expect(inMemoryCompanyAvatarRepository.itens[0].name).toEqual(result.value.company.avatar.name)
+            expect(inMemoryCompanyAvatarRepository.itens[0].acronym.value).toEqual(
+              result.value.company.avatar.acronym.value,
+            )
+            expect(inMemoryCompanyAvatarRepository.itens[0].url).toEqual(result.value.company.avatar.url)
+          }
         })
       })
     })

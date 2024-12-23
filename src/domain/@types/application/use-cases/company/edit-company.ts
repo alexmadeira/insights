@@ -7,6 +7,7 @@ import z from 'zod'
 export const ZEditCompanyUseCaseRequest = z.object({
   companyId: z.string(),
   name: z.string(),
+  avatarUrl: z.string().url().nullish(),
   ownerId: z.string(),
   teamsIds: z.array(z.string()),
   membersIds: z.array(z.string()),

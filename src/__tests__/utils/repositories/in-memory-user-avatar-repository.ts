@@ -1,6 +1,5 @@
 import type { UserAvatarRepository } from '_DOMApp/repositories/user-avatar-repository'
-
-import { UserAvatar } from '_DOMEnt/entities/user-avatar'
+import type { UserAvatar } from '_DOMEnt/entities/user-avatar'
 
 export class InMemoryUserAvatarRepository implements UserAvatarRepository {
   public itens: UserAvatar[] = []
