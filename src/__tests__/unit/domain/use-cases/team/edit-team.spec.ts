@@ -1,14 +1,17 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { EditTeamUseCase } from '_DOMApp/use-cases/team/edit-team'
 import { makeTeam } from '_TEST/utils/factories/make-team'
+import { InMemoryTeamAvatarRepository } from '_TEST/utils/repositories/in-memory-team-avatar-repository'
 import { InMemoryTeamRepository } from '_TEST/utils/repositories/in-memory-team-repository'
 
+let inMemoryTeamAvatarRepository: InMemoryTeamAvatarRepository
 let inMemoryTeamRepository: InMemoryTeamRepository
 let sut: EditTeamUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
-    inMemoryTeamRepository = new InMemoryTeamRepository()
+    inMemoryTeamAvatarRepository = new InMemoryTeamAvatarRepository()
+    inMemoryTeamRepository = new InMemoryTeamRepository(inMemoryTeamAvatarRepository)
     sut = new EditTeamUseCase(inMemoryTeamRepository)
   })
 
@@ -24,15 +27,20 @@ describe('Domain', () => {
             companyId: 'company-1',
             membersIds: ['member-1'],
             profilesIds: ['profile-1'],
+            avatarUrl: 'http://team-avatar.com/image.png',
           })
 
           expect(result.isRight()).toBe(true)
-          expect(inMemoryTeamRepository.itens[0]).toMatchObject({
-            name: 'Team Name',
-            company: 'company-1',
-            members: ['member-1'],
-            profiles: ['profile-1'],
-          })
+          if (result.isRight()) {
+            expect(inMemoryTeamRepository.itens[0].name).toEqual('Team Name')
+            expect(inMemoryTeamRepository.itens[0].company).toEqual('company-1')
+            expect(inMemoryTeamRepository.itens[0].members).toEqual(['member-1'])
+            expect(inMemoryTeamRepository.itens[0].profiles).toEqual(['profile-1'])
+
+            expect(inMemoryTeamAvatarRepository.itens[0].name).toEqual(result.value.team.avatar.name)
+            expect(inMemoryTeamAvatarRepository.itens[0].acronym.value).toEqual(result.value.team.avatar.acronym.value)
+            expect(inMemoryTeamAvatarRepository.itens[0].url).toEqual(result.value.team.avatar.url)
+          }
         })
       })
     })

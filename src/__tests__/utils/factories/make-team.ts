@@ -4,15 +4,18 @@ import type { TTeamProps } from '_DOMEnt/entities/team'
 import { randomUUID } from 'node:crypto'
 
 import { Team } from '_DOMEnt/entities/team'
+import { TeamAvatar } from '_DOMEnt/entities/team-avatar'
 import { faker } from '@faker-js/faker'
 
 export function makeTeam(overrides: Partial<TTeamProps> = {}, id?: UniqueEntityID) {
+  const name = faker.company.name()
   return Team.create(
     {
-      name: faker.company.name(),
+      name,
       members: [randomUUID()],
       profiles: [randomUUID()],
       company: randomUUID(),
+      avatar: TeamAvatar.create({ name }),
       createdAt: new Date(),
       ...overrides,
     },

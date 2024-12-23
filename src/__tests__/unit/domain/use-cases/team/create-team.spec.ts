@@ -1,12 +1,15 @@
 import { CreateTeamUseCase } from '_DOMApp/use-cases/team/create-team'
+import { InMemoryTeamAvatarRepository } from '_TEST/utils/repositories/in-memory-team-avatar-repository'
 import { InMemoryTeamRepository } from '_TEST/utils/repositories/in-memory-team-repository'
 
+let inMemoryTeamAvatarRepository: InMemoryTeamAvatarRepository
 let inMemoryTeamRepository: InMemoryTeamRepository
 let sut: CreateTeamUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
-    inMemoryTeamRepository = new InMemoryTeamRepository()
+    inMemoryTeamAvatarRepository = new InMemoryTeamAvatarRepository()
+    inMemoryTeamRepository = new InMemoryTeamRepository(inMemoryTeamAvatarRepository)
     sut = new CreateTeamUseCase(inMemoryTeamRepository)
   })
 
@@ -24,6 +27,9 @@ describe('Domain', () => {
           expect(result.isRight()).toBe(true)
           expect(inMemoryTeamRepository.itens[0]).toEqual(result.value?.team)
           expect(inMemoryTeamRepository.itens[0].slug.value).toEqual('team-name')
+
+          expect(inMemoryTeamRepository.itens[0].avatar.name).toEqual('Team Name')
+          expect(inMemoryTeamRepository.itens[0].avatar.acronym.value).toEqual('tn')
         })
       })
     })

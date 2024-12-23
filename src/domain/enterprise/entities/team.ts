@@ -1,3 +1,4 @@
+import type { TeamAvatar } from './team-avatar'
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
 import type { ITeam, TTeamProps } from '@DOMTypes/enterprise/entities/team'
@@ -26,14 +27,15 @@ export class Team extends Entity<TTeamProps> implements ITeam {
 
   public set name(name: string) {
     this._props.name = name
+    this._props.avatar.name = name
   }
 
-  public get avantar() {
-    return this._props.avantar
+  public get avatar() {
+    return this._props.avatar
   }
 
-  public set avantar(avantar: string | undefined) {
-    this._props.avantar = avantar
+  public set avatar(avatar: TeamAvatar) {
+    this._props.avatar = avatar
   }
 
   public get company() {

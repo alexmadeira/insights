@@ -1,3 +1,4 @@
+import type { UserAvatar } from './user-avatar'
 import type { Role } from './value-objects'
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
@@ -5,7 +6,6 @@ import type { IUser, TUserProps } from '@DOMTypes/enterprise/entities/user'
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 
-import { UserAvatar } from './user-avatar'
 import { UserTeamList } from './user-team-list'
 import { Slug } from './value-objects'
 

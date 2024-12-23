@@ -1,3 +1,4 @@
+import type { TeamAvatar } from '_DOMEnt/entities/team-avatar'
 import type { Slug } from '_DOMEnt/entities/value-objects'
 
 import z from 'zod'
@@ -8,7 +9,7 @@ export const ZTeamProps = z.object({
   company: z.string(),
   members: z.array(z.string()),
   profiles: z.array(z.string()),
-  avantar: z.string().optional(),
+  avatar: z.custom<TeamAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
@@ -19,7 +20,7 @@ export const ZTeam = z.object({
   company: z.string(),
   members: z.array(z.string()),
   profiles: z.array(z.string()),
-  avantar: z.string().optional(),
+  avatar: z.custom<TeamAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })

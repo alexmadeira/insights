@@ -14,8 +14,8 @@ export class EditTeamUseCase implements IEditTeamUseCase {
   async execute({
     teamId,
     name,
+    avatarUrl,
     companyId,
-
     membersIds,
     profilesIds,
   }: TEditTeamUseCaseRequest): Promise<TEditTeamUseCaseResponse> {
@@ -29,6 +29,8 @@ export class EditTeamUseCase implements IEditTeamUseCase {
     team.company = companyId
     team.members = membersIds
     team.profiles = profilesIds
+
+    team.avatar.url = avatarUrl
 
     await this.teamRepository.save(team)
 

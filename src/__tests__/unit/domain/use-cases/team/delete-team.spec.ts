@@ -2,14 +2,17 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { DeleteTeamUseCase } from '_DOMApp/use-cases/team/delete-team'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makeTeam } from '_TEST/utils/factories/make-team'
+import { InMemoryTeamAvatarRepository } from '_TEST/utils/repositories/in-memory-team-avatar-repository'
 import { InMemoryTeamRepository } from '_TEST/utils/repositories/in-memory-team-repository'
 
+let inMemoryTeamAvatarRepository: InMemoryTeamAvatarRepository
 let inMemoryTeamRepository: InMemoryTeamRepository
 let sut: DeleteTeamUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
-    inMemoryTeamRepository = new InMemoryTeamRepository()
+    inMemoryTeamAvatarRepository = new InMemoryTeamAvatarRepository()
+    inMemoryTeamRepository = new InMemoryTeamRepository(inMemoryTeamAvatarRepository)
     sut = new DeleteTeamUseCase(inMemoryTeamRepository)
   })
 
@@ -19,11 +22,14 @@ describe('Domain', () => {
         it('should be able', async () => {
           await inMemoryTeamRepository.create(makeTeam({}, new UniqueEntityID('team-01')))
 
+          console.log(inMemoryTeamAvatarRepository.itens)
           const result = await sut.execute({
             teamId: 'team-01',
           })
+
           expect(result.isRight()).toBe(true)
           expect(inMemoryTeamRepository.itens).toHaveLength(0)
+          expect(inMemoryTeamAvatarRepository.itens).toHaveLength(0)
         })
 
         it('should`t be able if not found', async () => {
