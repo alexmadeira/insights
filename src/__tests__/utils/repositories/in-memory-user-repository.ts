@@ -1,13 +1,12 @@
 import type { UserRepository } from '_DOMApp/repositories/user-repository'
 
-import { DomainEvents } from '_COR/events/domain-events'
-import { UserTeamRepository } from '_DOMApp/repositories/user-team-repository'
+import { UserAvatarRepository } from '_DOMApp/repositories/user-avatar-repository'
 import { User } from '_DOMEnt/entities/user'
 
 export class InMemoryUserRepository implements UserRepository {
   public itens: User[] = []
 
-  constructor(private readonly userTeamRepository: UserTeamRepository) {}
+  constructor(private readonly userAvatarRepository: UserAvatarRepository) {}
 
   async findById(userId: string) {
     const user = this.itens.find((item) => item.id.toString() === userId)
@@ -18,17 +17,20 @@ export class InMemoryUserRepository implements UserRepository {
 
   async create(user: User) {
     this.itens.push(user)
-    DomainEvents.dispatchEventsForAggregate(user.id)
+    this.userAvatarRepository.create(user.avatar)
   }
 
   async save(user: User) {
     const itemIndex = this.itens.findIndex((item) => item.id === user.id)
     this.itens[itemIndex] = user
+
+    this.userAvatarRepository.save(user.avatar)
   }
 
   async delete(user: User) {
     const itemIndex = this.itens.findIndex((item) => item.id === user.id)
     this.itens.splice(itemIndex, 1)
-    this.userTeamRepository.deleteManyByUserId(user.id.toString())
+
+    this.userAvatarRepository.delete(user.avatar)
   }
 }

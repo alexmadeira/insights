@@ -5,24 +5,25 @@ import { UserAvatar } from '_DOMEnt/entities/user-avatar'
 export class InMemoryUserAvatarRepository implements UserAvatarRepository {
   public itens: UserAvatar[] = []
 
-  async findById(avatarId: string) {
-    const avatar = this.itens.find((item) => item.id.toString() === avatarId)
+  async findByAvatarId(avatarId: string) {
+    const userAvatar = this.itens.find((item) => item.id.equals(avatarId))
 
-    if (!avatar) return null
-    return avatar
+    if (!userAvatar) return null
+    return userAvatar
   }
 
-  async create(avatar: UserAvatar) {
-    this.itens.push(avatar)
+  async create(userAvatar: UserAvatar) {
+    this.itens.push(userAvatar)
   }
 
-  async save(avatar: UserAvatar) {
-    const itemIndex = this.itens.findIndex((item) => item.id === avatar.id)
-    this.itens[itemIndex] = avatar
+  async save(userAvatar: UserAvatar) {
+    const itemIndex = this.itens.findIndex((item) => item.id.equals(userAvatar.id))
+
+    this.itens[itemIndex] = userAvatar
   }
 
-  async delete(avatar: UserAvatar) {
-    const itemIndex = this.itens.findIndex((item) => item.id === avatar.id)
+  async delete(userAvatar: UserAvatar) {
+    const itemIndex = this.itens.findIndex((item) => item.id.equals(userAvatar.id))
     this.itens.splice(itemIndex, 1)
   }
 }

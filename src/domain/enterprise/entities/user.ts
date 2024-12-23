@@ -32,23 +32,15 @@ export class User extends AggregateRoot<TUserProps> implements IUser {
 
   public set name(name: string) {
     this._props.name = name
+    this._props.avatar.name = name
   }
 
-  public get avantar() {
-    if (this._props.avantar) return this._props.avantar
-
-    return UserAvatar.create({
-      name: this.name,
-      userId: this.id,
-    })
+  public get avatar() {
+    return this._props.avatar
   }
 
-  public set avantar(avantar: UserAvatar) {
-    this._props.avantar = avantar
-  }
-
-  public removeAvantar() {
-    this._props.avantar = undefined
+  public set avatar(avatar: UserAvatar) {
+    this._props.avatar = avatar
   }
 
   public get role() {

@@ -1,17 +1,17 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { CreateUserUseCase } from '_DOMApp/use-cases/user/create-user'
 import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
+import { InMemoryUserAvatarRepository } from '_TEST/utils/repositories/in-memory-user-avatar-repository'
 import { InMemoryUserRepository } from '_TEST/utils/repositories/in-memory-user-repository'
-import { InMemoryUserTeamRepository } from '_TEST/utils/repositories/in-memory-user-team-repository'
 
+let inMemoryUserAvatarRepository: InMemoryUserAvatarRepository
 let inMemoryUserRepository: InMemoryUserRepository
-let inMemoryUserTeamRepository: InMemoryUserTeamRepository
 let sut: CreateUserUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
-    inMemoryUserTeamRepository = new InMemoryUserTeamRepository()
-    inMemoryUserRepository = new InMemoryUserRepository(inMemoryUserTeamRepository)
+    inMemoryUserAvatarRepository = new InMemoryUserAvatarRepository()
+    inMemoryUserRepository = new InMemoryUserRepository(inMemoryUserAvatarRepository)
     sut = new CreateUserUseCase(inMemoryUserRepository)
   })
 
@@ -33,6 +33,9 @@ describe('Domain', () => {
             expect(inMemoryUserRepository.itens[0].email).toEqual('user@emal.com')
             expect(inMemoryUserRepository.itens[0].role.code).toEqual('owner')
             expect(inMemoryUserRepository.itens[0].slug.value).toEqual('user-name')
+            expect(inMemoryUserRepository.itens[0].avatar.name).toEqual('User Name')
+            expect(inMemoryUserRepository.itens[0].avatar.acronym.value).toEqual('un')
+
             expect(inMemoryUserRepository.itens[0].company.toString()).toEqual('company-1')
             expect(inMemoryUserRepository.itens[0].teams.currentItems).toHaveLength(1)
             expect(inMemoryUserRepository.itens[0].teams.currentItems).toEqual([

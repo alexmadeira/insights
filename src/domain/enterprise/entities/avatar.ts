@@ -1,18 +1,38 @@
+import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import type { Optional } from '@CORTypes/optional'
 import type { IAvatar, TAvatarProps } from '@DOMTypes/enterprise/entities/avatar'
 
 import { Entity } from '_COR/entities/entity'
-import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 
 import { Acronym } from './value-objects'
 
 export type * from '@DOMTypes/enterprise/entities/avatar'
 
-export abstract class Avatar<TProps extends TAvatarProps> extends Entity<TProps> implements IAvatar {
+export class Avatar<TProps extends TAvatarProps> extends Entity<TProps> implements IAvatar {
   private _acronym: Acronym
 
-  protected constructor(props: TProps, id?: UniqueEntityID) {
+  constructor(props: TProps, id?: UniqueEntityID) {
     super(props, id)
     this._acronym = Acronym.create(props.name)
+  }
+
+  static create({ createdAt, ...rest }: Optional<TAvatarProps, 'createdAt'>, id?: UniqueEntityID) {
+    return new Avatar(
+      {
+        createdAt: createdAt ?? new Date(),
+        ...rest,
+      },
+      id,
+    )
+  }
+
+  protected get data() {
+    return {
+      name: this.name,
+      url: this.url,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    }
   }
 
   public get name() {

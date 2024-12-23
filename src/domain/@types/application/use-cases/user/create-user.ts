@@ -8,8 +8,8 @@ export const ZCreateUserUseCaseRequest = z.object({
   name: z.string(),
   role: z.string(),
   email: z.string().email(),
-  teamsIds: z.array(z.string()),
   companyId: z.string(),
+  teamsIds: z.array(z.string()),
 })
 
 export const ZCreateUserUseCaseResponse = z.custom<Either<InvalidTypeError, { user: User }>>()

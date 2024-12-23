@@ -12,7 +12,7 @@ export const ZUserProps = z.object({
   email: z.string().email(),
   teams: z.custom<UserTeamList>(),
   company: z.custom<UniqueEntityID>(),
-  avantar: z.custom<UserAvatar>().optional(),
+  avatar: z.custom<UserAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
@@ -24,15 +24,13 @@ export const ZUser = z.object({
   email: z.string().email(),
   teams: z.custom<UserTeamList>(),
   company: z.custom<UniqueEntityID>(),
-  avantar: z.custom<UserAvatar>(),
+  avatar: z.custom<UserAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
-  removeAvantar: z.function().returns(z.void()),
 })
 
 //
 //
 //
-
 export type TUserProps = z.infer<typeof ZUserProps>
 export interface IUser extends z.infer<typeof ZUser> {}

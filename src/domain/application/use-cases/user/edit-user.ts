@@ -26,6 +26,7 @@ export class EditUserUseCase implements IEditUserUseCase {
     email,
     teamsIds,
     companyId,
+    avatarUrl,
     role: roleCode,
   }: TEditUserUseCaseRequest): Promise<TEditUserUseCaseResponse> {
     const user = await this.userRepository.findById(userId)
@@ -50,6 +51,7 @@ export class EditUserUseCase implements IEditUserUseCase {
     user.name = name
     user.email = email
     user.teams = userTeamList
+    user.avatar.url = avatarUrl
     user.company = new UniqueEntityID(companyId)
 
     await this.userRepository.save(user)

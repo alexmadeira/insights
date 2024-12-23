@@ -14,13 +14,9 @@ export abstract class Entity<TProps> {
   }
 
   public equals(entity: Entity<unknown>) {
-    if (!(entity instanceof Entity)) {
-      return false
-    }
-    if (this === entity) {
-      return true
-    }
+    if (entity === this) return true
+    if (entity.id === this._id) return true
 
-    return this._id.equals(entity._id)
+    return false
   }
 }

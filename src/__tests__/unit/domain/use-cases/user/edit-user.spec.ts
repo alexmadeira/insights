@@ -4,17 +4,21 @@ import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makeUser } from '_TEST/utils/factories/make-user'
 import { makeUserTeam } from '_TEST/utils/factories/make-user-team'
+import { InMemoryUserAvatarRepository } from '_TEST/utils/repositories/in-memory-user-avatar-repository'
 import { InMemoryUserRepository } from '_TEST/utils/repositories/in-memory-user-repository'
 import { InMemoryUserTeamRepository } from '_TEST/utils/repositories/in-memory-user-team-repository'
 
-let inMemoryUserRepository: InMemoryUserRepository
+let inMemoryUserAvatarRepository: InMemoryUserAvatarRepository
 let inMemoryUserTeamRepository: InMemoryUserTeamRepository
+let inMemoryUserRepository: InMemoryUserRepository
+
 let sut: EditUserUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
+    inMemoryUserAvatarRepository = new InMemoryUserAvatarRepository()
     inMemoryUserTeamRepository = new InMemoryUserTeamRepository()
-    inMemoryUserRepository = new InMemoryUserRepository(inMemoryUserTeamRepository)
+    inMemoryUserRepository = new InMemoryUserRepository(inMemoryUserAvatarRepository)
     sut = new EditUserUseCase(inMemoryUserRepository, inMemoryUserTeamRepository)
   })
 
@@ -23,6 +27,7 @@ describe('Domain', () => {
       describe('Edit', () => {
         it('should be able', async () => {
           const user = makeUser({}, new UniqueEntityID('user-01'))
+
           await inMemoryUserRepository.create(user)
           await inMemoryUserTeamRepository.createMany(
             makeUserTeam({
@@ -42,6 +47,7 @@ describe('Domain', () => {
             role: 'member',
             companyId: 'company-1',
             teamsIds: ['team-1', 'team-3'],
+            avatarUrl: 'http://user-avatar.com/image.png',
           })
 
           expect(result.isRight()).toBe(true)
@@ -49,6 +55,14 @@ describe('Domain', () => {
             expect(inMemoryUserRepository.itens[0].name).toEqual('User Name')
             expect(inMemoryUserRepository.itens[0].email).toEqual('user@emal.com')
             expect(inMemoryUserRepository.itens[0].role.code).toEqual('member')
+
+            expect(inMemoryUserRepository.itens[0].avatar.name).toEqual('User Name')
+            expect(inMemoryUserRepository.itens[0].avatar.acronym.value).toEqual('un')
+
+            expect(inMemoryUserAvatarRepository.itens[0].name).toEqual(result.value.user.avatar.name)
+            expect(inMemoryUserAvatarRepository.itens[0].acronym.value).toEqual(result.value.user.avatar.acronym.value)
+            expect(inMemoryUserAvatarRepository.itens[0].url).toEqual(result.value.user.avatar.url)
+
             expect(inMemoryUserRepository.itens[0].company.toString()).toEqual('company-1')
             expect(inMemoryUserRepository.itens[0].teams.currentItems).toHaveLength(2)
             expect(inMemoryUserRepository.itens[0].teams.currentItems).toEqual([

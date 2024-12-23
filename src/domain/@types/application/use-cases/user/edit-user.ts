@@ -10,6 +10,7 @@ export const ZEditUserUseCaseRequest = z.object({
   name: z.string(),
   role: z.string(),
   email: z.string().email(),
+  avatarUrl: z.string().url().nullish(),
   teamsIds: z.array(z.string()),
   companyId: z.string(),
 })
