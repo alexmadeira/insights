@@ -4,15 +4,22 @@ import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-fou
 import { makeCompany } from '_TEST/utils/factories/make-company'
 import { InMemoryCompanyAvatarRepository } from '_TEST/utils/repositories/in-memory-company-avatar-repository'
 import { InMemoryCompanyRepository } from '_TEST/utils/repositories/in-memory-company-repository'
+import { InMemoryCompanyTeamRepository } from '_TEST/utils/repositories/in-memory-company-team-repository'
 
 let inMemoryCompanyAvatarRepository: InMemoryCompanyAvatarRepository
+let inMemoryCompanyTeamRepository: InMemoryCompanyTeamRepository
 let inMemoryCompanyRepository: InMemoryCompanyRepository
 let sut: DeleteCompanyUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
     inMemoryCompanyAvatarRepository = new InMemoryCompanyAvatarRepository()
-    inMemoryCompanyRepository = new InMemoryCompanyRepository(inMemoryCompanyAvatarRepository)
+    inMemoryCompanyTeamRepository = new InMemoryCompanyTeamRepository()
+    inMemoryCompanyRepository = new InMemoryCompanyRepository(
+      inMemoryCompanyAvatarRepository,
+      inMemoryCompanyTeamRepository,
+    )
+
     sut = new DeleteCompanyUseCase(inMemoryCompanyRepository)
   })
 

@@ -3,18 +3,23 @@ import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
 import type { ICompany, TCompanyProps } from '@DOMTypes/enterprise/entities/company'
 
-import { Entity } from '_COR/entities/entity'
+import { AggregateRoot } from '_COR/entities/aggregate-root'
 
 import { Slug } from './value-objects/slug'
+import { CompanyTeamList } from './company-team-list'
 
 export type * from '@DOMTypes/enterprise/entities/company'
 
-export class Company extends Entity<TCompanyProps> implements ICompany {
-  static create({ slug, createdAt, ...rest }: Optional<TCompanyProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
+export class Company extends AggregateRoot<TCompanyProps> implements ICompany {
+  static create(
+    { slug, createdAt, ...rest }: Optional<TCompanyProps, 'createdAt' | 'slug' | 'teams'>,
+    id?: UniqueEntityID,
+  ) {
     return new Company(
       {
         ...rest,
         slug: slug ?? Slug.createFromText(rest.name),
+        teams: rest.teams || new CompanyTeamList(),
         createdAt: createdAt ?? new Date(),
       },
       id,
@@ -42,7 +47,7 @@ export class Company extends Entity<TCompanyProps> implements ICompany {
     return this._props.owner
   }
 
-  public set owner(owner: string) {
+  public set owner(owner: UniqueEntityID) {
     this._props.owner = owner
   }
 
@@ -50,7 +55,7 @@ export class Company extends Entity<TCompanyProps> implements ICompany {
     return this._props.teams
   }
 
-  public set teams(teams: string[]) {
+  public set teams(teams: CompanyTeamList) {
     this._props.teams = teams
   }
 
