@@ -26,15 +26,6 @@ export class Avatar<TProps extends TAvatarProps> extends Entity<TProps> implemen
     )
   }
 
-  protected get data() {
-    return {
-      name: this.name,
-      url: this.url,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
-    }
-  }
-
   public get name() {
     return this._props.name
   }

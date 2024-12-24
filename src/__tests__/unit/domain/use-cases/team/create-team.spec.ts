@@ -34,6 +34,25 @@ describe('Domain', () => {
           expect(inMemoryTeamRepository.itens[0].avatar.name).toEqual('Team Name')
           expect(inMemoryTeamRepository.itens[0].avatar.acronym.value).toEqual('tn')
         })
+        it('together should be able persist avatar', async () => {
+          const result = await sut.execute({
+            name: 'Team Name',
+            companyId: 'company-1',
+            membersIds: ['member-1'],
+            profilesIds: ['profile-1'],
+          })
+
+          expect(result.isRight()).toBe(true)
+          if (result.isRight()) {
+            expect(inMemoryTeamAvatarRepository.itens).toHaveLength(1)
+            expect(inMemoryTeamAvatarRepository.itens[0]).toEqual(
+              expect.objectContaining({
+                name: 'Team Name',
+                teamId: result.value.team.id,
+              }),
+            )
+          }
+        })
       })
     })
   })

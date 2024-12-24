@@ -2,11 +2,13 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { CreateMemberUseCase } from '_DOMApp/use-cases/member/create-member'
 import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { InMemoryMemberAvatarRepository } from '_TEST/utils/repositories/in-memory-member-avatar-repository'
+import { InMemoryMemberCompanyRepository } from '_TEST/utils/repositories/in-memory-member-company-repository'
 import { InMemoryMemberRepository } from '_TEST/utils/repositories/in-memory-member-repository'
 import { InMemoryMemberTeamRepository } from '_TEST/utils/repositories/in-memory-member-team-repository'
 
 let inMemoryMemberAvatarRepository: InMemoryMemberAvatarRepository
 let inMemoryMemberTeamRepository: InMemoryMemberTeamRepository
+let inMemoryMemberCompanyRepository: InMemoryMemberCompanyRepository
 let inMemoryMemberRepository: InMemoryMemberRepository
 let sut: CreateMemberUseCase
 
@@ -14,9 +16,11 @@ describe('Domain', () => {
   beforeEach(() => {
     inMemoryMemberAvatarRepository = new InMemoryMemberAvatarRepository()
     inMemoryMemberTeamRepository = new InMemoryMemberTeamRepository()
+    inMemoryMemberCompanyRepository = new InMemoryMemberCompanyRepository()
     inMemoryMemberRepository = new InMemoryMemberRepository(
       inMemoryMemberAvatarRepository,
       inMemoryMemberTeamRepository,
+      inMemoryMemberCompanyRepository,
     )
 
     sut = new CreateMemberUseCase(inMemoryMemberRepository)
@@ -30,7 +34,7 @@ describe('Domain', () => {
             name: 'Member Name',
             email: 'member@emal.com',
             role: 'owner',
-            companyId: 'company-1',
+            companiesIds: ['company-1'],
             teamsIds: ['team-1'],
           })
 
@@ -44,7 +48,6 @@ describe('Domain', () => {
             expect(inMemoryMemberRepository.itens[0].avatar.name).toEqual('Member Name')
             expect(inMemoryMemberRepository.itens[0].avatar.acronym.value).toEqual('mn')
 
-            expect(inMemoryMemberRepository.itens[0].company.toString()).toEqual('company-1')
             expect(inMemoryMemberRepository.itens[0].teams.currentItems).toHaveLength(1)
             expect(inMemoryMemberRepository.itens[0].teams.currentItems).toEqual([
               expect.objectContaining({
@@ -52,15 +55,22 @@ describe('Domain', () => {
                 memberId: result.value.member.id,
               }),
             ])
+
+            expect(inMemoryMemberRepository.itens[0].companies.currentItems).toHaveLength(1)
+            expect(inMemoryMemberRepository.itens[0].companies.currentItems).toEqual([
+              expect.objectContaining({
+                companyId: new UniqueEntityID('company-1'),
+                memberId: result.value.member.id,
+              }),
+            ])
           }
         })
-
         it('together should be able persist avatar', async () => {
           const result = await sut.execute({
             name: 'Member Name',
             email: 'member@emal.com',
             role: 'owner',
-            companyId: 'company-1',
+            companiesIds: [],
             teamsIds: [],
           })
 
@@ -80,7 +90,7 @@ describe('Domain', () => {
             name: 'Member Name',
             email: 'member@emal.com',
             role: 'owner',
-            companyId: 'company-1',
+            companiesIds: [],
             teamsIds: ['team-1', 'team-2'],
           })
 
@@ -99,12 +109,36 @@ describe('Domain', () => {
             )
           }
         })
+        it('together should be able persist companies', async () => {
+          const result = await sut.execute({
+            name: 'Member Name',
+            email: 'member@emal.com',
+            role: 'owner',
+            companiesIds: ['company-1', 'company-2'],
+            teamsIds: [],
+          })
+
+          expect(result.isRight()).toBe(true)
+          if (result.isRight()) {
+            expect(inMemoryMemberCompanyRepository.itens).toHaveLength(2)
+            expect(inMemoryMemberCompanyRepository.itens).toEqual(
+              expect.arrayContaining([
+                expect.objectContaining({
+                  companyId: new UniqueEntityID('company-1'),
+                }),
+                expect.objectContaining({
+                  companyId: new UniqueEntityID('company-2'),
+                }),
+              ]),
+            )
+          }
+        })
         it('should`t be able with an invalid role', async () => {
           const result = await sut.execute({
             name: 'Member Name',
             email: 'member@emal.com',
             role: 'invalid-role',
-            companyId: 'company-1',
+            companiesIds: [],
             teamsIds: [],
           })
 

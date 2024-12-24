@@ -1,4 +1,3 @@
-import type { MemberAvatar } from './member-avatar'
 import type { Role } from './value-objects'
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
@@ -6,18 +5,20 @@ import type { IMember, TMemberProps } from '@DOMTypes/enterprise/entities/member
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 
+import { MemberCompanyList } from './member-company-list'
 import { MemberTeamList } from './member-team-list'
 import { Slug } from './value-objects'
 
 export type * from '@DOMTypes/enterprise/entities/member'
 
 export class Member extends AggregateRoot<TMemberProps> implements IMember {
-  static create(props: Optional<TMemberProps, 'createdAt' | 'slug' | 'teams'>, id?: UniqueEntityID) {
+  static create(props: Optional<TMemberProps, 'createdAt' | 'slug' | 'teams' | 'companies'>, id?: UniqueEntityID) {
     const member = new Member(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
         teams: props.teams || new MemberTeamList(),
+        companies: props.companies || new MemberCompanyList(),
         createdAt: props.createdAt ?? new Date(),
       },
       id,
@@ -37,10 +38,6 @@ export class Member extends AggregateRoot<TMemberProps> implements IMember {
 
   public get avatar() {
     return this._props.avatar
-  }
-
-  public set avatar(avatar: MemberAvatar) {
-    this._props.avatar = avatar
   }
 
   public get role() {
@@ -67,12 +64,12 @@ export class Member extends AggregateRoot<TMemberProps> implements IMember {
     this._props.teams = teams
   }
 
-  public get company() {
-    return this._props.company
+  public get companies() {
+    return this._props.companies
   }
 
-  public set company(company: UniqueEntityID) {
-    this._props.company = company
+  public set companies(companies: MemberCompanyList) {
+    this._props.companies = companies
   }
 
   public get slug() {

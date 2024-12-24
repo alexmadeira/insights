@@ -5,11 +5,11 @@ import z from 'zod'
 import { ZAvatar, ZAvatarProps } from './avatar'
 
 export const ZMemberAvatarProps = ZAvatarProps.extend({
-  userId: z.custom<UniqueEntityID>().optional(),
+  memberId: z.custom<UniqueEntityID>().optional(),
 })
 
 export const ZMemberAvatar = ZAvatar.extend({
-  userId: z.custom<UniqueEntityID>().optional(),
+  memberId: z.custom<UniqueEntityID>().optional(),
 })
 
 //

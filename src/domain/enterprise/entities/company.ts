@@ -1,4 +1,3 @@
-import type { CompanyAvatar } from './company-avatar'
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
 import type { ICompany, TCompanyProps } from '@DOMTypes/enterprise/entities/company'
@@ -37,10 +36,6 @@ export class Company extends AggregateRoot<TCompanyProps> implements ICompany {
 
   public get avatar() {
     return this._props.avatar
-  }
-
-  public set avatar(avatar: CompanyAvatar) {
-    this._props.avatar = avatar
   }
 
   public get teams() {

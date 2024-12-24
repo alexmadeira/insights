@@ -6,10 +6,10 @@ import type {
 } from '@DOMTypes/application/use-cases/member/create-member'
 
 import { left, right } from '_COR/either'
-import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { Member } from '_DOMEnt/entities/member'
 import { MemberAvatar } from '_DOMEnt/entities/member-avatar'
+import { MemberCompanyList } from '_DOMEnt/entities/member-company-list'
 import { MemberTeamList } from '_DOMEnt/entities/member-team-list'
 import { Role } from '_DOMEnt/entities/value-objects'
 
@@ -18,7 +18,7 @@ export class CreateMemberUseCase implements ICreateMemberUseCase {
 
   async execute({
     teamsIds,
-    companyId,
+    companiesIds,
     role: roleCode,
     ...rest
   }: TCreateMemberUseCaseRequest): Promise<TCreateMemberUseCaseResponse> {
@@ -28,11 +28,12 @@ export class CreateMemberUseCase implements ICreateMemberUseCase {
     const member = Member.create({
       role,
       avatar: MemberAvatar.create({ name: rest.name }),
-      company: new UniqueEntityID(companyId),
       ...rest,
     })
 
     member.teams = MemberTeamList.create(member.id, teamsIds)
+    member.companies = MemberCompanyList.create(member.id, companiesIds)
+
     member.avatar.memberId = member.id
 
     await this.memberRepository.create(member)

@@ -1,5 +1,5 @@
-import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { MemberAvatar } from '_DOMEnt/entities/member-avatar'
+import type { MemberCompanyList } from '_DOMEnt/entities/member-company-list'
 import type { MemberTeamList } from '_DOMEnt/entities/member-team-list'
 import type { Role, Slug } from '_DOMEnt/entities/value-objects'
 
@@ -11,7 +11,7 @@ export const ZMemberProps = z.object({
   slug: z.custom<Slug>(),
   email: z.string().email(),
   teams: z.custom<MemberTeamList>(),
-  company: z.custom<UniqueEntityID>(),
+  companies: z.custom<MemberCompanyList>(),
   avatar: z.custom<MemberAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
@@ -23,7 +23,7 @@ export const ZMember = z.object({
   slug: z.custom<Slug>(),
   email: z.string().email(),
   teams: z.custom<MemberTeamList>(),
-  company: z.custom<UniqueEntityID>(),
+  companies: z.custom<MemberCompanyList>(),
   avatar: z.custom<MemberAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),

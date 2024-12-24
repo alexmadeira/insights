@@ -1,5 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { EditCompanyUseCase } from '_DOMApp/use-cases/company/edit-company'
+import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makeCompany } from '_TEST/utils/factories/make-company'
 import { makeCompanyTeam } from '_TEST/utils/factories/make-company-team'
 import { InMemoryCompanyAvatarRepository } from '_TEST/utils/repositories/in-memory-company-avatar-repository'
@@ -105,6 +106,28 @@ describe('Domain', () => {
               ]),
             )
           }
+        })
+        it('should`t be able if not found', async () => {
+          const company = makeCompany({}, new UniqueEntityID('company-01'))
+          await inMemoryCompanyRepository.create(company)
+
+          await inMemoryCompanyTeamRepository.createMany([
+            makeCompanyTeam({
+              companyId: company.id,
+              teamId: new UniqueEntityID('team-1'),
+            }),
+          ])
+
+          const result = await sut.execute({
+            companyId: 'company-02',
+            name: 'Company Name',
+            teamsIds: [],
+            membersIds: [],
+            profilesIds: [],
+          })
+
+          expect(result.isLeft()).toBe(true)
+          expect(result.value).toBeInstanceOf(ResourceNotFoundError)
         })
       })
     })

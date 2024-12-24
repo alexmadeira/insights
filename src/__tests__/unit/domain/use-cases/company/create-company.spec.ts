@@ -51,6 +51,25 @@ describe('Domain', () => {
             ])
           }
         })
+        it('together should be able persist avatar', async () => {
+          const result = await sut.execute({
+            name: 'Company Name',
+            teamsIds: ['team-1'],
+            membersIds: ['members-1'],
+            profilesIds: ['profile-1'],
+          })
+
+          expect(result.isRight()).toBe(true)
+          if (result.isRight()) {
+            expect(inMemoryCompanyAvatarRepository.itens).toHaveLength(1)
+            expect(inMemoryCompanyAvatarRepository.itens[0]).toEqual(
+              expect.objectContaining({
+                name: 'Company Name',
+                companyId: result.value.company.id,
+              }),
+            )
+          }
+        })
         it('together should be able persist teams', async () => {
           const result = await sut.execute({
             name: 'Company Name',
