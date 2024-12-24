@@ -1,4 +1,3 @@
-import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
 import type { Slug } from '_DOMEnt/entities/value-objects'
 
@@ -11,7 +10,6 @@ export const ZCompanyProps = z.object({
   teams: z.custom<CompanyTeamList>(),
   members: z.array(z.string()),
   profiles: z.array(z.string()),
-  owner: z.custom<UniqueEntityID>(),
   avatar: z.custom<CompanyAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
@@ -23,7 +21,6 @@ export const ZCompany = z.object({
   teams: z.custom<CompanyTeamList>(),
   members: z.array(z.string()),
   profiles: z.array(z.string()),
-  owner: z.custom<UniqueEntityID>(),
   avatar: z.custom<CompanyAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),

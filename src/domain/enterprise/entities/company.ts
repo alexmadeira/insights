@@ -43,14 +43,6 @@ export class Company extends AggregateRoot<TCompanyProps> implements ICompany {
     this._props.avatar = avatar
   }
 
-  public get owner() {
-    return this._props.owner
-  }
-
-  public set owner(owner: UniqueEntityID) {
-    this._props.owner = owner
-  }
-
   public get teams() {
     return this._props.teams
   }

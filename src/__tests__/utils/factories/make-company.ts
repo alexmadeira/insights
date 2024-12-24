@@ -17,7 +17,6 @@ export function makeCompany(overrides: Partial<TCompanyProps> = {}, id?: UniqueE
       members: [randomUUID()],
       profiles: [randomUUID()],
       teams: new CompanyTeamList(),
-      owner: new UniqueEntityID(randomUUID()),
       avatar: CompanyAvatar.create({ name }),
       createdAt: new Date(),
       ...overrides,

@@ -27,7 +27,6 @@ describe('Domain', () => {
         it('should be able', async () => {
           const result = await sut.execute({
             name: 'Company Name',
-            ownerId: 'owner-1',
             teamsIds: ['team-1'],
             membersIds: ['members-1'],
             profilesIds: ['profile-1'],
@@ -36,7 +35,6 @@ describe('Domain', () => {
           expect(result.isRight()).toBe(true)
           if (result.isRight()) {
             expect(inMemoryCompanyRepository.itens[0].name).toEqual('Company Name')
-            expect(inMemoryCompanyRepository.itens[0].owner.toString()).toEqual('owner-1')
             expect(inMemoryCompanyRepository.itens[0].members).toEqual(['members-1'])
             expect(inMemoryCompanyRepository.itens[0].profiles).toEqual(['profile-1'])
             expect(inMemoryCompanyRepository.itens[0].slug.value).toEqual('company-name')
@@ -56,7 +54,6 @@ describe('Domain', () => {
         it('together should be able persist teams', async () => {
           const result = await sut.execute({
             name: 'Company Name',
-            ownerId: 'owner-1',
             teamsIds: ['team-1', 'team-2'],
             membersIds: [],
             profilesIds: [],
