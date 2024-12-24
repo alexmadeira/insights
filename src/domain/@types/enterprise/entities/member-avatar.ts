@@ -4,11 +4,11 @@ import z from 'zod'
 
 import { ZAvatar, ZAvatarProps } from './avatar'
 
-export const ZUserAvatarProps = ZAvatarProps.extend({
+export const ZMemberAvatarProps = ZAvatarProps.extend({
   userId: z.custom<UniqueEntityID>().optional(),
 })
 
-export const ZUserAvatar = ZAvatar.extend({
+export const ZMemberAvatar = ZAvatar.extend({
   userId: z.custom<UniqueEntityID>().optional(),
 })
 
@@ -16,5 +16,5 @@ export const ZUserAvatar = ZAvatar.extend({
 //
 //
 
-export type TUserAvatarProps = z.infer<typeof ZUserAvatarProps>
-export interface IUserAvatar extends z.infer<typeof ZUserAvatar> {}
+export type TMemberAvatarProps = z.infer<typeof ZMemberAvatarProps>
+export interface IMemberAvatar extends z.infer<typeof ZMemberAvatar> {}

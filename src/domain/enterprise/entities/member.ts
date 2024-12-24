@@ -1,29 +1,29 @@
-import type { UserAvatar } from './user-avatar'
+import type { MemberAvatar } from './member-avatar'
 import type { Role } from './value-objects'
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
-import type { IUser, TUserProps } from '@DOMTypes/enterprise/entities/user'
+import type { IMember, TMemberProps } from '@DOMTypes/enterprise/entities/member'
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 
-import { UserTeamList } from './user-team-list'
+import { MemberTeamList } from './member-team-list'
 import { Slug } from './value-objects'
 
-export type * from '@DOMTypes/enterprise/entities/user'
+export type * from '@DOMTypes/enterprise/entities/member'
 
-export class User extends AggregateRoot<TUserProps> implements IUser {
-  static create(props: Optional<TUserProps, 'createdAt' | 'slug' | 'teams'>, id?: UniqueEntityID) {
-    const user = new User(
+export class Member extends AggregateRoot<TMemberProps> implements IMember {
+  static create(props: Optional<TMemberProps, 'createdAt' | 'slug' | 'teams'>, id?: UniqueEntityID) {
+    const member = new Member(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
-        teams: props.teams || new UserTeamList(),
+        teams: props.teams || new MemberTeamList(),
         createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
 
-    return user
+    return member
   }
 
   public get name() {
@@ -39,7 +39,7 @@ export class User extends AggregateRoot<TUserProps> implements IUser {
     return this._props.avatar
   }
 
-  public set avatar(avatar: UserAvatar) {
+  public set avatar(avatar: MemberAvatar) {
     this._props.avatar = avatar
   }
 
@@ -63,7 +63,7 @@ export class User extends AggregateRoot<TUserProps> implements IUser {
     return this._props.teams
   }
 
-  public set teams(teams: UserTeamList) {
+  public set teams(teams: MemberTeamList) {
     this._props.teams = teams
   }
 

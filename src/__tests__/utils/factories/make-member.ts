@@ -1,23 +1,23 @@
-import type { TUserProps } from '_DOMEnt/entities/user'
+import type { TMemberProps } from '_DOMEnt/entities/member'
 
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { ROLES } from '_DOM/constants/role'
-import { User } from '_DOMEnt/entities/user'
-import { UserAvatar } from '_DOMEnt/entities/user-avatar'
-import { UserTeamList } from '_DOMEnt/entities/user-team-list'
+import { Member } from '_DOMEnt/entities/member'
+import { MemberAvatar } from '_DOMEnt/entities/member-avatar'
+import { MemberTeamList } from '_DOMEnt/entities/member-team-list'
 import { Role } from '_DOMEnt/entities/value-objects'
 import { faker } from '@faker-js/faker'
 
-export function makeUser(overrides: Partial<TUserProps> = {}, id?: UniqueEntityID) {
+export function makeMember(overrides: Partial<TMemberProps> = {}, id?: UniqueEntityID) {
   const name = faker.person.fullName()
-  return User.create(
+  return Member.create(
     {
       name,
       email: faker.internet.email(),
       company: new UniqueEntityID(),
-      teams: new UserTeamList(),
+      teams: new MemberTeamList(),
       role: Role.create(faker.helpers.arrayElement(ROLES)),
-      avatar: UserAvatar.create({ name }),
+      avatar: MemberAvatar.create({ name }),
       createdAt: new Date(),
       ...overrides,
     },
