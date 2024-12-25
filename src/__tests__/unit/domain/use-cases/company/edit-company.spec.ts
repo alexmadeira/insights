@@ -2,13 +2,16 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { EditCompanyUseCase } from '_DOMApp/use-cases/company/edit-company'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makeCompany } from '_TEST/utils/factories/make-company'
+import { makeCompanyMember } from '_TEST/utils/factories/make-company-member'
 import { makeCompanyTeam } from '_TEST/utils/factories/make-company-team'
 import { InMemoryCompanyAvatarRepository } from '_TEST/utils/repositories/in-memory-company-avatar-repository'
+import { InMemoryCompanyMemberRepository } from '_TEST/utils/repositories/in-memory-company-member-repository'
 import { InMemoryCompanyRepository } from '_TEST/utils/repositories/in-memory-company-repository'
 import { InMemoryCompanyTeamRepository } from '_TEST/utils/repositories/in-memory-company-team-repository'
 
 let inMemoryCompanyAvatarRepository: InMemoryCompanyAvatarRepository
 let inMemoryCompanyTeamRepository: InMemoryCompanyTeamRepository
+let inMemoryCompanyMemberRepository: InMemoryCompanyMemberRepository
 let inMemoryCompanyRepository: InMemoryCompanyRepository
 let sut: EditCompanyUseCase
 
@@ -16,12 +19,18 @@ describe('Domain', () => {
   beforeEach(() => {
     inMemoryCompanyAvatarRepository = new InMemoryCompanyAvatarRepository()
     inMemoryCompanyTeamRepository = new InMemoryCompanyTeamRepository()
+    inMemoryCompanyMemberRepository = new InMemoryCompanyMemberRepository()
     inMemoryCompanyRepository = new InMemoryCompanyRepository(
       inMemoryCompanyAvatarRepository,
       inMemoryCompanyTeamRepository,
+      inMemoryCompanyMemberRepository,
     )
 
-    sut = new EditCompanyUseCase(inMemoryCompanyRepository, inMemoryCompanyTeamRepository)
+    sut = new EditCompanyUseCase(
+      inMemoryCompanyRepository,
+      inMemoryCompanyTeamRepository,
+      inMemoryCompanyMemberRepository,
+    )
   })
 
   describe('Use case', () => {
@@ -30,15 +39,16 @@ describe('Domain', () => {
         it('should be able', async () => {
           const company = makeCompany({}, new UniqueEntityID('company-01'))
           await inMemoryCompanyRepository.create(company)
-
           await inMemoryCompanyTeamRepository.createMany([
             makeCompanyTeam({
               companyId: company.id,
               teamId: new UniqueEntityID('team-1'),
             }),
-            makeCompanyTeam({
+          ])
+          await inMemoryCompanyMemberRepository.createMany([
+            makeCompanyMember({
               companyId: company.id,
-              teamId: new UniqueEntityID('team-2'),
+              memberId: new UniqueEntityID('member-1'),
             }),
           ])
 
@@ -46,7 +56,7 @@ describe('Domain', () => {
             companyId: 'company-01',
             name: 'Company Name',
             teamsIds: ['team-4'],
-            membersIds: ['member-1'],
+            membersIds: ['member-2'],
             profilesIds: ['profile-1'],
             avatarUrl: 'http://company-avatar.com/image.png',
           })
@@ -55,7 +65,6 @@ describe('Domain', () => {
 
           if (result.isRight()) {
             expect(inMemoryCompanyRepository.itens[0].name).toEqual('Company Name')
-            expect(inMemoryCompanyRepository.itens[0].members).toEqual(['member-1'])
             expect(inMemoryCompanyRepository.itens[0].profiles).toEqual(['profile-1'])
 
             expect(inMemoryCompanyAvatarRepository.itens[0].name).toEqual(result.value.company.avatar.name)
@@ -68,12 +77,16 @@ describe('Domain', () => {
             expect(inMemoryCompanyRepository.itens[0].teams.currentItems).toEqual([
               expect.objectContaining({ teamId: new UniqueEntityID('team-4') }),
             ])
+
+            expect(inMemoryCompanyRepository.itens[0].members.currentItems).toHaveLength(1)
+            expect(inMemoryCompanyRepository.itens[0].members.currentItems).toEqual([
+              expect.objectContaining({ memberId: new UniqueEntityID('member-2') }),
+            ])
           }
         })
         it('should be able sync teams', async () => {
-          const company = makeCompany({}, new UniqueEntityID('company-01'))
+          const company = makeCompany({}, new UniqueEntityID('company-2'))
           await inMemoryCompanyRepository.create(company)
-
           await inMemoryCompanyTeamRepository.createMany([
             makeCompanyTeam({
               companyId: company.id,
@@ -107,10 +120,45 @@ describe('Domain', () => {
             )
           }
         })
+        it('should be able sync members', async () => {
+          const company = makeCompany({}, new UniqueEntityID('company-1'))
+          await inMemoryCompanyRepository.create(company)
+          await inMemoryCompanyMemberRepository.createMany([
+            makeCompanyMember({
+              companyId: company.id,
+              memberId: new UniqueEntityID('member-1'),
+            }),
+            makeCompanyMember({
+              companyId: company.id,
+              memberId: new UniqueEntityID('member-2'),
+            }),
+          ])
+
+          const result = await sut.execute({
+            companyId: 'company-02',
+            name: 'Company Name',
+            membersIds: ['member-4', 'member-1'],
+            teamsIds: [],
+            profilesIds: [],
+          })
+
+          if (result.isRight()) {
+            expect(inMemoryCompanyMemberRepository.itens).toHaveLength(2)
+            expect(inMemoryCompanyMemberRepository.itens).toEqual(
+              expect.arrayContaining([
+                expect.objectContaining({
+                  memberId: new UniqueEntityID('member-4'),
+                }),
+                expect.objectContaining({
+                  memberId: new UniqueEntityID('member-1'),
+                }),
+              ]),
+            )
+          }
+        })
         it('should`t be able if not found', async () => {
           const company = makeCompany({}, new UniqueEntityID('company-01'))
           await inMemoryCompanyRepository.create(company)
-
           await inMemoryCompanyTeamRepository.createMany([
             makeCompanyTeam({
               companyId: company.id,

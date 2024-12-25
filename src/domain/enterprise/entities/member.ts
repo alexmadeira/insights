@@ -17,8 +17,8 @@ export class Member extends AggregateRoot<TMemberProps> implements IMember {
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
-        teams: props.teams || new MemberTeamList(),
-        companies: props.companies || new MemberCompanyList(),
+        teams: props.teams ?? new MemberTeamList(),
+        companies: props.companies ?? new MemberCompanyList(),
         createdAt: props.createdAt ?? new Date(),
       },
       id,

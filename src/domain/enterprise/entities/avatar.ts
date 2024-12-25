@@ -16,11 +16,11 @@ export class Avatar<TProps extends TAvatarProps> extends Entity<TProps> implemen
     this._acronym = Acronym.create(props.name)
   }
 
-  static create({ createdAt, ...rest }: Optional<TAvatarProps, 'createdAt'>, id?: UniqueEntityID) {
+  static create(props: Optional<TAvatarProps, 'createdAt'>, id?: UniqueEntityID) {
     return new Avatar(
       {
-        createdAt: createdAt ?? new Date(),
-        ...rest,
+        ...props,
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )

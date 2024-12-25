@@ -10,12 +10,12 @@ import { Slug } from './value-objects'
 export type * from '@DOMTypes/enterprise/entities/reference'
 
 export class Reference extends Entity<TReferenceProps> implements IReference {
-  static create({ createdAt, slug, ...rest }: Optional<TReferenceProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
+  static create(props: Optional<TReferenceProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
     return new Reference(
       {
-        slug: slug ?? Slug.createFromText(rest.name),
-        createdAt: createdAt ?? new Date(),
-        ...rest,
+        ...props,
+        slug: props.slug ?? Slug.createFromText(props.name),
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )

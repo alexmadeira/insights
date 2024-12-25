@@ -7,11 +7,11 @@ import { Entity } from '_COR/entities/entity'
 export type * from '@DOMTypes/enterprise/entities/network'
 
 export class Network extends Entity<TNetworkProps> implements INetwork {
-  static create({ createdAt, ...rest }: Optional<TNetworkProps, 'createdAt'>, id?: UniqueEntityID) {
+  static create(props: Optional<TNetworkProps, 'createdAt'>, id?: UniqueEntityID) {
     return new Network(
       {
-        ...rest,
-        createdAt: createdAt ?? new Date(),
+        ...props,
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )

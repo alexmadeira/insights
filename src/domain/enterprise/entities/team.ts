@@ -9,12 +9,12 @@ import { Slug } from './value-objects/slug'
 export type * from '@DOMTypes/enterprise/entities/team'
 
 export class Team extends Entity<TTeamProps> implements ITeam {
-  static create({ slug, createdAt, ...rest }: Optional<TTeamProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
+  static create(props: Optional<TTeamProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
     return new Team(
       {
-        ...rest,
-        slug: slug ?? Slug.createFromText(rest.name),
-        createdAt: createdAt ?? new Date(),
+        ...props,
+        slug: props.slug ?? Slug.createFromText(props.name),
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )

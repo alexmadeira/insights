@@ -8,11 +8,11 @@ import { Avatar } from './avatar'
 export type * from '@DOMTypes/enterprise/entities/member-avatar'
 
 export class MemberAvatar extends Avatar<TMemberAvatarProps> implements IMemberAvatar {
-  static create({ createdAt, ...rest }: Optional<TMemberAvatarProps, 'createdAt'>, id?: UniqueEntityID) {
+  static create(props: Optional<TMemberAvatarProps, 'createdAt'>, id?: UniqueEntityID) {
     return new MemberAvatar(
       {
-        createdAt: createdAt ?? new Date(),
-        ...rest,
+        ...props,
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
