@@ -75,7 +75,6 @@ describe('Domain', () => {
           })
 
           expect(result.isRight()).toBe(true)
-
           if (result.isRight()) {
             expect(inMemoryCompanyRepository.itens[0].name).toEqual('Company Name')
 
@@ -102,7 +101,7 @@ describe('Domain', () => {
           }
         })
         it('should be able sync teams', async () => {
-          const company = makeCompany({}, new UniqueEntityID('company-2'))
+          const company = makeCompany({}, new UniqueEntityID('company-1'))
           await inMemoryCompanyRepository.create(company)
           await inMemoryCompanyTeamRepository.createMany([
             makeCompanyTeam({
@@ -116,13 +115,14 @@ describe('Domain', () => {
           ])
 
           const result = await sut.execute({
-            companyId: 'company-01',
+            companyId: 'company-1',
             name: 'Company Name',
             teamsIds: ['team-4', 'team-1'],
             membersIds: [],
             profilesIds: [],
           })
 
+          expect(result.isRight()).toBe(true)
           if (result.isRight()) {
             expect(inMemoryCompanyTeamRepository.itens).toHaveLength(2)
             expect(inMemoryCompanyTeamRepository.itens).toEqual(
@@ -152,13 +152,14 @@ describe('Domain', () => {
           ])
 
           const result = await sut.execute({
-            companyId: 'company-02',
+            companyId: 'company-1',
             name: 'Company Name',
             membersIds: ['member-4', 'member-1'],
             teamsIds: [],
             profilesIds: [],
           })
 
+          expect(result.isRight()).toBe(true)
           if (result.isRight()) {
             expect(inMemoryCompanyMemberRepository.itens).toHaveLength(2)
             expect(inMemoryCompanyMemberRepository.itens).toEqual(
@@ -188,13 +189,14 @@ describe('Domain', () => {
           ])
 
           const result = await sut.execute({
-            companyId: 'company-02',
+            companyId: 'company-1',
             name: 'Company Name',
             membersIds: [],
             teamsIds: [],
             profilesIds: ['profile-4', 'profile-1'],
           })
 
+          expect(result.isRight()).toBe(true)
           if (result.isRight()) {
             expect(inMemoryCompanyProfileRepository.itens).toHaveLength(2)
             expect(inMemoryCompanyProfileRepository.itens).toEqual(
@@ -210,7 +212,7 @@ describe('Domain', () => {
           }
         })
         it('should`t be able if not found', async () => {
-          const company = makeCompany({}, new UniqueEntityID('company-01'))
+          const company = makeCompany({}, new UniqueEntityID('company-1'))
           await inMemoryCompanyRepository.create(company)
           await inMemoryCompanyTeamRepository.createMany([
             makeCompanyTeam({
@@ -220,7 +222,7 @@ describe('Domain', () => {
           ])
 
           const result = await sut.execute({
-            companyId: 'company-02',
+            companyId: 'company-2',
             name: 'Company Name',
             teamsIds: [],
             membersIds: [],

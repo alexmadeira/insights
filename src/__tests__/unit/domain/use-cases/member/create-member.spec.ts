@@ -1,6 +1,5 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { CreateMemberUseCase } from '_DOMApp/use-cases/member/create-member'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { InMemoryMemberAvatarRepository } from '_TEST/utils/repositories/in-memory-member-avatar-repository'
 import { InMemoryMemberCompanyRepository } from '_TEST/utils/repositories/in-memory-member-company-repository'
 import { InMemoryMemberRepository } from '_TEST/utils/repositories/in-memory-member-repository'
@@ -33,7 +32,6 @@ describe('Domain', () => {
           const result = await sut.execute({
             name: 'Member Name',
             email: 'member@emal.com',
-            role: 'owner',
             companiesIds: ['company-1'],
             teamsIds: ['team-1'],
           })
@@ -42,7 +40,6 @@ describe('Domain', () => {
           if (result.isRight()) {
             expect(inMemoryMemberRepository.itens[0].name).toEqual('Member Name')
             expect(inMemoryMemberRepository.itens[0].email).toEqual('member@emal.com')
-            expect(inMemoryMemberRepository.itens[0].role.code).toEqual('owner')
             expect(inMemoryMemberRepository.itens[0].slug.value).toEqual('member-name')
 
             expect(inMemoryMemberRepository.itens[0].avatar.name).toEqual('Member Name')
@@ -69,7 +66,6 @@ describe('Domain', () => {
           const result = await sut.execute({
             name: 'Member Name',
             email: 'member@emal.com',
-            role: 'owner',
             companiesIds: [],
             teamsIds: [],
           })
@@ -89,7 +85,6 @@ describe('Domain', () => {
           const result = await sut.execute({
             name: 'Member Name',
             email: 'member@emal.com',
-            role: 'owner',
             companiesIds: [],
             teamsIds: ['team-1', 'team-2'],
           })
@@ -113,7 +108,6 @@ describe('Domain', () => {
           const result = await sut.execute({
             name: 'Member Name',
             email: 'member@emal.com',
-            role: 'owner',
             companiesIds: ['company-1', 'company-2'],
             teamsIds: [],
           })
@@ -132,18 +126,6 @@ describe('Domain', () => {
               ]),
             )
           }
-        })
-        it('should`t be able with an invalid role', async () => {
-          const result = await sut.execute({
-            name: 'Member Name',
-            email: 'member@emal.com',
-            role: 'invalid-role',
-            companiesIds: [],
-            teamsIds: [],
-          })
-
-          expect(result.isLeft()).toBe(true)
-          expect(result.value).toBeInstanceOf(InvalidTypeError)
         })
       })
     })

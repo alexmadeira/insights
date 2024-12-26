@@ -1,13 +1,12 @@
 import type { MemberAvatar } from '_DOMEnt/entities/member-avatar'
 import type { MemberCompanyList } from '_DOMEnt/entities/member-company-list'
 import type { MemberTeamList } from '_DOMEnt/entities/member-team-list'
-import type { Role, Slug } from '_DOMEnt/entities/value-objects'
+import type { Slug } from '_DOMEnt/entities/value-objects'
 
 import z from 'zod'
 
 export const ZMemberProps = z.object({
   name: z.string(),
-  role: z.custom<Role>(),
   slug: z.custom<Slug>(),
   email: z.string().email(),
   teams: z.custom<MemberTeamList>(),
@@ -19,7 +18,6 @@ export const ZMemberProps = z.object({
 
 export const ZMember = z.object({
   name: z.string(),
-  role: z.custom<Role>(),
   slug: z.custom<Slug>(),
   email: z.string().email(),
   teams: z.custom<MemberTeamList>(),

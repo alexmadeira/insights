@@ -9,13 +9,11 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { MemberCompany } from '_DOMEnt/entities/member-company'
 import { MemberCompanyList } from '_DOMEnt/entities/member-company-list'
 import { MemberTeam } from '_DOMEnt/entities/member-team'
 import { MemberTeamList } from '_DOMEnt/entities/member-team-list'
-import { Role } from '_DOMEnt/entities/value-objects'
 
 export class EditMemberUseCase implements IEditMemberUseCase {
   constructor(
@@ -31,13 +29,9 @@ export class EditMemberUseCase implements IEditMemberUseCase {
     teamsIds,
     companiesIds,
     avatarUrl,
-    role: roleCode,
   }: TEditMemberUseCaseRequest): Promise<TEditMemberUseCaseResponse> {
     const member = await this.memberRepository.findById(memberId)
     if (!member) return left(new ResourceNotFoundError())
-
-    const role = Role.create(roleCode)
-    if (!role.code) return left(new InvalidTypeError())
 
     const teams = await this.memberTeamRepository.findManyByMemberId(memberId)
     const companies = await this.memberCompanyRepository.findManyByMemberId(memberId)
@@ -62,7 +56,6 @@ export class EditMemberUseCase implements IEditMemberUseCase {
       ),
     )
 
-    member.role = role
     member.name = name
     member.email = email
     member.avatar.url = avatarUrl

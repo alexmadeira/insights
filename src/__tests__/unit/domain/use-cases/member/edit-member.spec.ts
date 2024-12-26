@@ -1,6 +1,5 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { EditMemberUseCase } from '_DOMApp/use-cases/member/edit-member'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makeMember } from '_TEST/utils/factories/make-member'
 import { makeMemberCompany } from '_TEST/utils/factories/make-member-company'
@@ -52,7 +51,6 @@ describe('Domain', () => {
             memberId: 'member-01',
             name: 'Member Name',
             email: 'member@emal.com',
-            role: 'member',
             companiesIds: ['company-1'],
             teamsIds: ['team-1', 'team-3'],
             avatarUrl: 'http://member-avatar.com/image.png',
@@ -62,7 +60,6 @@ describe('Domain', () => {
           if (result.isRight()) {
             expect(inMemoryMemberRepository.itens[0].name).toEqual('Member Name')
             expect(inMemoryMemberRepository.itens[0].email).toEqual('member@emal.com')
-            expect(inMemoryMemberRepository.itens[0].role.code).toEqual('member')
 
             expect(inMemoryMemberRepository.itens[0].avatar.name).toEqual('Member Name')
             expect(inMemoryMemberRepository.itens[0].avatar.acronym.value).toEqual('mn')
@@ -105,7 +102,6 @@ describe('Domain', () => {
             memberId: 'member-01',
             name: 'Member Name',
             email: 'member@emal.com',
-            role: 'member',
             companiesIds: [],
             teamsIds: ['team-1', 'team-3'],
           })
@@ -143,7 +139,6 @@ describe('Domain', () => {
             memberId: 'member-01',
             name: 'Member Name',
             email: 'member@emal.com',
-            role: 'member',
             companiesIds: ['company-1', 'company-3'],
             teamsIds: [],
           })
@@ -163,21 +158,6 @@ describe('Domain', () => {
             )
           }
         })
-        it('should`t be able with an invalid role', async () => {
-          await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-01')))
-
-          const result = await sut.execute({
-            memberId: 'member-01',
-            name: 'Member Name',
-            email: 'member@emal.com',
-            role: 'invalid-role',
-            companiesIds: [],
-            teamsIds: [],
-          })
-
-          expect(result.isLeft()).toBe(true)
-          expect(result.value).toBeInstanceOf(InvalidTypeError)
-        })
         it('should`t be able if not found', async () => {
           await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-01')))
 
@@ -185,7 +165,6 @@ describe('Domain', () => {
             memberId: 'member-02',
             name: 'Member Name',
             email: 'member@emal.com',
-            role: 'invalid-role',
             companiesIds: [],
             teamsIds: [],
           })

@@ -8,7 +8,6 @@ import z from 'zod'
 export const ZEditMemberUseCaseRequest = z.object({
   memberId: z.string(),
   name: z.string(),
-  role: z.string(),
   email: z.string().email(),
   avatarUrl: z.string().url().nullish(),
   teamsIds: z.array(z.string()),

@@ -20,7 +20,6 @@ describe('Domain', () => {
           })
 
           expect(result.isRight()).toBe(true)
-
           if (result.isRight()) {
             expect(inMemoryAvatarRepository.itens[0].name).toEqual('Avatar Name')
             expect(inMemoryAvatarRepository.itens[0].url).toBeUndefined()

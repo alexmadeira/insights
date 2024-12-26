@@ -6,7 +6,6 @@ import z from 'zod'
 
 export const ZCreateMemberUseCaseRequest = z.object({
   name: z.string(),
-  role: z.string(),
   email: z.string().email(),
   companiesIds: z.array(z.string()),
   teamsIds: z.array(z.string()),

@@ -1,4 +1,3 @@
-import type { Role } from './value-objects'
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
 import type { IMember, TMemberProps } from '@DOMTypes/enterprise/entities/member'
@@ -38,14 +37,6 @@ export class Member extends AggregateRoot<TMemberProps> implements IMember {
 
   public get avatar() {
     return this._props.avatar
-  }
-
-  public get role() {
-    return this._props.role
-  }
-
-  public set role(role: Role) {
-    this._props.role = role
   }
 
   public get email() {
