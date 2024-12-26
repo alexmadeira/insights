@@ -5,7 +5,7 @@ import { CompanyMember } from './company-member'
 
 export class CompanyMemberList extends WatchedList<CompanyMember> {
   compareItems(a: CompanyMember, b: CompanyMember): boolean {
-    return a.companyId.equals(b.companyId)
+    return a.memberId.equals(b.memberId)
   }
 
   static create(companyId: UniqueEntityID, membersIds: string[]) {

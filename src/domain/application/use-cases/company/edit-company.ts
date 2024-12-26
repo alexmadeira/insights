@@ -1,4 +1,5 @@
 import type { CompanyMemberRepository } from '_DOMApp/repositories/company-member-repository'
+import type { CompanyProfileRepository } from '_DOMApp/repositories/company-profile-repository'
 import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
 import type { CompanyTeamRepository } from '_DOMApp/repositories/company-team-repository'
 import type {
@@ -12,6 +13,8 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { CompanyMember } from '_DOMEnt/entities/company-member'
 import { CompanyMemberList } from '_DOMEnt/entities/company-member-list'
+import { CompanyProfile } from '_DOMEnt/entities/company-profile'
+import { CompanyProfileList } from '_DOMEnt/entities/company-profile-list'
 import { CompanyTeam } from '_DOMEnt/entities/company-team'
 import { CompanyTeamList } from '_DOMEnt/entities/company-team-list'
 
@@ -20,6 +23,7 @@ export class EditCompanyUseCase implements IEditCompanyUseCase {
     private readonly companyRepository: CompanyRepository,
     private readonly companyTeamRepository: CompanyTeamRepository,
     private readonly companyMemberRepository: CompanyMemberRepository,
+    private readonly companyProfileRepository: CompanyProfileRepository,
   ) {}
 
   async execute({
@@ -35,9 +39,11 @@ export class EditCompanyUseCase implements IEditCompanyUseCase {
 
     const teams = await this.companyTeamRepository.findManyByCompanyId(companyId)
     const members = await this.companyMemberRepository.findManyByCompanyId(companyId)
+    const profiles = await this.companyProfileRepository.findManyByCompanyId(companyId)
 
     const companyTeamList = new CompanyTeamList(teams)
     const companyMemberList = new CompanyMemberList(members)
+    const companyProfileList = new CompanyProfileList(profiles)
 
     companyTeamList.update(
       teamsIds.map((teamId) =>
@@ -55,13 +61,21 @@ export class EditCompanyUseCase implements IEditCompanyUseCase {
         }),
       ),
     )
+    companyProfileList.update(
+      profilesIds.map((profileId) =>
+        CompanyProfile.create({
+          companyId: company.id,
+          profileId: new UniqueEntityID(profileId),
+        }),
+      ),
+    )
 
     company.name = name
     company.teams = companyTeamList
     company.members = companyMemberList
-    company.avatar.url = avatarUrl
+    company.profiles = companyProfileList
 
-    company.profiles = profilesIds
+    company.avatar.url = avatarUrl
 
     await this.companyRepository.save(company)
 

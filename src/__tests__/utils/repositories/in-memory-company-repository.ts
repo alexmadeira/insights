@@ -1,5 +1,6 @@
 import type { CompanyAvatarRepository } from '_DOMApp/repositories/company-avatar-repository'
 import type { CompanyMemberRepository } from '_DOMApp/repositories/company-member-repository'
+import type { CompanyProfileRepository } from '_DOMApp/repositories/company-profile-repository'
 import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
 import type { CompanyTeamRepository } from '_DOMApp/repositories/company-team-repository'
 import type { Company } from '_DOMEnt/entities/company'
@@ -10,6 +11,7 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     private readonly companyAvatarRepository: CompanyAvatarRepository,
     private readonly companyTeamRepository: CompanyTeamRepository,
     private readonly companyMemberRepository: CompanyMemberRepository,
+    private readonly companyProfileRepository: CompanyProfileRepository,
   ) {}
 
   async findById(companyId: string) {
@@ -25,6 +27,7 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     this.companyAvatarRepository.create(company.avatar)
     this.companyTeamRepository.createMany(company.teams.getItems())
     this.companyMemberRepository.createMany(company.members.getItems())
+    this.companyProfileRepository.createMany(company.profiles.getItems())
   }
 
   async save(company: Company) {
@@ -38,6 +41,9 @@ export class InMemoryCompanyRepository implements CompanyRepository {
 
     this.companyMemberRepository.createMany(company.members.getNewItems())
     this.companyMemberRepository.deleteMany(company.members.getRemovedItems())
+
+    this.companyProfileRepository.createMany(company.profiles.getNewItems())
+    this.companyProfileRepository.deleteMany(company.profiles.getRemovedItems())
   }
 
   async delete(company: Company) {
@@ -47,5 +53,6 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     this.companyAvatarRepository.delete(company.avatar)
     this.companyTeamRepository.deleteManyByCompanyId(company.id.toString())
     this.companyMemberRepository.deleteManyByCompanyId(company.id.toString())
+    this.companyProfileRepository.deleteManyByCompanyId(company.id.toString())
   }
 }

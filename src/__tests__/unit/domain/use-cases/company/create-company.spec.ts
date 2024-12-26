@@ -2,13 +2,16 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { CreateCompanyUseCase } from '_DOMApp/use-cases/company/create-company'
 import { InMemoryCompanyAvatarRepository } from '_TEST/utils/repositories/in-memory-company-avatar-repository'
 import { InMemoryCompanyMemberRepository } from '_TEST/utils/repositories/in-memory-company-member-repository'
+import { InMemoryCompanyProfileRepository } from '_TEST/utils/repositories/in-memory-company-profile-repository'
 import { InMemoryCompanyRepository } from '_TEST/utils/repositories/in-memory-company-repository'
 import { InMemoryCompanyTeamRepository } from '_TEST/utils/repositories/in-memory-company-team-repository'
 
 let inMemoryCompanyAvatarRepository: InMemoryCompanyAvatarRepository
 let inMemoryCompanyTeamRepository: InMemoryCompanyTeamRepository
 let inMemoryCompanyMemberRepository: InMemoryCompanyMemberRepository
+let inMemoryCompanyProfileRepository: InMemoryCompanyProfileRepository
 let inMemoryCompanyRepository: InMemoryCompanyRepository
+
 let sut: CreateCompanyUseCase
 
 describe('Domain', () => {
@@ -16,11 +19,14 @@ describe('Domain', () => {
     inMemoryCompanyAvatarRepository = new InMemoryCompanyAvatarRepository()
     inMemoryCompanyTeamRepository = new InMemoryCompanyTeamRepository()
     inMemoryCompanyMemberRepository = new InMemoryCompanyMemberRepository()
+    inMemoryCompanyProfileRepository = new InMemoryCompanyProfileRepository()
     inMemoryCompanyRepository = new InMemoryCompanyRepository(
       inMemoryCompanyAvatarRepository,
       inMemoryCompanyTeamRepository,
       inMemoryCompanyMemberRepository,
+      inMemoryCompanyProfileRepository,
     )
+
     sut = new CreateCompanyUseCase(inMemoryCompanyRepository)
   })
 
@@ -38,7 +44,6 @@ describe('Domain', () => {
           expect(result.isRight()).toBe(true)
           if (result.isRight()) {
             expect(inMemoryCompanyRepository.itens[0].name).toEqual('Company Name')
-            expect(inMemoryCompanyRepository.itens[0].profiles).toEqual(['profile-1'])
             expect(inMemoryCompanyRepository.itens[0].slug.value).toEqual('company-name')
 
             expect(inMemoryCompanyRepository.itens[0].avatar.name).toEqual('Company Name')
@@ -47,16 +52,24 @@ describe('Domain', () => {
             expect(inMemoryCompanyRepository.itens[0].teams.currentItems).toHaveLength(1)
             expect(inMemoryCompanyRepository.itens[0].teams.currentItems).toEqual([
               expect.objectContaining({
-                teamId: new UniqueEntityID('team-1'),
                 companyId: result.value.company.id,
+                teamId: new UniqueEntityID('team-1'),
               }),
             ])
 
             expect(inMemoryCompanyRepository.itens[0].members.currentItems).toHaveLength(1)
             expect(inMemoryCompanyRepository.itens[0].members.currentItems).toEqual([
               expect.objectContaining({
-                memberId: new UniqueEntityID('member-1'),
                 companyId: result.value.company.id,
+                memberId: new UniqueEntityID('member-1'),
+              }),
+            ])
+
+            expect(inMemoryCompanyRepository.itens[0].profiles.currentItems).toHaveLength(1)
+            expect(inMemoryCompanyRepository.itens[0].profiles.currentItems).toEqual([
+              expect.objectContaining({
+                companyId: result.value.company.id,
+                profileId: new UniqueEntityID('profile-1'),
               }),
             ])
           }
@@ -121,6 +134,29 @@ describe('Domain', () => {
                 }),
                 expect.objectContaining({
                   memberId: new UniqueEntityID('member-2'),
+                }),
+              ]),
+            )
+          }
+        })
+        it('together should be able persist profiles', async () => {
+          const result = await sut.execute({
+            name: 'Company Name',
+            teamsIds: [],
+            membersIds: [],
+            profilesIds: ['profile-1', 'profile-2'],
+          })
+
+          expect(result.isRight()).toBe(true)
+          if (result.isRight()) {
+            expect(inMemoryCompanyProfileRepository.itens).toHaveLength(2)
+            expect(inMemoryCompanyProfileRepository.itens).toEqual(
+              expect.arrayContaining([
+                expect.objectContaining({
+                  profileId: new UniqueEntityID('profile-1'),
+                }),
+                expect.objectContaining({
+                  profileId: new UniqueEntityID('profile-2'),
                 }),
               ]),
             )

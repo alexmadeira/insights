@@ -6,18 +6,23 @@ import { AggregateRoot } from '_COR/entities/aggregate-root'
 
 import { Slug } from './value-objects/slug'
 import { CompanyMemberList } from './company-member-list'
+import { CompanyProfileList } from './company-profile-list'
 import { CompanyTeamList } from './company-team-list'
 
 export type * from '@DOMTypes/enterprise/entities/company'
 
 export class Company extends AggregateRoot<TCompanyProps> implements ICompany {
-  static create(props: Optional<TCompanyProps, 'createdAt' | 'slug' | 'teams' | 'members'>, id?: UniqueEntityID) {
+  static create(
+    props: Optional<TCompanyProps, 'createdAt' | 'slug' | 'teams' | 'members' | 'profiles'>,
+    id?: UniqueEntityID,
+  ) {
     return new Company(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
         teams: props.teams ?? new CompanyTeamList(),
         members: props.members ?? new CompanyMemberList(),
+        profiles: props.profiles ?? new CompanyProfileList(),
         createdAt: props.createdAt ?? new Date(),
       },
       id,
@@ -57,7 +62,7 @@ export class Company extends AggregateRoot<TCompanyProps> implements ICompany {
     return this._props.profiles
   }
 
-  public set profiles(profiles: string[]) {
+  public set profiles(profiles: CompanyProfileList) {
     this._props.profiles = profiles
   }
 

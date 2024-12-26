@@ -9,6 +9,7 @@ import { right } from '_COR/either'
 import { Company } from '_DOMEnt/entities/company'
 import { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
 import { CompanyMemberList } from '_DOMEnt/entities/company-member-list'
+import { CompanyProfileList } from '_DOMEnt/entities/company-profile-list'
 import { CompanyTeamList } from '_DOMEnt/entities/company-team-list'
 
 export class CreateCompanyUseCase implements ICreateCompanyUseCase {
@@ -21,13 +22,13 @@ export class CreateCompanyUseCase implements ICreateCompanyUseCase {
     ...rest
   }: TCreateCompanyUseCaseRequest): Promise<TCreateCompanyUseCaseResponse> {
     const company = Company.create({
-      profiles: profilesIds,
       avatar: CompanyAvatar.create({ name: rest.name }),
       ...rest,
     })
 
     company.teams = CompanyTeamList.create(company.id, teamsIds)
     company.members = CompanyMemberList.create(company.id, membersIds)
+    company.profiles = CompanyProfileList.create(company.id, profilesIds)
 
     company.avatar.companyId = company.id
 

@@ -4,12 +4,15 @@ import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-fou
 import { makeCompany } from '_TEST/utils/factories/make-company'
 import { InMemoryCompanyAvatarRepository } from '_TEST/utils/repositories/in-memory-company-avatar-repository'
 import { InMemoryCompanyMemberRepository } from '_TEST/utils/repositories/in-memory-company-member-repository'
+import { InMemoryCompanyProfileRepository } from '_TEST/utils/repositories/in-memory-company-profile-repository'
 import { InMemoryCompanyRepository } from '_TEST/utils/repositories/in-memory-company-repository'
 import { InMemoryCompanyTeamRepository } from '_TEST/utils/repositories/in-memory-company-team-repository'
 
 let inMemoryCompanyAvatarRepository: InMemoryCompanyAvatarRepository
 let inMemoryCompanyTeamRepository: InMemoryCompanyTeamRepository
 let inMemoryCompanyMemberRepository: InMemoryCompanyMemberRepository
+let inMemoryCompanyProfileRepository: InMemoryCompanyProfileRepository
+
 let inMemoryCompanyRepository: InMemoryCompanyRepository
 let sut: DeleteCompanyUseCase
 
@@ -18,10 +21,12 @@ describe('Domain', () => {
     inMemoryCompanyAvatarRepository = new InMemoryCompanyAvatarRepository()
     inMemoryCompanyTeamRepository = new InMemoryCompanyTeamRepository()
     inMemoryCompanyMemberRepository = new InMemoryCompanyMemberRepository()
+    inMemoryCompanyProfileRepository = new InMemoryCompanyProfileRepository()
     inMemoryCompanyRepository = new InMemoryCompanyRepository(
       inMemoryCompanyAvatarRepository,
       inMemoryCompanyTeamRepository,
       inMemoryCompanyMemberRepository,
+      inMemoryCompanyProfileRepository,
     )
 
     sut = new DeleteCompanyUseCase(inMemoryCompanyRepository)
