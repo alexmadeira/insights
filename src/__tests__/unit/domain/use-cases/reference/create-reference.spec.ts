@@ -38,7 +38,7 @@ describe('Domain', () => {
           expect(inMemoryReferenceRepository.itens[0].status.code).toEqual('active')
         })
 
-        it('should`t be able with an invalid status', async () => {
+        it("should't be able with an invalid status", async () => {
           const result = await sut.execute({
             name: 'reference name',
             status: 'invalid-status',

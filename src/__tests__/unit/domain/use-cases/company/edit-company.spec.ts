@@ -201,7 +201,7 @@ describe('Domain', () => {
             )
           }
         })
-        it('should`t be able if not found', async () => {
+        it("should't be able if not found", async () => {
           const company = makeCompany({}, new UniqueEntityID('company-1'))
           await inMemoryCompanyRepository.create(company)
           await inMemoryCompanyTeamRepository.createMany([

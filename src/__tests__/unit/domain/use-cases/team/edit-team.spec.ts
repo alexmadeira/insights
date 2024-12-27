@@ -43,7 +43,7 @@ describe('Domain', () => {
             expect(inMemoryTeamAvatarRepository.itens[0].url).toEqual(result.value.team.avatar.url)
           }
         })
-        it('should`t be able if not found', async () => {
+        it("should't be able if not found", async () => {
           await inMemoryTeamRepository.create(makeTeam({}, new UniqueEntityID('team-01')))
 
           const result = await sut.execute({

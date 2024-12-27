@@ -26,7 +26,7 @@ describe('Domain', () => {
           expect(inMemoryNetworkRepository.itens).toHaveLength(0)
         })
 
-        it('should`t be able if not found', async () => {
+        it("should't be able if not found", async () => {
           await inMemoryNetworkRepository.create(makeNetwork({}, new UniqueEntityID('network-01')))
 
           const result = await sut.execute({

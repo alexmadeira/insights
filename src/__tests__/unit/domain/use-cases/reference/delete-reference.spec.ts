@@ -26,7 +26,7 @@ describe('Domain', () => {
           expect(inMemoryReferenceRepository.itens).toHaveLength(0)
         })
 
-        it('should`t be able if not found', async () => {
+        it("should't be able if not found", async () => {
           await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-01')))
 
           const result = await sut.execute({

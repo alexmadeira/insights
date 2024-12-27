@@ -10,7 +10,7 @@ describe('Domain', () => {
           expect(status.code).toBe('owner')
           expect(status.name).toBeTruthy()
         })
-        it('should`t be able when invalid code', async () => {
+        it("should't be able when invalid code", async () => {
           const status = new Role('invalid-code')
 
           expect(status.code).toBeUndefined()

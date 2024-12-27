@@ -26,7 +26,7 @@ describe('Domain', () => {
           expect(inMemoryProfileRepository.itens).toHaveLength(0)
         })
 
-        it('should`t be able if not found', async () => {
+        it("should't be able if not found", async () => {
           await inMemoryProfileRepository.create(makeProfile({}, new UniqueEntityID('profile-01')))
 
           const result = await sut.execute({

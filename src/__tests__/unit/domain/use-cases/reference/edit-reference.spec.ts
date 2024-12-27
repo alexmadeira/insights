@@ -34,7 +34,7 @@ describe('Domain', () => {
           })
         })
 
-        it('should`t be able with an invalid status', async () => {
+        it("should't be able with an invalid status", async () => {
           await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-01')))
 
           const result = await sut.execute({
@@ -48,7 +48,7 @@ describe('Domain', () => {
           expect(result.value).toBeInstanceOf(InvalidTypeError)
         })
 
-        it('should`t be able if not found', async () => {
+        it("should't be able if not found", async () => {
           await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-01')))
 
           const result = await sut.execute({

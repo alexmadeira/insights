@@ -59,7 +59,7 @@ describe('Domain', () => {
           expect(inMemoryMemberCompanyRepository.itens).toHaveLength(0)
         })
 
-        it('should`t be able if not found', async () => {
+        it("should't be able if not found", async () => {
           await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-01')))
 
           const result = await sut.execute({

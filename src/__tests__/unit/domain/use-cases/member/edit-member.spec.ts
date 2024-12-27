@@ -158,7 +158,7 @@ describe('Domain', () => {
             )
           }
         })
-        it('should`t be able if not found', async () => {
+        it("should't be able if not found", async () => {
           await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-01')))
 
           const result = await sut.execute({
