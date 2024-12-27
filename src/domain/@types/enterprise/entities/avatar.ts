@@ -5,6 +5,7 @@ import z from 'zod'
 export const ZAvatarProps = z.object({
   name: z.string(),
   url: z.string().nullish(),
+  isDefault: z.boolean(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
@@ -12,6 +13,7 @@ export const ZAvatarProps = z.object({
 export const ZAvatar = z.object({
   name: z.string(),
   url: z.string().nullish(),
+  isDefault: z.boolean(),
   acronym: z.custom<Acronym>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),

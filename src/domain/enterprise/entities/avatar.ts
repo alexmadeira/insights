@@ -8,26 +8,23 @@ import { Acronym } from './value-objects'
 
 export type * from '@DOMTypes/enterprise/entities/avatar'
 
-export class Avatar<TProps extends TAvatarProps> extends Entity<TProps> implements IAvatar {
+export class Avatar extends Entity<TAvatarProps> implements IAvatar {
   private _acronym: Acronym
 
-  constructor(props: TProps, id?: UniqueEntityID) {
+  constructor(props: TAvatarProps, id?: UniqueEntityID) {
     super(props, id)
     this._acronym = new Acronym(props.name)
   }
 
-  static create(props: Optional<TAvatarProps, 'createdAt'>, id?: UniqueEntityID) {
+  static create(props: Optional<TAvatarProps, 'createdAt' | 'isDefault'>, id?: UniqueEntityID) {
     return new Avatar(
       {
         ...props,
+        isDefault: props.isDefault ?? false,
         createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
-  }
-
-  public get name() {
-    return this._props.name
   }
 
   public set name(name: string) {
@@ -35,12 +32,24 @@ export class Avatar<TProps extends TAvatarProps> extends Entity<TProps> implemen
     this._acronym = new Acronym(name)
   }
 
-  public get url() {
-    return this._props.url
+  public set isDefault(isDefault: boolean) {
+    this._props.isDefault = isDefault
   }
 
   public set url(url: string | null | undefined) {
     this._props.url = url
+  }
+
+  public get name() {
+    return this._props.name
+  }
+
+  public get isDefault() {
+    return this._props.isDefault
+  }
+
+  public get url() {
+    return this._props.url
   }
 
   public get acronym() {
