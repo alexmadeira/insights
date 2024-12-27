@@ -68,7 +68,7 @@ describe('Domain', () => {
             ])
           }
         })
-        it('together should be able persist avatar', async () => {
+        it('together should be able persist avatars', async () => {
           const result = await sut.execute({
             name: 'Member Name',
             email: 'member@emal.com',

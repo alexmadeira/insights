@@ -1,11 +1,15 @@
 import type { TeamAvatarRepository } from '_DOMApp/repositories/team-avatar-repository'
+import type { TeamMemberRepository } from '_DOMApp/repositories/team-member-repository'
 import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 import type { Team } from '_DOMEnt/entities/team'
 
 export class InMemoryTeamRepository implements TeamRepository {
   public itens: Team[] = []
 
-  constructor(private readonly teamAvatarRepository: TeamAvatarRepository) {}
+  constructor(
+    private readonly teamAvatarRepository: TeamAvatarRepository,
+    private readonly teamMemberRepository: TeamMemberRepository,
+  ) {}
 
   async findById(teamId: string) {
     const team = this.itens.find((item) => item.id.toString() === teamId)
@@ -18,6 +22,7 @@ export class InMemoryTeamRepository implements TeamRepository {
     this.itens.push(team)
 
     this.teamAvatarRepository.createMany(team.avatars.getItems())
+    this.teamMemberRepository.createMany(team.members.getItems())
   }
 
   async save(team: Team) {
@@ -26,6 +31,9 @@ export class InMemoryTeamRepository implements TeamRepository {
 
     this.teamAvatarRepository.createMany(team.avatars.getNewItems())
     this.teamAvatarRepository.deleteMany(team.avatars.getRemovedItems())
+
+    this.teamMemberRepository.createMany(team.members.getNewItems())
+    this.teamMemberRepository.deleteMany(team.members.getRemovedItems())
   }
 
   async delete(team: Team) {
@@ -33,5 +41,6 @@ export class InMemoryTeamRepository implements TeamRepository {
     this.itens.splice(itemIndex, 1)
 
     this.teamAvatarRepository.deleteManyByTeamId(team.id.toString())
+    this.teamMemberRepository.deleteManyByTeamId(team.id.toString())
   }
 }

@@ -3,17 +3,23 @@ import { DeleteTeamUseCase } from '_DOMApp/use-cases/team/delete-team'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makeTeam } from '_TEST/utils/factories/make-team'
 import { makeTeamAvatar } from '_TEST/utils/factories/make-team-avatar'
+import { makeTeamMember } from '_TEST/utils/factories/make-team-member'
 import { InMemoryTeamAvatarRepository } from '_TEST/utils/repositories/in-memory-team-avatar-repository'
+import { InMemoryTeamMemberRepository } from '_TEST/utils/repositories/in-memory-team-member-repository'
 import { InMemoryTeamRepository } from '_TEST/utils/repositories/in-memory-team-repository'
 
 let inMemoryTeamAvatarRepository: InMemoryTeamAvatarRepository
+let inMemoryTeamMemberRepository: InMemoryTeamMemberRepository
 let inMemoryTeamRepository: InMemoryTeamRepository
+
 let sut: DeleteTeamUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
     inMemoryTeamAvatarRepository = new InMemoryTeamAvatarRepository()
-    inMemoryTeamRepository = new InMemoryTeamRepository(inMemoryTeamAvatarRepository)
+    inMemoryTeamMemberRepository = new InMemoryTeamMemberRepository()
+    inMemoryTeamRepository = new InMemoryTeamRepository(inMemoryTeamAvatarRepository, inMemoryTeamMemberRepository)
+
     sut = new DeleteTeamUseCase(inMemoryTeamRepository)
   })
 
@@ -24,12 +30,14 @@ describe('Domain', () => {
           const team = makeTeam({}, new UniqueEntityID('team-1'))
           await inMemoryTeamRepository.create(team)
           await inMemoryTeamAvatarRepository.create(makeTeamAvatar({ teamId: team.id }))
+          await inMemoryTeamMemberRepository.create(makeTeamMember({ teamId: team.id }))
 
           const result = await sut.execute({ teamId: 'team-1' })
 
           expect(result.isRight()).toBe(true)
           expect(inMemoryTeamRepository.itens).toHaveLength(0)
           expect(inMemoryTeamAvatarRepository.itens).toHaveLength(0)
+          expect(inMemoryTeamMemberRepository.itens).toHaveLength(0)
         })
 
         it("should't be able if not found", async () => {

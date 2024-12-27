@@ -9,6 +9,7 @@ import { right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { Team } from '_DOMEnt/entities/team'
 import { TeamAvatarList } from '_DOMEnt/entities/team-avatar-list'
+import { TeamMemberList } from '_DOMEnt/entities/team-member-list'
 
 export class CreateTeamUseCase implements ICreateTeamUseCase {
   constructor(private readonly teamRepository: TeamRepository) {}
@@ -22,12 +23,12 @@ export class CreateTeamUseCase implements ICreateTeamUseCase {
   }: TCreateTeamUseCaseRequest): Promise<TCreateTeamUseCaseResponse> {
     const team = Team.create({
       company: new UniqueEntityID(companyId),
-      members: membersIds,
       profiles: profilesIds,
       ...rest,
     })
 
     team.avatars = TeamAvatarList.create(team.id, avatarsIds)
+    team.members = TeamMemberList.create(team.id, membersIds)
 
     await this.teamRepository.create(team)
 

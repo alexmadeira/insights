@@ -1,16 +1,21 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { CreateTeamUseCase } from '_DOMApp/use-cases/team/create-team'
 import { InMemoryTeamAvatarRepository } from '_TEST/utils/repositories/in-memory-team-avatar-repository'
+import { InMemoryTeamMemberRepository } from '_TEST/utils/repositories/in-memory-team-member-repository'
 import { InMemoryTeamRepository } from '_TEST/utils/repositories/in-memory-team-repository'
 
 let inMemoryTeamAvatarRepository: InMemoryTeamAvatarRepository
+let inMemoryTeamMemberRepository: InMemoryTeamMemberRepository
 let inMemoryTeamRepository: InMemoryTeamRepository
+
 let sut: CreateTeamUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
     inMemoryTeamAvatarRepository = new InMemoryTeamAvatarRepository()
-    inMemoryTeamRepository = new InMemoryTeamRepository(inMemoryTeamAvatarRepository)
+    inMemoryTeamMemberRepository = new InMemoryTeamMemberRepository()
+    inMemoryTeamRepository = new InMemoryTeamRepository(inMemoryTeamAvatarRepository, inMemoryTeamMemberRepository)
+
     sut = new CreateTeamUseCase(inMemoryTeamRepository)
   })
 
@@ -40,17 +45,24 @@ describe('Domain', () => {
               }),
             ])
 
-            expect(inMemoryTeamRepository.itens[0].members).toEqual(['member-1'])
+            expect(inMemoryTeamRepository.itens[0].members.currentItems).toHaveLength(1)
+            expect(inMemoryTeamRepository.itens[0].members.currentItems).toEqual([
+              expect.objectContaining({
+                teamId: result.value.team.id,
+                memberId: new UniqueEntityID('member-1'),
+              }),
+            ])
+
             expect(inMemoryTeamRepository.itens[0].profiles).toEqual(['profile-1'])
           }
         })
-        it('together should be able persist avatar', async () => {
+        it('together should be able persist avatars', async () => {
           const result = await sut.execute({
             name: 'Team Name',
             companyId: 'company-1',
+            avatarsIds: ['avatar-1', 'avatar-2'],
             membersIds: [],
             profilesIds: [],
-            avatarsIds: ['avatar-1', 'avatar-2'],
           })
 
           expect(result.isRight()).toBe(true)
@@ -62,6 +74,28 @@ describe('Domain', () => {
               }),
               expect.objectContaining({
                 avatarId: new UniqueEntityID('avatar-2'),
+              }),
+            ]),
+          )
+        })
+        it('together should be able persist members', async () => {
+          const result = await sut.execute({
+            name: 'Team Name',
+            companyId: 'company-1',
+            membersIds: ['member-1', 'member-2'],
+            avatarsIds: [],
+            profilesIds: [],
+          })
+
+          expect(result.isRight()).toBe(true)
+          expect(inMemoryTeamMemberRepository.itens).toHaveLength(2)
+          expect(inMemoryTeamMemberRepository.itens).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                memberId: new UniqueEntityID('member-1'),
+              }),
+              expect.objectContaining({
+                memberId: new UniqueEntityID('member-2'),
               }),
             ]),
           )
