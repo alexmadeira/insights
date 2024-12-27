@@ -20,7 +20,7 @@ export class CreateReferenceUseCase implements ICreateReferenceUseCase {
     networkId,
     ...rest
   }: TCreateReferenceUseCaseRequest): Promise<TCreateReferenceUseCaseResponse> {
-    const status = ReferenceStatus.create(referenceStatus ?? 'active')
+    const status = new ReferenceStatus(referenceStatus ?? 'active')
 
     if (!status.code) {
       return left(new InvalidTypeError())

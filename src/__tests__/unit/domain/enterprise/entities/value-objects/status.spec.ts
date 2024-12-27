@@ -7,13 +7,13 @@ describe('Domain', () => {
         describe('Create', () => {
           describe('Reference', () => {
             it('should be able', async () => {
-              const status = ReferenceStatus.create('active')
+              const status = new ReferenceStatus('active')
 
               expect(status.code).toBe('active')
               expect(status.name).toBeTruthy()
             })
             it('should`t be able when invalid code', async () => {
-              const status = ReferenceStatus.create('invalid-code')
+              const status = new ReferenceStatus('invalid-code')
 
               expect(status.code).toBeUndefined()
             })

@@ -12,8 +12,8 @@ export class InMemoryCompanyMemberRepository implements CompanyMemberRepository 
     this.itens.push(...members)
   }
 
-  async deleteMany(members: CompanyMember[]) {
-    this.itens = this.itens.filter((item) => !members.some((member) => member.equals(item)))
+  async deleteMany(memberss: CompanyMember[]) {
+    this.itens = this.itens.filter((item) => !memberss.some((member) => member.equals(item)))
   }
 
   async findManyByCompanyId(companyId: string) {

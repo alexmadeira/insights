@@ -36,10 +36,10 @@ describe('Domain', () => {
     describe('Company', () => {
       describe('Delete', () => {
         it('should be able', async () => {
-          await inMemoryCompanyRepository.create(makeCompany({}, new UniqueEntityID('company-01')))
+          await inMemoryCompanyRepository.create(makeCompany({}, new UniqueEntityID('company-1')))
 
           const result = await sut.execute({
-            companyId: 'company-01',
+            companyId: 'company-1',
           })
 
           expect(result.isRight()).toBe(true)
@@ -50,10 +50,10 @@ describe('Domain', () => {
         })
 
         it('should`t be able if not found', async () => {
-          await inMemoryCompanyRepository.create(makeCompany({}, new UniqueEntityID('company-01')))
+          await inMemoryCompanyRepository.create(makeCompany({}, new UniqueEntityID('company-1')))
 
           const result = await sut.execute({
-            companyId: 'company-02',
+            companyId: 'company-2',
           })
 
           expect(result.isLeft()).toBe(true)

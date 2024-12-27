@@ -17,7 +17,7 @@ export class CreateCompanyUseCase implements ICreateCompanyUseCase {
 
   async execute({
     teamsIds,
-    membersIds,
+    membersRoles,
     profilesIds,
     ...rest
   }: TCreateCompanyUseCaseRequest): Promise<TCreateCompanyUseCaseResponse> {
@@ -26,11 +26,11 @@ export class CreateCompanyUseCase implements ICreateCompanyUseCase {
       ...rest,
     })
 
-    company.teams = CompanyTeamList.create(company.id, teamsIds)
-    company.members = CompanyMemberList.create(company.id, membersIds)
-    company.profiles = CompanyProfileList.create(company.id, profilesIds)
-
     company.avatar.companyId = company.id
+
+    company.teams = CompanyTeamList.create(company.id, teamsIds)
+    company.profiles = CompanyProfileList.create(company.id, profilesIds)
+    company.members = CompanyMemberList.create(company.id, membersRoles)
 
     await this.companyRepository.create(company)
 

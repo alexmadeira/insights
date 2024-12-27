@@ -1,16 +1,12 @@
 export class Acronym {
   private readonly _value: string
 
-  protected constructor(private readonly fullName: string) {
-    this._value = this.format()
+  constructor(fullName: string) {
+    this._value = this.format(fullName)
   }
 
-  static create(value: string) {
-    return new Acronym(value)
-  }
-
-  private format() {
-    const words = this.fullName.toLowerCase().trim().split(/\s+/)
+  private format(fullName: string) {
+    const words = fullName.toLowerCase().trim().split(/\s+/)
 
     if (words.length === 1) return words[0][0]
     return words[0][0] + words[words.length - 1][0]

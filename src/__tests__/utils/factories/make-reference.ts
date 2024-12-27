@@ -13,7 +13,7 @@ export function makeReference(overrides: Partial<TReferenceProps> = {}, id?: Uni
     {
       name: faker.person.fullName(),
       network: randomUUID(),
-      status: ReferenceStatus.create(faker.helpers.arrayElement(REFERENCE_STATUS)),
+      status: new ReferenceStatus(faker.helpers.arrayElement(REFERENCE_STATUS)),
       createdAt: new Date(),
       ...overrides,
     },

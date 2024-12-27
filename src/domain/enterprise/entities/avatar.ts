@@ -13,7 +13,7 @@ export class Avatar<TProps extends TAvatarProps> extends Entity<TProps> implemen
 
   constructor(props: TProps, id?: UniqueEntityID) {
     super(props, id)
-    this._acronym = Acronym.create(props.name)
+    this._acronym = new Acronym(props.name)
   }
 
   static create(props: Optional<TAvatarProps, 'createdAt'>, id?: UniqueEntityID) {
@@ -32,7 +32,7 @@ export class Avatar<TProps extends TAvatarProps> extends Entity<TProps> implemen
 
   public set name(name: string) {
     this._props.name = name
-    this._acronym = Acronym.create(name)
+    this._acronym = new Acronym(name)
   }
 
   public get url() {

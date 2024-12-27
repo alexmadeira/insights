@@ -5,7 +5,7 @@ import { roleName } from '_DOM/constants/parse/role'
 import { ZERole } from '@DOMTypes/enums/role'
 
 export class Role extends EnumValue<TERole> {
-  static create(value: string) {
-    return new Role(value, ZERole, roleName)
+  constructor(value: string) {
+    super(value, ZERole, roleName)
   }
 }

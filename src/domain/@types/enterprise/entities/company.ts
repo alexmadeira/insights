@@ -9,10 +9,10 @@ import z from 'zod'
 export const ZCompanyProps = z.object({
   name: z.string(),
   slug: z.custom<Slug>(),
+  avatar: z.custom<CompanyAvatar>(),
   teams: z.custom<CompanyTeamList>(),
   members: z.custom<CompanyMemberList>(),
   profiles: z.custom<CompanyProfileList>(),
-  avatar: z.custom<CompanyAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })
@@ -20,10 +20,10 @@ export const ZCompanyProps = z.object({
 export const ZCompany = z.object({
   name: z.string(),
   slug: z.custom<Slug>(),
+  avatar: z.custom<CompanyAvatar>(),
   teams: z.custom<CompanyTeamList>(),
   members: z.custom<CompanyMemberList>(),
   profiles: z.custom<CompanyProfileList>(),
-  avatar: z.custom<CompanyAvatar>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 })

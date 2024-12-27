@@ -1,19 +1,21 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { WatchedList } from '_COR/entities/watched-list'
+import { TERole } from '@DOMTypes/enums/role'
 
+import { MemberRole } from './value-objects/member-role'
 import { CompanyMember } from './company-member'
 
 export class CompanyMemberList extends WatchedList<CompanyMember> {
   compareItems(a: CompanyMember, b: CompanyMember): boolean {
-    return a.memberId.equals(b.memberId)
+    return a.member.equals(b.member)
   }
 
-  static create(companyId: UniqueEntityID, membersIds: string[]) {
+  static create(companyId: UniqueEntityID, members: [string, TERole][]) {
     return new CompanyMemberList(
-      membersIds.map((memberId) => {
+      members.map(([memberId, role]) => {
         return CompanyMember.create({
           companyId,
-          memberId: new UniqueEntityID(memberId),
+          member: new MemberRole(memberId, role),
         })
       }),
     )

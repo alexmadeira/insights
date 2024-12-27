@@ -2,6 +2,7 @@ import type { Either } from '_COR/either'
 import type { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import type { Company } from '_DOMEnt/entities/company'
 
+import { ZERole } from '@DOMTypes/enums/role'
 import z from 'zod'
 
 export const ZEditCompanyUseCaseRequest = z.object({
@@ -9,8 +10,8 @@ export const ZEditCompanyUseCaseRequest = z.object({
   name: z.string(),
   avatarUrl: z.string().url().nullish(),
   teamsIds: z.array(z.string()),
-  membersIds: z.array(z.string()),
   profilesIds: z.array(z.string()),
+  membersRoles: z.array(z.tuple([z.string(), ZERole])),
 })
 
 export const ZEditCompanyUseCaseResponse = z.custom<Either<ResourceNotFoundError, { company: Company }>>()

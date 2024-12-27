@@ -14,7 +14,7 @@ export class CompanyMember extends Entity<TCompanyMemberProps> implements ICompa
     return this._props.companyId
   }
 
-  public get memberId() {
-    return this._props.memberId
+  public get member() {
+    return this._props.member
   }
 }

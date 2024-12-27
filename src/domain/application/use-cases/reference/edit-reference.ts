@@ -25,7 +25,7 @@ export class EditReferenceUseCase implements IEditReferenceUseCase {
       return left(new ResourceNotFoundError())
     }
 
-    const status = ReferenceStatus.create(referenceStatus)
+    const status = new ReferenceStatus(referenceStatus)
 
     if (!status.code) {
       return left(new InvalidTypeError())

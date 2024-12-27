@@ -5,13 +5,13 @@ describe('Domain', () => {
     describe('Value objects', () => {
       describe('Role', () => {
         it('should be able', async () => {
-          const status = Role.create('owner')
+          const status = new Role('owner')
 
           expect(status.code).toBe('owner')
           expect(status.name).toBeTruthy()
         })
         it('should`t be able when invalid code', async () => {
-          const status = Role.create('invalid-code')
+          const status = new Role('invalid-code')
 
           expect(status.code).toBeUndefined()
         })

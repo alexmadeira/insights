@@ -1,6 +1,7 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { EditCompanyUseCase } from '_DOMApp/use-cases/company/edit-company'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import { MemberRole } from '_DOMEnt/entities/value-objects/member-role'
 import { makeCompany } from '_TEST/utils/factories/make-company'
 import { makeCompanyMember } from '_TEST/utils/factories/make-company-member'
 import { makeCompanyProfile } from '_TEST/utils/factories/make-company-profile'
@@ -44,32 +45,13 @@ describe('Domain', () => {
     describe('Company', () => {
       describe('Edit', () => {
         it('should be able', async () => {
-          const company = makeCompany({}, new UniqueEntityID('company-01'))
-          await inMemoryCompanyRepository.create(company)
-          await inMemoryCompanyTeamRepository.create(
-            makeCompanyTeam({
-              companyId: company.id,
-              teamId: new UniqueEntityID('team-1'),
-            }),
-          )
-          await inMemoryCompanyMemberRepository.create(
-            makeCompanyMember({
-              companyId: company.id,
-              memberId: new UniqueEntityID('member-1'),
-            }),
-          )
-          await inMemoryCompanyProfileRepository.create(
-            makeCompanyProfile({
-              companyId: company.id,
-              profileId: new UniqueEntityID('profile-1'),
-            }),
-          )
+          await inMemoryCompanyRepository.create(makeCompany({}, new UniqueEntityID('company-01')))
 
           const result = await sut.execute({
             companyId: 'company-01',
             name: 'Company Name',
             teamsIds: ['team-1'],
-            membersIds: ['member-1'],
+            membersRoles: [['member-1', 'owner']],
             profilesIds: ['profile-1'],
             avatarUrl: 'http://company-avatar.com/image.png',
           })
@@ -91,7 +73,10 @@ describe('Domain', () => {
 
             expect(inMemoryCompanyRepository.itens[0].members.currentItems).toHaveLength(1)
             expect(inMemoryCompanyRepository.itens[0].members.currentItems).toEqual([
-              expect.objectContaining({ memberId: new UniqueEntityID('member-1') }),
+              expect.objectContaining({
+                companyId: result.value.company.id,
+                member: new MemberRole('member-1', 'owner'),
+              }),
             ])
 
             expect(inMemoryCompanyRepository.itens[0].profiles.currentItems).toHaveLength(1)
@@ -118,8 +103,8 @@ describe('Domain', () => {
             companyId: 'company-1',
             name: 'Company Name',
             teamsIds: ['team-4', 'team-1'],
-            membersIds: [],
             profilesIds: [],
+            membersRoles: [],
           })
 
           expect(result.isRight()).toBe(true)
@@ -143,35 +128,40 @@ describe('Domain', () => {
           await inMemoryCompanyMemberRepository.createMany([
             makeCompanyMember({
               companyId: company.id,
-              memberId: new UniqueEntityID('member-1'),
+              memberId: 'member-1',
+              role: 'owner',
             }),
             makeCompanyMember({
               companyId: company.id,
-              memberId: new UniqueEntityID('member-2'),
+              memberId: 'member-2',
+              role: 'member',
             }),
           ])
 
           const result = await sut.execute({
             companyId: 'company-1',
             name: 'Company Name',
-            membersIds: ['member-4', 'member-1'],
+            membersRoles: [
+              ['member-2', 'project-creator'],
+              ['member-4', 'owner'],
+            ],
             teamsIds: [],
             profilesIds: [],
           })
 
           expect(result.isRight()).toBe(true)
           if (result.isRight()) {
-            expect(inMemoryCompanyMemberRepository.itens).toHaveLength(2)
-            expect(inMemoryCompanyMemberRepository.itens).toEqual(
-              expect.arrayContaining([
-                expect.objectContaining({
-                  memberId: new UniqueEntityID('member-4'),
-                }),
-                expect.objectContaining({
-                  memberId: new UniqueEntityID('member-1'),
-                }),
-              ]),
-            )
+            expect(inMemoryCompanyRepository.itens[0].members.currentItems).toHaveLength(2)
+            expect(inMemoryCompanyRepository.itens[0].members.currentItems).toEqual([
+              expect.objectContaining({
+                companyId: result.value.company.id,
+                member: new MemberRole('member-2', 'project-creator'),
+              }),
+              expect.objectContaining({
+                companyId: result.value.company.id,
+                member: new MemberRole('member-4', 'owner'),
+              }),
+            ])
           }
         })
         it('should be able sync profile', async () => {
@@ -191,9 +181,9 @@ describe('Domain', () => {
           const result = await sut.execute({
             companyId: 'company-1',
             name: 'Company Name',
-            membersIds: [],
-            teamsIds: [],
             profilesIds: ['profile-4', 'profile-1'],
+            teamsIds: [],
+            membersRoles: [],
           })
 
           expect(result.isRight()).toBe(true)
@@ -225,8 +215,8 @@ describe('Domain', () => {
             companyId: 'company-2',
             name: 'Company Name',
             teamsIds: [],
-            membersIds: [],
             profilesIds: [],
+            membersRoles: [],
           })
 
           expect(result.isLeft()).toBe(true)
