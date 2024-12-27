@@ -19,9 +19,7 @@ describe('Domain', () => {
         it('should be able', async () => {
           await inMemoryAvatarRepository.create(makeAvatar({}, new UniqueEntityID('avatar-1')))
 
-          const result = await sut.execute({
-            avatarId: 'avatar-1',
-          })
+          const result = await sut.execute({ avatarId: 'avatar-1' })
           expect(result.isRight()).toBe(true)
           expect(inMemoryAvatarRepository.itens).toHaveLength(0)
         })
@@ -29,9 +27,7 @@ describe('Domain', () => {
         it("should't be able if not found", async () => {
           await inMemoryAvatarRepository.create(makeAvatar({}, new UniqueEntityID('avatar-1')))
 
-          const result = await sut.execute({
-            avatarId: 'avatar-2',
-          })
+          const result = await sut.execute({ avatarId: 'avatar-2' })
 
           expect(result.isLeft()).toBe(true)
           expect(result.value).toBeInstanceOf(ResourceNotFoundError)

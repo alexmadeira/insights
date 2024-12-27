@@ -2,6 +2,7 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { DeleteTeamUseCase } from '_DOMApp/use-cases/team/delete-team'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makeTeam } from '_TEST/utils/factories/make-team'
+import { makeTeamAvatar } from '_TEST/utils/factories/make-team-avatar'
 import { InMemoryTeamAvatarRepository } from '_TEST/utils/repositories/in-memory-team-avatar-repository'
 import { InMemoryTeamRepository } from '_TEST/utils/repositories/in-memory-team-repository'
 
@@ -20,11 +21,11 @@ describe('Domain', () => {
     describe('Team', () => {
       describe('Delete', () => {
         it('should be able', async () => {
-          await inMemoryTeamRepository.create(makeTeam({}, new UniqueEntityID('team-01')))
+          const team = makeTeam({}, new UniqueEntityID('team-1'))
+          await inMemoryTeamRepository.create(team)
+          await inMemoryTeamAvatarRepository.create(makeTeamAvatar({ teamId: team.id }))
 
-          const result = await sut.execute({
-            teamId: 'team-01',
-          })
+          const result = await sut.execute({ teamId: 'team-1' })
 
           expect(result.isRight()).toBe(true)
           expect(inMemoryTeamRepository.itens).toHaveLength(0)
@@ -32,11 +33,9 @@ describe('Domain', () => {
         })
 
         it("should't be able if not found", async () => {
-          await inMemoryTeamRepository.create(makeTeam({}, new UniqueEntityID('team-01')))
+          await inMemoryTeamRepository.create(makeTeam({}, new UniqueEntityID('team-1')))
 
-          const result = await sut.execute({
-            teamId: 'team-02',
-          })
+          const result = await sut.execute({ teamId: 'team-2' })
 
           expect(result.isLeft()).toBe(true)
           expect(result.value).toBeInstanceOf(ResourceNotFoundError)

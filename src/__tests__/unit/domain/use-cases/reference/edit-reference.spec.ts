@@ -18,30 +18,30 @@ describe('Domain', () => {
     describe('Reference', () => {
       describe('Edit', () => {
         it('should be able', async () => {
-          await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-01')))
+          await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-1')))
 
           const result = await sut.execute({
-            referenceId: 'reference-01',
+            referenceId: 'reference-1',
             name: 'Reference Name',
             status: 'inactive',
-            networkId: 'network-01',
+            networkId: 'network-1',
           })
 
           expect(result.isRight()).toBe(true)
           expect(inMemoryReferenceRepository.itens[0]).toMatchObject({
             name: 'Reference Name',
-            network: 'network-01',
+            network: 'network-1',
           })
         })
 
         it("should't be able with an invalid status", async () => {
-          await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-01')))
+          await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-1')))
 
           const result = await sut.execute({
-            referenceId: 'reference-01',
+            referenceId: 'reference-1',
             name: 'Reference Name',
             status: 'invalid-status',
-            networkId: 'network-01',
+            networkId: 'network-1',
           })
 
           expect(result.isLeft()).toBe(true)
@@ -49,13 +49,13 @@ describe('Domain', () => {
         })
 
         it("should't be able if not found", async () => {
-          await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-01')))
+          await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-1')))
 
           const result = await sut.execute({
-            referenceId: 'reference-02',
+            referenceId: 'reference-2',
             name: 'Reference Name',
             status: 'inactive',
-            networkId: 'network-01',
+            networkId: 'network-1',
           })
 
           expect(result.isLeft()).toBe(true)

@@ -7,28 +7,30 @@ import { InMemoryTeamRepository } from '_TEST/utils/repositories/in-memory-team-
 
 let inMemoryTeamAvatarRepository: InMemoryTeamAvatarRepository
 let inMemoryTeamRepository: InMemoryTeamRepository
+
 let sut: EditTeamUseCase
 
 describe('Domain', () => {
   beforeEach(() => {
     inMemoryTeamAvatarRepository = new InMemoryTeamAvatarRepository()
     inMemoryTeamRepository = new InMemoryTeamRepository(inMemoryTeamAvatarRepository)
-    sut = new EditTeamUseCase(inMemoryTeamRepository)
+
+    sut = new EditTeamUseCase(inMemoryTeamRepository, inMemoryTeamAvatarRepository)
   })
 
   describe('Use case', () => {
     describe('Team', () => {
       describe('Edit', () => {
         it('should be able', async () => {
-          await inMemoryTeamRepository.create(makeTeam({}, new UniqueEntityID('team-01')))
+          await inMemoryTeamRepository.create(makeTeam({}, new UniqueEntityID('team-1')))
 
           const result = await sut.execute({
-            teamId: 'team-01',
+            teamId: 'team-1',
             name: 'Team Name',
             companyId: 'company-1',
             membersIds: ['member-1'],
+            avatarsIds: ['avatar-1'],
             profilesIds: ['profile-1'],
-            avatarUrl: 'http://team-avatar.com/image.png',
           })
 
           expect(result.isRight()).toBe(true)
@@ -38,19 +40,21 @@ describe('Domain', () => {
             expect(inMemoryTeamRepository.itens[0].members).toEqual(['member-1'])
             expect(inMemoryTeamRepository.itens[0].profiles).toEqual(['profile-1'])
 
-            expect(inMemoryTeamAvatarRepository.itens[0].name).toEqual(result.value.team.avatar.name)
-            expect(inMemoryTeamAvatarRepository.itens[0].acronym.value).toEqual(result.value.team.avatar.acronym.value)
-            expect(inMemoryTeamAvatarRepository.itens[0].url).toEqual(result.value.team.avatar.url)
+            expect(inMemoryTeamRepository.itens[0].avatars.currentItems).toHaveLength(1)
+            expect(inMemoryTeamRepository.itens[0].avatars.currentItems).toEqual([
+              expect.objectContaining({ teamId: result.value.team.id, avatarId: new UniqueEntityID('avatar-1') }),
+            ])
           }
         })
         it("should't be able if not found", async () => {
-          await inMemoryTeamRepository.create(makeTeam({}, new UniqueEntityID('team-01')))
+          await inMemoryTeamRepository.create(makeTeam({}, new UniqueEntityID('team-1')))
 
           const result = await sut.execute({
-            teamId: 'team-02',
+            teamId: 'team-2',
             name: 'Team Name',
             companyId: 'company-1',
             membersIds: [],
+            avatarsIds: [],
             profilesIds: [],
           })
 

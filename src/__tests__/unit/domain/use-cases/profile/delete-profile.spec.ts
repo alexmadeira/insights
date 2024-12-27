@@ -17,20 +17,20 @@ describe('Domain', () => {
     describe('Profile', () => {
       describe('Delete', () => {
         it('should be able', async () => {
-          await inMemoryProfileRepository.create(makeProfile({}, new UniqueEntityID('profile-01')))
+          await inMemoryProfileRepository.create(makeProfile({}, new UniqueEntityID('profile-1')))
 
           const result = await sut.execute({
-            profileId: 'profile-01',
+            profileId: 'profile-1',
           })
           expect(result.isRight()).toBe(true)
           expect(inMemoryProfileRepository.itens).toHaveLength(0)
         })
 
         it("should't be able if not found", async () => {
-          await inMemoryProfileRepository.create(makeProfile({}, new UniqueEntityID('profile-01')))
+          await inMemoryProfileRepository.create(makeProfile({}, new UniqueEntityID('profile-1')))
 
           const result = await sut.execute({
-            profileId: 'profile-02',
+            profileId: 'profile-2',
           })
 
           expect(result.isLeft()).toBe(true)

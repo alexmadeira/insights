@@ -16,8 +16,8 @@ describe('Domain', () => {
         it('should be able', async () => {
           const result = await sut.execute({
             name: 'profile name',
-            networkId: 'network-01',
-            referencesIds: ['reference-01'],
+            networkId: 'network-1',
+            referencesIds: ['reference-1'],
           })
           expect(result.isRight()).toBe(true)
           expect(inMemoryProfileRepository.itens[0]).toEqual(result.value?.profile)

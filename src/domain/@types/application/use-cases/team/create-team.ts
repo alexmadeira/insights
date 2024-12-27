@@ -7,6 +7,7 @@ export const ZCreateTeamUseCaseRequest = z.object({
   name: z.string(),
   companyId: z.string(),
   membersIds: z.array(z.string()),
+  avatarsIds: z.array(z.string()),
   profilesIds: z.array(z.string()),
 })
 

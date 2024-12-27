@@ -17,20 +17,21 @@ export class InMemoryTeamRepository implements TeamRepository {
   async create(team: Team) {
     this.itens.push(team)
 
-    this.teamAvatarRepository.create(team.avatar)
+    this.teamAvatarRepository.createMany(team.avatars.getItems())
   }
 
   async save(team: Team) {
     const itemIndex = this.itens.findIndex((item) => item.id === team.id)
     this.itens[itemIndex] = team
 
-    this.teamAvatarRepository.save(team.avatar)
+    this.teamAvatarRepository.createMany(team.avatars.getNewItems())
+    this.teamAvatarRepository.deleteMany(team.avatars.getRemovedItems())
   }
 
   async delete(team: Team) {
     const itemIndex = this.itens.findIndex((item) => item.id === team.id)
     this.itens.splice(itemIndex, 1)
 
-    this.teamAvatarRepository.delete(team.avatar)
+    this.teamAvatarRepository.deleteManyByTeamId(team.id.toString())
   }
 }

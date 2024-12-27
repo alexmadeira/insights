@@ -17,20 +17,20 @@ describe('Domain', () => {
     describe('Reference', () => {
       describe('Delete', () => {
         it('should be able', async () => {
-          await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-01')))
+          await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-1')))
 
           const result = await sut.execute({
-            referenceId: 'reference-01',
+            referenceId: 'reference-1',
           })
           expect(result.isRight()).toBe(true)
           expect(inMemoryReferenceRepository.itens).toHaveLength(0)
         })
 
         it("should't be able if not found", async () => {
-          await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-01')))
+          await inMemoryReferenceRepository.create(makeReference({}, new UniqueEntityID('reference-1')))
 
           const result = await sut.execute({
-            referenceId: 'reference-02',
+            referenceId: 'reference-2',
           })
 
           expect(result.isLeft()).toBe(true)

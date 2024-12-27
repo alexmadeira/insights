@@ -2,6 +2,7 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { DeleteMemberUseCase } from '_DOMApp/use-cases/member/delete-member'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makeMember } from '_TEST/utils/factories/make-member'
+import { makeMemberAvatar } from '_TEST/utils/factories/make-member-avatar'
 import { makeMemberCompany } from '_TEST/utils/factories/make-member-company'
 import { makeMemberTeam } from '_TEST/utils/factories/make-member-team'
 import { InMemoryMemberAvatarRepository } from '_TEST/utils/repositories/in-memory-member-avatar-repository'
@@ -33,24 +34,13 @@ describe('Domain', () => {
     describe('Member', () => {
       describe('Delete', () => {
         it('should be able', async () => {
-          const member = makeMember({}, new UniqueEntityID('member-01'))
+          const member = makeMember({}, new UniqueEntityID('member-1'))
           await inMemoryMemberRepository.create(member)
-          await inMemoryMemberTeamRepository.create(
-            makeMemberTeam({
-              memberId: member.id,
-              teamId: new UniqueEntityID('team-1'),
-            }),
-          )
-          await inMemoryMemberCompanyRepository.create(
-            makeMemberCompany({
-              memberId: member.id,
-              companyId: new UniqueEntityID('company-1'),
-            }),
-          )
+          await inMemoryMemberTeamRepository.create(makeMemberTeam({ memberId: member.id }))
+          await inMemoryMemberCompanyRepository.create(makeMemberCompany({ memberId: member.id }))
+          await inMemoryMemberAvatarRepository.create(makeMemberAvatar({ memberId: member.id }))
 
-          const result = await sut.execute({
-            memberId: 'member-01',
-          })
+          const result = await sut.execute({ memberId: 'member-1' })
 
           expect(result.isRight()).toBe(true)
           expect(inMemoryMemberRepository.itens).toHaveLength(0)
@@ -60,11 +50,9 @@ describe('Domain', () => {
         })
 
         it("should't be able if not found", async () => {
-          await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-01')))
+          await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-1')))
 
-          const result = await sut.execute({
-            memberId: 'member-02',
-          })
+          const result = await sut.execute({ memberId: 'member-2' })
 
           expect(result.isLeft()).toBe(true)
           expect(result.value).toBeInstanceOf(ResourceNotFoundError)

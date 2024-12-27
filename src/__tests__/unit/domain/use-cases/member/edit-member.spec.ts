@@ -39,10 +39,10 @@ describe('Domain', () => {
     describe('Member', () => {
       describe('Edit', () => {
         it('should be able', async () => {
-          await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-01')))
+          await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-1')))
 
           const result = await sut.execute({
-            memberId: 'member-01',
+            memberId: 'member-1',
             name: 'Member Name',
             email: 'member@emal.com',
             teamsIds: ['team-1'],

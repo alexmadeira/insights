@@ -18,14 +18,14 @@ describe('Domain', () => {
             name: 'network name',
             username: 'network-name',
             typeId: 'facebook',
-            postsIds: ['post-01', 'post-02'],
+            postsIds: ['post-1', 'post-2'],
           })
 
           expect(result.isRight()).toBe(true)
           expect(inMemoryNetworkRepository.itens[0].name).toEqual('network name')
           expect(inMemoryNetworkRepository.itens[0].username).toEqual('network-name')
           expect(inMemoryNetworkRepository.itens[0].type).toEqual('facebook')
-          expect(inMemoryNetworkRepository.itens[0].posts).toEqual(['post-01', 'post-02'])
+          expect(inMemoryNetworkRepository.itens[0].posts).toEqual(['post-1', 'post-2'])
         })
       })
     })

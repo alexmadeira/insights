@@ -17,30 +17,30 @@ describe('Domain', () => {
     describe('Profile', () => {
       describe('Edit', () => {
         it('should be able', async () => {
-          await inMemoryProfileRepository.create(makeProfile({}, new UniqueEntityID('profile-01')))
+          await inMemoryProfileRepository.create(makeProfile({}, new UniqueEntityID('profile-1')))
 
           const result = await sut.execute({
-            profileId: 'profile-01',
+            profileId: 'profile-1',
             name: 'Profile Name',
-            networkId: 'network-01',
-            referencesIds: ['reference-01'],
+            networkId: 'network-1',
+            referencesIds: ['reference-1'],
           })
 
           expect(result.isRight()).toBe(true)
           expect(inMemoryProfileRepository.itens[0]).toMatchObject({
             name: 'Profile Name',
-            network: 'network-01',
-            references: ['reference-01'],
+            network: 'network-1',
+            references: ['reference-1'],
           })
         })
         it("should't be able if not found", async () => {
-          await inMemoryProfileRepository.create(makeProfile({}, new UniqueEntityID('profile-01')))
+          await inMemoryProfileRepository.create(makeProfile({}, new UniqueEntityID('profile-1')))
 
           const result = await sut.execute({
-            profileId: 'profile-02',
+            profileId: 'profile-2',
             name: 'Profile Name',
-            networkId: 'network-01',
-            referencesIds: ['reference-01'],
+            networkId: 'network-1',
+            referencesIds: ['reference-1'],
           })
 
           expect(result.isLeft()).toBe(true)

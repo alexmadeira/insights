@@ -1,4 +1,4 @@
-import type { TeamAvatar } from '_DOMEnt/entities/team-avatar'
+import type { TeamAvatarList } from '_DOMEnt/entities/team-avatar-list'
 import type { Slug } from '_DOMEnt/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
@@ -10,7 +10,7 @@ export const ZTeamProps = ZEntityProps.extend({
   company: z.string(),
   members: z.array(z.string()),
   profiles: z.array(z.string()),
-  avatar: z.custom<TeamAvatar>(),
+  avatars: z.custom<TeamAvatarList>(),
 })
 
 export const ZTeam = ZEntity.extend({
@@ -19,7 +19,7 @@ export const ZTeam = ZEntity.extend({
   company: z.string(),
   members: z.array(z.string()),
   profiles: z.array(z.string()),
-  avatar: z.custom<TeamAvatar>(),
+  avatars: z.custom<TeamAvatarList>(),
 })
 
 //

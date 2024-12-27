@@ -17,20 +17,20 @@ describe('Domain', () => {
     describe('Network', () => {
       describe('Delete', () => {
         it('should be able', async () => {
-          await inMemoryNetworkRepository.create(makeNetwork({}, new UniqueEntityID('network-01')))
+          await inMemoryNetworkRepository.create(makeNetwork({}, new UniqueEntityID('network-1')))
 
           const result = await sut.execute({
-            networkId: 'network-01',
+            networkId: 'network-1',
           })
           expect(result.isRight()).toBe(true)
           expect(inMemoryNetworkRepository.itens).toHaveLength(0)
         })
 
         it("should't be able if not found", async () => {
-          await inMemoryNetworkRepository.create(makeNetwork({}, new UniqueEntityID('network-01')))
+          await inMemoryNetworkRepository.create(makeNetwork({}, new UniqueEntityID('network-1')))
 
           const result = await sut.execute({
-            networkId: 'network-02',
+            networkId: 'network-2',
           })
 
           expect(result.isLeft()).toBe(true)

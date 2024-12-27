@@ -7,7 +7,7 @@ import type {
 
 import { right } from '_COR/either'
 import { Team } from '_DOMEnt/entities/team'
-import { TeamAvatar } from '_DOMEnt/entities/team-avatar'
+import { TeamAvatarList } from '_DOMEnt/entities/team-avatar-list'
 
 export class CreateTeamUseCase implements ICreateTeamUseCase {
   constructor(private readonly teamRepository: TeamRepository) {}
@@ -15,6 +15,7 @@ export class CreateTeamUseCase implements ICreateTeamUseCase {
   async execute({
     companyId,
     membersIds,
+    avatarsIds,
     profilesIds,
     ...rest
   }: TCreateTeamUseCaseRequest): Promise<TCreateTeamUseCaseResponse> {
@@ -22,11 +23,11 @@ export class CreateTeamUseCase implements ICreateTeamUseCase {
       company: companyId,
       members: membersIds,
       profiles: profilesIds,
-      avatar: TeamAvatar.create({ name: rest.name }),
       ...rest,
     })
 
-    team.avatar.teamId = team.id
+    team.avatars = TeamAvatarList.create(team.id, avatarsIds)
+
     await this.teamRepository.create(team)
 
     return right({ team })
