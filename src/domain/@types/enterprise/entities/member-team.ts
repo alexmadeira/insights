@@ -1,13 +1,14 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 
+import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'
 
-export const ZMemberTeamProps = z.object({
+export const ZMemberTeamProps = ZEntityProps.extend({
   memberId: z.custom<UniqueEntityID>(),
   teamId: z.custom<UniqueEntityID>(),
 })
 
-export const ZMemberTeam = z.object({
+export const ZMemberTeam = ZEntity.extend({
   memberId: z.custom<UniqueEntityID>(),
   teamId: z.custom<UniqueEntityID>(),
 })

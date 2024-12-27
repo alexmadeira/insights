@@ -14,7 +14,7 @@ export type * from '@DOMTypes/enterprise/entities/company'
 
 export class Company extends AggregateRoot<TCompanyProps> implements ICompany {
   static create(
-    props: Optional<TCompanyProps, 'createdAt' | 'slug' | 'teams' | 'members' | 'profiles' | 'avatars'>,
+    props: Optional<TCompanyProps, 'slug' | 'teams' | 'members' | 'profiles' | 'avatars'>,
     id?: UniqueEntityID,
   ) {
     return new Company(
@@ -25,7 +25,6 @@ export class Company extends AggregateRoot<TCompanyProps> implements ICompany {
         members: props.members ?? new CompanyMemberList(),
         avatars: props.avatars ?? new CompanyAvatarList(),
         profiles: props.profiles ?? new CompanyProfileList(),
-        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
@@ -73,13 +72,5 @@ export class Company extends AggregateRoot<TCompanyProps> implements ICompany {
 
   public get slug() {
     return this._props.slug
-  }
-
-  public get createdAt() {
-    return this._props.createdAt
-  }
-
-  public get updatedAt() {
-    return this._props.updatedAt
   }
 }

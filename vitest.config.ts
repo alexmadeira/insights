@@ -11,7 +11,7 @@ export default defineConfig({
     coverage: {
       reporter: 'html-spa',
       include: ['src/**'],
-      exclude: ['**/@types/**', '**/__tests__/**', 'src/domain/application/repositories', 'src/core'],
+      exclude: ['**/@types/**', '**/__tests__/**'],
     },
   },
   resolve: {

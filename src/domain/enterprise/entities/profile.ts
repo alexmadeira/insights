@@ -9,12 +9,11 @@ import { Slug } from './value-objects/slug'
 export type * from '@DOMTypes/enterprise/entities/profile'
 
 export class Profile extends Entity<TProfileProps> implements IProfile {
-  static create(props: Optional<TProfileProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
+  static create(props: Optional<TProfileProps, 'slug'>, id?: UniqueEntityID) {
     return new Profile(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
-        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
@@ -46,13 +45,5 @@ export class Profile extends Entity<TProfileProps> implements IProfile {
 
   public get slug() {
     return this._props.slug
-  }
-
-  public get createdAt() {
-    return this._props.createdAt
-  }
-
-  public get updatedAt() {
-    return this._props.updatedAt
   }
 }

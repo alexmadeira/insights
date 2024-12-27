@@ -10,12 +10,11 @@ import { Slug } from './value-objects'
 export type * from '@DOMTypes/enterprise/entities/reference'
 
 export class Reference extends Entity<TReferenceProps> implements IReference {
-  static create(props: Optional<TReferenceProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
+  static create(props: Optional<TReferenceProps, 'slug'>, id?: UniqueEntityID) {
     return new Reference(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
-        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
@@ -47,13 +46,5 @@ export class Reference extends Entity<TReferenceProps> implements IReference {
 
   public get slug() {
     return this._props.slug
-  }
-
-  public get createdAt() {
-    return this._props.createdAt
-  }
-
-  public get updatedAt() {
-    return this._props.updatedAt
   }
 }

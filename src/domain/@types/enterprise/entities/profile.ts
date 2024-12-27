@@ -1,8 +1,9 @@
 import type { Slug } from '_DOMEnt/entities/value-objects'
 
+import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'
 
-export const ZProfileProps = z.object({
+export const ZProfileProps = ZEntityProps.extend({
   name: z.string(),
   slug: z.custom<Slug>(),
   network: z.string(),
@@ -11,7 +12,7 @@ export const ZProfileProps = z.object({
   updatedAt: z.date().optional(),
 })
 
-export const ZProfile = z.object({
+export const ZProfile = ZEntity.extend({
   name: z.string(),
   slug: z.custom<Slug>(),
   network: z.string(),

@@ -1,8 +1,9 @@
 import type { Acronym } from '_DOMEnt/entities/value-objects'
 
+import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'
 
-export const ZAvatarProps = z.object({
+export const ZAvatarProps = ZEntityProps.extend({
   name: z.string(),
   url: z.string().nullish(),
   isDefault: z.boolean(),
@@ -10,7 +11,7 @@ export const ZAvatarProps = z.object({
   updatedAt: z.date().optional(),
 })
 
-export const ZAvatar = z.object({
+export const ZAvatar = ZEntity.extend({
   name: z.string(),
   url: z.string().nullish(),
   isDefault: z.boolean(),

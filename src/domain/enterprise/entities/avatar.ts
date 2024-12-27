@@ -1,5 +1,4 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { Optional } from '@CORTypes/optional'
 import type { IAvatar, TAvatarProps } from '@DOMTypes/enterprise/entities/avatar'
 
 import { Entity } from '_COR/entities/entity'
@@ -16,15 +15,8 @@ export class Avatar extends Entity<TAvatarProps> implements IAvatar {
     this._acronym = new Acronym(props.name)
   }
 
-  static create(props: Optional<TAvatarProps, 'createdAt' | 'isDefault'>, id?: UniqueEntityID) {
-    return new Avatar(
-      {
-        ...props,
-        isDefault: props.isDefault ?? false,
-        createdAt: props.createdAt ?? new Date(),
-      },
-      id,
-    )
+  static create(props: TAvatarProps, id?: UniqueEntityID) {
+    return new Avatar(props, id)
   }
 
   public set name(name: string) {
@@ -54,13 +46,5 @@ export class Avatar extends Entity<TAvatarProps> implements IAvatar {
 
   public get acronym() {
     return this._acronym
-  }
-
-  public get createdAt() {
-    return this._props.createdAt
-  }
-
-  public get updatedAt() {
-    return this._props.updatedAt
   }
 }

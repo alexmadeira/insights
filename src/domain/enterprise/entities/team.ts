@@ -9,12 +9,11 @@ import { Slug } from './value-objects/slug'
 export type * from '@DOMTypes/enterprise/entities/team'
 
 export class Team extends Entity<TTeamProps> implements ITeam {
-  static create(props: Optional<TTeamProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
+  static create(props: Optional<TTeamProps, 'slug'>, id?: UniqueEntityID) {
     return new Team(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
-        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
@@ -26,7 +25,6 @@ export class Team extends Entity<TTeamProps> implements ITeam {
 
   public set name(name: string) {
     this._props.name = name
-    this._props.avatar.name = name
   }
 
   public get avatar() {
@@ -59,13 +57,5 @@ export class Team extends Entity<TTeamProps> implements ITeam {
 
   public get slug() {
     return this._props.slug
-  }
-
-  public get createdAt() {
-    return this._props.createdAt
-  }
-
-  public get updatedAt() {
-    return this._props.updatedAt
   }
 }

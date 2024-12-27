@@ -1,9 +1,10 @@
 import type { TeamAvatar } from '_DOMEnt/entities/team-avatar'
 import type { Slug } from '_DOMEnt/entities/value-objects'
 
+import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'
 
-export const ZTeamProps = z.object({
+export const ZTeamProps = ZEntityProps.extend({
   name: z.string(),
   slug: z.custom<Slug>(),
   company: z.string(),
@@ -14,7 +15,7 @@ export const ZTeamProps = z.object({
   updatedAt: z.date().optional(),
 })
 
-export const ZTeam = z.object({
+export const ZTeam = ZEntity.extend({
   name: z.string(),
   slug: z.custom<Slug>(),
   company: z.string(),

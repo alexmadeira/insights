@@ -1,5 +1,4 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { Optional } from '@CORTypes/optional'
 import type { INetwork, TNetworkProps } from '@DOMTypes/enterprise/entities/network'
 
 import { Entity } from '_COR/entities/entity'
@@ -7,14 +6,8 @@ import { Entity } from '_COR/entities/entity'
 export type * from '@DOMTypes/enterprise/entities/network'
 
 export class Network extends Entity<TNetworkProps> implements INetwork {
-  static create(props: Optional<TNetworkProps, 'createdAt'>, id?: UniqueEntityID) {
-    return new Network(
-      {
-        ...props,
-        createdAt: props.createdAt ?? new Date(),
-      },
-      id,
-    )
+  static create(props: TNetworkProps, id?: UniqueEntityID) {
+    return new Network(props, id)
   }
 
   public get name() {
@@ -35,13 +28,5 @@ export class Network extends Entity<TNetworkProps> implements INetwork {
 
   public get posts() {
     return this._props.posts
-  }
-
-  public get createdAt() {
-    return this._props.createdAt
-  }
-
-  public get updatedAt() {
-    return this._props.updatedAt
   }
 }

@@ -1,6 +1,7 @@
+import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'
 
-export const ZNetworkProps = z.object({
+export const ZNetworkProps = ZEntityProps.extend({
   name: z.string(),
   username: z.string(),
   type: z.string(),
@@ -10,7 +11,7 @@ export const ZNetworkProps = z.object({
   updatedAt: z.date().optional(),
 })
 
-export const ZNetwork = z.object({
+export const ZNetwork = ZEntity.extend({
   name: z.string(),
   username: z.string(),
   type: z.string(),

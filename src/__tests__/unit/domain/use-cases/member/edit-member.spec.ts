@@ -61,15 +61,6 @@ describe('Domain', () => {
             expect(inMemoryMemberRepository.itens[0].name).toEqual('Member Name')
             expect(inMemoryMemberRepository.itens[0].email).toEqual('member@emal.com')
 
-            expect(inMemoryMemberRepository.itens[0].avatar.name).toEqual('Member Name')
-            expect(inMemoryMemberRepository.itens[0].avatar.acronym.value).toEqual('mn')
-
-            expect(inMemoryMemberAvatarRepository.itens[0].name).toEqual(result.value.member.avatar.name)
-            expect(inMemoryMemberAvatarRepository.itens[0].url).toEqual(result.value.member.avatar.url)
-            expect(inMemoryMemberAvatarRepository.itens[0].acronym.value).toEqual(
-              result.value.member.avatar.acronym.value,
-            )
-
             expect(inMemoryMemberRepository.itens[0].teams.currentItems).toHaveLength(2)
             expect(inMemoryMemberRepository.itens[0].teams.currentItems).toEqual([
               expect.objectContaining({ teamId: new UniqueEntityID('team-1') }),

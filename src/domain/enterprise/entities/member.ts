@@ -11,14 +11,13 @@ import { Slug } from './value-objects'
 export type * from '@DOMTypes/enterprise/entities/member'
 
 export class Member extends AggregateRoot<TMemberProps> implements IMember {
-  static create(props: Optional<TMemberProps, 'createdAt' | 'slug' | 'teams' | 'companies'>, id?: UniqueEntityID) {
+  static create(props: Optional<TMemberProps, 'slug' | 'teams' | 'companies'>, id?: UniqueEntityID) {
     const member = new Member(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
         teams: props.teams ?? new MemberTeamList(),
         companies: props.companies ?? new MemberCompanyList(),
-        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
@@ -32,7 +31,6 @@ export class Member extends AggregateRoot<TMemberProps> implements IMember {
 
   public set name(name: string) {
     this._props.name = name
-    this._props.avatar.name = name
   }
 
   public get avatar() {
@@ -65,13 +63,5 @@ export class Member extends AggregateRoot<TMemberProps> implements IMember {
 
   public get slug() {
     return this._props.slug
-  }
-
-  public get createdAt() {
-    return this._props.createdAt
-  }
-
-  public get updatedAt() {
-    return this._props.updatedAt
   }
 }

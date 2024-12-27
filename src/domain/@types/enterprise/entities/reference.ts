@@ -1,8 +1,9 @@
 import type { ReferenceStatus, Slug } from '_DOMEnt/entities/value-objects'
 
+import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'
 
-export const ZReferenceProps = z.object({
+export const ZReferenceProps = ZEntityProps.extend({
   name: z.string(),
   slug: z.custom<Slug>(),
   status: z.custom<ReferenceStatus>(),
@@ -11,7 +12,7 @@ export const ZReferenceProps = z.object({
   updatedAt: z.date().optional(),
 })
 
-export const ZReference = z.object({
+export const ZReference = ZEntity.extend({
   name: z.string(),
   slug: z.custom<Slug>(),
   status: z.custom<ReferenceStatus>(),
