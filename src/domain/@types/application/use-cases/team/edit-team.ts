@@ -8,7 +8,6 @@ export const ZEditTeamUseCaseRequest = z.object({
   teamId: z.string(),
   name: z.string(),
   avatarsIds: z.array(z.string()),
-  companyId: z.string(),
   membersIds: z.array(z.string()),
   profilesIds: z.array(z.string()),
 })

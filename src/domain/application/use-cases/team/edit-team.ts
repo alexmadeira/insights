@@ -22,7 +22,6 @@ export class EditTeamUseCase implements IEditTeamUseCase {
     teamId,
     name,
     avatarsIds,
-    companyId,
     membersIds,
     profilesIds,
   }: TEditTeamUseCaseRequest): Promise<TEditTeamUseCaseResponse> {
@@ -44,7 +43,6 @@ export class EditTeamUseCase implements IEditTeamUseCase {
     team.name = name
     team.avatars = teamAvatarList
 
-    team.company = companyId
     team.members = membersIds
     team.profiles = profilesIds
 

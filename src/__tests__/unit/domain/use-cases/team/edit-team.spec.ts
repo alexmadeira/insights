@@ -27,7 +27,6 @@ describe('Domain', () => {
           const result = await sut.execute({
             teamId: 'team-1',
             name: 'Team Name',
-            companyId: 'company-1',
             membersIds: ['member-1'],
             avatarsIds: ['avatar-1'],
             profilesIds: ['profile-1'],
@@ -36,7 +35,6 @@ describe('Domain', () => {
           expect(result.isRight()).toBe(true)
           if (result.isRight()) {
             expect(inMemoryTeamRepository.itens[0].name).toEqual('Team Name')
-            expect(inMemoryTeamRepository.itens[0].company).toEqual('company-1')
             expect(inMemoryTeamRepository.itens[0].members).toEqual(['member-1'])
             expect(inMemoryTeamRepository.itens[0].profiles).toEqual(['profile-1'])
 
@@ -52,7 +50,6 @@ describe('Domain', () => {
           const result = await sut.execute({
             teamId: 'team-2',
             name: 'Team Name',
-            companyId: 'company-1',
             membersIds: [],
             avatarsIds: [],
             profilesIds: [],

@@ -25,10 +25,6 @@ export class Team extends Entity<TTeamProps> implements ITeam {
     this._props.avatars = avatars
   }
 
-  public set company(company: string) {
-    this._props.company = company
-  }
-
   public set members(members: string[]) {
     this._props.members = members
   }

@@ -29,8 +29,8 @@ describe('Domain', () => {
           expect(result.isRight()).toBe(true)
           if (result.isRight()) {
             expect(inMemoryTeamRepository.itens[0].name).toEqual('Team Name')
-            expect(inMemoryTeamRepository.itens[0].company).toEqual('company-1')
             expect(inMemoryTeamRepository.itens[0].slug.value).toEqual('team-name')
+            expect(inMemoryTeamRepository.itens[0].company.toString()).toEqual('company-1')
 
             expect(inMemoryTeamRepository.itens[0].avatars.currentItems).toHaveLength(1)
             expect(inMemoryTeamRepository.itens[0].avatars.currentItems).toEqual([
