@@ -3,6 +3,7 @@ import { EditCompanyUseCase } from '_DOMApp/use-cases/company/edit-company'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { MemberRole } from '_DOMEnt/entities/value-objects/member-role'
 import { makeCompany } from '_TEST/utils/factories/make-company'
+import { makeCompanyAvatar } from '_TEST/utils/factories/make-company-avatar'
 import { makeCompanyMember } from '_TEST/utils/factories/make-company-member'
 import { makeCompanyProfile } from '_TEST/utils/factories/make-company-profile'
 import { makeCompanyTeam } from '_TEST/utils/factories/make-company-team'
@@ -36,6 +37,7 @@ describe('Domain', () => {
     sut = new EditCompanyUseCase(
       inMemoryCompanyRepository,
       inMemoryCompanyTeamRepository,
+      inMemoryCompanyAvatarRepository,
       inMemoryCompanyMemberRepository,
       inMemoryCompanyProfileRepository,
     )
@@ -53,22 +55,21 @@ describe('Domain', () => {
             teamsIds: ['team-1'],
             membersRoles: [['member-1', 'owner']],
             profilesIds: ['profile-1'],
-            avatarUrl: 'http://company-avatar.com/image.png',
+            avatarsIds: ['avatar-1'],
           })
 
           expect(result.isRight()).toBe(true)
           if (result.isRight()) {
             expect(inMemoryCompanyRepository.itens[0].name).toEqual('Company Name')
 
-            expect(inMemoryCompanyAvatarRepository.itens[0].name).toEqual(result.value.company.avatar.name)
-            expect(inMemoryCompanyAvatarRepository.itens[0].url).toEqual(result.value.company.avatar.url)
-            expect(inMemoryCompanyAvatarRepository.itens[0].acronym.value).toEqual(
-              result.value.company.avatar.acronym.value,
-            )
-
             expect(inMemoryCompanyRepository.itens[0].teams.currentItems).toHaveLength(1)
             expect(inMemoryCompanyRepository.itens[0].teams.currentItems).toEqual([
-              expect.objectContaining({ teamId: new UniqueEntityID('team-1') }),
+              expect.objectContaining({ companyId: result.value.company.id, teamId: new UniqueEntityID('team-1') }),
+            ])
+
+            expect(inMemoryCompanyRepository.itens[0].avatars.currentItems).toHaveLength(1)
+            expect(inMemoryCompanyRepository.itens[0].avatars.currentItems).toEqual([
+              expect.objectContaining({ companyId: result.value.company.id, avatarId: new UniqueEntityID('avatar-1') }),
             ])
 
             expect(inMemoryCompanyRepository.itens[0].members.currentItems).toHaveLength(1)
@@ -81,7 +82,10 @@ describe('Domain', () => {
 
             expect(inMemoryCompanyRepository.itens[0].profiles.currentItems).toHaveLength(1)
             expect(inMemoryCompanyRepository.itens[0].profiles.currentItems).toEqual([
-              expect.objectContaining({ profileId: new UniqueEntityID('profile-1') }),
+              expect.objectContaining({
+                companyId: result.value.company.id,
+                profileId: new UniqueEntityID('profile-1'),
+              }),
             ])
           }
         })
@@ -103,6 +107,7 @@ describe('Domain', () => {
             companyId: 'company-1',
             name: 'Company Name',
             teamsIds: ['team-4', 'team-1'],
+            avatarsIds: [],
             profilesIds: [],
             membersRoles: [],
           })
@@ -112,11 +117,47 @@ describe('Domain', () => {
             expect(inMemoryCompanyTeamRepository.itens).toHaveLength(2)
             expect(inMemoryCompanyTeamRepository.itens).toEqual(
               expect.arrayContaining([
+                expect.objectContaining({ companyId: result.value.company.id, teamId: new UniqueEntityID('team-4') }),
+                expect.objectContaining({ companyId: result.value.company.id, teamId: new UniqueEntityID('team-1') }),
+              ]),
+            )
+          }
+        })
+        it('should be able sync avatars', async () => {
+          const company = makeCompany({}, new UniqueEntityID('company-1'))
+          await inMemoryCompanyRepository.create(company)
+          await inMemoryCompanyAvatarRepository.createMany([
+            makeCompanyAvatar({
+              companyId: company.id,
+              avatarId: new UniqueEntityID('avatar-1'),
+            }),
+            makeCompanyAvatar({
+              companyId: company.id,
+              avatarId: new UniqueEntityID('avatar-2'),
+            }),
+          ])
+
+          const result = await sut.execute({
+            companyId: 'company-1',
+            name: 'Company Name',
+            avatarsIds: ['avatar-4', 'avatar-1'],
+            teamsIds: [],
+            profilesIds: [],
+            membersRoles: [],
+          })
+
+          expect(result.isRight()).toBe(true)
+          if (result.isRight()) {
+            expect(inMemoryCompanyAvatarRepository.itens).toHaveLength(2)
+            expect(inMemoryCompanyAvatarRepository.itens).toEqual(
+              expect.arrayContaining([
                 expect.objectContaining({
-                  teamId: new UniqueEntityID('team-4'),
+                  companyId: result.value.company.id,
+                  avatarId: new UniqueEntityID('avatar-4'),
                 }),
                 expect.objectContaining({
-                  teamId: new UniqueEntityID('team-1'),
+                  companyId: result.value.company.id,
+                  avatarId: new UniqueEntityID('avatar-1'),
                 }),
               ]),
             )
@@ -146,6 +187,7 @@ describe('Domain', () => {
               ['member-4', 'owner'],
             ],
             teamsIds: [],
+            avatarsIds: [],
             profilesIds: [],
           })
 
@@ -183,6 +225,7 @@ describe('Domain', () => {
             name: 'Company Name',
             profilesIds: ['profile-4', 'profile-1'],
             teamsIds: [],
+            avatarsIds: [],
             membersRoles: [],
           })
 
@@ -192,9 +235,11 @@ describe('Domain', () => {
             expect(inMemoryCompanyProfileRepository.itens).toEqual(
               expect.arrayContaining([
                 expect.objectContaining({
+                  companyId: result.value.company.id,
                   profileId: new UniqueEntityID('profile-4'),
                 }),
                 expect.objectContaining({
+                  companyId: result.value.company.id,
                   profileId: new UniqueEntityID('profile-1'),
                 }),
               ]),
@@ -215,6 +260,7 @@ describe('Domain', () => {
             companyId: 'company-2',
             name: 'Company Name',
             teamsIds: [],
+            avatarsIds: [],
             profilesIds: [],
             membersRoles: [],
           })

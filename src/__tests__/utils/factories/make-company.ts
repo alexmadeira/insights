@@ -2,7 +2,7 @@ import type { TCompanyProps } from '_DOMEnt/entities/company'
 
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { Company } from '_DOMEnt/entities/company'
-import { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
+import { CompanyAvatarList } from '_DOMEnt/entities/company-avatar-list'
 import { CompanyMemberList } from '_DOMEnt/entities/company-member-list'
 import { CompanyProfileList } from '_DOMEnt/entities/company-profile-list'
 import { CompanyTeamList } from '_DOMEnt/entities/company-team-list'
@@ -17,7 +17,7 @@ export function makeCompany(overrides: Partial<TCompanyProps> = {}, id?: UniqueE
       members: new CompanyMemberList(),
       teams: new CompanyTeamList(),
       profiles: new CompanyProfileList(),
-      avatar: CompanyAvatar.create({ name }),
+      avatars: new CompanyAvatarList(),
       createdAt: new Date(),
       ...overrides,
     },

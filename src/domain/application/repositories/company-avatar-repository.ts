@@ -1,8 +1,8 @@
 import type { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
 
 export abstract class CompanyAvatarRepository {
-  abstract findByAvatarId(id: string): Promise<CompanyAvatar | null>
-  abstract create(companyAvatar: CompanyAvatar): Promise<void>
-  abstract save(companyAvatar: CompanyAvatar): Promise<void>
-  abstract delete(companyAvatar: CompanyAvatar): Promise<void>
+  abstract createMany(teams: CompanyAvatar[]): Promise<void>
+  abstract deleteMany(teams: CompanyAvatar[]): Promise<void>
+  abstract findManyByCompanyId(companyId: string): Promise<CompanyAvatar[]>
+  abstract deleteManyByCompanyId(companyId: string): Promise<void>
 }

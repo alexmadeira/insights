@@ -1,4 +1,4 @@
-import type { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
+import type { CompanyAvatarList } from '_DOMEnt/entities/company-avatar-list'
 import type { CompanyMemberList } from '_DOMEnt/entities/company-member-list'
 import type { CompanyProfileList } from '_DOMEnt/entities/company-profile-list'
 import type { CompanyTeamList } from '_DOMEnt/entities/company-team-list'
@@ -9,7 +9,7 @@ import z from 'zod'
 export const ZCompanyProps = z.object({
   name: z.string(),
   slug: z.custom<Slug>(),
-  avatar: z.custom<CompanyAvatar>(),
+  avatars: z.custom<CompanyAvatarList>(),
   teams: z.custom<CompanyTeamList>(),
   members: z.custom<CompanyMemberList>(),
   profiles: z.custom<CompanyProfileList>(),
@@ -20,9 +20,9 @@ export const ZCompanyProps = z.object({
 export const ZCompany = z.object({
   name: z.string(),
   slug: z.custom<Slug>(),
-  avatar: z.custom<CompanyAvatar>(),
   teams: z.custom<CompanyTeamList>(),
   members: z.custom<CompanyMemberList>(),
+  avatars: z.custom<CompanyAvatarList>(),
   profiles: z.custom<CompanyProfileList>(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),

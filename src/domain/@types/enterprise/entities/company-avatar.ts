@@ -2,14 +2,14 @@ import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 
 import z from 'zod'
 
-import { ZAvatar, ZAvatarProps } from './avatar'
-
-export const ZCompanyAvatarProps = ZAvatarProps.extend({
-  companyId: z.custom<UniqueEntityID>().optional(),
+export const ZCompanyAvatarProps = z.object({
+  companyId: z.custom<UniqueEntityID>(),
+  avatarId: z.custom<UniqueEntityID>(),
 })
 
-export const ZCompanyAvatar = ZAvatar.extend({
-  companyId: z.custom<UniqueEntityID>().optional(),
+export const ZCompanyAvatar = z.object({
+  companyId: z.custom<UniqueEntityID>(),
+  avatarId: z.custom<UniqueEntityID>(),
 })
 
 //

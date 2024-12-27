@@ -24,9 +24,9 @@ export class InMemoryCompanyRepository implements CompanyRepository {
   async create(company: Company) {
     this.itens.push(company)
 
-    this.companyAvatarRepository.create(company.avatar)
     this.companyTeamRepository.createMany(company.teams.getItems())
     this.companyMemberRepository.createMany(company.members.getItems())
+    this.companyAvatarRepository.createMany(company.avatars.getItems())
     this.companyProfileRepository.createMany(company.profiles.getItems())
   }
 
@@ -34,10 +34,11 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     const itemIndex = this.itens.findIndex((item) => item.id === company.id)
     this.itens[itemIndex] = company
 
-    this.companyAvatarRepository.save(company.avatar)
-
     this.companyTeamRepository.createMany(company.teams.getNewItems())
     this.companyTeamRepository.deleteMany(company.teams.getRemovedItems())
+
+    this.companyAvatarRepository.createMany(company.avatars.getNewItems())
+    this.companyAvatarRepository.deleteMany(company.avatars.getRemovedItems())
 
     this.companyMemberRepository.createMany(company.members.getNewItems())
     this.companyMemberRepository.deleteMany(company.members.getRemovedItems())
@@ -50,8 +51,8 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     const itemIndex = this.itens.findIndex((item) => item.id === company.id)
     this.itens.splice(itemIndex, 1)
 
-    this.companyAvatarRepository.delete(company.avatar)
     this.companyTeamRepository.deleteManyByCompanyId(company.id.toString())
+    this.companyAvatarRepository.deleteManyByCompanyId(company.id.toString())
     this.companyMemberRepository.deleteManyByCompanyId(company.id.toString())
     this.companyProfileRepository.deleteManyByCompanyId(company.id.toString())
   }

@@ -7,7 +7,7 @@ import type {
 
 import { right } from '_COR/either'
 import { Company } from '_DOMEnt/entities/company'
-import { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
+import { CompanyAvatarList } from '_DOMEnt/entities/company-avatar-list'
 import { CompanyMemberList } from '_DOMEnt/entities/company-member-list'
 import { CompanyProfileList } from '_DOMEnt/entities/company-profile-list'
 import { CompanyTeamList } from '_DOMEnt/entities/company-team-list'
@@ -17,20 +17,17 @@ export class CreateCompanyUseCase implements ICreateCompanyUseCase {
 
   async execute({
     teamsIds,
-    membersRoles,
+    avatarsIds,
     profilesIds,
-    ...rest
+    membersRoles,
+    ...props
   }: TCreateCompanyUseCaseRequest): Promise<TCreateCompanyUseCaseResponse> {
-    const company = Company.create({
-      avatar: CompanyAvatar.create({ name: rest.name }),
-      ...rest,
-    })
-
-    company.avatar.companyId = company.id
+    const company = Company.create(props)
 
     company.teams = CompanyTeamList.create(company.id, teamsIds)
-    company.profiles = CompanyProfileList.create(company.id, profilesIds)
+    company.avatars = CompanyAvatarList.create(company.id, avatarsIds)
     company.members = CompanyMemberList.create(company.id, membersRoles)
+    company.profiles = CompanyProfileList.create(company.id, profilesIds)
 
     await this.companyRepository.create(company)
 

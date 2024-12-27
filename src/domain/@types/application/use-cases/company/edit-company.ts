@@ -8,8 +8,8 @@ import z from 'zod'
 export const ZEditCompanyUseCaseRequest = z.object({
   companyId: z.string(),
   name: z.string(),
-  avatarUrl: z.string().url().nullish(),
   teamsIds: z.array(z.string()),
+  avatarsIds: z.array(z.string()),
   profilesIds: z.array(z.string()),
   membersRoles: z.array(z.tuple([z.string(), ZERole])),
 })

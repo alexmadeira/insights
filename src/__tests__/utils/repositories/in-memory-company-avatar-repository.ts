@@ -4,25 +4,23 @@ import type { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
 export class InMemoryCompanyAvatarRepository implements CompanyAvatarRepository {
   public itens: CompanyAvatar[] = []
 
-  async findByAvatarId(avatarId: string) {
-    const companyAvatar = this.itens.find((item) => item.id.equals(avatarId))
-
-    if (!companyAvatar) return null
-    return companyAvatar
-  }
-
   async create(companyAvatar: CompanyAvatar) {
     this.itens.push(companyAvatar)
   }
 
-  async save(companyAvatar: CompanyAvatar) {
-    const itemIndex = this.itens.findIndex((item) => item.id.equals(companyAvatar.id))
-
-    this.itens[itemIndex] = companyAvatar
+  async createMany(avatars: CompanyAvatar[]) {
+    this.itens.push(...avatars)
   }
 
-  async delete(companyAvatar: CompanyAvatar) {
-    const itemIndex = this.itens.findIndex((item) => item.id.equals(companyAvatar.id))
-    this.itens.splice(itemIndex, 1)
+  async deleteMany(avatars: CompanyAvatar[]) {
+    this.itens = this.itens.filter((item) => !avatars.some((avatar) => avatar.equals(item)))
+  }
+
+  async findManyByCompanyId(companyId: string) {
+    return this.itens.filter((item) => item.companyId.toString() === companyId)
+  }
+
+  async deleteManyByCompanyId(companyId: string) {
+    this.itens = this.itens.filter((item) => item.companyId.toString() !== companyId)
   }
 }

@@ -1,3 +1,4 @@
+import type { CompanyAvatarRepository } from '_DOMApp/repositories/company-avatar-repository'
 import type { CompanyMemberRepository } from '_DOMApp/repositories/company-member-repository'
 import type { CompanyProfileRepository } from '_DOMApp/repositories/company-profile-repository'
 import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
@@ -11,6 +12,8 @@ import type {
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
+import { CompanyAvatarList } from '_DOMEnt/entities/company-avatar-list'
 import { CompanyMember } from '_DOMEnt/entities/company-member'
 import { CompanyMemberList } from '_DOMEnt/entities/company-member-list'
 import { CompanyProfile } from '_DOMEnt/entities/company-profile'
@@ -23,6 +26,7 @@ export class EditCompanyUseCase implements IEditCompanyUseCase {
   constructor(
     private readonly companyRepository: CompanyRepository,
     private readonly companyTeamRepository: CompanyTeamRepository,
+    private readonly companyAvatarRepository: CompanyAvatarRepository,
     private readonly companyMemberRepository: CompanyMemberRepository,
     private readonly companyProfileRepository: CompanyProfileRepository,
   ) {}
@@ -30,8 +34,8 @@ export class EditCompanyUseCase implements IEditCompanyUseCase {
   async execute({
     companyId,
     name,
-    avatarUrl,
     teamsIds,
+    avatarsIds,
     membersRoles,
     profilesIds,
   }: TEditCompanyUseCaseRequest): Promise<TEditCompanyUseCaseResponse> {
@@ -40,9 +44,11 @@ export class EditCompanyUseCase implements IEditCompanyUseCase {
 
     const teams = await this.companyTeamRepository.findManyByCompanyId(companyId)
     const members = await this.companyMemberRepository.findManyByCompanyId(companyId)
+    const avatars = await this.companyAvatarRepository.findManyByCompanyId(companyId)
     const profiles = await this.companyProfileRepository.findManyByCompanyId(companyId)
 
     const companyTeamList = new CompanyTeamList(teams)
+    const companyAvatarList = new CompanyAvatarList(avatars)
     const companyMemberList = new CompanyMemberList(members)
     const companyProfileList = new CompanyProfileList(profiles)
 
@@ -54,11 +60,11 @@ export class EditCompanyUseCase implements IEditCompanyUseCase {
         }),
       ),
     )
-    companyMemberList.update(
-      membersRoles.map((memberRole) =>
-        CompanyMember.create({
+    companyAvatarList.update(
+      avatarsIds.map((avatarId) =>
+        CompanyAvatar.create({
           companyId: company.id,
-          member: new MemberRole(...memberRole),
+          avatarId: new UniqueEntityID(avatarId),
         }),
       ),
     )
@@ -71,12 +77,20 @@ export class EditCompanyUseCase implements IEditCompanyUseCase {
       ),
     )
 
+    companyMemberList.update(
+      membersRoles.map((memberRole) =>
+        CompanyMember.create({
+          companyId: company.id,
+          member: new MemberRole(...memberRole),
+        }),
+      ),
+    )
+
     company.name = name
     company.teams = companyTeamList
+    company.avatars = companyAvatarList
     company.members = companyMemberList
     company.profiles = companyProfileList
-
-    company.avatar.url = avatarUrl
 
     await this.companyRepository.save(company)
 
