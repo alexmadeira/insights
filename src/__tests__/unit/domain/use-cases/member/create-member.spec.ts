@@ -32,8 +32,9 @@ describe('Domain', () => {
           const result = await sut.execute({
             name: 'Member Name',
             email: 'member@emal.com',
-            companiesIds: ['company-1'],
             teamsIds: ['team-1'],
+            avatarsIds: ['avatar-1'],
+            companiesIds: ['company-1'],
           })
 
           expect(result.isRight()).toBe(true)
@@ -50,6 +51,14 @@ describe('Domain', () => {
               }),
             ])
 
+            expect(inMemoryMemberRepository.itens[0].avatars.currentItems).toHaveLength(1)
+            expect(inMemoryMemberRepository.itens[0].avatars.currentItems).toEqual([
+              expect.objectContaining({
+                memberId: result.value.member.id,
+                avatarId: new UniqueEntityID('avatar-1'),
+              }),
+            ])
+
             expect(inMemoryMemberRepository.itens[0].companies.currentItems).toHaveLength(1)
             expect(inMemoryMemberRepository.itens[0].companies.currentItems).toEqual([
               expect.objectContaining({
@@ -63,27 +72,31 @@ describe('Domain', () => {
           const result = await sut.execute({
             name: 'Member Name',
             email: 'member@emal.com',
-            companiesIds: [],
+            avatarsIds: ['avatar-1', 'avatar-2'],
             teamsIds: [],
+            companiesIds: [],
           })
 
           expect(result.isRight()).toBe(true)
-          if (result.isRight()) {
-            expect(inMemoryMemberAvatarRepository.itens).toHaveLength(1)
-            expect(inMemoryMemberAvatarRepository.itens[0]).toEqual(
+          expect(inMemoryMemberAvatarRepository.itens).toHaveLength(2)
+          expect(inMemoryMemberAvatarRepository.itens).toEqual(
+            expect.arrayContaining([
               expect.objectContaining({
-                name: 'Member Name',
-                memberId: result.value.member.id,
+                avatarId: new UniqueEntityID('avatar-1'),
               }),
-            )
-          }
+              expect.objectContaining({
+                avatarId: new UniqueEntityID('avatar-2'),
+              }),
+            ]),
+          )
         })
         it('together should be able persist teams', async () => {
           const result = await sut.execute({
             name: 'Member Name',
             email: 'member@emal.com',
-            companiesIds: [],
             teamsIds: ['team-1', 'team-2'],
+            companiesIds: [],
+            avatarsIds: [],
           })
 
           expect(result.isRight()).toBe(true)
@@ -107,6 +120,7 @@ describe('Domain', () => {
             email: 'member@emal.com',
             companiesIds: ['company-1', 'company-2'],
             teamsIds: [],
+            avatarsIds: [],
           })
 
           expect(result.isRight()).toBe(true)

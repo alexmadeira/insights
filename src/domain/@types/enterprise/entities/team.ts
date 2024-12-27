@@ -11,8 +11,6 @@ export const ZTeamProps = ZEntityProps.extend({
   members: z.array(z.string()),
   profiles: z.array(z.string()),
   avatar: z.custom<TeamAvatar>(),
-  createdAt: z.date(),
-  updatedAt: z.date().optional(),
 })
 
 export const ZTeam = ZEntity.extend({
@@ -22,8 +20,6 @@ export const ZTeam = ZEntity.extend({
   members: z.array(z.string()),
   profiles: z.array(z.string()),
   avatar: z.custom<TeamAvatar>(),
-  createdAt: z.date(),
-  updatedAt: z.date().optional(),
 })
 
 //

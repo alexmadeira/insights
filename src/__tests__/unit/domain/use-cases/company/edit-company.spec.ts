@@ -47,10 +47,10 @@ describe('Domain', () => {
     describe('Company', () => {
       describe('Edit', () => {
         it('should be able', async () => {
-          await inMemoryCompanyRepository.create(makeCompany({}, new UniqueEntityID('company-01')))
+          await inMemoryCompanyRepository.create(makeCompany({}, new UniqueEntityID('company-1')))
 
           const result = await sut.execute({
-            companyId: 'company-01',
+            companyId: 'company-1',
             name: 'Company Name',
             teamsIds: ['team-1'],
             membersRoles: [['member-1', 'owner']],

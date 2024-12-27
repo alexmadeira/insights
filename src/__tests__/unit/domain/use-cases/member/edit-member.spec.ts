@@ -27,33 +27,27 @@ describe('Domain', () => {
       inMemoryMemberCompanyRepository,
     )
 
-    sut = new EditMemberUseCase(inMemoryMemberRepository, inMemoryMemberTeamRepository, inMemoryMemberCompanyRepository)
+    sut = new EditMemberUseCase(
+      inMemoryMemberRepository,
+      inMemoryMemberTeamRepository,
+      inMemoryMemberAvatarRepository,
+      inMemoryMemberCompanyRepository,
+    )
   })
 
   describe('Use case', () => {
     describe('Member', () => {
       describe('Edit', () => {
         it('should be able', async () => {
-          const member = makeMember({}, new UniqueEntityID('member-01'))
-          await inMemoryMemberRepository.create(member)
-          await inMemoryMemberTeamRepository.createMany([
-            makeMemberTeam({
-              memberId: member.id,
-              teamId: new UniqueEntityID('team-1'),
-            }),
-            makeMemberTeam({
-              memberId: member.id,
-              teamId: new UniqueEntityID('team-2'),
-            }),
-          ])
+          await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-01')))
 
           const result = await sut.execute({
             memberId: 'member-01',
             name: 'Member Name',
             email: 'member@emal.com',
+            teamsIds: ['team-1'],
+            avatarsIds: ['avatar-1'],
             companiesIds: ['company-1'],
-            teamsIds: ['team-1', 'team-3'],
-            avatarUrl: 'http://member-avatar.com/image.png',
           })
 
           expect(result.isRight()).toBe(true)
@@ -61,22 +55,24 @@ describe('Domain', () => {
             expect(inMemoryMemberRepository.itens[0].name).toEqual('Member Name')
             expect(inMemoryMemberRepository.itens[0].email).toEqual('member@emal.com')
 
-            expect(inMemoryMemberRepository.itens[0].teams.currentItems).toHaveLength(2)
+            expect(inMemoryMemberRepository.itens[0].teams.currentItems).toHaveLength(1)
             expect(inMemoryMemberRepository.itens[0].teams.currentItems).toEqual([
-              expect.objectContaining({ teamId: new UniqueEntityID('team-1') }),
-              expect.objectContaining({ teamId: new UniqueEntityID('team-3') }),
+              expect.objectContaining({ memberId: result.value.member.id, teamId: new UniqueEntityID('team-1') }),
+            ])
+
+            expect(inMemoryMemberRepository.itens[0].avatars.currentItems).toHaveLength(1)
+            expect(inMemoryMemberRepository.itens[0].avatars.currentItems).toEqual([
+              expect.objectContaining({ memberId: result.value.member.id, avatarId: new UniqueEntityID('avatar-1') }),
             ])
 
             expect(inMemoryMemberRepository.itens[0].companies.currentItems).toHaveLength(1)
             expect(inMemoryMemberRepository.itens[0].companies.currentItems).toEqual([
-              expect.objectContaining({
-                companyId: new UniqueEntityID('company-1'),
-              }),
+              expect.objectContaining({ memberId: result.value.member.id, companyId: new UniqueEntityID('company-1') }),
             ])
           }
         })
         it('should be able sync teams', async () => {
-          const member = makeMember({}, new UniqueEntityID('member-01'))
+          const member = makeMember({}, new UniqueEntityID('member-1'))
           await inMemoryMemberRepository.create(member)
           await inMemoryMemberTeamRepository.createMany([
             makeMemberTeam({
@@ -90,11 +86,12 @@ describe('Domain', () => {
           ])
 
           const result = await sut.execute({
-            memberId: 'member-01',
+            memberId: 'member-1',
             name: 'Member Name',
             email: 'member@emal.com',
-            companiesIds: [],
             teamsIds: ['team-1', 'team-3'],
+            avatarsIds: [],
+            companiesIds: [],
           })
 
           expect(result.isRight()).toBe(true)
@@ -113,7 +110,7 @@ describe('Domain', () => {
           }
         })
         it('should be able sync companies', async () => {
-          const member = makeMember({}, new UniqueEntityID('member-01'))
+          const member = makeMember({}, new UniqueEntityID('member-1'))
           await inMemoryMemberRepository.create(member)
           await inMemoryMemberCompanyRepository.createMany([
             makeMemberCompany({
@@ -127,11 +124,12 @@ describe('Domain', () => {
           ])
 
           const result = await sut.execute({
-            memberId: 'member-01',
+            memberId: 'member-1',
             name: 'Member Name',
             email: 'member@emal.com',
             companiesIds: ['company-1', 'company-3'],
             teamsIds: [],
+            avatarsIds: [],
           })
 
           expect(result.isRight()).toBe(true)
@@ -150,14 +148,15 @@ describe('Domain', () => {
           }
         })
         it("should't be able if not found", async () => {
-          await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-01')))
+          await inMemoryMemberRepository.create(makeMember({}, new UniqueEntityID('member-1')))
 
           const result = await sut.execute({
-            memberId: 'member-02',
+            memberId: 'member-2',
             name: 'Member Name',
             email: 'member@emal.com',
-            companiesIds: [],
             teamsIds: [],
+            avatarsIds: [],
+            companiesIds: [],
           })
 
           expect(result.isLeft()).toBe(true)

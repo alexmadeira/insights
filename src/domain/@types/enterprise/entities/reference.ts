@@ -8,8 +8,6 @@ export const ZReferenceProps = ZEntityProps.extend({
   slug: z.custom<Slug>(),
   status: z.custom<ReferenceStatus>(),
   network: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date().optional(),
 })
 
 export const ZReference = ZEntity.extend({
@@ -17,8 +15,6 @@ export const ZReference = ZEntity.extend({
   slug: z.custom<Slug>(),
   status: z.custom<ReferenceStatus>(),
   network: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date().optional(),
 })
 
 //

@@ -8,8 +8,6 @@ export const ZProfileProps = ZEntityProps.extend({
   slug: z.custom<Slug>(),
   network: z.string(),
   references: z.array(z.string()),
-  createdAt: z.date(),
-  updatedAt: z.date().optional(),
 })
 
 export const ZProfile = ZEntity.extend({
@@ -17,8 +15,6 @@ export const ZProfile = ZEntity.extend({
   slug: z.custom<Slug>(),
   network: z.string(),
   references: z.array(z.string()),
-  createdAt: z.date(),
-  updatedAt: z.date().optional(),
 })
 
 //

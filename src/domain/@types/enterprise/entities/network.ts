@@ -7,8 +7,6 @@ export const ZNetworkProps = ZEntityProps.extend({
   type: z.string(),
   posts: z.array(z.string()),
   avantar: z.string().optional(),
-  createdAt: z.date(),
-  updatedAt: z.date().optional(),
 })
 
 export const ZNetwork = ZEntity.extend({
@@ -17,8 +15,6 @@ export const ZNetwork = ZEntity.extend({
   type: z.string(),
   posts: z.array(z.string()),
   avantar: z.string().optional(),
-  createdAt: z.date(),
-  updatedAt: z.date().optional(),
 })
 
 //

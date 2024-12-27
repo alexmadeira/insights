@@ -7,8 +7,6 @@ export const ZAvatarProps = ZEntityProps.extend({
   name: z.string(),
   url: z.string().nullish(),
   isDefault: z.boolean(),
-  createdAt: z.date(),
-  updatedAt: z.date().optional(),
 })
 
 export const ZAvatar = ZEntity.extend({
@@ -16,8 +14,6 @@ export const ZAvatar = ZEntity.extend({
   url: z.string().nullish(),
   isDefault: z.boolean(),
   acronym: z.custom<Acronym>(),
-  createdAt: z.date(),
-  updatedAt: z.date().optional(),
 })
 
 //

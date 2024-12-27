@@ -9,7 +9,10 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import { MemberAvatarRepository } from '_DOMApp/repositories/member-avatar-repository'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import { MemberAvatar } from '_DOMEnt/entities/member-avatar'
+import { MemberAvatarList } from '_DOMEnt/entities/member-avatar-list'
 import { MemberCompany } from '_DOMEnt/entities/member-company'
 import { MemberCompanyList } from '_DOMEnt/entities/member-company-list'
 import { MemberTeam } from '_DOMEnt/entities/member-team'
@@ -19,6 +22,7 @@ export class EditMemberUseCase implements IEditMemberUseCase {
   constructor(
     private readonly memberRepository: MemberRepository,
     private readonly memberTeamRepository: MemberTeamRepository,
+    private readonly memberAvatarRepository: MemberAvatarRepository,
     private readonly memberCompanyRepository: MemberCompanyRepository,
   ) {}
 
@@ -27,16 +31,18 @@ export class EditMemberUseCase implements IEditMemberUseCase {
     name,
     email,
     teamsIds,
+    avatarsIds,
     companiesIds,
-    avatarUrl,
   }: TEditMemberUseCaseRequest): Promise<TEditMemberUseCaseResponse> {
     const member = await this.memberRepository.findById(memberId)
     if (!member) return left(new ResourceNotFoundError())
 
     const teams = await this.memberTeamRepository.findManyByMemberId(memberId)
+    const avatars = await this.memberAvatarRepository.findManyByMemberId(memberId)
     const companies = await this.memberCompanyRepository.findManyByMemberId(memberId)
 
     const memberTeamList = new MemberTeamList(teams)
+    const memberAvatarList = new MemberAvatarList(avatars)
     const memberCompanyList = new MemberCompanyList(companies)
 
     memberTeamList.update(
@@ -44,6 +50,14 @@ export class EditMemberUseCase implements IEditMemberUseCase {
         MemberTeam.create({
           memberId: member.id,
           teamId: new UniqueEntityID(teamId),
+        }),
+      ),
+    )
+    memberAvatarList.update(
+      avatarsIds.map((avatarId) =>
+        MemberAvatar.create({
+          memberId: member.id,
+          avatarId: new UniqueEntityID(avatarId),
         }),
       ),
     )
@@ -58,9 +72,9 @@ export class EditMemberUseCase implements IEditMemberUseCase {
 
     member.name = name
     member.email = email
-    member.avatar.url = avatarUrl
 
     member.teams = memberTeamList
+    member.avatars = memberAvatarList
     member.companies = memberCompanyList
 
     await this.memberRepository.save(member)

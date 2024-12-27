@@ -7,8 +7,9 @@ import z from 'zod'
 export const ZCreateMemberUseCaseRequest = z.object({
   name: z.string(),
   email: z.string().email(),
-  companiesIds: z.array(z.string()),
   teamsIds: z.array(z.string()),
+  avatarsIds: z.array(z.string()),
+  companiesIds: z.array(z.string()),
 })
 
 export const ZCreateMemberUseCaseResponse = z.custom<Either<InvalidTypeError, { member: Member }>>()

@@ -7,7 +7,7 @@ import type {
 
 import { right } from '_COR/either'
 import { Member } from '_DOMEnt/entities/member'
-import { MemberAvatar } from '_DOMEnt/entities/member-avatar'
+import { MemberAvatarList } from '_DOMEnt/entities/member-avatar-list'
 import { MemberCompanyList } from '_DOMEnt/entities/member-company-list'
 import { MemberTeamList } from '_DOMEnt/entities/member-team-list'
 
@@ -16,18 +16,15 @@ export class CreateMemberUseCase implements ICreateMemberUseCase {
 
   async execute({
     teamsIds,
+    avatarsIds,
     companiesIds,
-    ...rest
+    ...props
   }: TCreateMemberUseCaseRequest): Promise<TCreateMemberUseCaseResponse> {
-    const member = Member.create({
-      avatar: MemberAvatar.create({ name: rest.name }),
-      ...rest,
-    })
+    const member = Member.create(props)
 
     member.teams = MemberTeamList.create(member.id, teamsIds)
+    member.avatars = MemberAvatarList.create(member.id, avatarsIds)
     member.companies = MemberCompanyList.create(member.id, companiesIds)
-
-    member.avatar.memberId = member.id
 
     await this.memberRepository.create(member)
 

@@ -9,8 +9,8 @@ export const ZEditMemberUseCaseRequest = z.object({
   memberId: z.string(),
   name: z.string(),
   email: z.string().email(),
-  avatarUrl: z.string().url().nullish(),
   teamsIds: z.array(z.string()),
+  avatarsIds: z.array(z.string()),
   companiesIds: z.array(z.string()),
 })
 
