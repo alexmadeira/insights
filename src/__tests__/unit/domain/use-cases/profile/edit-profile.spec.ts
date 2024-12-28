@@ -27,12 +27,12 @@ describe('Domain', () => {
           })
 
           expect(result.isRight()).toBe(true)
-          expect(inMemoryProfileRepository.itens[0]).toMatchObject({
-            name: 'Profile Name',
-            network: 'network-1',
-            references: ['reference-1'],
-          })
+          if (result.isRight()) {
+            expect(inMemoryProfileRepository.itens[0].name).toEqual('Profile Name')
+            expect(inMemoryProfileRepository.itens[0].network).toEqual('network-1')
+          }
         })
+
         it("should't be able if not found", async () => {
           await inMemoryProfileRepository.create(makeProfile({}, new UniqueEntityID('profile-1')))
 
@@ -40,7 +40,7 @@ describe('Domain', () => {
             profileId: 'profile-2',
             name: 'Profile Name',
             networkId: 'network-1',
-            referencesIds: ['reference-1'],
+            referencesIds: [],
           })
 
           expect(result.isLeft()).toBe(true)

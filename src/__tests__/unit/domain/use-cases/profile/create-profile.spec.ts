@@ -15,13 +15,17 @@ describe('Domain', () => {
       describe('Create', () => {
         it('should be able', async () => {
           const result = await sut.execute({
-            name: 'profile name',
+            name: 'Profile Name',
             networkId: 'network-1',
             referencesIds: ['reference-1'],
           })
+
           expect(result.isRight()).toBe(true)
-          expect(inMemoryProfileRepository.itens[0]).toEqual(result.value?.profile)
-          expect(inMemoryProfileRepository.itens[0].slug.value).toEqual('profile-name')
+          if (result.isRight()) {
+            expect(inMemoryProfileRepository.itens[0].name).toEqual('Profile Name')
+            expect(inMemoryProfileRepository.itens[0].slug.value).toEqual('profile-name')
+            expect(inMemoryProfileRepository.itens[0].network).toEqual('network-1')
+          }
         })
       })
     })

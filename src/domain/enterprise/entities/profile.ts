@@ -31,7 +31,7 @@ export class Profile extends AggregateRoot<TProfileProps> implements IProfile {
     return this._props.network
   }
 
-  public set network(network: string) {
+  public set network(network: UniqueEntityID) {
     this._props.network = network
   }
 
