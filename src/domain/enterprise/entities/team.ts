@@ -7,17 +7,19 @@ import { Entity } from '_COR/entities/entity'
 import { Slug } from './value-objects/slug'
 import { TeamAvatarList } from './team-avatar-list'
 import { TeamMemberList } from './team-member-list'
+import { TeamProfileList } from './team-profile-list'
 
 export type * from '@DOMTypes/enterprise/entities/team'
 
 export class Team extends Entity<TTeamProps> implements ITeam {
-  static create(props: Optional<TTeamProps, 'slug' | 'avatars' | 'members'>, id?: UniqueEntityID) {
+  static create(props: Optional<TTeamProps, 'slug' | 'avatars' | 'members' | 'profiles'>, id?: UniqueEntityID) {
     return new Team(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
-        members: props.members ?? new TeamMemberList(),
         avatars: props.avatars ?? new TeamAvatarList(),
+        members: props.members ?? new TeamMemberList(),
+        profiles: props.profiles ?? new TeamProfileList(),
       },
       id,
     )
@@ -31,7 +33,7 @@ export class Team extends Entity<TTeamProps> implements ITeam {
     this._props.members = members
   }
 
-  public set profiles(profiles: string[]) {
+  public set profiles(profiles: TeamProfileList) {
     this._props.profiles = profiles
   }
 

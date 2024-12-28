@@ -1,8 +1,9 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { TeamAvatarList } from '_DOMEnt/entities/team-avatar-list'
+import type { TeamMemberList } from '_DOMEnt/entities/team-member-list'
+import type { TeamProfileList } from '_DOMEnt/entities/team-profile-list'
 import type { Slug } from '_DOMEnt/entities/value-objects'
 
-import { TeamMemberList } from '_DOMEnt/entities/team-member-list'
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'
 
@@ -12,7 +13,7 @@ export const ZTeamProps = ZEntityProps.extend({
   company: z.custom<UniqueEntityID>(),
   avatars: z.custom<TeamAvatarList>(),
   members: z.custom<TeamMemberList>(),
-  profiles: z.array(z.string()),
+  profiles: z.custom<TeamProfileList>(),
 })
 
 export const ZTeam = ZEntity.extend({
@@ -21,7 +22,7 @@ export const ZTeam = ZEntity.extend({
   avatars: z.custom<TeamAvatarList>(),
   company: z.custom<UniqueEntityID>(),
   members: z.custom<TeamMemberList>(),
-  profiles: z.array(z.string()),
+  profiles: z.custom<TeamProfileList>(),
 })
 
 //
