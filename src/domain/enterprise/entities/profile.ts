@@ -5,15 +5,17 @@ import type { IProfile, TProfileProps } from '@DOMTypes/enterprise/entities/prof
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 
 import { Slug } from './value-objects/slug'
+import { ProfileReferenceList } from './profile-reference-list'
 
 export type * from '@DOMTypes/enterprise/entities/profile'
 
 export class Profile extends AggregateRoot<TProfileProps> implements IProfile {
-  static create(props: Optional<TProfileProps, 'slug'>, id?: UniqueEntityID) {
+  static create(props: Optional<TProfileProps, 'slug' | 'references'>, id?: UniqueEntityID) {
     return new Profile(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.name),
+        references: props.references ?? new ProfileReferenceList(),
       },
       id,
     )
@@ -39,7 +41,7 @@ export class Profile extends AggregateRoot<TProfileProps> implements IProfile {
     return this._props.references
   }
 
-  public set references(references: string[]) {
+  public set references(references: ProfileReferenceList) {
     this._props.references = references
   }
 

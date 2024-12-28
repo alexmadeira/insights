@@ -13,10 +13,7 @@ export class DeleteProfileUseCase implements IDeleteProfileUseCase {
 
   async execute({ profileId }: TDeleteProfileUseCaseRequest): Promise<TDeleteProfileUseCaseResponse> {
     const profile = await this.profileRepository.findById(profileId)
-
-    if (!profile) {
-      return left(new ResourceNotFoundError())
-    }
+    if (!profile) return left(new ResourceNotFoundError())
 
     await this.profileRepository.delete(profile)
 
