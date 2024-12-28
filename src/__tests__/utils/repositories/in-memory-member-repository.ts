@@ -1,9 +1,8 @@
 import type { MemberAvatarRepository } from '_DOMApp/repositories/member-avatar-repository'
+import type { MemberCompanyRepository } from '_DOMApp/repositories/member-company-repository'
 import type { MemberRepository } from '_DOMApp/repositories/member-repository'
 import type { MemberTeamRepository } from '_DOMApp/repositories/member-team-repository'
 import type { Member } from '_DOMEnt/entities/member'
-
-import { MemberCompanyRepository } from '_DOMApp/repositories/member-company-repository'
 
 export class InMemoryMemberRepository implements MemberRepository {
   public itens: Member[] = []

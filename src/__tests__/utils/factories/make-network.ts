@@ -1,9 +1,8 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { TNetworkProps } from '_DOMEnt/entities/network'
 
-import { randomUUID } from 'node:crypto'
-
 import { Network } from '_DOMEnt/entities/network'
+import { NetworkPostList } from '_DOMEnt/entities/network-post-list'
 import { faker } from '@faker-js/faker'
 
 export function makeNetwork(overrides: Partial<TNetworkProps> = {}, id?: UniqueEntityID) {
@@ -12,7 +11,7 @@ export function makeNetwork(overrides: Partial<TNetworkProps> = {}, id?: UniqueE
       name: faker.person.firstName(),
       username: faker.internet.username(),
       type: 'instagram',
-      posts: [randomUUID()],
+      posts: new NetworkPostList(),
       createdAt: new Date(),
       ...overrides,
     },

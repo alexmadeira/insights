@@ -13,10 +13,7 @@ export class DeleteNetworkUseCase implements IDeleteNetworkUseCase {
 
   async execute({ networkId }: TDeleteNetworkUseCaseRequest): Promise<TDeleteNetworkUseCaseResponse> {
     const network = await this.networkRepository.findById(networkId)
-
-    if (!network) {
-      return left(new ResourceNotFoundError())
-    }
+    if (!network) return left(new ResourceNotFoundError())
 
     await this.networkRepository.delete(network)
 

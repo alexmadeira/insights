@@ -7,6 +7,7 @@ import type {
 
 import { right } from '_COR/either'
 import { Network } from '_DOMEnt/entities/network'
+import { NetworkPostList } from '_DOMEnt/entities/network-post-list'
 
 export class CreateNetworkUseCase implements ICreateNetworkUseCase {
   constructor(private readonly networkRepository: NetworkRepository) {}
@@ -14,9 +15,10 @@ export class CreateNetworkUseCase implements ICreateNetworkUseCase {
   async execute({ typeId, postsIds, ...rest }: TCreateNetworkUseCaseRequest): Promise<TCreateNetworkUseCaseResponse> {
     const network = Network.create({
       type: typeId,
-      posts: postsIds,
       ...rest,
     })
+
+    network.posts = NetworkPostList.create(network.id, postsIds)
 
     await this.networkRepository.create(network)
 
