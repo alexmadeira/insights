@@ -2,7 +2,7 @@ import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
 import type { ITeam, TTeamProps } from '@DOMTypes/enterprise/entities/team'
 
-import { Entity } from '_COR/entities/entity'
+import { AggregateRoot } from '_COR/entities/aggregate-root'
 
 import { Slug } from './value-objects/slug'
 import { TeamAvatarList } from './team-avatar-list'
@@ -11,7 +11,7 @@ import { TeamProfileList } from './team-profile-list'
 
 export type * from '@DOMTypes/enterprise/entities/team'
 
-export class Team extends Entity<TTeamProps> implements ITeam {
+export class Team extends AggregateRoot<TTeamProps> implements ITeam {
   static create(props: Optional<TTeamProps, 'slug' | 'avatars' | 'members' | 'profiles'>, id?: UniqueEntityID) {
     return new Team(
       {

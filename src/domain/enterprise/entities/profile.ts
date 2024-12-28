@@ -2,13 +2,13 @@ import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
 import type { IProfile, TProfileProps } from '@DOMTypes/enterprise/entities/profile'
 
-import { Entity } from '_COR/entities/entity'
+import { AggregateRoot } from '_COR/entities/aggregate-root'
 
 import { Slug } from './value-objects/slug'
 
 export type * from '@DOMTypes/enterprise/entities/profile'
 
-export class Profile extends Entity<TProfileProps> implements IProfile {
+export class Profile extends AggregateRoot<TProfileProps> implements IProfile {
   static create(props: Optional<TProfileProps, 'slug'>, id?: UniqueEntityID) {
     return new Profile(
       {
