@@ -17,6 +17,10 @@ export class Network extends AggregateRoot<TNetworkProps> implements INetwork {
     this._props.posts = posts
   }
 
+  public set avatar(avatar: string) {
+    this._props.avatar = avatar
+  }
+
   public get name() {
     return this._props.name
   }
@@ -26,7 +30,7 @@ export class Network extends AggregateRoot<TNetworkProps> implements INetwork {
   }
 
   public get avatar() {
-    return this._props.avantar
+    return this._props.avatar
   }
 
   public get type() {

@@ -6,8 +6,9 @@ import z from 'zod'
 
 export const ZCreateNetworkUseCaseRequest = z.object({
   name: z.string(),
-  username: z.string(),
   typeId: z.string(),
+  avatar: z.string(),
+  username: z.string(),
   postsIds: z.array(z.string()),
 })
 

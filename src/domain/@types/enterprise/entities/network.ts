@@ -5,18 +5,18 @@ import z from 'zod'
 
 export const ZNetworkProps = ZEntityProps.extend({
   name: z.string(),
-  username: z.string(),
   type: z.string(),
+  avatar: z.string(),
+  username: z.string(),
   posts: z.custom<NetworkPostList>(),
-  avantar: z.string().optional(),
 })
 
 export const ZNetwork = ZEntity.extend({
   name: z.string(),
-  username: z.string(),
   type: z.string(),
+  avatar: z.string(),
+  username: z.string(),
   posts: z.custom<NetworkPostList>(),
-  avantar: z.string().optional(),
 })
 
 //

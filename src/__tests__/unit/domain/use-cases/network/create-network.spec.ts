@@ -22,8 +22,9 @@ describe('Domain', () => {
         it('should be able', async () => {
           const result = await sut.execute({
             name: 'network name',
-            username: 'network-name',
             typeId: 'facebook',
+            username: 'network-name',
+            avatar: 'http://avatar.com/avatar.jpg',
             postsIds: ['post-1'],
           })
 
@@ -31,6 +32,7 @@ describe('Domain', () => {
           if (result.isRight()) {
             expect(inMemoryNetworkRepository.itens[0].name).toEqual('network name')
             expect(inMemoryNetworkRepository.itens[0].username).toEqual('network-name')
+            expect(inMemoryNetworkRepository.itens[0].avatar).toEqual('http://avatar.com/avatar.jpg')
             expect(inMemoryNetworkRepository.itens[0].type).toEqual('facebook')
 
             expect(inMemoryNetworkRepository.itens[0].posts.currentItems).toHaveLength(1)
@@ -45,8 +47,9 @@ describe('Domain', () => {
         it('together should be able persist posts', async () => {
           const result = await sut.execute({
             name: 'network name',
-            username: 'network-name',
             typeId: 'facebook',
+            username: 'network-name',
+            avatar: 'http://avatar.com/avatar.jpg',
             postsIds: ['post-1', 'post-2'],
           })
 
