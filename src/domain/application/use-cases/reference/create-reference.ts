@@ -22,9 +22,7 @@ export class CreateReferenceUseCase implements ICreateReferenceUseCase {
   }: TCreateReferenceUseCaseRequest): Promise<TCreateReferenceUseCaseResponse> {
     const status = new ReferenceStatus(referenceStatus ?? 'active')
 
-    if (!status.code) {
-      return left(new InvalidTypeError())
-    }
+    if (!status.code) return left(new InvalidTypeError())
 
     const reference = Reference.create({
       name,

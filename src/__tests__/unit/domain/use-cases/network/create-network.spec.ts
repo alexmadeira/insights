@@ -1,5 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { CreateNetworkUseCase } from '_DOMApp/use-cases/network/create-network'
+import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { InMemoryNetworkPostRepository } from '_TEST/utils/repositories/in-memory-network-post-repository'
 import { InMemoryNetworkRepository } from 'src/__tests__/utils/repositories/in-memory-network-repository'
 
@@ -22,7 +23,7 @@ describe('Domain', () => {
         it('should be able', async () => {
           const result = await sut.execute({
             name: 'network name',
-            typeId: 'facebook',
+            typeCode: 'ig',
             username: 'network-name',
             avatar: 'http://avatar.com/avatar.jpg',
             postsIds: ['post-1'],
@@ -33,7 +34,7 @@ describe('Domain', () => {
             expect(inMemoryNetworkRepository.itens[0].name).toEqual('network name')
             expect(inMemoryNetworkRepository.itens[0].username).toEqual('network-name')
             expect(inMemoryNetworkRepository.itens[0].avatar).toEqual('http://avatar.com/avatar.jpg')
-            expect(inMemoryNetworkRepository.itens[0].type).toEqual('facebook')
+            expect(inMemoryNetworkRepository.itens[0].type.code).toEqual('ig')
 
             expect(inMemoryNetworkRepository.itens[0].posts.currentItems).toHaveLength(1)
             expect(inMemoryNetworkRepository.itens[0].posts.currentItems).toEqual([
@@ -47,7 +48,7 @@ describe('Domain', () => {
         it('together should be able persist posts', async () => {
           const result = await sut.execute({
             name: 'network name',
-            typeId: 'facebook',
+            typeCode: 'ig',
             username: 'network-name',
             avatar: 'http://avatar.com/avatar.jpg',
             postsIds: ['post-1', 'post-2'],
@@ -65,6 +66,18 @@ describe('Domain', () => {
               }),
             ]),
           )
+        })
+        it("should't be able with an invalid type", async () => {
+          const result = await sut.execute({
+            name: 'network name',
+            typeCode: 'invalid-type',
+            username: 'network-name',
+            avatar: 'http://avatar.com/avatar.jpg',
+            postsIds: [],
+          })
+
+          expect(result.isLeft()).toBe(true)
+          expect(result.value).toBeInstanceOf(InvalidTypeError)
         })
       })
     })
