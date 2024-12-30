@@ -24,7 +24,7 @@ describe('Domain', () => {
           expect(result.isRight()).toBe(true)
           expect(inMemoryReferenceRepository.itens[0].name).toEqual('Reference name')
           expect(inMemoryReferenceRepository.itens[0].status.code).toEqual('active')
-          expect(inMemoryReferenceRepository.itens[0].network).toEqual('network-1')
+          expect(inMemoryReferenceRepository.itens[0].network.toString()).toEqual('network-1')
           expect(inMemoryReferenceRepository.itens[0].slug.value).toEqual('reference-name')
         })
 

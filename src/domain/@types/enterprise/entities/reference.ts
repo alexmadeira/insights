@@ -1,3 +1,4 @@
+import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { ReferenceStatus, Slug } from '_DOMEnt/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
@@ -7,14 +8,14 @@ export const ZReferenceProps = ZEntityProps.extend({
   name: z.string(),
   slug: z.custom<Slug>(),
   status: z.custom<ReferenceStatus>(),
-  network: z.string(),
+  network: z.custom<UniqueEntityID>(),
 })
 
 export const ZReference = ZEntity.extend({
   name: z.string(),
   slug: z.custom<Slug>(),
   status: z.custom<ReferenceStatus>(),
-  network: z.string(),
+  network: z.custom<UniqueEntityID>(),
 })
 
 //

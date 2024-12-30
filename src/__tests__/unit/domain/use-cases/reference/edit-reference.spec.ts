@@ -28,10 +28,12 @@ describe('Domain', () => {
           })
 
           expect(result.isRight()).toBe(true)
-          expect(inMemoryReferenceRepository.itens[0]).toMatchObject({
-            name: 'Reference Name',
-            network: 'network-1',
-          })
+
+          if (result.isRight()) {
+            expect(inMemoryReferenceRepository.itens[0].name).toEqual('Reference Name')
+            expect(inMemoryReferenceRepository.itens[0].status.code).toEqual('inactive')
+            expect(inMemoryReferenceRepository.itens[0].network.toString()).toEqual('network-1')
+          }
         })
 
         it("should't be able with an invalid status", async () => {
