@@ -11,7 +11,7 @@
     "lint:fix": "eslint src --ext .ts --fix",
     "test": "vitest run --coverage.enabled",
     "test:watch": "vitest --watch",
-    "test:unit": "vitest run --dir ./src/__tests__/unit/",
+    "test:unit": "vitest run --dir ./src/__tests__/unit",
     "prepare": "husky",
     "lint-staged": "lint-staged"
   },
