@@ -6,7 +6,8 @@ export default defineConfig({
   test: {
     globals: true,
     reporters: ['verbose'],
-    include: ['./src/__tests__/unit/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
+    dir: './src/__tests__',
+    include: ['./**/*.{test,spec}.?(c|m)[jt]s?(x)'],
     includeTaskLocation: true,
     coverage: {
       reporter: 'html-spa',
