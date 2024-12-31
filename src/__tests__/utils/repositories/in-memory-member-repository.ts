@@ -45,9 +45,5 @@ export class InMemoryMemberRepository implements MemberRepository {
   async delete(member: Member) {
     const itemIndex = this.itens.findIndex((item) => item.id === member.id)
     this.itens.splice(itemIndex, 1)
-
-    this.memberTeamRepository.deleteManyByMemberId(member.id.toString())
-    this.memberAvatarRepository.deleteManyByMemberId(member.id.toString())
-    this.memberCompanyRepository.deleteManyByMemberId(member.id.toString())
   }
 }
