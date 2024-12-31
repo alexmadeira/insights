@@ -1,5 +1,5 @@
 import type { NetworkPostList } from '_DOMEnt/entities/network-post-list'
-import type { NetworkType } from '_DOMEnt/entities/value-objects/network-type'
+import type { NetworkType } from '_DOMEnt/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'

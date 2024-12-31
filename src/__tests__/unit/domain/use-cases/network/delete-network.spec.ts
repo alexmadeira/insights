@@ -37,9 +37,7 @@ describe('Domain', () => {
         it("should't be able if not found", async () => {
           await inMemoryNetworkRepository.create(makeNetwork({}, new UniqueEntityID('network-1')))
 
-          const result = await sut.execute({
-            networkId: 'network-2',
-          })
+          const result = await sut.execute({ networkId: 'network-2' })
 
           expect(result.isLeft()).toBe(true)
           expect(result.value).toBeInstanceOf(ResourceNotFoundError)

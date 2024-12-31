@@ -1,5 +1,5 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { MemberRole } from '_DOMEnt/entities/value-objects/member-role'
+import type { MemberRole } from '_DOMEnt/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'

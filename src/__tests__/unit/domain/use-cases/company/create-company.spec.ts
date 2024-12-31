@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { CreateCompanyUseCase } from '_DOMApp/use-cases/company/create-company'
-import { MemberRole } from '_DOMEnt/entities/value-objects/member-role'
+import { MemberRole } from '_DOMEnt/entities/value-objects'
 import { InMemoryCompanyAvatarRepository } from '_TEST/utils/repositories/in-memory-company-avatar-repository'
 import { InMemoryCompanyMemberRepository } from '_TEST/utils/repositories/in-memory-company-member-repository'
 import { InMemoryCompanyProfileRepository } from '_TEST/utils/repositories/in-memory-company-profile-repository'

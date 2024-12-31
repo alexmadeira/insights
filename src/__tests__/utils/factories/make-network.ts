@@ -4,7 +4,7 @@ import type { TNetworkProps } from '_DOMEnt/entities/network'
 import { NETWORK_TYPES } from '_DOM/constants/network'
 import { Network } from '_DOMEnt/entities/network'
 import { NetworkPostList } from '_DOMEnt/entities/network-post-list'
-import { NetworkType } from '_DOMEnt/entities/value-objects/network-type'
+import { NetworkType } from '_DOMEnt/entities/value-objects'
 import { faker } from '@faker-js/faker'
 
 export function makeNetwork(overrides: Partial<TNetworkProps> = {}, id?: UniqueEntityID) {

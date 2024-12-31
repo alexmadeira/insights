@@ -4,11 +4,11 @@ import type { ICompany, TCompanyProps } from '@DOMTypes/enterprise/entities/comp
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 
-import { Slug } from './value-objects/slug'
 import { CompanyAvatarList } from './company-avatar-list'
 import { CompanyMemberList } from './company-member-list'
 import { CompanyProfileList } from './company-profile-list'
 import { CompanyTeamList } from './company-team-list'
+import { Slug } from './value-objects'
 
 export type * from '@DOMTypes/enterprise/entities/company'
 

@@ -4,10 +4,10 @@ import type { ITeam, TTeamProps } from '@DOMTypes/enterprise/entities/team'
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 
-import { Slug } from './value-objects/slug'
 import { TeamAvatarList } from './team-avatar-list'
 import { TeamMemberList } from './team-member-list'
 import { TeamProfileList } from './team-profile-list'
+import { Slug } from './value-objects'
 
 export type * from '@DOMTypes/enterprise/entities/team'
 

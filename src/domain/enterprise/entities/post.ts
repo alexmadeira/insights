@@ -4,8 +4,8 @@ import type { IPost, TPostProps } from '@DOMTypes/enterprise/entities/post'
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 
-import { PostStatus } from './value-objects/post-status'
 import { PostMediaList } from './post-media-list'
+import { PostStatus } from './value-objects'
 
 export type * from '@DOMTypes/enterprise/entities/post'
 

@@ -57,9 +57,7 @@ describe('Domain', () => {
         it("should't be able if not found", async () => {
           await inMemoryCompanyRepository.create(makeCompany({}, new UniqueEntityID('company-1')))
 
-          const result = await sut.execute({
-            companyId: 'company-2',
-          })
+          const result = await sut.execute({ companyId: 'company-2' })
 
           expect(result.isLeft()).toBe(true)
           expect(result.value).toBeInstanceOf(ResourceNotFoundError)

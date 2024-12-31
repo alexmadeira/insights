@@ -20,7 +20,7 @@ import { CompanyProfile } from '_DOMEnt/entities/company-profile'
 import { CompanyProfileList } from '_DOMEnt/entities/company-profile-list'
 import { CompanyTeam } from '_DOMEnt/entities/company-team'
 import { CompanyTeamList } from '_DOMEnt/entities/company-team-list'
-import { MemberRole } from '_DOMEnt/entities/value-objects/member-role'
+import { MemberRole } from '_DOMEnt/entities/value-objects'
 
 export class EditCompanyUseCase implements IEditCompanyUseCase {
   constructor(

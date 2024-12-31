@@ -9,7 +9,7 @@ import { left, right } from '_COR/either'
 import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { Network } from '_DOMEnt/entities/network'
 import { NetworkPostList } from '_DOMEnt/entities/network-post-list'
-import { NetworkType } from '_DOMEnt/entities/value-objects/network-type'
+import { NetworkType } from '_DOMEnt/entities/value-objects'
 
 export class CreateNetworkUseCase implements ICreateNetworkUseCase {
   constructor(private readonly networkRepository: NetworkRepository) {}

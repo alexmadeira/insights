@@ -12,7 +12,7 @@ import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { PostMedia } from '_DOMEnt/entities/post-media'
 import { PostMediaList } from '_DOMEnt/entities/post-media-list'
-import { PostStatus } from '_DOMEnt/entities/value-objects/post-status'
+import { PostStatus } from '_DOMEnt/entities/value-objects'
 
 export class EditPostUseCase implements IEditPostUseCase {
   constructor(

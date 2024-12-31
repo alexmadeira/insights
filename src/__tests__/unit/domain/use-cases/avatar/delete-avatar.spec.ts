@@ -20,6 +20,7 @@ describe('Domain', () => {
           await inMemoryAvatarRepository.create(makeAvatar({}, new UniqueEntityID('avatar-1')))
 
           const result = await sut.execute({ avatarId: 'avatar-1' })
+
           expect(result.isRight()).toBe(true)
           expect(inMemoryAvatarRepository.itens).toHaveLength(0)
         })

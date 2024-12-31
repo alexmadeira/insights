@@ -4,8 +4,8 @@ import type { IProfile, TProfileProps } from '@DOMTypes/enterprise/entities/prof
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 
-import { Slug } from './value-objects/slug'
 import { ProfileReferenceList } from './profile-reference-list'
+import { Slug } from './value-objects'
 
 export type * from '@DOMTypes/enterprise/entities/profile'
 

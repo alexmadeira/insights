@@ -9,8 +9,7 @@ import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { Reference } from '_DOMEnt/entities/reference'
-import { Slug } from '_DOMEnt/entities/value-objects'
-import { ReferenceStatus } from '_DOMEnt/entities/value-objects/reference-status'
+import { ReferenceStatus, Slug } from '_DOMEnt/entities/value-objects'
 
 export class CreateReferenceUseCase implements ICreateReferenceUseCase {
   constructor(private readonly referenceRepository: ReferenceRepository) {}

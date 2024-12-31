@@ -10,7 +10,7 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { Post } from '_DOMEnt/entities/post'
 import { PostMediaList } from '_DOMEnt/entities/post-media-list'
-import { PostStatus } from '_DOMEnt/entities/value-objects/post-status'
+import { PostStatus } from '_DOMEnt/entities/value-objects'
 
 export class CreatePostUseCase implements ICreatePostUseCase {
   constructor(private readonly postRepository: PostRepository) {}

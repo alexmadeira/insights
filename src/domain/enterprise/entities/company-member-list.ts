@@ -2,8 +2,8 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { WatchedList } from '_COR/entities/watched-list'
 import { TERole } from '@DOMTypes/enums/role'
 
-import { MemberRole } from './value-objects/member-role'
 import { CompanyMember } from './company-member'
+import { MemberRole } from './value-objects'
 
 export class CompanyMemberList extends WatchedList<CompanyMember> {
   compareItems(a: CompanyMember, b: CompanyMember): boolean {
