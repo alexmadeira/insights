@@ -11,7 +11,6 @@ export function makeProfile(overrides: Partial<TProfileProps> = {}, id?: UniqueE
       name: faker.person.firstName(),
       network: new UniqueEntityID(),
       references: new ProfileReferenceList(),
-      createdAt: new Date(),
       ...overrides,
     },
     id,

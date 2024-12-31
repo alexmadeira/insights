@@ -7,7 +7,7 @@ import z from 'zod'
 export const ZCreateReferenceUseCaseRequest = z.object({
   name: z.string(),
   networkId: z.string(),
-  status: z.string().optional(),
+  statusCode: z.string().optional(),
 })
 
 export const ZCreateReferenceUseCaseResponse = z.custom<Either<InvalidTypeError, { reference: Reference }>>()

@@ -17,7 +17,7 @@ describe('Domain', () => {
         it('should be able', async () => {
           const result = await sut.execute({
             name: 'Reference name',
-            status: 'active',
+            statusCode: 'active',
             networkId: 'network-1',
           })
 
@@ -41,7 +41,7 @@ describe('Domain', () => {
         it("should't be able with an invalid status", async () => {
           const result = await sut.execute({
             name: 'reference name',
-            status: 'invalid-status',
+            statusCode: 'invalid-status',
             networkId: 'network-1',
           })
 

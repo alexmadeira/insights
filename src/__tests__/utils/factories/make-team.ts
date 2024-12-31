@@ -16,7 +16,6 @@ export function makeTeam(overrides: Partial<TTeamProps> = {}, id?: UniqueEntityI
       avatars: new TeamAvatarList(),
       members: new TeamMemberList(),
       profiles: new TeamProfileList(),
-      createdAt: new Date(),
       ...overrides,
     },
     id,

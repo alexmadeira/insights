@@ -8,7 +8,7 @@ import z from 'zod'
 export const ZEditReferenceUseCaseRequest = z.object({
   referenceId: z.string(),
   name: z.string(),
-  status: z.string(),
+  statusCode: z.string(),
   networkId: z.string(),
 })
 

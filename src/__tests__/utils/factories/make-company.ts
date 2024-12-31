@@ -18,7 +18,6 @@ export function makeCompany(overrides: Partial<TCompanyProps> = {}, id?: UniqueE
       teams: new CompanyTeamList(),
       profiles: new CompanyProfileList(),
       avatars: new CompanyAvatarList(),
-      createdAt: new Date(),
       ...overrides,
     },
     id,

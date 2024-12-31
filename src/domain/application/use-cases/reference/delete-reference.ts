@@ -14,9 +14,7 @@ export class DeleteReferenceUseCase implements IDeleteReferenceUseCase {
   async execute({ referenceId }: TDeleteReferenceUseCaseRequest): Promise<TDeleteReferenceUseCaseResponse> {
     const reference = await this.referenceRepository.findById(referenceId)
 
-    if (!reference) {
-      return left(new ResourceNotFoundError())
-    }
+    if (!reference) return left(new ResourceNotFoundError())
 
     await this.referenceRepository.delete(reference)
 

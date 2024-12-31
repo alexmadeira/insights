@@ -12,7 +12,6 @@ export function makeReference(overrides: Partial<TReferenceProps> = {}, id?: Uni
       name: faker.person.fullName(),
       network: new UniqueEntityID(),
       status: new ReferenceStatus(faker.helpers.arrayElement(REFERENCE_STATUS)),
-      createdAt: new Date(),
       ...overrides,
     },
     id,

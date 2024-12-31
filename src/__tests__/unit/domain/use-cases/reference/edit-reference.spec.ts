@@ -23,7 +23,7 @@ describe('Domain', () => {
           const result = await sut.execute({
             referenceId: 'reference-1',
             name: 'Reference Name',
-            status: 'inactive',
+            statusCode: 'inactive',
             networkId: 'network-1',
           })
 
@@ -42,7 +42,7 @@ describe('Domain', () => {
           const result = await sut.execute({
             referenceId: 'reference-1',
             name: 'Reference Name',
-            status: 'invalid-status',
+            statusCode: 'invalid-status',
             networkId: 'network-1',
           })
 
@@ -56,7 +56,7 @@ describe('Domain', () => {
           const result = await sut.execute({
             referenceId: 'reference-2',
             name: 'Reference Name',
-            status: 'inactive',
+            statusCode: 'inactive',
             networkId: 'network-1',
           })
 

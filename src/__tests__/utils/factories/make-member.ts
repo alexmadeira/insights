@@ -16,7 +16,6 @@ export function makeMember(overrides: Partial<TMemberProps> = {}, id?: UniqueEnt
       teams: new MemberTeamList(),
       companies: new MemberCompanyList(),
       avatars: new MemberAvatarList(),
-      createdAt: new Date(),
       ...overrides,
     },
     id,

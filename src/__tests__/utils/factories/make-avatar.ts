@@ -10,7 +10,6 @@ export function makeAvatar(overrides: Partial<TAvatarProps> = {}, id?: UniqueEnt
       name: faker.person.fullName(),
       url: faker.image.avatarGitHub(),
       isDefault: faker.datatype.boolean(),
-      createdAt: new Date(),
       ...overrides,
     },
     id,

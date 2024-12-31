@@ -17,11 +17,11 @@ export class CreateReferenceUseCase implements ICreateReferenceUseCase {
 
   async execute({
     name,
-    status: referenceStatus,
+    statusCode,
     networkId,
     ...rest
   }: TCreateReferenceUseCaseRequest): Promise<TCreateReferenceUseCaseResponse> {
-    const status = new ReferenceStatus(referenceStatus ?? 'active')
+    const status = new ReferenceStatus(statusCode ?? 'active')
 
     if (!status.code) return left(new InvalidTypeError())
 

@@ -15,7 +15,6 @@ export function makeNetwork(overrides: Partial<TNetworkProps> = {}, id?: UniqueE
       avatar: faker.image.avatarGitHub(),
       type: new NetworkType(faker.helpers.arrayElement(NETWORK_TYPES)),
       posts: new NetworkPostList(),
-      createdAt: new Date(),
       ...overrides,
     },
     id,
