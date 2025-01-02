@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { EditProfileUseCase } from '_DOMApp/use-cases/profile/edit-profile'
-import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makeProfile } from '_TEST/utils/factories/make-profile'
 import { makeProfileReference } from '_TEST/utils/factories/make-profile-reference'
 import { InMemoryProfileReferenceRepository } from '_TEST/utils/repositories/in-memory-profile-reference-repository'

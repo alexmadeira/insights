@@ -7,22 +7,23 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { Reference } from '_DOMEnt/entities/reference'
 import { ReferenceStatus, Slug } from '_DOMEnt/entities/value-objects'
+
+import { InvalidReferenceStatusError } from '../errors/invalid-reference-status-error'
 
 export class CreateReferenceUseCase implements ICreateReferenceUseCase {
   constructor(private readonly referenceRepository: ReferenceRepository) {}
 
   async execute({
     name,
-    statusCode,
+    statusCode = 'active',
     networkId,
     ...rest
   }: TCreateReferenceUseCaseRequest): Promise<TCreateReferenceUseCaseResponse> {
-    const status = new ReferenceStatus(statusCode ?? 'active')
+    const status = new ReferenceStatus(statusCode)
 
-    if (!status.code) return left(new InvalidTypeError())
+    if (!status.code) return left(new InvalidReferenceStatusError(statusCode))
 
     const reference = Reference.create({
       name,

@@ -1,6 +1,6 @@
 import type { Either } from '_COR/either'
-import type { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
-import type { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import type { InvalidReferenceStatusError } from '_DOMApp/use-cases/errors/invalid-reference-status-error'
+import type { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import type { Reference } from '_DOMEnt/entities/reference'
 
 import z from 'zod'
@@ -13,7 +13,7 @@ export const ZEditReferenceUseCaseRequest = z.object({
 })
 
 export const ZEditReferenceUseCaseResponse =
-  z.custom<Either<InvalidTypeError | ResourceNotFoundError, { reference: Reference }>>()
+  z.custom<Either<InvalidReferenceStatusError | ResourceNotFoundError, { reference: Reference }>>()
 
 export const ZEditReferenceUseCase = z.object({
   execute: z.function(z.tuple([ZEditReferenceUseCaseRequest])).returns(z.promise(ZEditReferenceUseCaseResponse)),

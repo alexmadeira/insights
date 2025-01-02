@@ -6,8 +6,8 @@ import type {
 } from '@DOMTypes/application/use-cases/media/edit-media'
 
 import { left, right } from '_COR/either'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
-import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import { InvalidTypeError } from '_DOMApp/use-cases/errors/invalid-type-error'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { MediaType } from '_DOMEnt/entities/value-objects'
 
 export class EditMediaUseCase implements IEditMediaUseCase {
@@ -18,7 +18,7 @@ export class EditMediaUseCase implements IEditMediaUseCase {
     if (!media) return left(new ResourceNotFoundError())
 
     const type = new MediaType(typeCode)
-    if (!type.code) return left(new InvalidTypeError())
+    if (!type.code) return left(new InvalidTypeError(typeCode))
 
     media.url = url
     media.type = type

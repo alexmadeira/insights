@@ -10,8 +10,8 @@
     "lint:check": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "test": "vitest run --coverage.enabled",
-    "test:watch": "vitest --watch",
     "test:unit": "vitest run --dir ./src/__tests__/unit/",
+    "test:unit:watch": "vitest --dir ./src/__tests__/unit/",
     "prepare": "husky",
     "lint-staged": "lint-staged"
   },
@@ -29,12 +29,14 @@
     }
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "zod": "3.24.1"
   },
   "devDependencies": {
     "@commitlint/cli": "19.6.1",
     "@commitlint/config-conventional": "19.6.0",
     "@faker-js/faker": "9.3.0",
+    "@types/lodash": "^4.17.13",
     "@types/node": "22.10.2",
     "@vitest/coverage-v8": "2.1.8",
     "@wooden-script/eslint-config": "1.0.4",

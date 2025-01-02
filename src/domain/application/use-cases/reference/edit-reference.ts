@@ -7,9 +7,10 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
-import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { ReferenceStatus } from '_DOMEnt/entities/value-objects'
+
+import { InvalidReferenceStatusError } from '../errors/invalid-reference-status-error'
 
 export class EditReferenceUseCase implements IEditReferenceUseCase {
   constructor(private readonly referenceRepository: ReferenceRepository) {}
@@ -26,7 +27,7 @@ export class EditReferenceUseCase implements IEditReferenceUseCase {
 
     const status = new ReferenceStatus(statusCode)
 
-    if (!status.code) return left(new InvalidTypeError())
+    if (!status.code) return left(new InvalidReferenceStatusError(statusCode))
 
     reference.name = name
     reference.status = status

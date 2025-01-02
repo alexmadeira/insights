@@ -8,11 +8,12 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
-import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { PostMedia } from '_DOMEnt/entities/post-media'
 import { PostMediaList } from '_DOMEnt/entities/post-media-list'
 import { PostStatus } from '_DOMEnt/entities/value-objects'
+
+import { InvalidPostStatusError } from '../errors/invalid-post-status-error'
 
 export class EditPostUseCase implements IEditPostUseCase {
   constructor(
@@ -36,7 +37,7 @@ export class EditPostUseCase implements IEditPostUseCase {
     if (!post) return left(new ResourceNotFoundError())
 
     const status = new PostStatus(statusCode)
-    if (!status.code) return left(new InvalidTypeError())
+    if (!status.code) return left(new InvalidPostStatusError(statusCode))
 
     const medias = await this.postMediaRepository.findManyByPostId(postId)
 
