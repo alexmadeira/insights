@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import { InvalidPostStatusError } from '_DOMApp/use-cases/errors/invalid-post-status-error'
 import { CreatePostUseCase } from '_DOMApp/use-cases/post/create-post'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { InMemoryPostMediaRepository } from '_TEST/utils/repositories/in-memory-post-media-repository'
 import { InMemoryPostRepository } from '_TEST/utils/repositories/in-memory-post-repository'
 
@@ -124,7 +124,7 @@ describe('Domain', () => {
           })
 
           expect(result.isLeft()).toBe(true)
-          expect(result.value).toBeInstanceOf(InvalidTypeError)
+          expect(result.value).toBeInstanceOf(InvalidPostStatusError)
         })
       })
     })

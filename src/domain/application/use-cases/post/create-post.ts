@@ -7,10 +7,11 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { Post } from '_DOMEnt/entities/post'
 import { PostMediaList } from '_DOMEnt/entities/post-media-list'
 import { PostStatus } from '_DOMEnt/entities/value-objects'
+
+import { InvalidPostStatusError } from '../errors/invalid-post-status-error'
 
 export class CreatePostUseCase implements ICreatePostUseCase {
   constructor(private readonly postRepository: PostRepository) {}
@@ -22,7 +23,7 @@ export class CreatePostUseCase implements ICreatePostUseCase {
     ...props
   }: TCreatePostUseCaseRequest): Promise<TCreatePostUseCaseResponse> {
     const status = new PostStatus(statusCode)
-    if (!status.code) return left(new InvalidTypeError())
+    if (!status.code) return left(new InvalidPostStatusError(statusCode))
 
     const post = Post.create({
       ...props,

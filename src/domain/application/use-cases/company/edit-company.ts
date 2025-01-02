@@ -11,7 +11,7 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
 import { CompanyAvatarList } from '_DOMEnt/entities/company-avatar-list'
 import { CompanyMember } from '_DOMEnt/entities/company-member'

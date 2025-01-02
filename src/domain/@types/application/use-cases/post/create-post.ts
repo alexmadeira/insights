@@ -1,5 +1,5 @@
 import type { Either } from '_COR/either'
-import type { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
+import type { InvalidPostStatusError } from '_DOMApp/use-cases/errors/invalid-post-status-error'
 import type { Post } from '_DOMEnt/entities/post'
 
 import z from 'zod'
@@ -17,7 +17,7 @@ export const ZCreatePostUseCaseRequest = z.object({
   deslikes: z.number().optional(),
 })
 
-export const ZCreatePostUseCaseResponse = z.custom<Either<InvalidTypeError, { post: Post }>>()
+export const ZCreatePostUseCaseResponse = z.custom<Either<InvalidPostStatusError, { post: Post }>>()
 
 export const ZCreatePostUseCase = z.object({
   execute: z.function(z.tuple([ZCreatePostUseCaseRequest])).returns(z.promise(ZCreatePostUseCaseResponse)),

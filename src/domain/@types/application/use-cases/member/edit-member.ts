@@ -1,6 +1,6 @@
 import type { Either } from '_COR/either'
-import type { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
-import type { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import type { InvalidTypeError } from '_DOMApp/use-cases/errors/invalid-type-error'
+import type { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import type { Member } from '_DOMEnt/entities/member'
 
 import z from 'zod'

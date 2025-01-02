@@ -1,6 +1,7 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import { InvalidPostStatusError } from '_DOMApp/use-cases/errors/invalid-post-status-error'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { EditPostUseCase } from '_DOMApp/use-cases/post/edit-post'
-import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makePost } from '_TEST/utils/factories/make-post'
 import { makePostMedia } from '_TEST/utils/factories/make-post-media'
 import { InMemoryPostMediaRepository } from '_TEST/utils/repositories/in-memory-post-media-repository'
@@ -98,6 +99,25 @@ describe('Domain', () => {
               ]),
             )
           }
+        })
+
+        it("should't be able with an invalid status", async () => {
+          await inMemoryPostRepository.create(makePost({}, new UniqueEntityID('post-1')))
+
+          const result = await sut.execute({
+            postId: 'post-1',
+            title: 'Post Title',
+            description: 'Post Description',
+            likes: 20,
+            deslikes: 2,
+            comments: 10,
+            statusCode: 'invalid-status',
+            cover: 'http://post.com/post.png',
+            mediasIds: [],
+          })
+
+          expect(result.isLeft()).toBe(true)
+          expect(result.value).toBeInstanceOf(InvalidPostStatusError)
         })
         it("should't be able if not found", async () => {
           await inMemoryPostRepository.create(makePost({}, new UniqueEntityID('post-1')))

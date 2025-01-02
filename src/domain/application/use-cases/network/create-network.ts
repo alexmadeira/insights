@@ -6,7 +6,7 @@ import type {
 } from '@DOMTypes/application/use-cases/network/create-network'
 
 import { left, right } from '_COR/either'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
+import { InvalidTypeError } from '_DOMApp/use-cases/errors/invalid-type-error'
 import { Network } from '_DOMEnt/entities/network'
 import { NetworkPostList } from '_DOMEnt/entities/network-post-list'
 import { NetworkType } from '_DOMEnt/entities/value-objects'
@@ -20,7 +20,7 @@ export class CreateNetworkUseCase implements ICreateNetworkUseCase {
     ...props
   }: TCreateNetworkUseCaseRequest): Promise<TCreateNetworkUseCaseResponse> {
     const type = new NetworkType(typeCode)
-    if (!type.code) return left(new InvalidTypeError())
+    if (!type.code) return left(new InvalidTypeError(typeCode))
 
     const network = Network.create({
       ...props,

@@ -6,7 +6,7 @@ import type {
 } from '@DOMTypes/application/use-cases/profile/delete-profile'
 
 import { left, right } from '_COR/either'
-import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 
 export class DeleteProfileUseCase implements IDeleteProfileUseCase {
   constructor(private readonly profileRepository: ProfileRepository) {}

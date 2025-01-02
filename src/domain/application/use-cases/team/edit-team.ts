@@ -10,7 +10,7 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { TeamAvatar } from '_DOMEnt/entities/team-avatar'
 import { TeamAvatarList } from '_DOMEnt/entities/team-avatar-list'
 import { TeamMember } from '_DOMEnt/entities/team-member'

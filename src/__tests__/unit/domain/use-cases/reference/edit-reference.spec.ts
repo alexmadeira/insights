@@ -1,7 +1,7 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import { InvalidReferenceStatusError } from '_DOMApp/use-cases/errors/invalid-reference-status-error'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { EditReferenceUseCase } from '_DOMApp/use-cases/reference/edit-reference'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
-import { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
 import { makeReference } from '_TEST/utils/factories/make-reference'
 import { InMemoryReferenceRepository } from '_TEST/utils/repositories/in-memory-reference-repository'
 
@@ -44,7 +44,7 @@ describe('Domain', () => {
           })
 
           expect(result.isLeft()).toBe(true)
-          expect(result.value).toBeInstanceOf(InvalidTypeError)
+          expect(result.value).toBeInstanceOf(InvalidReferenceStatusError)
         })
 
         it("should't be able if not found", async () => {

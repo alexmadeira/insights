@@ -1,5 +1,5 @@
 import type { Either } from '_COR/either'
-import type { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import type { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 
 import z from 'zod'
 

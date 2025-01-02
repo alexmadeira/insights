@@ -1,5 +1,5 @@
+import { InvalidReferenceStatusError } from '_DOMApp/use-cases/errors/invalid-reference-status-error'
 import { CreateReferenceUseCase } from '_DOMApp/use-cases/reference/create-reference'
-import { InvalidTypeError } from '_DOMEnt/entities/_errors/invalid-type-error'
 import { InMemoryReferenceRepository } from 'src/__tests__/utils/repositories/in-memory-reference-repository'
 
 let inMemoryReferenceRepository: InMemoryReferenceRepository
@@ -46,7 +46,7 @@ describe('Domain', () => {
           })
 
           expect(result.isLeft()).toBe(true)
-          expect(result.value).toBeInstanceOf(InvalidTypeError)
+          expect(result.value).toBeInstanceOf(InvalidReferenceStatusError)
         })
       })
     })

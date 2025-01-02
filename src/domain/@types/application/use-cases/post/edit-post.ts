@@ -1,5 +1,6 @@
 import type { Either } from '_COR/either'
-import type { ResourceNotFoundError } from '_DOMEnt/entities/_errors/resource-not-found-error'
+import type { InvalidPostStatusError } from '_DOMApp/use-cases/errors/invalid-post-status-error'
+import type { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import type { Post } from '_DOMEnt/entities/post'
 
 import z from 'zod'
@@ -17,7 +18,8 @@ export const ZEditPostUseCaseRequest = z.object({
   scheduledDate: z.coerce.date().optional(),
 })
 
-export const ZEditPostUseCaseResponse = z.custom<Either<ResourceNotFoundError, { post: Post }>>()
+export const ZEditPostUseCaseResponse =
+  z.custom<Either<InvalidPostStatusError | ResourceNotFoundError, { post: Post }>>()
 
 export const ZEditPostUseCase = z.object({
   execute: z.function(z.tuple([ZEditPostUseCaseRequest])).returns(z.promise(ZEditPostUseCaseResponse)),
