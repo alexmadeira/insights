@@ -1,8 +1,8 @@
 import type { CompanyMember } from '_DOMEnt/entities/company-member'
 
-export abstract class CompanyMemberRepository {
-  abstract createMany(members: CompanyMember[]): Promise<void>
-  abstract deleteMany(members: CompanyMember[]): Promise<void>
-  abstract findManyByCompanyId(companyId: string): Promise<CompanyMember[]>
-  abstract deleteManyByCompanyId(companyId: string): Promise<void>
+export interface CompanyMemberRepository {
+  createMany(members: CompanyMember[]): Promise<void>
+  deleteMany(members: CompanyMember[]): Promise<void>
+  findManyByCompanyId(companyId: string): Promise<CompanyMember[]>
+  deleteManyByCompanyId(companyId: string): Promise<void>
 }

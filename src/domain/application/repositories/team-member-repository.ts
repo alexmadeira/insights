@@ -1,8 +1,8 @@
 import type { TeamMember } from '_DOMEnt/entities/team-member'
 
-export abstract class TeamMemberRepository {
-  abstract createMany(members: TeamMember[]): Promise<void>
-  abstract deleteMany(members: TeamMember[]): Promise<void>
-  abstract findManyByTeamId(companyId: string): Promise<TeamMember[]>
-  abstract deleteManyByTeamId(companyId: string): Promise<void>
+export interface TeamMemberRepository {
+  createMany(members: TeamMember[]): Promise<void>
+  deleteMany(members: TeamMember[]): Promise<void>
+  findManyByTeamId(companyId: string): Promise<TeamMember[]>
+  deleteManyByTeamId(companyId: string): Promise<void>
 }

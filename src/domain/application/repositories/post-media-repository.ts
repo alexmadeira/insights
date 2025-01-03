@@ -1,8 +1,8 @@
 import type { PostMedia } from '_DOMEnt/entities/post-media'
 
-export abstract class PostMediaRepository {
-  abstract createMany(medias: PostMedia[]): Promise<void>
-  abstract deleteMany(medias: PostMedia[]): Promise<void>
-  abstract findManyByPostId(postId: string): Promise<PostMedia[]>
-  abstract deleteManyByPostId(postId: string): Promise<void>
+export interface PostMediaRepository {
+  createMany(medias: PostMedia[]): Promise<void>
+  deleteMany(medias: PostMedia[]): Promise<void>
+  findManyByPostId(postId: string): Promise<PostMedia[]>
+  deleteManyByPostId(postId: string): Promise<void>
 }
