@@ -34,6 +34,12 @@
       "_COR/*": [
         "./src/core/*"
       ],
+      "@INF/*": [
+        "./src/infra/*"
+      ],
+      "@INFHttp/*": [
+        "./src/infra/http/*"
+      ],
       "_TEST/*": [
         "./src/__tests__/*"
       ],
