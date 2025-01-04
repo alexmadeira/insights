@@ -1,9 +1,10 @@
-import fastifyCors from '@fastify/cors'
 import { fastify } from 'fastify'
+
+import { fastifyConfig } from './config/fastify-config'
 
 const app = fastify()
 
-app.register(fastifyCors, { origin: '*' })
+app.register(fastifyConfig)
 
 app.get('/', async () => {
   return 'Hello insights'
