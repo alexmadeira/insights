@@ -77,3 +77,5 @@ export const HTTP_RESPONSE_CATEGORIES = [
   'client_error',
   'server_error',
 ] as const
+
+export const HTTP_METHODS = ['get', 'post', 'patch', 'put', 'delete'] as const

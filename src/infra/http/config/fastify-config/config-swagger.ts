@@ -1,21 +1,27 @@
+import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
+import type { TSwaggerTransform } from '@INFTypes/http/config/fastify-swagger'
+
 import { fastifySwagger } from '@fastify/swagger'
 import { fastifySwaggerUi } from '@fastify/swagger-ui'
-import { FastifyInstance } from 'fastify'
 
-export async function swaggerConfig(fastify: FastifyInstance) {
+export async function swaggerConfig(fastify: TFastifyInstance, transform: TSwaggerTransform) {
   fastify.register(fastifySwagger, {
     openapi: {
-      openapi: '3.0.0',
       info: {
-        title: 'Test swagger',
-        description: 'Testing the Fastify swagger API',
-        version: '0.1.0',
+        title: 'Insights api',
+        description: 'Insights description swagger api',
+        version: '1.0.0',
       },
     },
+    transform,
   })
 
   fastify.register(fastifySwaggerUi, {
     routePrefix: '/docs',
+    logLevel: 'debug',
+    uiConfig: {
+      operationsSorter: 'alpha',
+    },
     theme: {
       title: 'Insights | Swagger Doc',
     },

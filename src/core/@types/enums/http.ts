@@ -1,6 +1,8 @@
-import { HTTP_RESPONSE_CATEGORIES, HTTP_RESPONSE_CODE } from '_COR/constants/http'
+import { HTTP_METHODS, HTTP_RESPONSE_CATEGORIES, HTTP_RESPONSE_CODE } from '_COR/constants/http'
 import { httpResponseCategoryCode } from '_COR/constants/parse/http'
 import z from 'zod'
+
+export const ZEHttpMethods = z.enum(HTTP_METHODS)
 
 export const ZEHttpResponseCode = z.enum(HTTP_RESPONSE_CODE).default('invalid_status_code')
 export const ZEHttpResponseCategory = z.enum(HTTP_RESPONSE_CATEGORIES).default('server_error')
@@ -19,5 +21,6 @@ export const ZHttpStatusCodeCategory = z.number().transform((statusCode) => {
 //
 //
 
+export type ZEHttpMethods = z.infer<typeof ZEHttpMethods>
 export type TEHttpResponseCode = z.infer<typeof ZEHttpResponseCode>
 export type TEHttpResponseCategory = z.infer<typeof ZEHttpResponseCategory>
