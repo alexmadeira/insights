@@ -1,6 +1,8 @@
 import type { IRouteSchema, TRouteSchemaProps, TRouteSchemaSchema } from '@CORTypes/http/route/schema/route-schema'
 
-import { ZRouteSchemaSchema } from '@CORTypes/http/route/schema/route-schema'
+import { httpResponseCode } from '_COR/constants/parse/http'
+import { TEHttpResponseCode } from '@CORTypes/enums/http'
+import { ZRouteResponseStatus, ZRouteSchemaSchema } from '@CORTypes/http/route/schema/route-schema'
 import _ from 'lodash'
 
 export abstract class RouteSchema<TProps extends TRouteSchemaProps> implements IRouteSchema {
@@ -12,6 +14,12 @@ export abstract class RouteSchema<TProps extends TRouteSchemaProps> implements I
 
   public get path() {
     return this._props.path
+  }
+
+  private get response() {
+    return ZRouteResponseStatus.parse(
+      _.mapKeys(this._props.response, (_, key) => httpResponseCode[key as TEHttpResponseCode] || key),
+    )
   }
 
   private clearSchema(schema: TRouteSchemaSchema) {
@@ -35,6 +43,7 @@ export abstract class RouteSchema<TProps extends TRouteSchemaProps> implements I
       params: this._props.params,
       headers: this._props.headers,
       querystring: this._props.querystring,
+      response: this.response,
     })
   }
 }

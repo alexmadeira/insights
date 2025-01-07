@@ -21,6 +21,7 @@ export async function swaggerConfig(fastify: TFastifyInstance, transform: TSwagg
     logLevel: 'debug',
     uiConfig: {
       operationsSorter: 'alpha',
+      defaultModelExpandDepth: 2,
     },
     theme: {
       title: 'Insights | Swagger Doc',

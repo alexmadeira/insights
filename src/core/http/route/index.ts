@@ -1,7 +1,7 @@
 import type { RouteMethods } from './routes'
 import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
 
-import { ZEHttpMethods } from '@CORTypes/enums/http'
+import { TEHttpMethods } from '@CORTypes/enums/http'
 import { fastifyPlugin } from 'fastify-plugin'
 
 export class Route {
@@ -21,7 +21,7 @@ export class Route {
     return `${this._basePath}${path}`.replace(/\/\/+/g, '/').replace(/\/$/g, '')
   }
 
-  private makeRoute(fastify: TFastifyInstance, method: ZEHttpMethods) {
+  private makeRoute(fastify: TFastifyInstance, method: TEHttpMethods) {
     const routeOptions = this._methodPipes[method]
     if (!routeOptions) return
 

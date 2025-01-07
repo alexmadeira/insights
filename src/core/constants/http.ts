@@ -1,9 +1,5 @@
-export const HTTP_RESPONSE_CODE = [
-  'continue',
-  'switching_protocols',
-  'processing',
-  'early_hints',
-
+export const HTTP_RESPONSE_INFORMATION_CODE = ['continue', 'switching_protocols', 'processing', 'early_hints'] as const
+export const HTTP_RESPONSE_SUCCESS_CODE = [
   'ok',
   'created',
   'accepted',
@@ -14,7 +10,8 @@ export const HTTP_RESPONSE_CODE = [
   'multi_status',
   'already_reported',
   'im_used',
-
+] as const
+export const HTTP_RESPONSE_REDIRECTION_CODE = [
   'multiple_choices',
   'moved_permanently',
   'found',
@@ -24,7 +21,8 @@ export const HTTP_RESPONSE_CODE = [
   'switch_proxy',
   'temporary_redirect',
   'permanent_redirect',
-
+] as const
+export const HTTP_RESPONSE_CLIENT_ERROR_CODE = [
   'bad_request',
   'unauthorized',
   'payment_required',
@@ -54,7 +52,8 @@ export const HTTP_RESPONSE_CODE = [
   'too_many_requests',
   'request_header_fields_too_large',
   'unavailable_for_legal_reasons',
-
+] as const
+export const HTTP_RESPONSE_SERVER_ERROR_CODE = [
   'internal_server_error',
   'not_implemented',
   'bad_gateway',
@@ -68,6 +67,14 @@ export const HTTP_RESPONSE_CODE = [
   'network_authentication_required',
 
   'invalid_status_code',
+] as const
+
+export const HTTP_RESPONSE_CODE = [
+  ...HTTP_RESPONSE_INFORMATION_CODE,
+  ...HTTP_RESPONSE_SUCCESS_CODE,
+  ...HTTP_RESPONSE_REDIRECTION_CODE,
+  ...HTTP_RESPONSE_CLIENT_ERROR_CODE,
+  ...HTTP_RESPONSE_SERVER_ERROR_CODE,
 ] as const
 
 export const HTTP_RESPONSE_CATEGORIES = [
