@@ -1,7 +1,8 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import type { Connection } from '_DOMEnt/entities/connection'
+import type { ProfileReferenceList } from '_DOMEnt/entities/profile-reference-list'
 import type { Slug } from '_DOMEnt/entities/value-objects'
 
-import { ProfileReferenceList } from '_DOMEnt/entities/profile-reference-list'
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'
 
@@ -10,6 +11,7 @@ export const ZProfileProps = ZEntityProps.extend({
   slug: z.custom<Slug>(),
   network: z.custom<UniqueEntityID>(),
   references: z.custom<ProfileReferenceList>(),
+  connection: z.custom<Connection>(),
 })
 
 export const ZProfile = ZEntity.extend({
@@ -17,6 +19,7 @@ export const ZProfile = ZEntity.extend({
   slug: z.custom<Slug>(),
   network: z.custom<UniqueEntityID>(),
   references: z.custom<ProfileReferenceList>(),
+  connection: z.custom<Connection>(),
 })
 
 //

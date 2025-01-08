@@ -4,6 +4,7 @@ import type { IProfile, TProfileProps } from '@DOMTypes/enterprise/entities/prof
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 
+import { Connection } from './connection'
 import { ProfileReferenceList } from './profile-reference-list'
 import { Slug } from './value-objects'
 
@@ -33,12 +34,20 @@ export class Profile extends AggregateRoot<TProfileProps> implements IProfile {
     return this._props.network
   }
 
+  public get references() {
+    return this._props.references
+  }
+
+  public get connection() {
+    return this._props.connection
+  }
+
   public set network(network: UniqueEntityID) {
     this._props.network = network
   }
 
-  public get references() {
-    return this._props.references
+  public set connection(connection: Connection) {
+    this._props.connection = connection
   }
 
   public set references(references: ProfileReferenceList) {
