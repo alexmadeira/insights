@@ -23,6 +23,8 @@ describe('Domain', () => {
           const result = await sut.execute({
             name: 'Profile Name',
             networkId: 'network-1',
+            connectionCode: 'facebook',
+            connectionToken: 'token-0001',
             referencesIds: ['reference-1'],
           })
 
@@ -31,6 +33,11 @@ describe('Domain', () => {
             expect(inMemoryProfileRepository.itens[0].name).toEqual('Profile Name')
             expect(inMemoryProfileRepository.itens[0].slug.value).toEqual('profile-name')
             expect(inMemoryProfileRepository.itens[0].network.toString()).toEqual('network-1')
+
+            expect(inMemoryProfileRepository.itens[0].connection.name).toEqual('Facebook')
+            expect(inMemoryProfileRepository.itens[0].connection.code).toEqual('facebook')
+            expect(inMemoryProfileRepository.itens[0].connection.token).toEqual('token-0001')
+            expect(inMemoryProfileRepository.itens[0].connection.status.code).toEqual('pending')
 
             expect(inMemoryProfileRepository.itens[0].references.currentItems).toHaveLength(1)
             expect(inMemoryProfileRepository.itens[0].references.currentItems).toEqual([
@@ -45,6 +52,8 @@ describe('Domain', () => {
           const result = await sut.execute({
             name: 'Company Name',
             networkId: 'network-1',
+            connectionCode: 'facebook',
+            connectionToken: 'token-0001',
             referencesIds: ['reference-1', 'reference-2'],
           })
 
@@ -60,6 +69,17 @@ describe('Domain', () => {
               }),
             ]),
           )
+        })
+        it('should be able without connection token', async () => {
+          const result = await sut.execute({
+            name: 'Company Name',
+            networkId: 'network-1',
+            connectionCode: 'facebook',
+            referencesIds: [],
+          })
+
+          expect(result.isRight()).toBe(true)
+          expect(inMemoryProfileRepository.itens[0].connection.token).toBeUndefined()
         })
       })
     })

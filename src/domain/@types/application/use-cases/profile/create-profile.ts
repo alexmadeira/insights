@@ -1,12 +1,15 @@
 import type { Either } from '_COR/either'
 import type { Profile } from '_DOMEnt/entities/profile'
 
+import { ZEConnectionAvailable } from '@DOMTypes/enums/connection'
 import z from 'zod'
 
 export const ZCreateProfileUseCaseRequest = z.object({
   name: z.string(),
   networkId: z.string(),
   referencesIds: z.array(z.string()),
+  connectionCode: ZEConnectionAvailable,
+  connectionToken: z.string().optional(),
 })
 
 export const ZCreateProfileUseCaseResponse = z.custom<Either<null, { profile: Profile }>>()
