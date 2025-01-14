@@ -1,7 +1,7 @@
-import type { ReferenceStatus } from './value-objects'
-import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
 import type { IReference, TReferenceProps } from '@DOMTypes/enterprise/entities/reference'
+import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import type { ReferenceStatus } from './value-objects'
 
 import { Entity } from '_COR/entities/entity'
 

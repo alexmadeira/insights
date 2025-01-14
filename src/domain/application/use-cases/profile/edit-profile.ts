@@ -1,10 +1,10 @@
-import type { ProfileReferenceRepository } from '_DOMApp/repositories/profile-reference-repository'
-import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
 import type {
   IEditProfileUseCase,
   TEditProfileUseCaseRequest,
   TEditProfileUseCaseResponse,
 } from '@DOMTypes/application/use-cases/profile/edit-profile'
+import type { ProfileReferenceRepository } from '_DOMApp/repositories/profile-reference-repository'
+import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'

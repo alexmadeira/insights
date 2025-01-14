@@ -1,6 +1,6 @@
-import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { Optional } from '@CORTypes/optional'
 import type { ITeam, TTeamProps } from '@DOMTypes/enterprise/entities/team'
+import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 
 import { AggregateRoot } from '_COR/entities/aggregate-root'
 

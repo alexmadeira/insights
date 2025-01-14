@@ -1,5 +1,5 @@
-import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { INetworkPost, TNetworkPostProps } from '@DOMTypes/enterprise/entities/network-post'
+import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 
 import { Entity } from '_COR/entities/entity'
 

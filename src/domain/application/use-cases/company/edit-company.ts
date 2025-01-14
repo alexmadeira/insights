@@ -1,13 +1,13 @@
-import type { CompanyAvatarRepository } from '_DOMApp/repositories/company-avatar-repository'
-import type { CompanyMemberRepository } from '_DOMApp/repositories/company-member-repository'
-import type { CompanyProfileRepository } from '_DOMApp/repositories/company-profile-repository'
-import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
-import type { CompanyTeamRepository } from '_DOMApp/repositories/company-team-repository'
 import type {
   IEditCompanyUseCase,
   TEditCompanyUseCaseRequest,
   TEditCompanyUseCaseResponse,
 } from '@DOMTypes/application/use-cases/company/edit-company'
+import type { CompanyAvatarRepository } from '_DOMApp/repositories/company-avatar-repository'
+import type { CompanyMemberRepository } from '_DOMApp/repositories/company-member-repository'
+import type { CompanyProfileRepository } from '_DOMApp/repositories/company-profile-repository'
+import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
+import type { CompanyTeamRepository } from '_DOMApp/repositories/company-team-repository'
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'

@@ -1,5 +1,5 @@
-import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { ITeamMember, TTeamMemberProps } from '@DOMTypes/enterprise/entities/team-member'
+import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 
 import { Entity } from '_COR/entities/entity'
 

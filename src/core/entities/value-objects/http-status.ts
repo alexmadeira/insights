@@ -1,7 +1,7 @@
 import type { TEHttpResponseCategory, TEHttpResponseCode } from '@CORTypes/enums/http'
 
-import { httpCodeDescription, httpResponseCategory, httpResponseCode } from '_COR/constants/parse/http'
 import { ZEHttpResponseCode, ZHttpStatusCodeCategory } from '@CORTypes/enums/http'
+import { httpCodeDescription, httpResponseCategory, httpResponseCode } from '_COR/constants/parse/http'
 import _ from 'lodash'
 
 export class HttpStatus {

@@ -1,6 +1,6 @@
+import type { IDomainEvent, TDomainEventCallback } from '@CORTypes/event'
 import type { AggregateRoot } from '_COR/entities/aggregate-root'
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { IDomainEvent, TDomainEventCallback } from '@CORTypes/event'
 
 export type * from '@CORTypes/event'
 

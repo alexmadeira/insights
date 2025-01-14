@@ -1,6 +1,6 @@
+import { TERole } from '@DOMTypes/enums/role'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { WatchedList } from '_COR/entities/watched-list'
-import { TERole } from '@DOMTypes/enums/role'
 
 import { CompanyMember } from './company-member'
 import { MemberRole } from './value-objects'

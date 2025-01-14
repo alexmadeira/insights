@@ -1,9 +1,9 @@
-import type { PostRepository } from '_DOMApp/repositories/post-repository'
 import type {
   IDeletePostUseCase,
   TDeletePostUseCaseRequest,
   TDeletePostUseCaseResponse,
 } from '@DOMTypes/application/use-cases/post/delete-post'
+import type { PostRepository } from '_DOMApp/repositories/post-repository'
 
 import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'

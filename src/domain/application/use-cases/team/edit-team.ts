@@ -1,12 +1,12 @@
-import type { TeamAvatarRepository } from '_DOMApp/repositories/team-avatar-repository'
-import type { TeamMemberRepository } from '_DOMApp/repositories/team-member-repository'
-import type { TeamProfileRepository } from '_DOMApp/repositories/team-profile-repository'
-import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 import type {
   IEditTeamUseCase,
   TEditTeamUseCaseRequest,
   TEditTeamUseCaseResponse,
 } from '@DOMTypes/application/use-cases/team/edit-team'
+import type { TeamAvatarRepository } from '_DOMApp/repositories/team-avatar-repository'
+import type { TeamMemberRepository } from '_DOMApp/repositories/team-member-repository'
+import type { TeamProfileRepository } from '_DOMApp/repositories/team-profile-repository'
+import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'

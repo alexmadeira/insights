@@ -1,9 +1,9 @@
-import type { MemberRepository } from '_DOMApp/repositories/member-repository'
 import type {
   ICreateMemberUseCase,
   TCreateMemberUseCaseRequest,
   TCreateMemberUseCaseResponse,
 } from '@DOMTypes/application/use-cases/member/create-member'
+import type { MemberRepository } from '_DOMApp/repositories/member-repository'
 
 import { right } from '_COR/either'
 import { Member } from '_DOMEnt/entities/member'

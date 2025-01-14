@@ -1,9 +1,9 @@
-import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
 import type {
   ICreateProfileUseCase,
   TCreateProfileUseCaseRequest,
   TCreateProfileUseCaseResponse,
 } from '@DOMTypes/application/use-cases/profile/create-profile'
+import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
 
 import { right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'

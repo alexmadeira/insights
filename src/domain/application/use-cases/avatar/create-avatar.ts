@@ -1,9 +1,9 @@
-import type { AvatarRepository } from '_DOMApp/repositories/avatar-repository'
 import type {
   ICreateAvatarUseCase,
   TCreateAvatarUseCaseRequest,
   TCreateAvatarUseCaseResponse,
 } from '@DOMTypes/application/use-cases/avatar/create-avatar'
+import type { AvatarRepository } from '_DOMApp/repositories/avatar-repository'
 
 import { right } from '_COR/either'
 import { Avatar } from '_DOMEnt/entities/avatar'

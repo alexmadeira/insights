@@ -1,10 +1,10 @@
 import type { TReferenceProps } from '_DOMEnt/entities/reference'
 
+import { faker } from '@faker-js/faker'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { REFERENCE_STATUS } from '_DOM/constants/reference'
 import { Reference } from '_DOMEnt/entities/reference'
 import { ReferenceStatus } from '_DOMEnt/entities/value-objects'
-import { faker } from '@faker-js/faker'
 
 export function makeReference(overrides: Partial<TReferenceProps> = {}, id?: UniqueEntityID) {
   return Reference.create(

@@ -1,9 +1,9 @@
-import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
 import type {
   IDeleteReferenceUseCase,
   TDeleteReferenceUseCaseRequest,
   TDeleteReferenceUseCaseResponse,
 } from '@DOMTypes/application/use-cases/reference/delete-reference'
+import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
 
 import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'

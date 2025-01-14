@@ -1,9 +1,9 @@
-import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 import type {
   IDeleteTeamUseCase,
   TDeleteTeamUseCaseRequest,
   TDeleteTeamUseCaseResponse,
 } from '@DOMTypes/application/use-cases/team/delete-team'
+import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 
 import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'

@@ -1,5 +1,5 @@
-import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { IMemberAvatar, TMemberAvatarProps } from '@DOMTypes/enterprise/entities/member-avatar'
+import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 
 import { Entity } from '_COR/entities/entity'
 

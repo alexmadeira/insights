@@ -1,7 +1,8 @@
-import type { RouteMethods } from './routes'
+import type { TEHttpMethods } from '@CORTypes/enums/http'
 import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
+import type { RouteMethods } from './routes'
 
-import { TEHttpMethods } from '@CORTypes/enums/http'
 import { fastifyPlugin } from 'fastify-plugin'
 
 export class Route {
@@ -23,9 +24,10 @@ export class Route {
 
   private makeRoute(fastify: TFastifyInstance, method: TEHttpMethods) {
     const routeOptions = this._methodPipes[method]
+
     if (!routeOptions) return
 
-    fastify.route({
+    fastify.withTypeProvider<ZodTypeProvider>().route({
       method,
       url: this.url(routeOptions.path),
       schema: routeOptions.schema,

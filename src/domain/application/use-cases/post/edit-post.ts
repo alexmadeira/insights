@@ -1,10 +1,10 @@
-import type { PostMediaRepository } from '_DOMApp/repositories/post-media-repository'
-import type { PostRepository } from '_DOMApp/repositories/post-repository'
 import type {
   IEditPostUseCase,
   TEditPostUseCaseRequest,
   TEditPostUseCaseResponse,
 } from '@DOMTypes/application/use-cases/post/edit-post'
+import type { PostMediaRepository } from '_DOMApp/repositories/post-media-repository'
+import type { PostRepository } from '_DOMApp/repositories/post-repository'
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'

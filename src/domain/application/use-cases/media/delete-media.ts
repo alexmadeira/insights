@@ -1,9 +1,9 @@
-import type { MediaRepository } from '_DOMApp/repositories/media-repository'
 import type {
   IDeleteMediaUseCase,
   TDeleteMediaUseCaseRequest,
   TDeleteMediaUseCaseResponse,
 } from '@DOMTypes/application/use-cases/media/delete-media'
+import type { MediaRepository } from '_DOMApp/repositories/media-repository'
 
 import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'

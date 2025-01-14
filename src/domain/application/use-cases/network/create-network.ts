@@ -1,9 +1,9 @@
-import type { NetworkRepository } from '_DOMApp/repositories/network-repository'
 import type {
   ICreateNetworkUseCase,
   TCreateNetworkUseCaseRequest,
   TCreateNetworkUseCaseResponse,
 } from '@DOMTypes/application/use-cases/network/create-network'
+import type { NetworkRepository } from '_DOMApp/repositories/network-repository'
 
 import { left, right } from '_COR/either'
 import { InvalidTypeError } from '_DOMApp/use-cases/errors/invalid-type-error'

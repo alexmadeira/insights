@@ -1,9 +1,9 @@
-import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 import type {
   ICreateTeamUseCase,
   TCreateTeamUseCaseRequest,
   TCreateTeamUseCaseResponse,
 } from '@DOMTypes/application/use-cases/team/create-team'
+import type { TeamRepository } from '_DOMApp/repositories/team-repository'
 
 import { right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'

@@ -1,9 +1,9 @@
-import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
 import type {
   ICreateReferenceUseCase,
   TCreateReferenceUseCaseRequest,
   TCreateReferenceUseCaseResponse,
 } from '@DOMTypes/application/use-cases/reference/create-reference'
+import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'

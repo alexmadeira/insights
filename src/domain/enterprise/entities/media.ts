@@ -1,6 +1,6 @@
-import type { MediaType } from './value-objects'
-import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { IMedia, TMediaProps } from '@DOMTypes/enterprise/entities/media'
+import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import type { MediaType } from './value-objects'
 
 import { Entity } from '_COR/entities/entity'
 

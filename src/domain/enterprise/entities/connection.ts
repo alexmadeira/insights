@@ -1,10 +1,10 @@
-import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { IConnection, TConnectionProps } from '@DOMTypes/enterprise/entities/connection'
 import type { TEConnectionAvailable } from '@DOMTypes/enums/connection'
+import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 
+import { Optional } from '@CORTypes/optional'
 import { Entity } from '_COR/entities/entity'
 import { connectionAvailableName } from '_DOM/constants/parse/connection'
-import { Optional } from '@CORTypes/optional'
 
 import { ConnectionStatus } from './value-objects'
 

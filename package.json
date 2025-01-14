@@ -8,8 +8,8 @@
   "keywords": [],
   "scripts": {
     "dev": "tsx watch src/infra/http/server.ts",
-    "lint:check": "eslint src --ext .ts",
-    "lint:fix": "eslint src --ext .ts --fix",
+    "lint:check": "biome ci --reporter=github",
+    "lint:fix": "biome check --fix",
     "test": "vitest run --coverage.enabled",
     "test:unit": "vitest run --dir ./src/__tests__/unit/",
     "test:unit:watch": "vitest --dir ./src/__tests__/unit/",
@@ -20,9 +20,7 @@
     "node": ">=22"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix"
-    ]
+    "*.{ts,tsx}": ["biome check --fix"]
   },
   "config": {
     "commitizen": {
@@ -40,18 +38,15 @@
     "zod": "3.24.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "19.6.1",
     "@commitlint/config-conventional": "19.6.0",
     "@faker-js/faker": "9.3.0",
     "@types/lodash": "^4.17.13",
     "@types/node": "22.10.2",
     "@vitest/coverage-v8": "2.1.8",
-    "@wooden-script/eslint-config": "1.0.4",
     "commitizen": "4.3.1",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "8",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-vitest-globals": "1.5.0",
     "husky": "9.1.7",
     "lint-staged": "15.3.0",
     "tsx": "4.19.2",

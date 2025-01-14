@@ -1,5 +1,4 @@
 import { fastify } from 'fastify'
-
 import { fastifyConfig } from './config/fastify-config'
 import { routes } from './routes'
 

@@ -1,9 +1,9 @@
-import type { AvatarRepository } from '_DOMApp/repositories/avatar-repository'
 import type {
   IEditAvatarUseCase,
   TEditAvatarUseCaseRequest,
   TEditAvatarUseCaseResponse,
 } from '@DOMTypes/application/use-cases/avatar/edit-avatar'
+import type { AvatarRepository } from '_DOMApp/repositories/avatar-repository'
 
 import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'

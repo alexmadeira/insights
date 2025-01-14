@@ -1,8 +1,8 @@
 import type { IRouteSchema, TRouteSchemaProps, TRouteSchemaSchema } from '@CORTypes/http/route/schema/route-schema'
 
-import { httpResponseCode } from '_COR/constants/parse/http'
 import { TEHttpResponseCode } from '@CORTypes/enums/http'
 import { ZRouteResponseStatus, ZRouteSchemaSchema } from '@CORTypes/http/route/schema/route-schema'
+import { httpResponseCode } from '_COR/constants/parse/http'
 import _ from 'lodash'
 
 export abstract class RouteSchema<TProps extends TRouteSchemaProps> implements IRouteSchema {

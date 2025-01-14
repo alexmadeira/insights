@@ -1,8 +1,8 @@
-import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import type { INetwork, TNetworkProps } from '@DOMTypes/enterprise/entities/network'
+import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
 
-import { AggregateRoot } from '_COR/entities/aggregate-root'
 import { Optional } from '@CORTypes/optional'
+import { AggregateRoot } from '_COR/entities/aggregate-root'
 
 import { NetworkPostList } from './network-post-list'
 

@@ -1,9 +1,9 @@
-import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
 import type {
   ICreateCompanyUseCase,
   TCreateCompanyUseCaseRequest,
   TCreateCompanyUseCaseResponse,
 } from '@DOMTypes/application/use-cases/company/create-company'
+import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
 
 import { right } from '_COR/either'
 import { Company } from '_DOMEnt/entities/company'

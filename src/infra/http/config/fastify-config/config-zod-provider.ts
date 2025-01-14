@@ -1,6 +1,6 @@
 import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
 
-import { jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProvider } from 'fastify-type-provider-zod'
+import { ZodTypeProvider, jsonSchemaTransform, serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod'
 
 export const transform = jsonSchemaTransform
 

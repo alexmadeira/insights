@@ -1,9 +1,9 @@
-import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
 import type {
   IDeleteCompanyUseCase,
   TDeleteCompanyUseCaseRequest,
   TDeleteCompanyUseCaseResponse,
 } from '@DOMTypes/application/use-cases/company/delete-company'
+import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
 
 import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'

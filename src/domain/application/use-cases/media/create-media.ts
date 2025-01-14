@@ -1,9 +1,9 @@
-import type { MediaRepository } from '_DOMApp/repositories/media-repository'
 import type {
   ICreateMediaUseCase,
   TCreateMediaUseCaseRequest,
   TCreateMediaUseCaseResponse,
 } from '@DOMTypes/application/use-cases/media/create-media'
+import type { MediaRepository } from '_DOMApp/repositories/media-repository'
 
 import { left, right } from '_COR/either'
 import { InvalidTypeError } from '_DOMApp/use-cases/errors/invalid-type-error'

@@ -10,10 +10,6 @@ export const userBody = z
   })
   .describe('cadastra um cliente ')
 
-export const userParams = z.object({
-  company: z.string(),
-})
-
 export const userResponse: TRouteResponseSchema = {
   created: z
     .object({

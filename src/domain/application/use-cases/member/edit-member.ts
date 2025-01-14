@@ -1,11 +1,11 @@
-import type { MemberCompanyRepository } from '_DOMApp/repositories/member-company-repository'
-import type { MemberRepository } from '_DOMApp/repositories/member-repository'
-import type { MemberTeamRepository } from '_DOMApp/repositories/member-team-repository'
 import type {
   IEditMemberUseCase,
   TEditMemberUseCaseRequest,
   TEditMemberUseCaseResponse,
 } from '@DOMTypes/application/use-cases/member/edit-member'
+import type { MemberCompanyRepository } from '_DOMApp/repositories/member-company-repository'
+import type { MemberRepository } from '_DOMApp/repositories/member-repository'
+import type { MemberTeamRepository } from '_DOMApp/repositories/member-team-repository'
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'

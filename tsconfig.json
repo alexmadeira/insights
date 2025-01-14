@@ -2,12 +2,8 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "_version": "22.0.0",
   "compilerOptions": {
-    "lib": [
-      "es2023"
-    ],
-    "types": [
-      "vitest/globals"
-    ],
+    "lib": ["es2023"],
+    "types": ["vitest/globals"],
     "module": "node16",
     "target": "es2022",
     "strict": true,
@@ -16,39 +12,17 @@
     "moduleResolution": "node16",
     "baseUrl": ".",
     "paths": {
-      "@DOMTypes/*": [
-        "./src/domain/@types/*"
-      ],
-      "_DOMApp/*": [
-        "./src/domain/application/*"
-      ],
-      "_DOMEnt/*": [
-        "./src/domain/enterprise/*"
-      ],
-      "_DOM/*": [
-        "./src/domain/*"
-      ],
-      "@CORTypes/*": [
-        "./src/core/@types/*"
-      ],
-      "_COR/*": [
-        "./src/core/*"
-      ],
-      "@INFTypes/*": [
-        "./src/infra/@types/*"
-      ],
-      "@INF/*": [
-        "./src/infra/*"
-      ],
-      "@INFHttp/*": [
-        "./src/infra/http/*"
-      ],
-      "_TEST/*": [
-        "./src/__tests__/*"
-      ],
+      "@DOMTypes/*": ["./src/domain/@types/*"],
+      "_DOMApp/*": ["./src/domain/application/*"],
+      "_DOMEnt/*": ["./src/domain/enterprise/*"],
+      "_DOM/*": ["./src/domain/*"],
+      "@CORTypes/*": ["./src/core/@types/*"],
+      "_COR/*": ["./src/core/*"],
+      "@INFTypes/*": ["./src/infra/@types/*"],
+      "@INF/*": ["./src/infra/*"],
+      "@INFHttp/*": ["./src/infra/http/*"],
+      "_TEST/*": ["./src/__tests__/*"]
     }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

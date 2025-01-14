@@ -1,9 +1,9 @@
-import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
 import type {
   IDeleteProfileUseCase,
   TDeleteProfileUseCaseRequest,
   TDeleteProfileUseCaseResponse,
 } from '@DOMTypes/application/use-cases/profile/delete-profile'
+import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
 
 import { left, right } from '_COR/either'
 import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
