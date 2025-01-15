@@ -1,0 +1,15 @@
+services:
+  postgres:
+    container_name: postgres
+    image: bitnami/postgresql:latest
+    ports:
+      - 5432:${DATABASE_PORT}
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+volumes:
+  postgres_data:
