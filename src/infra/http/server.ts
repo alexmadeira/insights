@@ -1,3 +1,4 @@
+import { env } from '@INF/env'
 import { fastify } from 'fastify'
 
 import { fastifyConfig } from './config/fastify-config'
@@ -8,6 +9,6 @@ const app = fastify()
 app.register(fastifyConfig)
 app.register(routes)
 
-app.listen({ port: 3333 }).then(() => {
-  console.log('Http server running!')
+app.listen({ port: env.SERVER_PORT, host: '0.0.0.0' }).then((server) => {
+  console.log(`Http server running in: ${server}`)
 })
