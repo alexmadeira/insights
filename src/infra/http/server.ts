@@ -1,11 +1,12 @@
-import { env } from '@INF/env'
+import { env } from '_INF/env'
 import { fastify } from 'fastify'
+
+import '_INF/database/drizzle/connection'
 
 import { fastifyConfig } from './config/fastify-config'
 import { routes } from './routes'
 
 const app = fastify()
-
 app.register(fastifyConfig)
 app.register(routes)
 

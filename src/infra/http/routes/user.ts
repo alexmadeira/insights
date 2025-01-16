@@ -4,7 +4,7 @@ import { RouteSchemaGet } from '_COR/http/route/schema/route-schema-get'
 import { RouteSchemaPatch } from '_COR/http/route/schema/route-schema-patch'
 import { RouteSchemaPost } from '_COR/http/route/schema/route-schema-post'
 import { RouteSchemaPut } from '_COR/http/route/schema/route-schema-put'
-import { userBody, userParams, userResponse } from '@INFTypes/http/routes/user/post'
+import { userBody, userResponse } from '@INFTypes/http/routes/user/post'
 
 export const userRoutes = new RouteMethods()
 
@@ -13,7 +13,6 @@ userRoutes.post = RouteSchemaPost.create({
   summary: 'Resumo da rota de criação de usuário',
   description: 'Descrição da rota de criação de usuário',
   body: userBody,
-  params: userParams,
   response: userResponse,
 })
 
