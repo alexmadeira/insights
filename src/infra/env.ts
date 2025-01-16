@@ -5,7 +5,7 @@ import 'dotenv/config'
 export const envSchema = z.object({
   SERVER_PORT: z.coerce.number().default(3333),
 
-  DATABASE_SSL: z.string().transform((v) => v === 'true'),
+  DATABASE_SSL: z.enum(['disable', 'allow', 'prefer', 'require']).default('disable'),
   DATABASE_PORT: z.coerce.number().default(3333),
   DATABASE_HOST: z.string().default('localhost'),
   DATABASE_USER: z.string().default('postgres'),
