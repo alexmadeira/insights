@@ -4,7 +4,7 @@ import type { TSwaggerTransform } from '@INFTypes/http/config/fastify-swagger'
 import { fastifySwagger } from '@fastify/swagger'
 import { fastifySwaggerUi } from '@fastify/swagger-ui'
 
-export async function swaggerConfig(fastify: TFastifyInstance, transform: TSwaggerTransform) {
+export async function configSwagger(fastify: TFastifyInstance, transform: TSwaggerTransform) {
   fastify.register(fastifySwagger, {
     openapi: {
       info: {

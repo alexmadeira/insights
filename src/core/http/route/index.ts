@@ -30,7 +30,8 @@ export class Route {
       url: this.url(routeOptions.path),
       schema: routeOptions.schema,
       handler: async (_req, res) => {
-        return res.send('Hello World')
+        const users = await fastify.db.user.findMany()
+        return res.send(users)
       },
     })
   }

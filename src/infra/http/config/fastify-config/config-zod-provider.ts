@@ -4,7 +4,7 @@ import { jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProv
 
 export const transform = jsonSchemaTransform
 
-export async function zodProviderConfig(fastify: TFastifyInstance) {
+export async function configZodProvider(fastify: TFastifyInstance) {
   fastify.withTypeProvider<ZodTypeProvider>()
 
   fastify.setValidatorCompiler(validatorCompiler)

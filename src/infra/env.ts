@@ -1,6 +1,6 @@
-import { z } from 'zod'
+import type { TDataBaseLog } from '@INFTypes/http/config/database'
 
-import 'dotenv/config'
+import { z } from 'zod'
 
 export const envSchema = z.object({
   SERVER_PORT: z.coerce.number().default(3333),
@@ -12,6 +12,19 @@ export const envSchema = z.object({
   DATABASE_NAME: z.string().default('postgres'),
   DATABASE_PASSWORD: z.string().default('postgres'),
   DATABASE_URL: z.string().min(1),
+  DATABASE_LOG: z
+    .string()
+    .optional()
+    .transform((log) => {
+      // if (!log) return []
+      return log
+        ?.toLowerCase()
+        .replace(/\s+/g, '')
+        .split(',')
+        .map((item) => item.trim())
+        .filter((item) => item !== '')
+    })
+    .pipe(z.custom<TDataBaseLog>()),
 })
 
 export const env = envSchema.parse(process.env)
