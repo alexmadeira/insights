@@ -20,7 +20,7 @@ export async function configSwagger(fastify: TFastifyInstance, transform: TSwagg
     routePrefix: '/docs',
     logLevel: 'debug',
     uiConfig: {
-      operationsSorter: 'alpha',
+      operationsSorter: 'method',
       defaultModelExpandDepth: 2,
     },
     theme: {

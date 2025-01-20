@@ -16,7 +16,6 @@ export const envSchema = z.object({
     .string()
     .optional()
     .transform((log) => {
-      // if (!log) return []
       return log
         ?.toLowerCase()
         .replace(/\s+/g, '')

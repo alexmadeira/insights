@@ -8,7 +8,6 @@ export async function configDatabase(fastify: FastifyInstance) {
   fastify.addHook('onListen', async () => {
     fastify.db.$connect()
   })
-
   fastify.addHook('onClose', async (app) => {
     console.log('asd')
     app.db.$disconnect()

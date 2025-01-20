@@ -1,5 +1,5 @@
 import { ZEHttpResponseCategory } from '@CORTypes/enums/http'
-import { TRouteResponseSchema } from '@CORTypes/http/route/schema/route-schema'
+import { TMethodResponse } from '@CORTypes/http/route/methods'
 import z from 'zod'
 
 export const userBody = z
@@ -14,7 +14,7 @@ export const userParams = z.object({
   company: z.string(),
 })
 
-export const userResponse: TRouteResponseSchema = {
+export const userResponse: TMethodResponse = {
   created: z
     .object({
       name: z.string().describe('nome do cliente '),

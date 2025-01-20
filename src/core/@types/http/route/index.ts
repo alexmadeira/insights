@@ -1,35 +1,45 @@
-import type { RouteSchemaDelete } from '_COR/http/route/schema/route-schema-delete'
-import type { RouteSchemaGet } from '_COR/http/route/schema/route-schema-get'
-import type { RouteSchemaPatch } from '_COR/http/route/schema/route-schema-patch'
-import type { RouteSchemaPost } from '_COR/http/route/schema/route-schema-post'
-import type { RouteSchemaPut } from '_COR/http/route/schema/route-schema-put'
+import type { TMethodProps } from './methods'
+import type { Method } from '_COR/http/routes/methods/method'
+import type { RouteHandler } from 'fastify'
 
 import z from 'zod'
 
-export const ZRouteMethodSchema = z.object({
-  PUT: z.custom<RouteSchemaPut>(),
-  POST: z.custom<RouteSchemaPost>(),
-  PATCH: z.custom<RouteSchemaPatch>(),
-  GET: z.custom<RouteSchemaGet>(),
-  DELETE: z.custom<RouteSchemaDelete>(),
+import { ZMethodDeleteProps } from './methods/method-delete'
+import { ZMethodGetProps } from './methods/method-get'
+import { ZMethodPatchProps } from './methods/method-patch'
+import { ZMethodPostProps } from './methods/method-post'
+import { ZMethodPutProps } from './methods/method-put'
+
+export const ZRouteGetProps = ZMethodGetProps.omit({ pathPrefix: true })
+export const ZRoutePostProps = ZMethodPostProps.omit({ pathPrefix: true })
+export const ZRoutePutProps = ZMethodPutProps.omit({ pathPrefix: true })
+export const ZRoutePatchProps = ZMethodPatchProps.omit({ pathPrefix: true })
+export const ZRouteDeleteProps = ZMethodDeleteProps.omit({ pathPrefix: true })
+
+export const ZRouteBuildRouteProps = z.object({
+  data: z.custom<Method<TMethodProps>>(),
+  handler: z.custom<RouteHandler>(),
 })
 
-export const ZRoutes = z.object({
-  create: z
-    .object({
-      PUT: z.custom<RouteSchemaPut>(),
-      POST: z.custom<RouteSchemaPost>(),
-      PATCH: z.custom<RouteSchemaPatch>(),
-      GET: z.custom<RouteSchemaGet>(),
-      DELETE: z.custom<RouteSchemaDelete>(),
-    })
-    .optional(),
-})
+export const ZRouteProps = z
+  .string()
+  .optional()
+  .transform((path = '/') => {
+    return `/${path}`.replace(/\/\/+/g, '/')
+  })
+export const ZRoute = z.object({})
 
 //
 //
 //
 
-export type TRouteMethodSchema = z.infer<typeof ZRouteMethodSchema>
+export type TRouteBuildRouteProps = z.infer<typeof ZRouteBuildRouteProps>
 
-export interface IRoutes extends z.infer<typeof ZRoutes> {}
+export type TRouteGetProps = z.infer<typeof ZRouteGetProps>
+export type TRoutePostProps = z.infer<typeof ZRoutePostProps>
+export type TRoutePutProps = z.infer<typeof ZRoutePutProps>
+export type TRoutePatchProps = z.infer<typeof ZRoutePatchProps>
+export type TRouteDeleteProps = z.infer<typeof ZRouteDeleteProps>
+
+export type TRouteProps = z.infer<typeof ZRouteProps>
+export interface IRoute extends z.infer<typeof ZRoute> {}
