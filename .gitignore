@@ -129,8 +129,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# Desktop Service Store Mac 
-.DS_Store 
+# Desktop Service Store Mac
+.DS_Store
 
 # Logs
 logs
@@ -246,7 +246,8 @@ dist
 
 # FuseBox cache
 .fusebox/
-
+#Data-base
+data/
 # DynamoDB Local files
 .dynamodb/
 
