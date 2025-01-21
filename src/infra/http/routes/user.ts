@@ -1,44 +1,75 @@
-import { RouteMethods } from '_COR/http/route/routes'
-import { RouteSchemaDelete } from '_COR/http/route/schema/route-schema-delete'
-import { RouteSchemaGet } from '_COR/http/route/schema/route-schema-get'
-import { RouteSchemaPatch } from '_COR/http/route/schema/route-schema-patch'
-import { RouteSchemaPost } from '_COR/http/route/schema/route-schema-post'
-import { RouteSchemaPut } from '_COR/http/route/schema/route-schema-put'
-import { userBody, userParams, userResponse } from '@INFTypes/http/routes/user/post'
+import { Route } from '_COR/http/routes/route'
+import { userBody } from '@INFTypes/http/routes/user/post'
+import { FastifyReply, FastifyRequest } from 'fastify'
 
-export const userRoutes = new RouteMethods()
+export const userRoutes = new Route('/user')
 
-userRoutes.post = RouteSchemaPost.create({
-  tags: ['user'],
-  summary: 'Resumo da rota de criação de usuário',
-  description: 'Descrição da rota de criação de usuário',
-  body: userBody,
-  params: userParams,
-  response: userResponse,
-})
+async function controller(_request: FastifyRequest, reply: FastifyReply) {
+  reply.send('controller')
+}
 
-userRoutes.get = RouteSchemaGet.create({
-  tags: ['user'],
-  summary: 'Resumo da rota de busca de usuário',
-  description: 'Descrição da rota de busca de usuário',
-})
+userRoutes.get(
+  {
+    tags: ['User'],
+    summary: 'Resumo da rota de busca de usuário',
+    description: 'Descrição da rota de busca de usuário',
+  },
+  controller,
+)
+userRoutes.get(
+  {
+    path: '/all',
+    tags: ['User'],
+    summary: 'Resumo da rota de busca de usuário',
+    description: 'Descrição da rota de busca de usuário',
+  },
+  controller,
+)
 
-userRoutes.put = RouteSchemaPut.create({
-  tags: ['user'],
-  summary: 'Resumo da rota de atualização completaa de usuário',
-  description: 'Descrição da rota de atualização de usuário',
-  body: userBody,
-})
+userRoutes.post(
+  {
+    tags: ['User'],
+    summary: 'Resumo da rota de busca de usuário',
+    description: 'Descrição da rota de busca de usuário',
+    body: userBody,
+  },
+  controller,
+)
 
-userRoutes.patch = RouteSchemaPatch.create({
-  tags: ['user'],
-  summary: 'Resumo da rota de atualização parcial de usuário',
-  description: 'Descrição da rota de atualização de usuário',
-  body: userBody,
-})
+userRoutes.post(
+  {
+    tags: ['User'],
+    summary: 'Resumo da rota de busca de usuário',
+    description: 'Descrição da rota de busca de usuário',
+    path: '/new',
+    body: userBody,
+  },
+  controller,
+)
+userRoutes.put(
+  {
+    tags: ['User'],
+    summary: 'Resumo da rota de busca de usuário',
+    description: 'Descrição da rota de busca de usuário',
+    body: userBody,
+  },
+  controller,
+)
+userRoutes.patch(
+  {
+    tags: ['User'],
+    summary: 'Resumo da rota de busca de usuário',
+    description: 'Descrição da rota de busca de usuário',
+    body: userBody,
+  },
+  controller,
+)
 
-userRoutes.delete = RouteSchemaDelete.create({
-  tags: ['user'],
-  summary: 'Resumo da rota exclusão de usuário',
-  description: 'Descrição da rota de exclusão de usuário',
-})
+userRoutes.delete(
+  {
+    tags: ['User'],
+    summary: 'Resumo da rota de busca de usuário',
+    description: 'Descrição da rota de busca de usuário',
+  },
+  controller,
+)

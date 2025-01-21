@@ -1,29 +1,33 @@
-import type { IRouteSchema, TRouteSchemaProps, TRouteSchemaSchema } from '@CORTypes/http/route/schema/route-schema'
+import type { TEHttpResponseCode } from '@CORTypes/enums/http'
+import type { IMethod, TMethodProps, TMethodSchema } from '@CORTypes/http/route/methods'
+import type { HTTPMethods } from 'fastify'
 
 import { httpResponseCode } from '_COR/constants/parse/http'
-import { TEHttpResponseCode } from '@CORTypes/enums/http'
-import { ZRouteResponseStatus, ZRouteSchemaSchema } from '@CORTypes/http/route/schema/route-schema'
+import { ZMethodResponseStatus, ZMethodSchema } from '@CORTypes/http/route/methods'
 import _ from 'lodash'
 
-export abstract class RouteSchema<TProps extends TRouteSchemaProps> implements IRouteSchema {
-  protected readonly _props: TProps
-
-  protected constructor(props: TProps) {
-    this._props = props
-  }
+export abstract class Method<TProps extends TMethodProps> implements IMethod {
+  protected constructor(
+    private readonly _type: HTTPMethods | HTTPMethods[],
+    protected readonly _props: TProps,
+  ) {}
 
   public get path() {
-    return this._props.path
+    return `${this._props.pathPrefix}/${this._props.path}`.replace(/\/\/+/g, '/').replace(/\/$/g, '')
+  }
+
+  public get type() {
+    return this._type
   }
 
   private get response() {
-    return ZRouteResponseStatus.parse(
+    return ZMethodResponseStatus.parse(
       _.mapKeys(this._props.response, (_, key) => httpResponseCode[key as TEHttpResponseCode] || key),
     )
   }
 
-  private clearSchema(schema: TRouteSchemaSchema) {
-    return ZRouteSchemaSchema.parse(
+  private clearSchema(schema: TMethodSchema) {
+    return ZMethodSchema.parse(
       _.pickBy(schema, (value) => {
         if (_.isNull(value) || _.isUndefined(value)) return false
         if (_.isString(value) && _.isEmpty(value.trim())) return false

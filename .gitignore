@@ -103,6 +103,7 @@ dist
 # vuepress v2.x temp and cache directory
 .temp
 .cache
+data
 
 # Docusaurus cache and generated files
 .docusaurus
@@ -129,8 +130,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# Desktop Service Store Mac 
-.DS_Store 
+# Desktop Service Store Mac
+.DS_Store
 
 # Logs
 logs

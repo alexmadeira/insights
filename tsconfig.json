@@ -37,11 +37,11 @@
       "@INFTypes/*": [
         "./src/infra/@types/*"
       ],
-      "@INF/*": [
-        "./src/infra/*"
-      ],
-      "@INFHttp/*": [
+      "_INFHttp/*": [
         "./src/infra/http/*"
+      ],
+      "_INF/*": [
+        "./src/infra/*"
       ],
       "_TEST/*": [
         "./src/__tests__/*"

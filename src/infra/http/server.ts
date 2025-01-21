@@ -1,4 +1,4 @@
-import { env } from '@INF/env'
+import { env } from '_INF/env'
 import { fastify } from 'fastify'
 
 import { fastifyConfig } from './config/fastify-config'
