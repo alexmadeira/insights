@@ -247,7 +247,8 @@ dist
 
 # FuseBox cache
 .fusebox/
-
+#Data-base
+data/
 # DynamoDB Local files
 .dynamodb/
 
