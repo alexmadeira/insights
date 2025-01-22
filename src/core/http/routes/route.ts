@@ -8,8 +8,9 @@ import type {
   TRoutePutProps,
 } from '@CORTypes/http/route'
 import type { Optional } from '@CORTypes/optional'
-import type { RouteHandler, RouteOptions } from 'fastify'
+import type { RouteOptions } from 'fastify'
 
+import { IController } from '_INFHttp/controller/user/get-user.controller'
 import { ZRouteProps } from '@CORTypes/http/route'
 import { FastifyInstance } from 'fastify/types/instance'
 
@@ -27,52 +28,37 @@ export class Route implements IRoute {
     this.base = ZRouteProps.parse(base)
   }
 
-  private buildRoute({ data, handler }: TRouteBuildRouteProps) {
-    this.routes[`${data.type}::${data.path}`] = {
+  private buildRoute(...[props, handler]: TRouteBuildRouteProps) {
+    this.routes[`${props.type}::${props.path}`] = {
       handler,
-      method: data.type,
-      schema: data.schema,
-      url: data.path,
+      method: props.type,
+      schema: props.schema,
+      url: props.path,
     }
   }
 
-  public get(methodProps: Optional<TRouteGetProps, 'path'>, handler: RouteHandler) {
-    this.buildRoute({
-      handler,
-      data: MethodGet.create({ ...methodProps, pathPrefix: this.base }),
-    })
+  public get(methodProps: Optional<TRouteGetProps, 'path'>, controller: IController) {
+    this.buildRoute(MethodGet.create({ ...methodProps, pathPrefix: this.base }), controller.handle)
     return this
   }
 
-  public post(methodProps: Optional<TRoutePostProps, 'path'>, handler: RouteHandler) {
-    this.buildRoute({
-      handler,
-      data: MethodPost.create({ ...methodProps, pathPrefix: this.base }),
-    })
+  public post(methodProps: Optional<TRoutePostProps, 'path'>, controller: IController) {
+    this.buildRoute(MethodPost.create({ ...methodProps, pathPrefix: this.base }), controller.handle)
     return this
   }
 
-  public patch(methodProps: Optional<TRoutePatchProps, 'path'>, handler: RouteHandler) {
-    this.buildRoute({
-      handler,
-      data: MethodPatch.create({ ...methodProps, pathPrefix: this.base }),
-    })
+  public patch(methodProps: Optional<TRoutePatchProps, 'path'>, controller: IController) {
+    this.buildRoute(MethodPatch.create({ ...methodProps, pathPrefix: this.base }), controller.handle)
     return this
   }
 
-  public put(methodProps: Optional<TRoutePutProps, 'path'>, handler: RouteHandler) {
-    this.buildRoute({
-      handler,
-      data: MethodPut.create({ ...methodProps, pathPrefix: this.base }),
-    })
+  public put(methodProps: Optional<TRoutePutProps, 'path'>, controller: IController) {
+    this.buildRoute(MethodPut.create({ ...methodProps, pathPrefix: this.base }), controller.handle)
     return this
   }
 
-  public delete(methodProps: Optional<TRouteDeleteProps, 'path'>, handler: RouteHandler) {
-    this.buildRoute({
-      handler,
-      data: MethodDelete.create({ ...methodProps, pathPrefix: this.base }),
-    })
+  public delete(methodProps: Optional<TRouteDeleteProps, 'path'>, controller: IController) {
+    this.buildRoute(MethodDelete.create({ ...methodProps, pathPrefix: this.base }), controller.handle)
     return this
   }
 

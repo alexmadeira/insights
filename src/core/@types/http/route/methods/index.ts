@@ -1,4 +1,4 @@
-import type { RouteOptions } from 'fastify'
+import type { HTTPMethods, RouteOptions } from 'fastify'
 
 import { ZEHttpResponseCode } from '@CORTypes/enums/http'
 import z, { ZodSchema } from 'zod'
@@ -23,6 +23,7 @@ export const ZMethodSchema = z.object({
 })
 
 export const ZMethodProps = z.object({
+  type: z.custom<HTTPMethods>(),
   path: z.string(),
   pathPrefix: z.string(),
   tags: z.array(z.string()),

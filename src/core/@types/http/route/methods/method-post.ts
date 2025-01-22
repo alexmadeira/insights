@@ -4,6 +4,9 @@ import { ZMethod, ZMethodBody, ZMethodProps } from '.'
 
 export const ZMethodPostProps = ZMethodProps.extend({
   body: ZMethodBody,
+  type: z.string().default('POST'),
+  path: z.string().default('/'),
+  pathPrefix: z.string().default('/'),
 })
 
 export const ZMethodPost = ZMethod.extend({})
