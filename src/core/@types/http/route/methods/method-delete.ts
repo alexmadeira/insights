@@ -4,6 +4,9 @@ import { ZMethod, ZMethodProps } from '.'
 
 export const ZMethodDeleteProps = ZMethodProps.extend({
   body: z.undefined(),
+  type: z.string().default('DELETE'),
+  path: z.string().default('/:id'),
+  pathPrefix: z.string().default('/'),
 })
 
 export const ZMethodDelete = ZMethod.extend({})

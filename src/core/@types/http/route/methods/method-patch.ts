@@ -4,6 +4,9 @@ import { ZMethod, ZMethodBody, ZMethodProps } from '.'
 
 export const ZMethodPatchProps = ZMethodProps.extend({
   body: ZMethodBody,
+  type: z.string().default('PATCH'),
+  path: z.string().default('/:id'),
+  pathPrefix: z.string().default('/'),
 })
 
 export const ZMethodPatch = ZMethod.extend({})

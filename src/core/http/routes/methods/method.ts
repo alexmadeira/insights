@@ -1,6 +1,5 @@
 import type { TEHttpResponseCode } from '@CORTypes/enums/http'
 import type { IMethod, TMethodProps, TMethodSchema } from '@CORTypes/http/route/methods'
-import type { HTTPMethods } from 'fastify'
 
 import { httpResponseCode } from '_COR/constants/parse/http'
 import { ZMethodResponseStatus, ZMethodSchema } from '@CORTypes/http/route/methods'
@@ -8,8 +7,8 @@ import _ from 'lodash'
 
 export abstract class Method<TProps extends TMethodProps> implements IMethod {
   protected constructor(
-    private readonly _type: HTTPMethods | HTTPMethods[],
-    protected readonly _props: TProps,
+    private readonly _props: TProps,
+    private readonly _customkey?: string,
   ) {}
 
   public get path() {
@@ -17,7 +16,11 @@ export abstract class Method<TProps extends TMethodProps> implements IMethod {
   }
 
   public get type() {
-    return this._type
+    return this._props.type
+  }
+
+  public get key() {
+    return this._customkey ?? `[${this._props.type.toUpperCase()}]::${this.path}`
   }
 
   private get response() {

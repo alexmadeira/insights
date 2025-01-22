@@ -10,16 +10,13 @@ import { ZMethodPatchProps } from './methods/method-patch'
 import { ZMethodPostProps } from './methods/method-post'
 import { ZMethodPutProps } from './methods/method-put'
 
-export const ZRouteGetProps = ZMethodGetProps.omit({ pathPrefix: true })
-export const ZRoutePostProps = ZMethodPostProps.omit({ pathPrefix: true })
-export const ZRoutePutProps = ZMethodPutProps.omit({ pathPrefix: true })
-export const ZRoutePatchProps = ZMethodPatchProps.omit({ pathPrefix: true })
-export const ZRouteDeleteProps = ZMethodDeleteProps.omit({ pathPrefix: true })
+export const ZRouteGetProps = ZMethodGetProps.omit({ pathPrefix: true, type: true })
+export const ZRoutePostProps = ZMethodPostProps.omit({ pathPrefix: true, type: true })
+export const ZRoutePutProps = ZMethodPutProps.omit({ pathPrefix: true, type: true })
+export const ZRoutePatchProps = ZMethodPatchProps.omit({ pathPrefix: true, type: true })
+export const ZRouteDeleteProps = ZMethodDeleteProps.omit({ pathPrefix: true, type: true })
 
-export const ZRouteBuildRouteProps = z.object({
-  data: z.custom<Method<TMethodProps>>(),
-  handler: z.custom<RouteHandler>(),
-})
+export const ZRouteBuildRouteProps = z.tuple([z.custom<Method<TMethodProps>>(), z.custom<RouteHandler>()])
 
 export const ZRouteProps = z
   .string()
