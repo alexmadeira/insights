@@ -1,14 +1,14 @@
 model Company {
-  id         String   @id @default(uuid())
-  name       String
-  slug       String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id        String   @id @default(uuid())
+  name      String
+  slug      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  userId    String   @map("user_id")
 
   avatars Avatar[]
 
-  user    User   @relation(fields: [user_id], references: [id])
-  user_id String
+  user User @relation(fields: [userId], references: [id])
 
   @@map("companies")
 }

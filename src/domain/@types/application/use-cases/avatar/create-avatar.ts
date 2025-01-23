@@ -5,7 +5,6 @@ import z from 'zod'
 
 export const ZCreateAvatarUseCaseRequest = z.object({
   name: z.string(),
-  isDefault: z.boolean(),
   url: z.string().nullish(),
 })
 

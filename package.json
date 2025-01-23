@@ -8,10 +8,6 @@
   "keywords": [],
   "scripts": {
     "dev": "dotenvx run -- tsx watch src/infra/http/server.ts",
-    "db:push": "dotenvx run -- drizzle-kit push --config=./src/infra/database/drizzle/index.ts",
-    "db:migrate": "dotenvx run -- drizzle-kit migrate --config=./src/infra/database/drizzle/index.ts",
-    "db:generate": "dotenvx run -- drizzle-kit generate --config=./src/infra/database/drizzle/index.ts",
-    "db:studio": "dotenvx run -- drizzle-kit studio --config=./src/infra/database/drizzle/index.ts",
     "lint:check": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "test": "dotenvx run -- vitest run --coverage.enabled",

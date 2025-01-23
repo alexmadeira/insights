@@ -1,7 +1,7 @@
 import fastifyPlugin from 'fastify-plugin'
 
-import { userRoutes } from './user'
+import { avatarRoutes } from './avatar'
 
 export const routes = fastifyPlugin(async (fastify) => {
-  userRoutes.register(fastify)
+  avatarRoutes.register(fastify)
 })

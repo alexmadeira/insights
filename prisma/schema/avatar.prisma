@@ -1,16 +1,14 @@
 model Avatar {
-  id         String   @id @default(uuid())
-  name       String
-  acronym    String
-  default    Boolean  @default(false)
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id        String    @id @default(uuid())
+  name      String
+  url       String?
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  userId    String?   @map("user_id")
+  companyId String?   @map("company_id")
 
-  user    User   @relation(fields: [user_id], references: [id])
-  user_id String
-
-  company    Company @relation(fields: [company_id], references: [id])
-  company_id String
+  user    User?    @relation(fields: [userId], references: [id])
+  company Company? @relation(fields: [companyId], references: [id])
 
   @@map("avatars")
 }

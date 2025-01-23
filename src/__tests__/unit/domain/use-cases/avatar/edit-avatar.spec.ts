@@ -22,13 +22,11 @@ describe('Domain', () => {
           const result = await sut.execute({
             avatarId: 'avatar-1',
             name: 'Name Avatar',
-            isDefault: true,
           })
 
           expect(result.isRight()).toBe(true)
           expect(inMemoryAvatarRepository.itens[0].name).toEqual('Name Avatar')
           expect(inMemoryAvatarRepository.itens[0].acronym.value).toEqual('na')
-          expect(inMemoryAvatarRepository.itens[0].isDefault).toEqual(true)
           expect(inMemoryAvatarRepository.itens[0].url).toBeUndefined()
         })
 
@@ -38,7 +36,6 @@ describe('Domain', () => {
           const result = await sut.execute({
             avatarId: 'avatar-2',
             name: 'Avatar Name',
-            isDefault: true,
           })
 
           expect(result.isLeft()).toBe(true)

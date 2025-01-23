@@ -24,20 +24,12 @@ export class Avatar extends Entity<TAvatarProps> implements IAvatar {
     this._acronym = new Acronym(name)
   }
 
-  public set isDefault(isDefault: boolean) {
-    this._props.isDefault = isDefault
-  }
-
   public set url(url: string | null | undefined) {
     this._props.url = url
   }
 
   public get name() {
     return this._props.name
-  }
-
-  public get isDefault() {
-    return this._props.isDefault
   }
 
   public get url() {

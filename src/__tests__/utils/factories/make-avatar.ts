@@ -8,8 +8,7 @@ export function makeAvatar(overrides: Partial<TAvatarProps> = {}, id?: UniqueEnt
   return Avatar.create(
     {
       name: faker.person.fullName(),
-      url: faker.image.avatarGitHub(),
-      isDefault: faker.datatype.boolean(),
+      url: faker.image.urlPicsumPhotos(),
       ...overrides,
     },
     id,

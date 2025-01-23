@@ -25,3 +25,4 @@ export const ZFastifyInstance =
 //
 
 export type TFastifyInstance = z.infer<typeof ZFastifyInstance>
+export interface IFastifyInstance extends z.infer<typeof ZFastifyInstance> {}
