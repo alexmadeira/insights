@@ -6,13 +6,11 @@ import z from 'zod'
 export const ZAvatarProps = ZEntityProps.extend({
   name: z.string(),
   url: z.string().nullish(),
-  isDefault: z.boolean(),
 })
 
 export const ZAvatar = ZEntity.extend({
   name: z.string(),
   url: z.string().nullish(),
-  isDefault: z.boolean(),
   acronym: z.custom<Acronym>(),
 })
 

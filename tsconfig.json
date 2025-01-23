@@ -37,6 +37,9 @@
       "@INFTypes/*": [
         "./src/infra/@types/*"
       ],
+      "_INFCommon/*": [
+        "./src/infra/common/*"
+      ],
       "_INFHttp/*": [
         "./src/infra/http/*"
       ],

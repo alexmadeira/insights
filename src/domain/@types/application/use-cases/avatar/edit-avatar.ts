@@ -7,7 +7,6 @@ import z from 'zod'
 export const ZEditAvatarUseCaseRequest = z.object({
   avatarId: z.string(),
   name: z.string(),
-  isDefault: z.boolean(),
   url: z.string().nullish(),
 })
 

@@ -5,7 +5,7 @@ import { UniqueEntityID } from './unique-entity-id'
 export abstract class Entity<TProps> implements IEntity {
   private readonly _id: UniqueEntityID
   protected readonly _createdAt: Date
-  protected readonly _updatedAt?: Date
+  protected readonly _updatedAt?: Date | null
   protected readonly _props: TProps
 
   protected constructor(props: TProps & TEntityProps, id?: UniqueEntityID) {
