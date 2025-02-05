@@ -3,6 +3,8 @@ import type { TDataBaseLog } from '@INFTypes/http/config/database'
 import { z } from 'zod'
 
 export const envSchema = z.object({
+  NODE_ENV: z.enum(['dev', 'test', 'production']).default('dev'),
+
   SERVER_PORT: z.coerce.number().default(3333),
 
   DATABASE_SSL: z.enum(['disable', 'allow', 'prefer', 'require']).default('disable'),
@@ -26,4 +28,11 @@ export const envSchema = z.object({
     .pipe(z.custom<TDataBaseLog>()),
 })
 
-export const env = envSchema.parse(process.env)
+const { data, error } = envSchema.safeParse(process.env)
+
+if (error) {
+  console.error('Invalid environment variavles', error.format())
+  throw new Error('Invalid environment variavles')
+}
+
+export const env = data

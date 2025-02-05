@@ -10,3 +10,10 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
+
+  server:
+    container_name: server
+    env_file: .env
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
