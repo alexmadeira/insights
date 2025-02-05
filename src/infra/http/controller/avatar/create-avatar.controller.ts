@@ -1,10 +1,18 @@
-import { Controller } from '_INFCommon/controller'
-import { ICreateAvatarUseCase } from '@DOMTypes/application/use-cases/avatar/create-avatar'
+import type { ICreateAvatarUseCase } from '@DOMTypes/application/use-cases/avatar/create-avatar'
+import type { IController } from '@INFTypes/http/controller'
+import type { FastifyReply, FastifyRequest } from 'fastify'
 
-export class CreateAvatarController extends Controller {
+import { avatarCreateSchema } from '_INFHttp/schema/avatar-create'
+
+export class CreateAvatarController implements IController {
+  private readonly schema = avatarCreateSchema
+
   constructor(private readonly createAvatarUseCase: ICreateAvatarUseCase) {
-    super()
+    this.handler = this.handler.bind(this)
   }
 
-  public async handle() {}
+  public async handler(request: FastifyRequest, replay: FastifyReply) {
+    const query = this.schema.getRequestQuerystring(request)
+    return replay.status(200).send(query)
+  }
 }

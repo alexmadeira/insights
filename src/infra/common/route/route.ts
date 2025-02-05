@@ -7,12 +7,13 @@ import type {
   TRouteRemoveProps,
   TRouteRequest,
   TRouteSchema,
-  TRoutesSendProps,
+  TRouteSendProps,
 } from '@INFTypes/common/route'
 import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
 
 import { httpMethodOperationId, httpMethodPath } from '_COR/constants/parse/http'
 import { RouteGroup } from '_INFCommon/route/group'
+import { ZRouteEditProps, ZRouteGetProps, ZRouteRemoveProps, ZRouteSendProps } from '@INFTypes/common/route'
 import _ from 'lodash'
 
 export class Route implements IRoute {
@@ -29,8 +30,9 @@ export class Route implements IRoute {
 
     return new Route(
       {
-        method: props.method,
         path: routeGroup.path(props.path ?? httpMethodPath[props.method]),
+        method: props.method,
+        controller: props.controller,
       },
       {
         groups,
@@ -45,32 +47,36 @@ export class Route implements IRoute {
     )
   }
 
-  static post(props: TRoutesSendProps) {
-    return this.create({ ...props, method: 'post' })
+  static post(props: TRouteSendProps) {
+    return this.create({ ...ZRouteSendProps.parse(props), method: 'post' }).route
   }
 
   static get(props: TRouteGetProps) {
-    return this.create({ ...props, method: 'get' })
+    return this.create({ ...ZRouteGetProps.parse(props), method: 'get' }).route
   }
 
   static put(props: TRouteEditProps) {
-    return this.create({ ...props, method: 'put' })
+    return this.create({ ...ZRouteEditProps.parse(props), method: 'put' }).route
   }
 
   static patch(props: TRouteEditProps) {
-    return this.create({ ...props, method: 'patch' })
+    return this.create({ ...ZRouteEditProps.parse(props), method: 'patch' }).route
   }
 
   static delete(props: TRouteRemoveProps) {
-    return this.create({ ...props, method: 'delete' })
+    return this.create({ ...ZRouteRemoveProps.parse(props), method: 'delete' }).route
+  }
+
+  public get path() {
+    return this._request.path
   }
 
   public get method() {
     return this._request.method
   }
 
-  public get path() {
-    return this._request.path
+  public get controller() {
+    return this._request.controller.handler
   }
 
   public get tags() {
@@ -119,13 +125,12 @@ export class Route implements IRoute {
   }
 
   public route(fastify: TFastifyInstance) {
+    console.log('fastify', this.controller)
     fastify.route({
       url: this.path,
       method: this.method,
       schema: this.schema,
-      handler: async () => {
-        return { ok: true }
-      },
+      handler: this.controller,
     })
   }
 }

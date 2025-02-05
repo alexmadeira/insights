@@ -2,7 +2,7 @@ import { RouteHandler } from 'fastify'
 import z from 'zod'
 
 export const ZController = z.object({
-  handle: z.custom<RouteHandler>(),
+  handler: z.custom<RouteHandler>(),
 })
 
 //

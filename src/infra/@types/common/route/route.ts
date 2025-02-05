@@ -1,4 +1,5 @@
 import type { RouteGroup } from '_INFCommon/route/group'
+import type { IController } from '@INFTypes/http/controller'
 import type { RouteOptions } from 'fastify'
 
 import { ZEHttpMethods } from '@CORTypes/enums/http'
@@ -21,6 +22,7 @@ export const ZRouteSchema = ZRouteDetails.extend({
 export const ZRouteRequest = z.object({
   method: ZEHttpMethods,
   path: z.string(),
+  controller: z.custom<IController>(),
 })
 
 export const ZRouteProps = ZRouteSchema.partial({
@@ -49,7 +51,7 @@ export const ZRouteEditProps = ZRouteProps.omit({
   querystring: true,
 })
 
-export const ZRoutesSendProps = ZRouteProps.omit({
+export const ZRouteSendProps = ZRouteProps.omit({
   method: true,
 }).partial({
   params: true,
@@ -91,7 +93,7 @@ export type TRouteProps = z.infer<typeof ZRouteProps>
 
 export type TRouteGetProps = z.infer<typeof ZRouteGetProps>
 export type TRouteEditProps = z.infer<typeof ZRouteEditProps>
-export type TRoutesSendProps = z.infer<typeof ZRoutesSendProps>
+export type TRouteSendProps = z.infer<typeof ZRouteSendProps>
 export type TRouteRemoveProps = z.infer<typeof ZRouteRemoveProps>
 
 export interface IRoute extends z.infer<typeof ZRoute> {}
