@@ -5,6 +5,18 @@ services:
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
       - POSTGRES_DB=${DATABASE_NAME}
       - PGDATA=/data/postgres
-
     volumes:
       - ./data/pg:/data/postgres
+
+  server:
+    command: pnpm server:dev
+    depends_on:
+      - postgres
+    build:
+      args:
+        - SERVER_MODE=development
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    volumes:
+      - ./:/usr/app/
+      - /usr/app/node_modules/
