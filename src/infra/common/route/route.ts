@@ -11,7 +11,8 @@ import type {
 } from '@INFTypes/common/route'
 import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
 
-import { httpMethodOperationId, httpMethodPath } from '_COR/constants/parse/http'
+import { httpMethodOperationId } from '_COR/constants/parse/http'
+import { zodKeys } from '_COR/utils/zod'
 import { RouteGroup } from '_INFCommon/route/group'
 import { ZRouteEditProps, ZRouteGetProps, ZRouteRemoveProps, ZRouteSendProps } from '@INFTypes/common/route'
 import _ from 'lodash'
@@ -27,10 +28,9 @@ export class Route implements IRoute {
   protected static create(props: Optional<TRouteProps, 'headers' | 'body' | 'params' | 'querystring'>) {
     const routeGroup = RouteGroup.create(props.routeGroup)
     const groups = _.concat([], routeGroup.name, props.groups ?? [])
-
     return new Route(
       {
-        path: routeGroup.path(props.path ?? httpMethodPath[props.method]),
+        path: routeGroup.path(props.path, zodKeys(props.params)),
         method: props.method,
         controller: props.controller,
       },

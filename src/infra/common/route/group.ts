@@ -28,8 +28,10 @@ export class RouteGroup implements IRouteGroup {
     return this._name
   }
 
-  public path(suffix: string) {
-    return _.compact([this.basePath, suffix.replace(/\/$/g, '')])
+  public path(suffix: string = '', paramList: string[] = []) {
+    const params = paramList.map((param) => `:${param}`).join('/')
+
+    return _.compact([this.basePath, suffix.replace(/\/$/g, ''), params])
       .join('/')
       .replace(/\/\/+/g, '/')
   }

@@ -159,14 +159,6 @@ export const httpCodeDescription = {
   network_authentication_required: 'autenticação de rede obrigatória.',
 } as const satisfies Record<TEHttpResponseCode, string>
 
-export const httpMethodPath = {
-  post: '/',
-  get: '/:id',
-  put: '/:id',
-  patch: '/:id',
-  delete: '/:id',
-} as const satisfies Record<TEHttpMethods, string>
-
 export const httpMethodOperationId = {
   get: 'get',
   put: 'edit',
