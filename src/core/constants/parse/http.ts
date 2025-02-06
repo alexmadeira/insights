@@ -1,4 +1,4 @@
-import { TEHttpResponseCategory, TEHttpResponseCode } from '@CORTypes/enums/http'
+import { TEHttpMethods, TEHttpResponseCategory, TEHttpResponseCode } from '@CORTypes/enums/http'
 
 export const httpResponseCode = {
   continue: 100,
@@ -158,3 +158,11 @@ export const httpCodeDescription = {
   not_extended: 'extensão necessária.',
   network_authentication_required: 'autenticação de rede obrigatória.',
 } as const satisfies Record<TEHttpResponseCode, string>
+
+export const httpMethodOperationId = {
+  get: 'get',
+  put: 'edit',
+  post: 'create',
+  patch: 'update',
+  delete: 'remove',
+} as const satisfies Record<TEHttpMethods, string>

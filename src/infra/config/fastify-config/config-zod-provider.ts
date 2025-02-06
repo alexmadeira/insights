@@ -6,7 +6,6 @@ export { jsonSchemaTransform }
 
 export async function configZodProvider(fastify: TFastifyInstance) {
   fastify.withTypeProvider<ZodTypeProvider>()
-
   fastify.setValidatorCompiler(validatorCompiler)
   fastify.setSerializerCompiler(serializerCompiler)
 }
