@@ -114,22 +114,21 @@ export class Route implements IRoute {
   public get schema() {
     return {
       tags: this.tags,
-      summary: this.summary,
-      description: this.description,
-      operationId: this.operationId,
       body: this.body,
       params: this.params,
-      querystring: this.querystring,
       headers: this.headers,
+      summary: this.summary,
+      description: this.description,
+      querystring: this.querystring,
+      operationId: this.operationId,
     }
   }
 
   public route(fastify: TFastifyInstance) {
-    console.log('fastify', this.controller)
     fastify.route({
       url: this.path,
       method: this.method,
-      schema: this.schema,
+      schema: _.pickBy(this.schema, Boolean),
       handler: this.controller,
     })
   }
