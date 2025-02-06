@@ -8,16 +8,15 @@ export class RouteGroup implements IRouteGroup {
     private readonly _basePath: TRouteGroupBasePath,
   ) {}
 
-  static create(group?: string | RouteGroup, basePath: string = '/') {
+  static create(...[group = '', path = '']: [RouteGroup] | [string, string] | [string]) {
     if (group instanceof RouteGroup) return group
 
-    return new RouteGroup(
-      _.chain(group ?? [])
-        .concat([])
-        .compact()
-        .value(),
-      _.compact([basePath, group]).join('/'),
-    )
+    const basePath = this.formatPath(path || group)
+    return new RouteGroup(group, basePath)
+  }
+
+  private static formatPath<T extends unknown[]>(...args: T) {
+    return '/' + _.chain(args).map(_.kebabCase).join('/').replace(/\/$/g, '').replace(/\/\/+/g, '/').value()
   }
 
   public get basePath() {
