@@ -1,8 +1,8 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { EditProfileUseCase } from '_DOMApp/use-cases/profile/edit-profile'
-import { makeProfile } from '_TEST/utils/factories/make-profile'
-import { makeProfileReference } from '_TEST/utils/factories/make-profile-reference'
+import { makeProfile } from '_TEST/utils/factories/domain/make-profile'
+import { makeProfileReference } from '_TEST/utils/factories/domain/make-profile-reference'
 import { InMemoryProfileReferenceRepository } from '_TEST/utils/repositories/in-memory-profile-reference-repository'
 import { InMemoryProfileRepository } from '_TEST/utils/repositories/in-memory-profile-repository'
 

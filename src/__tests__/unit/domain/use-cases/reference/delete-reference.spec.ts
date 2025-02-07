@@ -1,7 +1,7 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { DeleteReferenceUseCase } from '_DOMApp/use-cases/reference/delete-reference'
-import { makeReference } from '_TEST/utils/factories/make-reference'
+import { makeReference } from '_TEST/utils/factories/domain/make-reference'
 import { InMemoryReferenceRepository } from '_TEST/utils/repositories/in-memory-reference-repository'
 
 let inMemoryReferenceRepository: InMemoryReferenceRepository
