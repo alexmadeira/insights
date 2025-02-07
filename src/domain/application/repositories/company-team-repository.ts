@@ -1,8 +1,9 @@
 import type { CompanyTeam } from '_DOMEnt/entities/company-team'
 
 export interface CompanyTeamRepository {
-  createMany(teams: CompanyTeam[]): Promise<void>
-  deleteMany(teams: CompanyTeam[]): Promise<void>
+  create(companyTeam: CompanyTeam): Promise<CompanyTeam>
+  createMany(companyTeam: CompanyTeam[]): Promise<void>
+  deleteMany(companyTeam: CompanyTeam[]): Promise<void>
   findManyByCompanyId(companyId: string): Promise<CompanyTeam[]>
   deleteManyByCompanyId(companyId: string): Promise<void>
 }

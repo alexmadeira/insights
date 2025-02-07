@@ -6,6 +6,8 @@ export class InMemoryCompanyAvatarRepository implements CompanyAvatarRepository 
 
   async create(companyAvatar: CompanyAvatar) {
     this.itens.push(companyAvatar)
+
+    return companyAvatar
   }
 
   async createMany(avatars: CompanyAvatar[]) {

@@ -6,6 +6,8 @@ export class InMemoryTeamProfileRepository implements TeamProfileRepository {
 
   async create(teamProfile: TeamProfile) {
     this.itens.push(teamProfile)
+
+    return teamProfile
   }
 
   async createMany(profiles: TeamProfile[]) {

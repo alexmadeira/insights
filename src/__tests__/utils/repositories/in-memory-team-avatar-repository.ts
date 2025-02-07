@@ -6,6 +6,8 @@ export class InMemoryTeamAvatarRepository implements TeamAvatarRepository {
 
   async create(teamAvatar: TeamAvatar) {
     this.itens.push(teamAvatar)
+
+    return teamAvatar
   }
 
   async createMany(avatars: TeamAvatar[]) {

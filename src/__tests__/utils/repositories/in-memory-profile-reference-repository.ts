@@ -6,6 +6,8 @@ export class InMemoryProfileReferenceRepository implements ProfileReferenceRepos
 
   async create(profileReference: ProfileReference) {
     this.itens.push(profileReference)
+
+    return profileReference
   }
 
   async createMany(references: ProfileReference[]) {

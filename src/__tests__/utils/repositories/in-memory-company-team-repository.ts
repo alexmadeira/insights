@@ -6,6 +6,8 @@ export class InMemoryCompanyTeamRepository implements CompanyTeamRepository {
 
   async create(companyTeam: CompanyTeam) {
     this.itens.push(companyTeam)
+
+    return companyTeam
   }
 
   async createMany(teams: CompanyTeam[]) {

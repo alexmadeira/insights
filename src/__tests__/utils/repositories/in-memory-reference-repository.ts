@@ -13,11 +13,15 @@ export class InMemoryReferenceRepository implements ReferenceRepository {
 
   async create(reference: Reference) {
     this.itens.push(reference)
+
+    return reference
   }
 
   async save(reference: Reference) {
     const itemIndex = this.itens.findIndex((item) => item.id === reference.id)
     this.itens[itemIndex] = reference
+
+    return reference
   }
 
   async delete(reference: Reference) {

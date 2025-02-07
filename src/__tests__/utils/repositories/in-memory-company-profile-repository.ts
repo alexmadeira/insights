@@ -6,6 +6,8 @@ export class InMemoryCompanyProfileRepository implements CompanyProfileRepositor
 
   async create(companyProfile: CompanyProfile) {
     this.itens.push(companyProfile)
+
+    return companyProfile
   }
 
   async createMany(profiles: CompanyProfile[]) {

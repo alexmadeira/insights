@@ -6,6 +6,8 @@ export class InMemoryNetworkPostRepository implements NetworkPostRepository {
 
   async create(networkPost: NetworkPost) {
     this.itens.push(networkPost)
+
+    return networkPost
   }
 
   async createMany(posts: NetworkPost[]) {
