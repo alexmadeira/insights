@@ -3,7 +3,7 @@ import { RouteGroup } from '_INFCommon/route'
 describe('Infra', () => {
   describe('Common', () => {
     describe('Route', () => {
-      describe('Group', () => {
+      describe('Create route group', () => {
         it('should be able create new', async () => {
           const routeGroup = RouteGroup.create('route group', '/route-path')
 
