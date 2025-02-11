@@ -7,5 +7,5 @@ import { createAvatarRoute } from './create-avatar'
 const routeGroup = RouteGroup.create('avatar')
 
 export async function avatarRoutes(fastify: TFastifyInstance) {
-  fastify.register(createAvatarRoute(routeGroup))
+  fastify.register(createAvatarRoute(routeGroup).register)
 }

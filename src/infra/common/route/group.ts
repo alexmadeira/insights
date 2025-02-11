@@ -8,7 +8,7 @@ export class RouteGroup implements IRouteGroup {
     private readonly _basePath: TRouteGroupBasePath,
   ) {}
 
-  static create(...[group = '', path = '']: [RouteGroup] | [string, string] | [string]) {
+  static create(...[group = '', path = '']: [RouteGroup | string | undefined] | [string, string]) {
     if (group instanceof RouteGroup) return group
 
     const basePath = this.formatPath(path || group)
