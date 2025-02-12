@@ -26,7 +26,6 @@ describe('Infra', () => {
           expect(routePatch.register).toBeTruthy()
           expect(routeDelete.register).toBeTruthy()
         })
-
         it('should be able get register', async () => {
           const route = Route.get({
             groups: ['group'],
