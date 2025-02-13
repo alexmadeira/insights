@@ -1,8 +1,8 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { DeleteNetworkUseCase } from '_DOMApp/use-cases/network/delete-network'
-import { makeNetwork } from '_TEST/utils/factories/make-network'
-import { makeNetworkPost } from '_TEST/utils/factories/make-network-post'
+import { makeNetwork } from '_TEST/utils/factories/domain/make-network'
+import { makeNetworkPost } from '_TEST/utils/factories/domain/make-network-post'
 import { InMemoryNetworkPostRepository } from '_TEST/utils/repositories/in-memory-network-post-repository'
 import { InMemoryNetworkRepository } from '_TEST/utils/repositories/in-memory-network-repository'
 

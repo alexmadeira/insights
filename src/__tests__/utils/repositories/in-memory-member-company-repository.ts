@@ -6,6 +6,8 @@ export class InMemoryMemberCompanyRepository implements MemberCompanyRepository 
 
   async create(memberCompany: MemberCompany) {
     this.itens.push(memberCompany)
+
+    return memberCompany
   }
 
   async createMany(companies: MemberCompany[]) {

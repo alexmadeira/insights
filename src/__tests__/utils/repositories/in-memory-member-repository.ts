@@ -26,6 +26,8 @@ export class InMemoryMemberRepository implements MemberRepository {
     this.memberTeamRepository.createMany(member.teams.getItems())
     this.memberAvatarRepository.createMany(member.avatars.getItems())
     this.memberCompanyRepository.createMany(member.companies.getItems())
+
+    return member
   }
 
   async save(member: Member) {
@@ -40,6 +42,8 @@ export class InMemoryMemberRepository implements MemberRepository {
 
     this.memberCompanyRepository.createMany(member.companies.getNewItems())
     this.memberCompanyRepository.deleteMany(member.companies.getRemovedItems())
+
+    return member
   }
 
   async delete(member: Member) {

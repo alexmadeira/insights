@@ -17,6 +17,8 @@ export class InMemoryPostRepository implements PostRepository {
   async create(post: Post) {
     this.itens.push(post)
     this.postMediaRepository.createMany(post.medias.getItems())
+
+    return post
   }
 
   async save(post: Post) {
@@ -24,6 +26,8 @@ export class InMemoryPostRepository implements PostRepository {
     this.itens[itemIndex] = post
     this.postMediaRepository.createMany(post.medias.getNewItems())
     this.postMediaRepository.deleteMany(post.medias.getRemovedItems())
+
+    return post
   }
 
   async delete(post: Post) {

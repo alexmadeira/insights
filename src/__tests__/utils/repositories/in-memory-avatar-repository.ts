@@ -13,11 +13,15 @@ export class InMemoryAvatarRepository implements AvatarRepository {
 
   async create(avatar: Avatar) {
     this.itens.push(avatar)
+
+    return avatar
   }
 
   async save(avatar: Avatar) {
     const itemIndex = this.itens.findIndex((item) => item.id === avatar.id)
     this.itens[itemIndex] = avatar
+
+    return avatar
   }
 
   async delete(avatar: Avatar) {

@@ -6,6 +6,8 @@ export class InMemoryPostMediaRepository implements PostMediaRepository {
 
   async create(postMedia: PostMedia) {
     this.itens.push(postMedia)
+
+    return postMedia
   }
 
   async createMany(medias: PostMedia[]) {

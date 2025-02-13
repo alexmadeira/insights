@@ -13,11 +13,15 @@ export class InMemoryMediaRepository implements MediaRepository {
 
   async create(media: Media) {
     this.itens.push(media)
+
+    return media
   }
 
   async save(media: Media) {
     const itemIndex = this.itens.findIndex((item) => item.id === media.id)
     this.itens[itemIndex] = media
+
+    return media
   }
 
   async delete(media: Media) {

@@ -28,6 +28,8 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     this.companyMemberRepository.createMany(company.members.getItems())
     this.companyAvatarRepository.createMany(company.avatars.getItems())
     this.companyProfileRepository.createMany(company.profiles.getItems())
+
+    return company
   }
 
   async save(company: Company) {
@@ -45,6 +47,8 @@ export class InMemoryCompanyRepository implements CompanyRepository {
 
     this.companyProfileRepository.createMany(company.profiles.getNewItems())
     this.companyProfileRepository.deleteMany(company.profiles.getRemovedItems())
+
+    return company
   }
 
   async delete(company: Company) {

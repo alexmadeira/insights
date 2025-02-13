@@ -22,12 +22,15 @@ export class Route implements IRoute {
     private readonly _request: TRouteRequest,
     private readonly _schema: Optional<TRouteSchema, 'headers' | 'body' | 'params' | 'querystring'>,
   ) {
-    this.route = this.route.bind(this)
+    this.register = this.register.bind(this)
   }
 
   protected static create(props: Optional<TRouteProps, 'headers' | 'body' | 'params' | 'querystring'>) {
     const routeGroup = RouteGroup.create(props.routeGroup)
-    const groups = _.concat([], routeGroup.name, props.groups ?? [])
+    const groups = _.chain(props.groups ?? [])
+      .concat(routeGroup.name)
+      .compact()
+      .value()
     return new Route(
       {
         path: routeGroup.path(props.path, zodKeys(props.params)),
@@ -48,23 +51,23 @@ export class Route implements IRoute {
   }
 
   static post(props: TRouteSendProps) {
-    return this.create({ ...ZRouteSendProps.parse(props), method: 'post' }).route
+    return this.create({ ...ZRouteSendProps.parse(props), method: 'post' })
   }
 
   static get(props: TRouteGetProps) {
-    return this.create({ ...ZRouteGetProps.parse(props), method: 'get' }).route
+    return this.create({ ...ZRouteGetProps.parse(props), method: 'get' })
   }
 
   static put(props: TRouteEditProps) {
-    return this.create({ ...ZRouteEditProps.parse(props), method: 'put' }).route
+    return this.create({ ...ZRouteEditProps.parse(props), method: 'put' })
   }
 
   static patch(props: TRouteEditProps) {
-    return this.create({ ...ZRouteEditProps.parse(props), method: 'patch' }).route
+    return this.create({ ...ZRouteEditProps.parse(props), method: 'patch' })
   }
 
   static delete(props: TRouteRemoveProps) {
-    return this.create({ ...ZRouteRemoveProps.parse(props), method: 'delete' }).route
+    return this.create({ ...ZRouteRemoveProps.parse(props), method: 'delete' })
   }
 
   public get path() {
@@ -124,7 +127,7 @@ export class Route implements IRoute {
     }
   }
 
-  public route(fastify: TFastifyInstance) {
+  public register(fastify: TFastifyInstance) {
     fastify.route({
       url: this.path,
       method: this.method,

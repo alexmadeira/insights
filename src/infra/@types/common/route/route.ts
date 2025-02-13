@@ -31,7 +31,7 @@ export const ZRouteProps = ZRouteSchema.partial({
 })
   .merge(ZRouteRequest.partial({ path: true }))
   .extend({
-    routeGroup: z.custom<RouteGroup>(),
+    routeGroup: z.custom<RouteGroup>().optional(),
   })
 
 export const ZRouteGetProps = ZRouteProps.omit({

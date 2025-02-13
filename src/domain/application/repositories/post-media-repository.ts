@@ -1,8 +1,9 @@
 import type { PostMedia } from '_DOMEnt/entities/post-media'
 
 export interface PostMediaRepository {
-  createMany(medias: PostMedia[]): Promise<void>
-  deleteMany(medias: PostMedia[]): Promise<void>
+  create(postMedia: PostMedia): Promise<PostMedia>
+  createMany(postMedia: PostMedia[]): Promise<void>
+  deleteMany(postMedia: PostMedia[]): Promise<void>
   findManyByPostId(postId: string): Promise<PostMedia[]>
   deleteManyByPostId(postId: string): Promise<void>
 }

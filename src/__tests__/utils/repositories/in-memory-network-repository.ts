@@ -18,6 +18,8 @@ export class InMemoryNetworkRepository implements NetworkRepository {
     this.itens.push(network)
 
     this.networkPostRepository.createMany(network.posts.getItems())
+
+    return network
   }
 
   async save(network: Network) {
@@ -26,6 +28,8 @@ export class InMemoryNetworkRepository implements NetworkRepository {
 
     this.networkPostRepository.createMany(network.posts.getNewItems())
     this.networkPostRepository.deleteMany(network.posts.getRemovedItems())
+
+    return network
   }
 
   async delete(network: Network) {

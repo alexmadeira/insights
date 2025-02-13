@@ -18,6 +18,8 @@ export class InMemoryProfileRepository implements ProfileRepository {
     this.itens.push(profile)
 
     this.profileReferenceRepository.createMany(profile.references.getItems())
+
+    return profile
   }
 
   async save(profile: Profile) {
@@ -26,6 +28,8 @@ export class InMemoryProfileRepository implements ProfileRepository {
 
     this.profileReferenceRepository.createMany(profile.references.getNewItems())
     this.profileReferenceRepository.deleteMany(profile.references.getRemovedItems())
+
+    return profile
   }
 
   async delete(profile: Profile) {
