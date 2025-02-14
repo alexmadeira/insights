@@ -9,6 +9,8 @@ import type {
 import { left, right } from '_COR/either'
 import { User } from '_DOMEnt/entities/user'
 
+import { UserAlreadyExistisError } from '../_errors/user-already-existis-error'
+
 export class RegisterUserUseCase implements IRegisterUserUseCase {
   constructor(
     private readonly userRepository: UserRepository,
@@ -17,7 +19,8 @@ export class RegisterUserUseCase implements IRegisterUserUseCase {
 
   async execute({ password, ...props }: TRegisterUserUseCaseRequest): Promise<TRegisterUserUseCaseResponse> {
     const userWithSameIndetifier = await this.userRepository.findByIndetifier(props.indetifier)
-    if (userWithSameIndetifier) return left(null)
+
+    if (userWithSameIndetifier) return left(new UserAlreadyExistisError(props.indetifier))
 
     const passwordHash = await this.hashGenerator.hash(password)
 

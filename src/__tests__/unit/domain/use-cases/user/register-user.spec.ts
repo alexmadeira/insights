@@ -1,4 +1,6 @@
+import { UserAlreadyExistisError } from '_DOMApp/use-cases/_errors/user-already-existis-error'
 import { RegisterUserUseCase } from '_DOMApp/use-cases/user/register-user'
+import { makeUser } from '_TEST/utils/factories/domain/make-user'
 import { InMemoryUserRepository } from '_TEST/utils/repositories/in-memory-user-repository'
 import { FakeHasher } from '_TEST/utils/services/cryptography/fake-hasher'
 
@@ -45,6 +47,19 @@ describe('Domain', () => {
 
           expect(result.isRight()).toBe(true)
           expect(isHashed).toBe(true)
+        })
+        it("shouldn't be able to with an existing user", async () => {
+          inMemoryUserRepository.create(makeUser({ indetifier: 'indetifier.user' }))
+
+          const result = await sut.execute({
+            name: 'User Name',
+            email: 'user@emal.com',
+            password: '123456',
+            indetifier: 'indetifier.user',
+          })
+
+          expect(result.isLeft()).toBe(true)
+          expect(result.value).toBeInstanceOf(UserAlreadyExistisError)
         })
       })
     })
