@@ -6,10 +6,11 @@ import type {
 } from '@DOMTypes/application/use-cases/network/create-network'
 
 import { left, right } from '_COR/either'
-import { InvalidTypeError } from '_DOMApp/use-cases/errors/invalid-type-error'
 import { Network } from '_DOMEnt/entities/network'
 import { NetworkPostList } from '_DOMEnt/entities/network-post-list'
 import { NetworkType } from '_DOMEnt/entities/value-objects'
+
+import { InvalidTypeError } from '../_errors/invalid-type-error'
 
 export class CreateNetworkUseCase implements ICreateNetworkUseCase {
   constructor(private readonly networkRepository: NetworkRepository) {}

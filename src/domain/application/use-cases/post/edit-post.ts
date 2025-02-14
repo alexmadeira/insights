@@ -8,12 +8,12 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { PostMedia } from '_DOMEnt/entities/post-media'
 import { PostMediaList } from '_DOMEnt/entities/post-media-list'
 import { PostStatus } from '_DOMEnt/entities/value-objects'
 
-import { InvalidPostStatusError } from '../errors/invalid-post-status-error'
+import { InvalidPostStatusError } from '../_errors/invalid-post-status-error'
+import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 
 export class EditPostUseCase implements IEditPostUseCase {
   constructor(

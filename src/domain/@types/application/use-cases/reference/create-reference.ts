@@ -1,5 +1,5 @@
 import type { Either } from '_COR/either'
-import type { InvalidReferenceStatusError } from '_DOMApp/use-cases/errors/invalid-reference-status-error'
+import type { InvalidReferenceStatusError } from '_DOMApp/use-cases/_errors/invalid-reference-status-error'
 import type { Reference } from '_DOMEnt/entities/reference'
 
 import z from 'zod'

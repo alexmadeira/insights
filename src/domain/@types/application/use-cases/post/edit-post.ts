@@ -1,6 +1,6 @@
 import type { Either } from '_COR/either'
-import type { InvalidPostStatusError } from '_DOMApp/use-cases/errors/invalid-post-status-error'
-import type { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
+import type { InvalidPostStatusError } from '_DOMApp/use-cases/_errors/invalid-post-status-error'
+import type { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
 import type { Post } from '_DOMEnt/entities/post'
 
 import z from 'zod'

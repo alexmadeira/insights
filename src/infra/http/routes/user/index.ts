@@ -6,6 +6,6 @@ import { createByEmailRoute } from './create-user'
 
 const routeGroup = RouteGroup.create('user')
 
-export async function avatarRoutes(fastify: TFastifyInstance) {
+export async function userRoutes(fastify: TFastifyInstance) {
   fastify.register(createByEmailRoute(routeGroup).register)
 }

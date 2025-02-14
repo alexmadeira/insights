@@ -6,9 +6,10 @@ import type {
 } from '@DOMTypes/application/use-cases/media/edit-media'
 
 import { left, right } from '_COR/either'
-import { InvalidTypeError } from '_DOMApp/use-cases/errors/invalid-type-error'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { MediaType } from '_DOMEnt/entities/value-objects'
+
+import { InvalidTypeError } from '../_errors/invalid-type-error'
+import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 
 export class EditMediaUseCase implements IEditMediaUseCase {
   constructor(private readonly mediaRepository: MediaRepository) {}

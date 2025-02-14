@@ -6,9 +6,10 @@ import type {
 } from '@DOMTypes/application/use-cases/media/create-media'
 
 import { left, right } from '_COR/either'
-import { InvalidTypeError } from '_DOMApp/use-cases/errors/invalid-type-error'
 import { Media } from '_DOMEnt/entities/media'
 import { MediaType } from '_DOMEnt/entities/value-objects'
+
+import { InvalidTypeError } from '../_errors/invalid-type-error'
 
 export class CreateMediaUseCase implements ICreateMediaUseCase {
   constructor(private readonly mediaRepository: MediaRepository) {}

@@ -6,7 +6,8 @@ import type {
 } from '@DOMTypes/application/use-cases/team/delete-team'
 
 import { left, right } from '_COR/either'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
+
+import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 
 export class DeleteTeamUseCase implements IDeleteTeamUseCase {
   constructor(private readonly teamRepository: TeamRepository) {}

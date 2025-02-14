@@ -6,7 +6,7 @@ export abstract class UseCaseError extends BaseError implements IUseCaseError {
   protected readonly _props: TUseCaseErrorProps
 
   constructor(message: string, props: TUseCaseErrorProps) {
-    super(message, { ...props, type: 'use_case_error' })
+    super(message, { ...props, type: 'USE_CASE_ERROR' })
     this._props = props
   }
 
