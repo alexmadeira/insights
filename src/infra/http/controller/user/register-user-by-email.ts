@@ -2,7 +2,7 @@ import type { IRegisterUserUseCase } from '@DOMTypes/application/use-cases/user/
 import type { IController } from '@INFTypes/http/controller'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 
-import { registerByEmailSchema } from '_INFHttp/schema/user/register-by-email'
+import { registerByEmailSchema } from '_INFHttp/schema/user'
 
 export class RegisterByEmailController implements IController {
   private readonly schema = registerByEmailSchema

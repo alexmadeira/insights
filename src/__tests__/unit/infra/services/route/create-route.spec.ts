@@ -1,4 +1,4 @@
-import { Route } from '_INFCommon/route'
+import { Route } from '_INFServices/route'
 import { mockController } from '_TEST/utils/factories/infra/mock/mock-controller'
 import z, { ZodSchema } from 'zod'
 

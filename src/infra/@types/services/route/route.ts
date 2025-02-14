@@ -1,4 +1,4 @@
-import type { RouteGroup } from '_INFCommon/route/group'
+import type { RouteGroup } from '_INFServices/route'
 import type { IController } from '@INFTypes/http/controller'
 import type { RouteOptions } from 'fastify'
 
