@@ -2,10 +2,10 @@ import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
 
 import { RouteGroup } from '_INFCommon/route'
 
-import { createAvatarRoute } from './create-avatar'
+import { createByEmailRoute } from './create-user'
 
-const routeGroup = RouteGroup.create('avatar')
+const routeGroup = RouteGroup.create('user')
 
 export async function avatarRoutes(fastify: TFastifyInstance) {
-  fastify.register(createAvatarRoute(routeGroup).register)
+  fastify.register(createByEmailRoute(routeGroup).register)
 }

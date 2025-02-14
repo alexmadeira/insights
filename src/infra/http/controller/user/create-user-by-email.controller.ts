@@ -2,17 +2,17 @@ import type { ICreateAvatarUseCase } from '@DOMTypes/application/use-cases/avata
 import type { IController } from '@INFTypes/http/controller'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 
-import { avatarCreateSchema } from '_INFHttp/schema/avatar-create'
+import { createByEmailSchema } from '_INFHttp/schema/user/create-by-email'
 
-export class CreateAvatarController implements IController {
-  private readonly schema = avatarCreateSchema
+export class CreateByEmailController implements IController {
+  private readonly schema = createByEmailSchema
 
   constructor(private readonly createAvatarUseCase: ICreateAvatarUseCase) {
     this.handler = this.handler.bind(this)
   }
 
   public async handler(request: FastifyRequest, replay: FastifyReply) {
-    const query = this.schema.getRequestQuerystring(request)
-    return replay.status(200).send(query)
+    const body = this.schema.getRequestBody(request)
+    return replay.status(200).send(body)
   }
 }
