@@ -1,4 +1,4 @@
-import type { IRouteGroup, TRouteGroupBasePath, TRouteGroupName } from '@INFTypes/common/route/group'
+import type { IRouteGroup, TRouteGroupBasePath, TRouteGroupName } from '@INFTypes/services/route/group'
 
 import _ from 'lodash'
 

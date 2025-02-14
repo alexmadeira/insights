@@ -1,8 +1,8 @@
-import type { RouteGroup } from '_INFCommon/route'
+import type { RouteGroup } from '_INFServices/route'
 
-import { Route } from '_INFCommon/route'
 import { registerByEmailController } from '_INFHttp/module/user'
 import { registerByEmailSchema } from '_INFHttp/schema/user'
+import { Route } from '_INFServices/route'
 
 export const registerByEmailRoute = (routeGroup: RouteGroup) =>
   Route.post({

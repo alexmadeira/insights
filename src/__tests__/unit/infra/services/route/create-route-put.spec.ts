@@ -1,4 +1,4 @@
-import { Route } from '_INFCommon/route'
+import { Route } from '_INFServices/route'
 import { makeRouteGroup } from '_TEST/utils/factories/infra/common/make-route-group'
 import { mockController } from '_TEST/utils/factories/infra/mock/mock-controller'
 import z, { ZodSchema } from 'zod'
@@ -7,9 +7,9 @@ describe('Infra', () => {
   describe('Common', () => {
     describe('Route', () => {
       describe('Create Route', () => {
-        describe('POST', () => {
+        describe('PUT', () => {
           it('should be able create', async () => {
-            const route = Route.post({
+            const route = Route.put({
               summary: 'summary',
               description: 'description',
               controller: mockController,
@@ -25,7 +25,7 @@ describe('Infra', () => {
 
             expect(route.path).toEqual('/base-path/route-path')
             expect(route.tags).toEqual(['group', 'base router'])
-            expect(route.method).toEqual('post')
+            expect(route.method).toEqual('put')
             expect(route.summary).toEqual('summary')
             expect(route.description).toEqual('description')
             expect(route.operationId).toEqual('operationId')

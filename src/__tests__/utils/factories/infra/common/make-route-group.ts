@@ -1,4 +1,4 @@
-import { RouteGroup } from '_INFCommon/route'
+import { RouteGroup } from '_INFServices/route'
 import { faker } from '@faker-js/faker'
 
 type TOverrides = {

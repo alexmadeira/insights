@@ -1,4 +1,4 @@
-import { RequestSchema } from '_INFCommon/request-schema'
+import { RequestSchema } from '_INFServices/request-schema'
 import z from 'zod'
 
 export const registerByEmailSchema = RequestSchema({

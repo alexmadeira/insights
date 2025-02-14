@@ -26,7 +26,7 @@ export default defineConfig({
       _COR: path.resolve(__dirname, './src/core'),
       _INF: path.resolve(__dirname, './rc/infra'),
       _INFHttp: path.resolve(__dirname, './src/infra/http'),
-      _INFCommon: path.resolve(__dirname, './src/infra/common'),
+      _INFServices: path.resolve(__dirname, './src/infra/services'),
       _TEST: path.resolve(__dirname, './src/__tests__'),
     },
   },

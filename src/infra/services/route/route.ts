@@ -1,4 +1,5 @@
 import type { Optional } from '@CORTypes/optional'
+import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
 import type {
   IRoute,
   TRouteEditProps,
@@ -8,14 +9,14 @@ import type {
   TRouteRequest,
   TRouteSchema,
   TRouteSendProps,
-} from '@INFTypes/common/route'
-import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
+} from '@INFTypes/services/route'
 
 import { httpMethodOperationId } from '_COR/constants/parse/http'
 import { zodKeys } from '_COR/utils/zod'
-import { RouteGroup } from '_INFCommon/route/group'
-import { ZRouteEditProps, ZRouteGetProps, ZRouteRemoveProps, ZRouteSendProps } from '@INFTypes/common/route'
+import { ZRouteEditProps, ZRouteGetProps, ZRouteRemoveProps, ZRouteSendProps } from '@INFTypes/services/route'
 import _ from 'lodash'
+
+import { RouteGroup } from './group'
 
 export class Route implements IRoute {
   protected constructor(

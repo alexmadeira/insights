@@ -1,6 +1,6 @@
-import type { TRouteEditProps, TRouteGetProps, TRouteRemoveProps, TRouteSendProps } from '@INFTypes/common/route'
+import type { TRouteEditProps, TRouteGetProps, TRouteRemoveProps, TRouteSendProps } from '@INFTypes/services/route'
 
-import { Route } from '_INFCommon/route'
+import { Route } from '_INFServices/route'
 import { faker } from '@faker-js/faker'
 
 import { mockController } from '../mock/mock-controller'
