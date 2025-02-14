@@ -6,7 +6,7 @@ import { BcryptHasher } from '_INF/services/cryptography/bcrypt-hasher'
 import { JwtEncrypter } from '_INF/services/cryptography/jwt-encrypter'
 import { ModuleManager } from '_INFCommon/module-manager'
 
-import { AuthenticateByIndetifierController } from '../controller/user/authenticate-user'
+import { AuthenticateByIndetifierController } from '../controller/user/authenticate-user-by-indetifier'
 import { RegisterByEmailController } from '../controller/user/register-user-by-email'
 
 const userRepository = ModuleManager.create(PrismaUserRepository, PrismaService)

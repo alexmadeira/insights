@@ -21,6 +21,6 @@ export class AuthenticateByIndetifierController implements IController {
 
     if (result.isLeft()) throw new Error('Error')
 
-    return replay.status(202).send(result.value)
+    return replay.status(202).send({ access_token: result.value.accessToken })
   }
 }
