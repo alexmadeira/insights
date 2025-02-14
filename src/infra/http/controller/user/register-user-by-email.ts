@@ -2,10 +2,10 @@ import type { IRegisterUserUseCase } from '@DOMTypes/application/use-cases/user/
 import type { IController } from '@INFTypes/http/controller'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 
-import { createByEmailSchema } from '_INFHttp/schema/user/create-by-email'
+import { registerByEmailSchema } from '_INFHttp/schema/user/register-by-email'
 
-export class CreateByEmailController implements IController {
-  private readonly schema = createByEmailSchema
+export class RegisterByEmailController implements IController {
+  private readonly schema = registerByEmailSchema
 
   constructor(private readonly registerUserUseCase: IRegisterUserUseCase) {
     this.handler = this.handler.bind(this)
@@ -21,9 +21,7 @@ export class CreateByEmailController implements IController {
       indetifier: body.email,
     })
 
-    if (result.isLeft()) {
-      throw new Error('Error')
-    }
+    if (result.isLeft()) throw new Error('Error')
 
     return replay.status(201).send()
   }
