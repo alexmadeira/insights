@@ -10,7 +10,7 @@ import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { Reference } from '_DOMEnt/entities/reference'
 import { ReferenceStatus, Slug } from '_DOMEnt/entities/value-objects'
 
-import { InvalidReferenceStatusError } from '../errors/invalid-reference-status-error'
+import { InvalidReferenceStatusError } from '../_errors/invalid-reference-status-error'
 
 export class CreateReferenceUseCase implements ICreateReferenceUseCase {
   constructor(private readonly referenceRepository: ReferenceRepository) {}

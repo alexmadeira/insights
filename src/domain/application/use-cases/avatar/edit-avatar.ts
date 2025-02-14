@@ -6,8 +6,9 @@ import type {
 } from '@DOMTypes/application/use-cases/avatar/edit-avatar'
 
 import { left, right } from '_COR/either'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { ZEditAvatarUseCaseRequest } from '@DOMTypes/application/use-cases/avatar/edit-avatar'
+
+import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 
 export class EditAvatarUseCase implements IEditAvatarUseCase {
   constructor(private readonly avatarRepository: AvatarRepository) {}

@@ -1,4 +1,4 @@
-import { InvalidReferenceStatusError } from '_DOMApp/use-cases/errors/invalid-reference-status-error'
+import { InvalidReferenceStatusError } from '_DOMApp/use-cases/_errors/invalid-reference-status-error'
 import { CreateReferenceUseCase } from '_DOMApp/use-cases/reference/create-reference'
 import { InMemoryReferenceRepository } from 'src/__tests__/utils/repositories/in-memory-reference-repository'
 

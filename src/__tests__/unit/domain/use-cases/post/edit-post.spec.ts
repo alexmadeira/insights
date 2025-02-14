@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { InvalidPostStatusError } from '_DOMApp/use-cases/errors/invalid-post-status-error'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
+import { InvalidPostStatusError } from '_DOMApp/use-cases/_errors/invalid-post-status-error'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
 import { EditPostUseCase } from '_DOMApp/use-cases/post/edit-post'
 import { makePost } from '_TEST/utils/factories/domain/make-post'
 import { makePostMedia } from '_TEST/utils/factories/domain/make-post-media'

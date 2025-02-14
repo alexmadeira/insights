@@ -11,7 +11,7 @@ import { Post } from '_DOMEnt/entities/post'
 import { PostMediaList } from '_DOMEnt/entities/post-media-list'
 import { PostStatus } from '_DOMEnt/entities/value-objects'
 
-import { InvalidPostStatusError } from '../errors/invalid-post-status-error'
+import { InvalidPostStatusError } from '../_errors/invalid-post-status-error'
 
 export class CreatePostUseCase implements ICreatePostUseCase {
   constructor(private readonly postRepository: PostRepository) {}

@@ -1,5 +1,5 @@
 import type { Either } from '_COR/either'
-import type { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
+import type { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
 import type { Company } from '_DOMEnt/entities/company'
 
 import { ZERole } from '@DOMTypes/enums/role'

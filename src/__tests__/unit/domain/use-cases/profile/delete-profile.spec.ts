@@ -1,5 +1,5 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
 import { DeleteProfileUseCase } from '_DOMApp/use-cases/profile/delete-profile'
 import { makeProfile } from '_TEST/utils/factories/domain/make-profile'
 import { makeProfileReference } from '_TEST/utils/factories/domain/make-profile-reference'

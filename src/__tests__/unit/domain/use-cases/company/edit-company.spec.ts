@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
+import { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
 import { EditCompanyUseCase } from '_DOMApp/use-cases/company/edit-company'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { MemberRole } from '_DOMEnt/entities/value-objects'
 import { makeCompany } from '_TEST/utils/factories/domain/make-company'
 import { makeCompanyAvatar } from '_TEST/utils/factories/domain/make-company-avatar'

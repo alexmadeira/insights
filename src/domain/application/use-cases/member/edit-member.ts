@@ -10,13 +10,14 @@ import type {
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { MemberAvatarRepository } from '_DOMApp/repositories/member-avatar-repository'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { MemberAvatar } from '_DOMEnt/entities/member-avatar'
 import { MemberAvatarList } from '_DOMEnt/entities/member-avatar-list'
 import { MemberCompany } from '_DOMEnt/entities/member-company'
 import { MemberCompanyList } from '_DOMEnt/entities/member-company-list'
 import { MemberTeam } from '_DOMEnt/entities/member-team'
 import { MemberTeamList } from '_DOMEnt/entities/member-team-list'
+
+import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 
 export class EditMemberUseCase implements IEditMemberUseCase {
   constructor(

@@ -7,10 +7,10 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
 import { ReferenceStatus } from '_DOMEnt/entities/value-objects'
 
-import { InvalidReferenceStatusError } from '../errors/invalid-reference-status-error'
+import { InvalidReferenceStatusError } from '../_errors/invalid-reference-status-error'
+import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 
 export class EditReferenceUseCase implements IEditReferenceUseCase {
   constructor(private readonly referenceRepository: ReferenceRepository) {}

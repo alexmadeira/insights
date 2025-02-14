@@ -6,7 +6,8 @@ import type {
 } from '@DOMTypes/application/use-cases/post/delete-post'
 
 import { left, right } from '_COR/either'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/errors/resource-not-found-error'
+
+import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 
 export class DeletePostUseCase implements IDeletePostUseCase {
   constructor(private readonly postRepository: PostRepository) {}

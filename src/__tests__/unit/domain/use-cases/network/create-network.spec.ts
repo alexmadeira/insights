@@ -1,5 +1,5 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { InvalidTypeError } from '_DOMApp/use-cases/errors/invalid-type-error'
+import { InvalidTypeError } from '_DOMApp/use-cases/_errors/invalid-type-error'
 import { CreateNetworkUseCase } from '_DOMApp/use-cases/network/create-network'
 import { InMemoryNetworkPostRepository } from '_TEST/utils/repositories/in-memory-network-post-repository'
 import { InMemoryNetworkRepository } from 'src/__tests__/utils/repositories/in-memory-network-repository'

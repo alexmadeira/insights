@@ -1,5 +1,5 @@
 import type { Either } from '_COR/either'
-import type { InvalidTypeError } from '_DOMApp/use-cases/errors/invalid-type-error'
+import type { InvalidTypeError } from '_DOMApp/use-cases/_errors/invalid-type-error'
 import type { Member } from '_DOMEnt/entities/member'
 
 import z from 'zod'

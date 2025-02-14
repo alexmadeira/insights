@@ -1,14 +1,14 @@
 model User {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   name         String
-  passwordHash String   @map("password_hash")
-  email        String   @unique
-  indetifier   String   @unique
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
+  passwordHash String    @map("password_hash")
+  email        String    @unique
+  indetifier   String    @unique
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime? @updatedAt @map("updated_at")
 
-  companies Company[]
-  avatars   Avatar[]
+  Avatar  Avatar[]
+  Company Company[]
 
   @@map("users")
 }
