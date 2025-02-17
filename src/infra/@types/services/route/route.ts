@@ -2,6 +2,7 @@ import type { RouteGroup } from '_INFServices/route'
 import type { IController } from '@INFTypes/http/controller'
 import type { RouteOptions } from 'fastify'
 
+import { IRoutePipe } from '_INFHttp/pipes/verify-jwt'
 import { ZEHttpMethods } from '@CORTypes/enums/http'
 import z from 'zod'
 
@@ -23,6 +24,9 @@ export const ZRouteRequest = z.object({
   method: ZEHttpMethods,
   path: z.string(),
   controller: z.custom<IController>(),
+  pipes: z.object({
+    onRequest: z.union([z.custom<IRoutePipe>(), z.array(z.custom<IRoutePipe>())]).optional(),
+  }),
 })
 
 export const ZRouteProps = ZRouteSchema.partial({
@@ -35,38 +39,21 @@ export const ZRouteProps = ZRouteSchema.partial({
   })
 
 export const ZRouteGetProps = ZRouteProps.omit({
-  method: true,
   body: true,
-}).partial({
-  params: true,
-  headers: true,
-  querystring: true,
-})
+  method: true,
+}).partial({ pipes: true, params: true, headers: true, querystring: true })
 
 export const ZRouteEditProps = ZRouteProps.omit({
   method: true,
-}).partial({
-  params: true,
-  headers: true,
-  querystring: true,
-})
+}).partial({ pipes: true, params: true, headers: true, querystring: true })
 
 export const ZRouteSendProps = ZRouteProps.omit({
   method: true,
-}).partial({
-  params: true,
-  headers: true,
-  querystring: true,
-})
+}).partial({ pipes: true, params: true, headers: true, querystring: true })
 
 export const ZRouteRemoveProps = ZRouteProps.omit({
   method: true,
-}).partial({
-  body: true,
-  params: true,
-  headers: true,
-  querystring: true,
-})
+}).partial({ pipes: true, body: true, params: true, headers: true, querystring: true })
 
 export const ZRoute = z.object({
   method: ZEHttpMethods,

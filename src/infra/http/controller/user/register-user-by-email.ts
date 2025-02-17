@@ -7,9 +7,7 @@ import { registerByEmailSchema } from '_INFHttp/schema/user'
 export class RegisterByEmailController implements IController {
   private readonly schema = registerByEmailSchema
 
-  constructor(private readonly registerUserUseCase: IRegisterUserUseCase) {
-    this.handler = this.handler.bind(this)
-  }
+  constructor(private readonly registerUserUseCase: IRegisterUserUseCase) {}
 
   public async handler(request: FastifyRequest, replay: FastifyReply) {
     const body = this.schema.getRequestBody(request)

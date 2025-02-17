@@ -7,9 +7,7 @@ import { authenticateByIndetifierSchema } from '_INFHttp/schema/user'
 export class AuthenticateByIndetifierController implements IController {
   private readonly schema = authenticateByIndetifierSchema
 
-  constructor(private readonly authenticateUserUseCase: IAuthenticateUserUseCase) {
-    this.handler = this.handler.bind(this)
-  }
+  constructor(private readonly authenticateUserUseCase: IAuthenticateUserUseCase) {}
 
   public async handler(request: FastifyRequest, replay: FastifyReply) {
     const body = this.schema.getRequestBody(request)

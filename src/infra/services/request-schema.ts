@@ -1,4 +1,4 @@
-import type { RequestSchemaProps, TRequestSchemaReturn } from '@INFTypes/common/request-schema'
+import type { RequestSchemaProps, TRequestSchemaReturn } from '@INFTypes/services/request-schema'
 import type { FastifyRequest } from 'fastify'
 import type { ZodTypeAny } from 'zod'
 

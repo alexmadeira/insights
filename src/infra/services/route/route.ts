@@ -26,7 +26,7 @@ export class Route implements IRoute {
     this.register = this.register.bind(this)
   }
 
-  protected static create(props: Optional<TRouteProps, 'headers' | 'body' | 'params' | 'querystring'>) {
+  protected static create(props: Optional<TRouteProps, 'pipes' | 'headers' | 'body' | 'params' | 'querystring'>) {
     const routeGroup = RouteGroup.create(props.routeGroup)
     const groups = _.chain(props.groups ?? [])
       .concat(routeGroup.name)
@@ -37,6 +37,7 @@ export class Route implements IRoute {
         path: routeGroup.path(props.path, zodKeys(props.params)),
         method: props.method,
         controller: props.controller,
+        pipes: props.pipes || {},
       },
       {
         groups,
@@ -77,6 +78,12 @@ export class Route implements IRoute {
 
   public get method() {
     return this._request.method
+  }
+
+  public get pipes() {
+    return _.mapValues(this._request.pipes, (hooke) => {
+      return _.compact(_.concat([], hooke)).map((pipe) => pipe?.handler)
+    })
   }
 
   public get controller() {
@@ -130,6 +137,7 @@ export class Route implements IRoute {
 
   public register(fastify: TFastifyInstance) {
     fastify.route({
+      ...this.pipes,
       url: this.path,
       method: this.method,
       schema: _.pickBy(this.schema, Boolean),

@@ -1,6 +1,6 @@
 import type { RouteGroup } from '_INFServices/route'
 
-import { authenticateByIndetifierController } from '_INFHttp/module/user'
+import { authenticateByIndetifierController } from '_INFHttp/module'
 import { authenticateByIndetifierSchema } from '_INFHttp/schema/user'
 import { Route } from '_INFServices/route'
 
