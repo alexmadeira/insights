@@ -1,8 +1,8 @@
 import type { IController } from '@INFTypes/http/controller'
 import type { RouteOptions } from 'fastify'
 
-import { IRoutePipe } from '_INFHttp/pipes/verify-jwt'
 import { ZEHttpMethods } from '@CORTypes/enums/http'
+import { ZPipe } from '@INFTypes/http/pipe'
 import z from 'zod'
 
 export const ZRouteDetails = z.object({
@@ -23,9 +23,7 @@ export const ZRouteRequest = z.object({
   method: ZEHttpMethods,
   path: z.string(),
   controller: z.custom<IController>(),
-  pipes: z.object({
-    onRequest: z.union([z.custom<IRoutePipe>(), z.array(z.custom<IRoutePipe>())]).optional(),
-  }),
+  pipes: z.array(ZPipe),
 })
 
 export const ZRouteProps = ZRouteSchema.partial({

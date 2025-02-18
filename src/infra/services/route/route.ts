@@ -31,7 +31,7 @@ export class Route implements IRoute {
         path: props.path ?? '/',
         method: props.method,
         controller: props.controller,
-        pipes: props.pipes ?? {},
+        pipes: props.pipes ?? [],
       },
       {
         tags,
@@ -87,9 +87,7 @@ export class Route implements IRoute {
   }
 
   public get pipes() {
-    return _.mapValues(this._request.pipes, (hooke) => {
-      return _.compact(_.concat([], hooke)).map((pipe) => pipe?.handler)
-    })
+    return this._request.pipes.map((pipe) => pipe.handler)
   }
 
   public get controller() {
@@ -143,7 +141,7 @@ export class Route implements IRoute {
 
   public register(fastify: TFastifyInstance) {
     fastify.route({
-      ...this.pipes,
+      onRequest: this.pipes,
       url: this.path,
       method: this.method,
       schema: _.pickBy(this.schema, Boolean),

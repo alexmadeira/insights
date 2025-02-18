@@ -1,19 +1,15 @@
-import type { IRouteGroup, TRouteGroupBasePath, TRouteGroupName } from '@INFTypes/services/route/group'
+import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
+import type { IPipe } from '@INFTypes/http/pipe'
+import type { IRouteGroup, TRouteGroupProps, TRouteGroupRoute } from '@INFTypes/services/route/group'
 
 import { AutoBind } from '_COR/auto-bind'
-import { TFastifyInstance } from '@INFTypes/http/config/fastify'
 import _ from 'lodash'
 
 import { Route } from './route'
 
-type TRoute = (fastify: TFastifyInstance) => void
-type TRouteProps = {
-  name: TRouteGroupName
-  basePath: TRouteGroupBasePath
-}
-
-export class RouteGroup extends AutoBind<TRouteProps> implements IRouteGroup {
-  private readonly _routes: Set<TRoute> = new Set<TRoute>()
+export class RouteGroup extends AutoBind<TRouteGroupProps> implements IRouteGroup {
+  private readonly _routes: Set<TRouteGroupRoute> = new Set<TRouteGroupRoute>()
+  private readonly _pipes: Set<IPipe> = new Set<IPipe>()
 
   static create(...[group = '', path = '']: [RouteGroup | string | undefined] | [string, string]) {
     if (group instanceof RouteGroup) return group
@@ -45,9 +41,16 @@ export class RouteGroup extends AutoBind<TRouteProps> implements IRouteGroup {
     return this._props.name
   }
 
+  public addMiddleware(routePipe: IPipe | IPipe[]) {
+    const pipes = _.castArray(routePipe)
+
+    pipes.forEach((pipe) => {
+      this._pipes.add(pipe)
+    })
+  }
+
   public addRoute(route: Route | Route[]) {
     const routes = _.castArray(route)
-
     routes.forEach((route) => {
       route.path = this.path(route.path, route.paramList)
       route.tags = _.chain(this.name).concat(route.tags).uniq().value()
@@ -57,6 +60,7 @@ export class RouteGroup extends AutoBind<TRouteProps> implements IRouteGroup {
   }
 
   public register(fastify: TFastifyInstance) {
+    this._pipes.forEach((pipe) => fastify.addHook('onRequest', pipe.handler))
     this._routes.forEach((route) => fastify.register(route))
   }
 }

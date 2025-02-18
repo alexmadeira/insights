@@ -1,11 +1,8 @@
-import { Encrypter } from '_DOMApp/services/cryptography/encrypter'
-import { FastifyReply, FastifyRequest } from 'fastify'
+import type { Encrypter } from '_DOMApp/services/cryptography/encrypter'
+import type { IPipe } from '@INFTypes/http/pipe'
+import type { FastifyReply, FastifyRequest } from 'fastify'
 
-export interface IRoutePipe {
-  handler(request: FastifyRequest, _reply: FastifyReply): Promise<void>
-}
-
-export class VerifyJwt implements IRoutePipe {
+export class VerifyJwt implements IPipe {
   constructor(private readonly encrypter: Encrypter) {}
 
   public async handler(request: FastifyRequest, _reply: FastifyReply) {
