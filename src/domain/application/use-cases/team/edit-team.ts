@@ -1,7 +1,7 @@
-import type { TeamAvatarRepository } from '_DOMApp/repositories/team-avatar-repository'
-import type { TeamMemberRepository } from '_DOMApp/repositories/team-member-repository'
-import type { TeamProfileRepository } from '_DOMApp/repositories/team-profile-repository'
-import type { TeamRepository } from '_DOMApp/repositories/team-repository'
+import type { TeamAvatarRepository } from '_DOM/application/repositories/team-avatar-repository'
+import type { TeamMemberRepository } from '_DOM/application/repositories/team-member-repository'
+import type { TeamProfileRepository } from '_DOM/application/repositories/team-profile-repository'
+import type { TeamRepository } from '_DOM/application/repositories/team-repository'
 import type {
   IEditTeamUseCase,
   TEditTeamUseCaseRequest,
@@ -10,12 +10,12 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { TeamAvatar } from '_DOMEnt/entities/team-avatar'
-import { TeamAvatarList } from '_DOMEnt/entities/team-avatar-list'
-import { TeamMember } from '_DOMEnt/entities/team-member'
-import { TeamMemberList } from '_DOMEnt/entities/team-member-list'
-import { TeamProfile } from '_DOMEnt/entities/team-profile'
-import { TeamProfileList } from '_DOMEnt/entities/team-profile-list'
+import { TeamAvatar } from '_DOM/enterprise/entities/team-avatar'
+import { TeamAvatarList } from '_DOM/enterprise/entities/team-avatar-list'
+import { TeamMember } from '_DOM/enterprise/entities/team-member'
+import { TeamMemberList } from '_DOM/enterprise/entities/team-member-list'
+import { TeamProfile } from '_DOM/enterprise/entities/team-profile'
+import { TeamProfileList } from '_DOM/enterprise/entities/team-profile-list'
 
 import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 

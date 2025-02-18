@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
-import { EditAvatarUseCase } from '_DOMApp/use-cases/avatar/edit-avatar'
+import { ResourceNotFoundError } from '_DOM/application/use-cases/_errors/resource-not-found-error'
+import { EditAvatarUseCase } from '_DOM/application/use-cases/avatar/edit-avatar'
 import { makeAvatar } from '_TEST/utils/factories/domain/make-avatar'
 import { InMemoryAvatarRepository } from '_TEST/utils/repositories/in-memory-avatar-repository'
 

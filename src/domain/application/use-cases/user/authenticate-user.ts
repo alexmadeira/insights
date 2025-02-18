@@ -1,4 +1,4 @@
-import type { UserRepository } from '_DOMApp/repositories/user-repository'
+import type { UserRepository } from '_DOM/application/repositories/user-repository'
 import type {
   IAuthenticateUserUseCase,
   TAuthenticateUserUseCaseRequest,
@@ -6,8 +6,8 @@ import type {
 } from '@DOMTypes/application/use-cases/user/authenticate-user'
 
 import { left, right } from '_COR/either'
-import { Encrypter } from '_DOMApp/services/cryptography/encrypter'
-import { HashComparer } from '_DOMApp/services/cryptography/hash-comparer'
+import { Encrypter } from '_DOM/application/services/cryptography/encrypter'
+import { HashComparer } from '_DOM/application/services/cryptography/hash-comparer'
 
 import { UserWrongCredentialsError } from '../_errors/user-wrong-credentials-error'
 

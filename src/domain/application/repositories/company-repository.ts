@@ -1,4 +1,4 @@
-import type { Company } from '_DOMEnt/entities/company'
+import type { Company } from '_DOM/enterprise/entities/company'
 
 export interface CompanyRepository {
   findById(id: string): Promise<Company | null>

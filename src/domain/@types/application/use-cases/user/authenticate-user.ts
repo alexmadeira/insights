@@ -1,5 +1,5 @@
 import type { Either } from '_COR/either'
-import type { UserWrongCredentialsError } from '_DOMApp/use-cases/_errors/user-wrong-credentials-error'
+import type { UserWrongCredentialsError } from '_DOM/application/use-cases/_errors/user-wrong-credentials-error'
 
 import z from 'zod'
 

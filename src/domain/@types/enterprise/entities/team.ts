@@ -1,8 +1,8 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { TeamAvatarList } from '_DOMEnt/entities/team-avatar-list'
-import type { TeamMemberList } from '_DOMEnt/entities/team-member-list'
-import type { TeamProfileList } from '_DOMEnt/entities/team-profile-list'
-import type { Slug } from '_DOMEnt/entities/value-objects'
+import type { TeamAvatarList } from '_DOM/enterprise/entities/team-avatar-list'
+import type { TeamMemberList } from '_DOM/enterprise/entities/team-member-list'
+import type { TeamProfileList } from '_DOM/enterprise/entities/team-profile-list'
+import type { Slug } from '_DOM/enterprise/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'

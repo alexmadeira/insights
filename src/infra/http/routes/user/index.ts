@@ -1,6 +1,6 @@
 import type { TFastifyInstance } from '@INFTypes/http/config/fastify'
 
-import { RouteGroup } from '_INFServices/route'
+import { RouteGroup } from '_INF/services/route'
 
 import { authenticateByIndetifierRoute } from './authenticate-user'
 import { registerByEmailRoute } from './register-user'

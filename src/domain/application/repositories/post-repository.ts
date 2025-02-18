@@ -1,4 +1,4 @@
-import type { Post } from '_DOMEnt/entities/post'
+import type { Post } from '_DOM/enterprise/entities/post'
 
 export interface PostRepository {
   findById(id: string): Promise<Post | null>

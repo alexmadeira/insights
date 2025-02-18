@@ -1,4 +1,4 @@
-import type { TeamAvatar } from '_DOMEnt/entities/team-avatar'
+import type { TeamAvatar } from '_DOM/enterprise/entities/team-avatar'
 
 export interface TeamAvatarRepository {
   create(teamAvatar: TeamAvatar): Promise<TeamAvatar>

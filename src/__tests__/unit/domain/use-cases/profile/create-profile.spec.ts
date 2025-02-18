@@ -1,5 +1,5 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { CreateProfileUseCase } from '_DOMApp/use-cases/profile/create-profile'
+import { CreateProfileUseCase } from '_DOM/application/use-cases/profile/create-profile'
 import { InMemoryProfileReferenceRepository } from '_TEST/utils/repositories/in-memory-profile-reference-repository'
 import { InMemoryProfileRepository } from 'src/__tests__/utils/repositories/in-memory-profile-repository'
 

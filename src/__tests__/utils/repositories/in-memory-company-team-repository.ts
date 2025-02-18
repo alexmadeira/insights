@@ -1,5 +1,5 @@
-import type { CompanyTeamRepository } from '_DOMApp/repositories/company-team-repository'
-import type { CompanyTeam } from '_DOMEnt/entities/company-team'
+import type { CompanyTeamRepository } from '_DOM/application/repositories/company-team-repository'
+import type { CompanyTeam } from '_DOM/enterprise/entities/company-team'
 
 export class InMemoryCompanyTeamRepository implements CompanyTeamRepository {
   public itens: CompanyTeam[] = []

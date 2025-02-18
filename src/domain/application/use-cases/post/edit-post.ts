@@ -1,5 +1,5 @@
-import type { PostMediaRepository } from '_DOMApp/repositories/post-media-repository'
-import type { PostRepository } from '_DOMApp/repositories/post-repository'
+import type { PostMediaRepository } from '_DOM/application/repositories/post-media-repository'
+import type { PostRepository } from '_DOM/application/repositories/post-repository'
 import type {
   IEditPostUseCase,
   TEditPostUseCaseRequest,
@@ -8,9 +8,9 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { PostMedia } from '_DOMEnt/entities/post-media'
-import { PostMediaList } from '_DOMEnt/entities/post-media-list'
-import { PostStatus } from '_DOMEnt/entities/value-objects'
+import { PostMedia } from '_DOM/enterprise/entities/post-media'
+import { PostMediaList } from '_DOM/enterprise/entities/post-media-list'
+import { PostStatus } from '_DOM/enterprise/entities/value-objects'
 
 import { InvalidPostStatusError } from '../_errors/invalid-post-status-error'
 import { ResourceNotFoundError } from '../_errors/resource-not-found-error'

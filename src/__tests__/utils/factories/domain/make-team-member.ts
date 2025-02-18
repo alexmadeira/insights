@@ -1,7 +1,7 @@
-import type { TTeamMemberProps } from '_DOMEnt/entities/team-member'
+import type { TTeamMemberProps } from '_DOM/enterprise/entities/team-member'
 
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { TeamMember } from '_DOMEnt/entities/team-member'
+import { TeamMember } from '_DOM/enterprise/entities/team-member'
 
 export function makeTeamMember(overrides: Partial<TTeamMemberProps> = {}, id?: UniqueEntityID) {
   return TeamMember.create(

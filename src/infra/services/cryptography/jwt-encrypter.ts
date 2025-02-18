@@ -1,7 +1,7 @@
-import type { Encrypter } from '_DOMApp/services/cryptography/encrypter'
+import type { Encrypter } from '_DOM/application/services/cryptography/encrypter'
 
-import { AccessTokenInvalidError } from '_INFHttp/_error/access-token-invalid-error'
-import { AccessTokenNotProvidedError } from '_INFHttp/_error/access-token-not-provided-error'
+import { AccessTokenInvalidError } from '_INF/http/_error/access-token-invalid-error'
+import { AccessTokenNotProvidedError } from '_INF/http/_error/access-token-not-provided-error'
 import jwt from 'jsonwebtoken'
 import _ from 'lodash'
 

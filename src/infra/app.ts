@@ -1,4 +1,4 @@
-import { routes } from '_INFHttp/routes'
+import { routes } from '_INF/http/routes'
 import { fastify } from 'fastify'
 
 import { fastifyConfig } from './config/fastify-config'

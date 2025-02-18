@@ -1,6 +1,6 @@
 import type { Either } from '_COR/either'
-import type { UserAlreadyExistisError } from '_DOMApp/use-cases/_errors/user-already-existis-error'
-import type { User } from '_DOMEnt/entities/user'
+import type { UserAlreadyExistisError } from '_DOM/application/use-cases/_errors/user-already-existis-error'
+import type { User } from '_DOM/enterprise/entities/user'
 
 import z from 'zod'
 

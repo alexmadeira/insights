@@ -1,6 +1,6 @@
-import type { PostMediaRepository } from '_DOMApp/repositories/post-media-repository'
-import type { PostRepository } from '_DOMApp/repositories/post-repository'
-import type { Post } from '_DOMEnt/entities/post'
+import type { PostMediaRepository } from '_DOM/application/repositories/post-media-repository'
+import type { PostRepository } from '_DOM/application/repositories/post-repository'
+import type { Post } from '_DOM/enterprise/entities/post'
 
 export class PrismaPostRepository implements PostRepository {
   public itens: Post[] = []

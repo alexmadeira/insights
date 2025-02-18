@@ -1,11 +1,11 @@
-import type { TCompanyProps } from '_DOMEnt/entities/company'
+import type { TCompanyProps } from '_DOM/enterprise/entities/company'
 
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { Company } from '_DOMEnt/entities/company'
-import { CompanyAvatarList } from '_DOMEnt/entities/company-avatar-list'
-import { CompanyMemberList } from '_DOMEnt/entities/company-member-list'
-import { CompanyProfileList } from '_DOMEnt/entities/company-profile-list'
-import { CompanyTeamList } from '_DOMEnt/entities/company-team-list'
+import { Company } from '_DOM/enterprise/entities/company'
+import { CompanyAvatarList } from '_DOM/enterprise/entities/company-avatar-list'
+import { CompanyMemberList } from '_DOM/enterprise/entities/company-member-list'
+import { CompanyProfileList } from '_DOM/enterprise/entities/company-profile-list'
+import { CompanyTeamList } from '_DOM/enterprise/entities/company-team-list'
 import { faker } from '@faker-js/faker'
 
 export function makeCompany(overrides: Partial<TCompanyProps> = {}, id?: UniqueEntityID) {

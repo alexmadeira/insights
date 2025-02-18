@@ -1,6 +1,6 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { PostMediaList } from '_DOMEnt/entities/post-media-list'
-import type { PostStatus } from '_DOMEnt/entities/value-objects'
+import type { PostMediaList } from '_DOM/enterprise/entities/post-media-list'
+import type { PostStatus } from '_DOM/enterprise/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'

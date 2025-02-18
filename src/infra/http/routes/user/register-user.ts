@@ -1,6 +1,6 @@
-import { registerByEmailController } from '_INFHttp/module'
-import { registerByEmailSchema } from '_INFHttp/schema/user'
-import { Route } from '_INFServices/route'
+import { registerByEmailController } from '_INF/http/module'
+import { registerByEmailSchema } from '_INF/http/schema/user'
+import { Route } from '_INF/services/route'
 
 export const registerByEmailRoute = Route.post({
   path: '/register',

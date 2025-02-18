@@ -1,5 +1,5 @@
-import type { MediaRepository } from '_DOMApp/repositories/media-repository'
-import type { Media } from '_DOMEnt/entities/media'
+import type { MediaRepository } from '_DOM/application/repositories/media-repository'
+import type { Media } from '_DOM/enterprise/entities/media'
 
 export class PrismaMediaRepository implements MediaRepository {
   public itens: Media[] = []

@@ -1,6 +1,6 @@
 import type { Either } from '_COR/either'
-import type { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
-import type { Profile } from '_DOMEnt/entities/profile'
+import type { ResourceNotFoundError } from '_DOM/application/use-cases/_errors/resource-not-found-error'
+import type { Profile } from '_DOM/enterprise/entities/profile'
 
 import z from 'zod'
 

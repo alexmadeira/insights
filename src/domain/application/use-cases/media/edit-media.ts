@@ -1,4 +1,4 @@
-import type { MediaRepository } from '_DOMApp/repositories/media-repository'
+import type { MediaRepository } from '_DOM/application/repositories/media-repository'
 import type {
   IEditMediaUseCase,
   TEditMediaUseCaseRequest,
@@ -6,7 +6,7 @@ import type {
 } from '@DOMTypes/application/use-cases/media/edit-media'
 
 import { left, right } from '_COR/either'
-import { MediaType } from '_DOMEnt/entities/value-objects'
+import { MediaType } from '_DOM/enterprise/entities/value-objects'
 
 import { InvalidTypeError } from '../_errors/invalid-type-error'
 import { ResourceNotFoundError } from '../_errors/resource-not-found-error'

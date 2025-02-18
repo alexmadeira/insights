@@ -1,5 +1,5 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { CreateTeamUseCase } from '_DOMApp/use-cases/team/create-team'
+import { CreateTeamUseCase } from '_DOM/application/use-cases/team/create-team'
 import { InMemoryTeamAvatarRepository } from '_TEST/utils/repositories/in-memory-team-avatar-repository'
 import { InMemoryTeamMemberRepository } from '_TEST/utils/repositories/in-memory-team-member-repository'
 import { InMemoryTeamProfileRepository } from '_TEST/utils/repositories/in-memory-team-profile-repository'

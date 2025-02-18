@@ -1,4 +1,4 @@
-import type { AvatarRepository } from '_DOMApp/repositories/avatar-repository'
+import type { AvatarRepository } from '_DOM/application/repositories/avatar-repository'
 import type {
   IEditAvatarUseCase,
   TEditAvatarUseCaseRequest,

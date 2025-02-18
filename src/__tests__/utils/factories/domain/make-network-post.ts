@@ -1,7 +1,7 @@
-import type { TNetworkPostProps } from '_DOMEnt/entities/network-post'
+import type { TNetworkPostProps } from '_DOM/enterprise/entities/network-post'
 
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { NetworkPost } from '_DOMEnt/entities/network-post'
+import { NetworkPost } from '_DOM/enterprise/entities/network-post'
 
 export function makeNetworkPost(overrides: Partial<TNetworkPostProps> = {}, id?: UniqueEntityID) {
   return NetworkPost.create(

@@ -1,5 +1,5 @@
-import type { CompanyMemberRepository } from '_DOMApp/repositories/company-member-repository'
-import type { CompanyMember } from '_DOMEnt/entities/company-member'
+import type { CompanyMemberRepository } from '_DOM/application/repositories/company-member-repository'
+import type { CompanyMember } from '_DOM/enterprise/entities/company-member'
 
 export class PrismaCompanyMemberRepository implements CompanyMemberRepository {
   public itens: CompanyMember[] = []

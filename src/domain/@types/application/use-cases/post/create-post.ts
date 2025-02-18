@@ -1,6 +1,6 @@
 import type { Either } from '_COR/either'
-import type { InvalidPostStatusError } from '_DOMApp/use-cases/_errors/invalid-post-status-error'
-import type { Post } from '_DOMEnt/entities/post'
+import type { InvalidPostStatusError } from '_DOM/application/use-cases/_errors/invalid-post-status-error'
+import type { Post } from '_DOM/enterprise/entities/post'
 
 import z from 'zod'
 

@@ -1,5 +1,5 @@
-import type { UserRepository } from '_DOMApp/repositories/user-repository'
-import type { HashGenerator } from '_DOMApp/services/cryptography/hash-generator'
+import type { UserRepository } from '_DOM/application/repositories/user-repository'
+import type { HashGenerator } from '_DOM/application/services/cryptography/hash-generator'
 import type {
   IRegisterUserUseCase,
   TRegisterUserUseCaseRequest,
@@ -7,7 +7,7 @@ import type {
 } from '@DOMTypes/application/use-cases/user/register-user'
 
 import { left, right } from '_COR/either'
-import { User } from '_DOMEnt/entities/user'
+import { User } from '_DOM/enterprise/entities/user'
 
 import { UserAlreadyExistisError } from '../_errors/user-already-existis-error'
 

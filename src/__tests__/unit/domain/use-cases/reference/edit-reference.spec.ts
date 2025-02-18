@@ -1,7 +1,7 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { InvalidReferenceStatusError } from '_DOMApp/use-cases/_errors/invalid-reference-status-error'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
-import { EditReferenceUseCase } from '_DOMApp/use-cases/reference/edit-reference'
+import { InvalidReferenceStatusError } from '_DOM/application/use-cases/_errors/invalid-reference-status-error'
+import { ResourceNotFoundError } from '_DOM/application/use-cases/_errors/resource-not-found-error'
+import { EditReferenceUseCase } from '_DOM/application/use-cases/reference/edit-reference'
 import { makeReference } from '_TEST/utils/factories/domain/make-reference'
 import { InMemoryReferenceRepository } from '_TEST/utils/repositories/in-memory-reference-repository'
 

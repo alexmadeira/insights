@@ -1,4 +1,4 @@
-import type { MemberRepository } from '_DOMApp/repositories/member-repository'
+import type { MemberRepository } from '_DOM/application/repositories/member-repository'
 import type {
   IDeleteMemberUseCase,
   TDeleteMemberUseCaseRequest,

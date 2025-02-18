@@ -2,8 +2,8 @@ import { randomUUID } from 'node:crypto'
 
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
 import { ROLES } from '_DOM/constants/role'
-import { CompanyMember } from '_DOMEnt/entities/company-member'
-import { MemberRole } from '_DOMEnt/entities/value-objects'
+import { CompanyMember } from '_DOM/enterprise/entities/company-member'
+import { MemberRole } from '_DOM/enterprise/entities/value-objects'
 import { faker } from '@faker-js/faker'
 
 type TMakeCompanyMemberProps = {

@@ -1,4 +1,4 @@
-import type { Team } from '_DOMEnt/entities/team'
+import type { Team } from '_DOM/enterprise/entities/team'
 
 export interface TeamRepository {
   findById(id: string): Promise<Team | null>

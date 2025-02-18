@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
-import { DeletePostUseCase } from '_DOMApp/use-cases/post/delete-post'
+import { ResourceNotFoundError } from '_DOM/application/use-cases/_errors/resource-not-found-error'
+import { DeletePostUseCase } from '_DOM/application/use-cases/post/delete-post'
 import { makePost } from '_TEST/utils/factories/domain/make-post'
 import { makePostMedia } from '_TEST/utils/factories/domain/make-post-media'
 import { InMemoryPostMediaRepository } from '_TEST/utils/repositories/in-memory-post-media-repository'

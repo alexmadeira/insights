@@ -1,6 +1,6 @@
-import type { MemberCompanyRepository } from '_DOMApp/repositories/member-company-repository'
-import type { MemberRepository } from '_DOMApp/repositories/member-repository'
-import type { MemberTeamRepository } from '_DOMApp/repositories/member-team-repository'
+import type { MemberCompanyRepository } from '_DOM/application/repositories/member-company-repository'
+import type { MemberRepository } from '_DOM/application/repositories/member-repository'
+import type { MemberTeamRepository } from '_DOM/application/repositories/member-team-repository'
 import type {
   IEditMemberUseCase,
   TEditMemberUseCaseRequest,
@@ -9,13 +9,13 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { MemberAvatarRepository } from '_DOMApp/repositories/member-avatar-repository'
-import { MemberAvatar } from '_DOMEnt/entities/member-avatar'
-import { MemberAvatarList } from '_DOMEnt/entities/member-avatar-list'
-import { MemberCompany } from '_DOMEnt/entities/member-company'
-import { MemberCompanyList } from '_DOMEnt/entities/member-company-list'
-import { MemberTeam } from '_DOMEnt/entities/member-team'
-import { MemberTeamList } from '_DOMEnt/entities/member-team-list'
+import { MemberAvatarRepository } from '_DOM/application/repositories/member-avatar-repository'
+import { MemberAvatar } from '_DOM/enterprise/entities/member-avatar'
+import { MemberAvatarList } from '_DOM/enterprise/entities/member-avatar-list'
+import { MemberCompany } from '_DOM/enterprise/entities/member-company'
+import { MemberCompanyList } from '_DOM/enterprise/entities/member-company-list'
+import { MemberTeam } from '_DOM/enterprise/entities/member-team'
+import { MemberTeamList } from '_DOM/enterprise/entities/member-team-list'
 
 import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 

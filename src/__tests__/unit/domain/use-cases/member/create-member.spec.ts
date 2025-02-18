@@ -1,5 +1,5 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { CreateMemberUseCase } from '_DOMApp/use-cases/member/create-member'
+import { CreateMemberUseCase } from '_DOM/application/use-cases/member/create-member'
 import { InMemoryMemberAvatarRepository } from '_TEST/utils/repositories/in-memory-member-avatar-repository'
 import { InMemoryMemberCompanyRepository } from '_TEST/utils/repositories/in-memory-member-company-repository'
 import { InMemoryMemberRepository } from '_TEST/utils/repositories/in-memory-member-repository'

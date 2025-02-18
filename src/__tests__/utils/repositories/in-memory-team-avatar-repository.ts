@@ -1,5 +1,5 @@
-import type { TeamAvatarRepository } from '_DOMApp/repositories/team-avatar-repository'
-import type { TeamAvatar } from '_DOMEnt/entities/team-avatar'
+import type { TeamAvatarRepository } from '_DOM/application/repositories/team-avatar-repository'
+import type { TeamAvatar } from '_DOM/enterprise/entities/team-avatar'
 
 export class InMemoryTeamAvatarRepository implements TeamAvatarRepository {
   public itens: TeamAvatar[] = []

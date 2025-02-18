@@ -1,6 +1,6 @@
-import type { ProfileReferenceRepository } from '_DOMApp/repositories/profile-reference-repository'
-import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
-import type { Profile } from '_DOMEnt/entities/profile'
+import type { ProfileReferenceRepository } from '_DOM/application/repositories/profile-reference-repository'
+import type { ProfileRepository } from '_DOM/application/repositories/profile-repository'
+import type { Profile } from '_DOM/enterprise/entities/profile'
 
 export class InMemoryProfileRepository implements ProfileRepository {
   public itens: Profile[] = []

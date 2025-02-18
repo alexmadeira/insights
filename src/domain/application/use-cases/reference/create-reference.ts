@@ -1,4 +1,4 @@
-import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
+import type { ReferenceRepository } from '_DOM/application/repositories/reference-repository'
 import type {
   ICreateReferenceUseCase,
   TCreateReferenceUseCaseRequest,
@@ -7,8 +7,8 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { Reference } from '_DOMEnt/entities/reference'
-import { ReferenceStatus, Slug } from '_DOMEnt/entities/value-objects'
+import { Reference } from '_DOM/enterprise/entities/reference'
+import { ReferenceStatus, Slug } from '_DOM/enterprise/entities/value-objects'
 
 import { InvalidReferenceStatusError } from '../_errors/invalid-reference-status-error'
 

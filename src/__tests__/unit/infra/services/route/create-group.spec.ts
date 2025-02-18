@@ -1,4 +1,4 @@
-import { RouteGroup } from '_INFServices/route'
+import { RouteGroup } from '_INF/services/route'
 
 describe('Infra', () => {
   describe('Common', () => {

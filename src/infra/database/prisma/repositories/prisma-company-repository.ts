@@ -1,9 +1,9 @@
-import type { CompanyAvatarRepository } from '_DOMApp/repositories/company-avatar-repository'
-import type { CompanyMemberRepository } from '_DOMApp/repositories/company-member-repository'
-import type { CompanyProfileRepository } from '_DOMApp/repositories/company-profile-repository'
-import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
-import type { CompanyTeamRepository } from '_DOMApp/repositories/company-team-repository'
-import type { Company } from '_DOMEnt/entities/company'
+import type { CompanyAvatarRepository } from '_DOM/application/repositories/company-avatar-repository'
+import type { CompanyMemberRepository } from '_DOM/application/repositories/company-member-repository'
+import type { CompanyProfileRepository } from '_DOM/application/repositories/company-profile-repository'
+import type { CompanyRepository } from '_DOM/application/repositories/company-repository'
+import type { CompanyTeamRepository } from '_DOM/application/repositories/company-team-repository'
+import type { Company } from '_DOM/enterprise/entities/company'
 
 export class PrismaCompanyRepository implements CompanyRepository {
   public itens: Company[] = []

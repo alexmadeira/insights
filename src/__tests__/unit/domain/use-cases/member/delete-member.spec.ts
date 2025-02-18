@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
-import { DeleteMemberUseCase } from '_DOMApp/use-cases/member/delete-member'
+import { ResourceNotFoundError } from '_DOM/application/use-cases/_errors/resource-not-found-error'
+import { DeleteMemberUseCase } from '_DOM/application/use-cases/member/delete-member'
 import { makeMember } from '_TEST/utils/factories/domain/make-member'
 import { makeMemberAvatar } from '_TEST/utils/factories/domain/make-member-avatar'
 import { makeMemberCompany } from '_TEST/utils/factories/domain/make-member-company'

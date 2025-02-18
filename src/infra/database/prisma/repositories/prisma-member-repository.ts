@@ -1,8 +1,8 @@
-import type { MemberAvatarRepository } from '_DOMApp/repositories/member-avatar-repository'
-import type { MemberCompanyRepository } from '_DOMApp/repositories/member-company-repository'
-import type { MemberRepository } from '_DOMApp/repositories/member-repository'
-import type { MemberTeamRepository } from '_DOMApp/repositories/member-team-repository'
-import type { Member } from '_DOMEnt/entities/member'
+import type { MemberAvatarRepository } from '_DOM/application/repositories/member-avatar-repository'
+import type { MemberCompanyRepository } from '_DOM/application/repositories/member-company-repository'
+import type { MemberRepository } from '_DOM/application/repositories/member-repository'
+import type { MemberTeamRepository } from '_DOM/application/repositories/member-team-repository'
+import type { Member } from '_DOM/enterprise/entities/member'
 
 export class PrismaMemberRepository implements MemberRepository {
   public itens: Member[] = []

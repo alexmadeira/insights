@@ -1,8 +1,8 @@
-import type { CompanyAvatarList } from '_DOMEnt/entities/company-avatar-list'
-import type { CompanyMemberList } from '_DOMEnt/entities/company-member-list'
-import type { CompanyProfileList } from '_DOMEnt/entities/company-profile-list'
-import type { CompanyTeamList } from '_DOMEnt/entities/company-team-list'
-import type { Slug } from '_DOMEnt/entities/value-objects'
+import type { CompanyAvatarList } from '_DOM/enterprise/entities/company-avatar-list'
+import type { CompanyMemberList } from '_DOM/enterprise/entities/company-member-list'
+import type { CompanyProfileList } from '_DOM/enterprise/entities/company-profile-list'
+import type { CompanyTeamList } from '_DOM/enterprise/entities/company-team-list'
+import type { Slug } from '_DOM/enterprise/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'

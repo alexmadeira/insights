@@ -1,7 +1,7 @@
-import type { MemberAvatarList } from '_DOMEnt/entities/member-avatar-list'
-import type { MemberCompanyList } from '_DOMEnt/entities/member-company-list'
-import type { MemberTeamList } from '_DOMEnt/entities/member-team-list'
-import type { Slug } from '_DOMEnt/entities/value-objects'
+import type { MemberAvatarList } from '_DOM/enterprise/entities/member-avatar-list'
+import type { MemberCompanyList } from '_DOM/enterprise/entities/member-company-list'
+import type { MemberTeamList } from '_DOM/enterprise/entities/member-team-list'
+import type { Slug } from '_DOM/enterprise/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'

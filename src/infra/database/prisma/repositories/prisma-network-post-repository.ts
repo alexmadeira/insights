@@ -1,5 +1,5 @@
-import type { NetworkPostRepository } from '_DOMApp/repositories/network-post-repository'
-import type { NetworkPost } from '_DOMEnt/entities/network-post'
+import type { NetworkPostRepository } from '_DOM/application/repositories/network-post-repository'
+import type { NetworkPost } from '_DOM/enterprise/entities/network-post'
 
 export class PrismaNetworkPostRepository implements NetworkPostRepository {
   public itens: NetworkPost[] = []

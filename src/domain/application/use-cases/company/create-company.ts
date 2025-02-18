@@ -1,4 +1,4 @@
-import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
+import type { CompanyRepository } from '_DOM/application/repositories/company-repository'
 import type {
   ICreateCompanyUseCase,
   TCreateCompanyUseCaseRequest,
@@ -6,11 +6,11 @@ import type {
 } from '@DOMTypes/application/use-cases/company/create-company'
 
 import { right } from '_COR/either'
-import { Company } from '_DOMEnt/entities/company'
-import { CompanyAvatarList } from '_DOMEnt/entities/company-avatar-list'
-import { CompanyMemberList } from '_DOMEnt/entities/company-member-list'
-import { CompanyProfileList } from '_DOMEnt/entities/company-profile-list'
-import { CompanyTeamList } from '_DOMEnt/entities/company-team-list'
+import { Company } from '_DOM/enterprise/entities/company'
+import { CompanyAvatarList } from '_DOM/enterprise/entities/company-avatar-list'
+import { CompanyMemberList } from '_DOM/enterprise/entities/company-member-list'
+import { CompanyProfileList } from '_DOM/enterprise/entities/company-profile-list'
+import { CompanyTeamList } from '_DOM/enterprise/entities/company-team-list'
 
 export class CreateCompanyUseCase implements ICreateCompanyUseCase {
   constructor(private readonly companyRepository: CompanyRepository) {}

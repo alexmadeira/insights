@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { InvalidPostStatusError } from '_DOMApp/use-cases/_errors/invalid-post-status-error'
-import { CreatePostUseCase } from '_DOMApp/use-cases/post/create-post'
+import { InvalidPostStatusError } from '_DOM/application/use-cases/_errors/invalid-post-status-error'
+import { CreatePostUseCase } from '_DOM/application/use-cases/post/create-post'
 import { InMemoryPostMediaRepository } from '_TEST/utils/repositories/in-memory-post-media-repository'
 import { InMemoryPostRepository } from '_TEST/utils/repositories/in-memory-post-repository'
 

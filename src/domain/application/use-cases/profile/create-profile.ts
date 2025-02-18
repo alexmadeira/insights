@@ -1,4 +1,4 @@
-import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
+import type { ProfileRepository } from '_DOM/application/repositories/profile-repository'
 import type {
   ICreateProfileUseCase,
   TCreateProfileUseCaseRequest,
@@ -7,9 +7,9 @@ import type {
 
 import { right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { Connection } from '_DOMEnt/entities/connection'
-import { Profile } from '_DOMEnt/entities/profile'
-import { ProfileReferenceList } from '_DOMEnt/entities/profile-reference-list'
+import { Connection } from '_DOM/enterprise/entities/connection'
+import { Profile } from '_DOM/enterprise/entities/profile'
+import { ProfileReferenceList } from '_DOM/enterprise/entities/profile-reference-list'
 
 export class CreateProfileUseCase implements ICreateProfileUseCase {
   constructor(private readonly profileRepository: ProfileRepository) {}

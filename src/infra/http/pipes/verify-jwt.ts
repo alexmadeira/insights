@@ -1,4 +1,4 @@
-import type { Encrypter } from '_DOMApp/services/cryptography/encrypter'
+import type { Encrypter } from '_DOM/application/services/cryptography/encrypter'
 import type { IPipe } from '@INFTypes/http/pipe'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 

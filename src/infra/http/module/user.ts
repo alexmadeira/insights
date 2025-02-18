@@ -1,13 +1,11 @@
-import { AuthenticateUserUseCase } from '_DOMApp/use-cases/user/authenticate-user'
-import { RegisterUserUseCase } from '_DOMApp/use-cases/user/register-user'
+import { AuthenticateUserUseCase } from '_DOM/application/use-cases/user/authenticate-user'
+import { RegisterUserUseCase } from '_DOM/application/use-cases/user/register-user'
 import { PrismaService } from '_INF/database/prisma'
 import { PrismaUserRepository } from '_INF/database/prisma/repositories'
-import { ModuleManager } from '_INFServices/module-manager'
+import { ModuleManager } from '_INF/services/module-manager'
 
 import { AuthenticateByIndetifierController } from '../controller/user/authenticate-user-by-indetifier'
 import { RegisterByEmailController } from '../controller/user/register-user-by-email'
-
-import { encrypter, hasher } from './auth'
 
 export const userRepository = ModuleManager.create(PrismaUserRepository, PrismaService)
 

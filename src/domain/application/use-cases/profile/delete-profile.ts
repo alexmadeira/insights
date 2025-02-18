@@ -1,4 +1,4 @@
-import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
+import type { ProfileRepository } from '_DOM/application/repositories/profile-repository'
 import type {
   IDeleteProfileUseCase,
   TDeleteProfileUseCaseRequest,

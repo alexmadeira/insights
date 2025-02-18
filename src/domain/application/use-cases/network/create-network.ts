@@ -1,4 +1,4 @@
-import type { NetworkRepository } from '_DOMApp/repositories/network-repository'
+import type { NetworkRepository } from '_DOM/application/repositories/network-repository'
 import type {
   ICreateNetworkUseCase,
   TCreateNetworkUseCaseRequest,
@@ -6,9 +6,9 @@ import type {
 } from '@DOMTypes/application/use-cases/network/create-network'
 
 import { left, right } from '_COR/either'
-import { Network } from '_DOMEnt/entities/network'
-import { NetworkPostList } from '_DOMEnt/entities/network-post-list'
-import { NetworkType } from '_DOMEnt/entities/value-objects'
+import { Network } from '_DOM/enterprise/entities/network'
+import { NetworkPostList } from '_DOM/enterprise/entities/network-post-list'
+import { NetworkType } from '_DOM/enterprise/entities/value-objects'
 
 import { InvalidTypeError } from '../_errors/invalid-type-error'
 

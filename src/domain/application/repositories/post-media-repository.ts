@@ -1,4 +1,4 @@
-import type { PostMedia } from '_DOMEnt/entities/post-media'
+import type { PostMedia } from '_DOM/enterprise/entities/post-media'
 
 export interface PostMediaRepository {
   create(postMedia: PostMedia): Promise<PostMedia>

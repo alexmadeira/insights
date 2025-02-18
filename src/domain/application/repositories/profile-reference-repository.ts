@@ -1,4 +1,4 @@
-import type { ProfileReference } from '_DOMEnt/entities/profile-reference'
+import type { ProfileReference } from '_DOM/enterprise/entities/profile-reference'
 
 export interface ProfileReferenceRepository {
   create(profileReference: ProfileReference): Promise<ProfileReference>

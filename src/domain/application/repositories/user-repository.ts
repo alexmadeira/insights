@@ -1,4 +1,4 @@
-import type { User } from '_DOMEnt/entities/user'
+import type { User } from '_DOM/enterprise/entities/user'
 
 export interface UserRepository {
   findById(id: string): Promise<User | null>

@@ -1,5 +1,5 @@
-import type { CompanyAvatarRepository } from '_DOMApp/repositories/company-avatar-repository'
-import type { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
+import type { CompanyAvatarRepository } from '_DOM/application/repositories/company-avatar-repository'
+import type { CompanyAvatar } from '_DOM/enterprise/entities/company-avatar'
 
 export class PrismaCompanyAvatarRepository implements CompanyAvatarRepository {
   public itens: CompanyAvatar[] = []

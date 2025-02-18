@@ -1,4 +1,4 @@
-import { CreateAvatarUseCase } from '_DOMApp/use-cases/avatar/create-avatar'
+import { CreateAvatarUseCase } from '_DOM/application/use-cases/avatar/create-avatar'
 import { InMemoryAvatarRepository } from '_TEST/utils/repositories/in-memory-avatar-repository'
 
 let inMemoryAvatarRepository: InMemoryAvatarRepository

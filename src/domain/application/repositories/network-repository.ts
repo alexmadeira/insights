@@ -1,4 +1,4 @@
-import type { Network } from '_DOMEnt/entities/network'
+import type { Network } from '_DOM/enterprise/entities/network'
 
 export interface NetworkRepository {
   findById(id: string): Promise<Network | null>

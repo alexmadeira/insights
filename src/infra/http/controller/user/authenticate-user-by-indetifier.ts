@@ -2,7 +2,7 @@ import type { IAuthenticateUserUseCase } from '@DOMTypes/application/use-cases/u
 import type { IController } from '@INFTypes/http/controller'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 
-import { authenticateByIndetifierSchema } from '_INFHttp/schema/user'
+import { authenticateByIndetifierSchema } from '_INF/http/schema/user'
 
 export class AuthenticateByIndetifierController implements IController {
   private readonly schema = authenticateByIndetifierSchema

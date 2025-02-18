@@ -1,4 +1,4 @@
-import type { PostRepository } from '_DOMApp/repositories/post-repository'
+import type { PostRepository } from '_DOM/application/repositories/post-repository'
 import type {
   IDeletePostUseCase,
   TDeletePostUseCaseRequest,

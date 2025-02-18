@@ -1,5 +1,5 @@
-import { InvalidReferenceStatusError } from '_DOMApp/use-cases/_errors/invalid-reference-status-error'
-import { CreateReferenceUseCase } from '_DOMApp/use-cases/reference/create-reference'
+import { InvalidReferenceStatusError } from '_DOM/application/use-cases/_errors/invalid-reference-status-error'
+import { CreateReferenceUseCase } from '_DOM/application/use-cases/reference/create-reference'
 import { InMemoryReferenceRepository } from 'src/__tests__/utils/repositories/in-memory-reference-repository'
 
 let inMemoryReferenceRepository: InMemoryReferenceRepository

@@ -1,4 +1,4 @@
-import type { Media } from '_DOMEnt/entities/media'
+import type { Media } from '_DOM/enterprise/entities/media'
 
 export interface MediaRepository {
   findById(id: string): Promise<Media | null>

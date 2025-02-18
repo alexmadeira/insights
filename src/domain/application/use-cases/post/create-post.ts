@@ -1,4 +1,4 @@
-import type { PostRepository } from '_DOMApp/repositories/post-repository'
+import type { PostRepository } from '_DOM/application/repositories/post-repository'
 import type {
   ICreatePostUseCase,
   TCreatePostUseCaseRequest,
@@ -7,9 +7,9 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { Post } from '_DOMEnt/entities/post'
-import { PostMediaList } from '_DOMEnt/entities/post-media-list'
-import { PostStatus } from '_DOMEnt/entities/value-objects'
+import { Post } from '_DOM/enterprise/entities/post'
+import { PostMediaList } from '_DOM/enterprise/entities/post-media-list'
+import { PostStatus } from '_DOM/enterprise/entities/value-objects'
 
 import { InvalidPostStatusError } from '../_errors/invalid-post-status-error'
 

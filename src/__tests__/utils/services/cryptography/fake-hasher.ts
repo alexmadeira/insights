@@ -1,5 +1,5 @@
-import type { HashComparer } from '_DOMApp/services/cryptography/hash-comparer'
-import type { HashGenerator } from '_DOMApp/services/cryptography/hash-generator'
+import type { HashComparer } from '_DOM/application/services/cryptography/hash-comparer'
+import type { HashGenerator } from '_DOM/application/services/cryptography/hash-generator'
 
 export class FakeHasher implements HashGenerator, HashComparer {
   async hash(plain: string) {

@@ -1,5 +1,5 @@
 import type { Either } from '_COR/either'
-import type { Avatar } from '_DOMEnt/entities/avatar'
+import type { Avatar } from '_DOM/enterprise/entities/avatar'
 
 import z from 'zod'
 

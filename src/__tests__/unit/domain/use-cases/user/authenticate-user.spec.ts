@@ -1,5 +1,5 @@
-import { UserWrongCredentialsError } from '_DOMApp/use-cases/_errors/user-wrong-credentials-error'
-import { AuthenticateUserUseCase } from '_DOMApp/use-cases/user/authenticate-user'
+import { UserWrongCredentialsError } from '_DOM/application/use-cases/_errors/user-wrong-credentials-error'
+import { AuthenticateUserUseCase } from '_DOM/application/use-cases/user/authenticate-user'
 import { makeUser } from '_TEST/utils/factories/domain/make-user'
 import { InMemoryUserRepository } from '_TEST/utils/repositories/in-memory-user-repository'
 import { FakeEncrypter } from '_TEST/utils/services/cryptography/fake-encrypter'

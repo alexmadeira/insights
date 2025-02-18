@@ -1,4 +1,4 @@
-import type { ConnectionStatus } from '_DOMEnt/entities/value-objects'
+import type { ConnectionStatus } from '_DOM/enterprise/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import { ZEConnectionAvailable } from '@DOMTypes/enums/connection'

@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '_DOMApp/use-cases/_errors/invalid-type-error'
-import { CreateMediaUseCase } from '_DOMApp/use-cases/media/create-media'
+import { InvalidTypeError } from '_DOM/application/use-cases/_errors/invalid-type-error'
+import { CreateMediaUseCase } from '_DOM/application/use-cases/media/create-media'
 import { InMemoryMediaRepository } from 'src/__tests__/utils/repositories/in-memory-media-repository'
 
 let inMemoryMediaRepository: InMemoryMediaRepository
