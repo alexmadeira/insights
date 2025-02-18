@@ -1,4 +1,3 @@
-import type { RouteGroup } from '_INFServices/route'
 import type { IController } from '@INFTypes/http/controller'
 import type { RouteOptions } from 'fastify'
 
@@ -7,7 +6,7 @@ import { ZEHttpMethods } from '@CORTypes/enums/http'
 import z from 'zod'
 
 export const ZRouteDetails = z.object({
-  groups: z.array(z.string()),
+  tags: z.array(z.string()),
   summary: z.string(),
   description: z.string(),
   operationId: z.string(),
@@ -30,13 +29,9 @@ export const ZRouteRequest = z.object({
 })
 
 export const ZRouteProps = ZRouteSchema.partial({
-  groups: true,
+  tags: true,
   operationId: true,
-})
-  .merge(ZRouteRequest.partial({ path: true }))
-  .extend({
-    routeGroup: z.custom<RouteGroup>().optional(),
-  })
+}).merge(ZRouteRequest.partial({ path: true }))
 
 export const ZRouteGetProps = ZRouteProps.omit({
   body: true,

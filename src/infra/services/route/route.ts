@@ -16,8 +16,6 @@ import { zodKeys } from '_COR/utils/zod'
 import { ZRouteEditProps, ZRouteGetProps, ZRouteRemoveProps, ZRouteSendProps } from '@INFTypes/services/route'
 import _ from 'lodash'
 
-import { RouteGroup } from './group'
-
 export class Route implements IRoute {
   protected constructor(
     private readonly _request: TRouteRequest,
@@ -27,27 +25,23 @@ export class Route implements IRoute {
   }
 
   protected static create(props: Optional<TRouteProps, 'pipes' | 'headers' | 'body' | 'params' | 'querystring'>) {
-    const routeGroup = RouteGroup.create(props.routeGroup)
-    const groups = _.chain(props.groups ?? [])
-      .concat(routeGroup.name)
-      .compact()
-      .value()
+    const tags = _.compact(props.tags)
     return new Route(
       {
-        path: routeGroup.path(props.path, zodKeys(props.params)),
+        path: props.path ?? '/',
         method: props.method,
         controller: props.controller,
-        pipes: props.pipes || {},
+        pipes: props.pipes ?? {},
       },
       {
-        groups,
+        tags,
         body: props.body,
         params: props.params,
         summary: props.summary,
         headers: props.headers,
         description: props.description,
         querystring: props.querystring,
-        operationId: props.operationId ?? _.camelCase([httpMethodOperationId[props.method], ...groups].join(' ')),
+        operationId: props.operationId ?? _.camelCase([httpMethodOperationId[props.method], ...tags].join(' ')),
       },
     )
   }
@@ -72,12 +66,24 @@ export class Route implements IRoute {
     return this.create({ ...ZRouteRemoveProps.parse(props), method: 'delete' })
   }
 
+  public set path(path: string) {
+    this._request.path = path
+  }
+
+  public set tags(tags: string[]) {
+    this._schema.tags = tags
+  }
+
   public get path() {
     return this._request.path
   }
 
   public get method() {
     return this._request.method
+  }
+
+  public get paramList() {
+    return zodKeys(this.params)
   }
 
   public get pipes() {
@@ -91,7 +97,7 @@ export class Route implements IRoute {
   }
 
   public get tags() {
-    return this._schema.groups
+    return this._schema.tags
   }
 
   public get summary() {

@@ -6,7 +6,6 @@ export const ZRouteGroupBasePath = z.string()
 export const ZRouteGroup = z.object({
   name: ZRouteGroupName,
   basePath: ZRouteGroupBasePath,
-  path: z.function(z.tuple([z.string()])).returns(z.string()),
 })
 
 //
