@@ -1,4 +1,4 @@
-import type { MediaType } from '_DOMEnt/entities/value-objects'
+import type { MediaType } from '_DOM/enterprise/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'

@@ -1,4 +1,4 @@
-import type { Avatar } from '_DOMEnt/entities/avatar'
+import type { Avatar } from '_DOM/enterprise/entities/avatar'
 
 export interface AvatarRepository {
   findById(id: string): Promise<Avatar | null>

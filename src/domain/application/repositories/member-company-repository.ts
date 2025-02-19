@@ -1,4 +1,4 @@
-import type { MemberCompany } from '_DOMEnt/entities/member-company'
+import type { MemberCompany } from '_DOM/enterprise/entities/member-company'
 
 export interface MemberCompanyRepository {
   create(memberCompany: MemberCompany): Promise<MemberCompany>

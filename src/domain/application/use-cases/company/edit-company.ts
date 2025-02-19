@@ -1,8 +1,8 @@
-import type { CompanyAvatarRepository } from '_DOMApp/repositories/company-avatar-repository'
-import type { CompanyMemberRepository } from '_DOMApp/repositories/company-member-repository'
-import type { CompanyProfileRepository } from '_DOMApp/repositories/company-profile-repository'
-import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
-import type { CompanyTeamRepository } from '_DOMApp/repositories/company-team-repository'
+import type { CompanyAvatarRepository } from '_DOM/application/repositories/company-avatar-repository'
+import type { CompanyMemberRepository } from '_DOM/application/repositories/company-member-repository'
+import type { CompanyProfileRepository } from '_DOM/application/repositories/company-profile-repository'
+import type { CompanyRepository } from '_DOM/application/repositories/company-repository'
+import type { CompanyTeamRepository } from '_DOM/application/repositories/company-team-repository'
 import type {
   IEditCompanyUseCase,
   TEditCompanyUseCaseRequest,
@@ -11,15 +11,15 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { CompanyAvatar } from '_DOMEnt/entities/company-avatar'
-import { CompanyAvatarList } from '_DOMEnt/entities/company-avatar-list'
-import { CompanyMember } from '_DOMEnt/entities/company-member'
-import { CompanyMemberList } from '_DOMEnt/entities/company-member-list'
-import { CompanyProfile } from '_DOMEnt/entities/company-profile'
-import { CompanyProfileList } from '_DOMEnt/entities/company-profile-list'
-import { CompanyTeam } from '_DOMEnt/entities/company-team'
-import { CompanyTeamList } from '_DOMEnt/entities/company-team-list'
-import { MemberRole } from '_DOMEnt/entities/value-objects'
+import { CompanyAvatar } from '_DOM/enterprise/entities/company-avatar'
+import { CompanyAvatarList } from '_DOM/enterprise/entities/company-avatar-list'
+import { CompanyMember } from '_DOM/enterprise/entities/company-member'
+import { CompanyMemberList } from '_DOM/enterprise/entities/company-member-list'
+import { CompanyProfile } from '_DOM/enterprise/entities/company-profile'
+import { CompanyProfileList } from '_DOM/enterprise/entities/company-profile-list'
+import { CompanyTeam } from '_DOM/enterprise/entities/company-team'
+import { CompanyTeamList } from '_DOM/enterprise/entities/company-team-list'
+import { MemberRole } from '_DOM/enterprise/entities/value-objects'
 
 import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 

@@ -1,5 +1,5 @@
-import type { TeamProfileRepository } from '_DOMApp/repositories/team-profile-repository'
-import type { TeamProfile } from '_DOMEnt/entities/team-profile'
+import type { TeamProfileRepository } from '_DOM/application/repositories/team-profile-repository'
+import type { TeamProfile } from '_DOM/enterprise/entities/team-profile'
 
 export class InMemoryTeamProfileRepository implements TeamProfileRepository {
   public itens: TeamProfile[] = []

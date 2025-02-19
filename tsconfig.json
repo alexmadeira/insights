@@ -19,29 +19,17 @@
       "@DOMTypes/*": [
         "./src/domain/@types/*"
       ],
-      "_DOMApp/*": [
-        "./src/domain/application/*"
-      ],
-      "_DOMEnt/*": [
-        "./src/domain/enterprise/*"
-      ],
-      "_DOM/*": [
-        "./src/domain/*"
-      ],
       "@CORTypes/*": [
         "./src/core/@types/*"
-      ],
-      "_COR/*": [
-        "./src/core/*"
       ],
       "@INFTypes/*": [
         "./src/infra/@types/*"
       ],
-      "_INFServices/*": [
-        "./src/infra/services/*"
+      "_DOM/*": [
+        "./src/domain/*"
       ],
-      "_INFHttp/*": [
-        "./src/infra/http/*"
+      "_COR/*": [
+        "./src/core/*"
       ],
       "_INF/*": [
         "./src/infra/*"

@@ -1,4 +1,4 @@
-import type { Profile } from '_DOMEnt/entities/profile'
+import type { Profile } from '_DOM/enterprise/entities/profile'
 
 export interface ProfileRepository {
   findById(id: string): Promise<Profile | null>

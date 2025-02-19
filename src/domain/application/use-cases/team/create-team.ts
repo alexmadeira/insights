@@ -1,4 +1,4 @@
-import type { TeamRepository } from '_DOMApp/repositories/team-repository'
+import type { TeamRepository } from '_DOM/application/repositories/team-repository'
 import type {
   ICreateTeamUseCase,
   TCreateTeamUseCaseRequest,
@@ -7,10 +7,10 @@ import type {
 
 import { right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { Team } from '_DOMEnt/entities/team'
-import { TeamAvatarList } from '_DOMEnt/entities/team-avatar-list'
-import { TeamMemberList } from '_DOMEnt/entities/team-member-list'
-import { TeamProfileList } from '_DOMEnt/entities/team-profile-list'
+import { Team } from '_DOM/enterprise/entities/team'
+import { TeamAvatarList } from '_DOM/enterprise/entities/team-avatar-list'
+import { TeamMemberList } from '_DOM/enterprise/entities/team-member-list'
+import { TeamProfileList } from '_DOM/enterprise/entities/team-profile-list'
 
 export class CreateTeamUseCase implements ICreateTeamUseCase {
   constructor(private readonly teamRepository: TeamRepository) {}

@@ -1,4 +1,4 @@
-import type { NetworkRepository } from '_DOMApp/repositories/network-repository'
+import type { NetworkRepository } from '_DOM/application/repositories/network-repository'
 import type {
   IDeleteNetworkUseCase,
   TDeleteNetworkUseCaseRequest,

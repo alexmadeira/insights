@@ -1,5 +1,4 @@
-import { Route } from '_INFServices/route'
-import { makeRouteGroup } from '_TEST/utils/factories/infra/common/make-route-group'
+import { Route } from '_INF/services/route'
 import { mockController } from '_TEST/utils/factories/infra/mock/mock-controller'
 import z, { ZodSchema } from 'zod'
 
@@ -13,8 +12,7 @@ describe('Infra', () => {
               summary: 'summary',
               description: 'description',
               controller: mockController,
-              routeGroup: makeRouteGroup({ group: 'base router', path: 'base-path' }),
-              groups: ['group'],
+              tags: ['tag'],
               operationId: 'operationId',
               path: '/route-path',
               body: z.object({}),
@@ -23,8 +21,8 @@ describe('Infra', () => {
               querystring: z.object({}),
             })
 
-            expect(route.path).toEqual('/base-path/route-path')
-            expect(route.tags).toEqual(['group', 'base router'])
+            expect(route.path).toEqual('/route-path')
+            expect(route.tags).toEqual(['tag'])
             expect(route.method).toEqual('patch')
             expect(route.summary).toEqual('summary')
             expect(route.description).toEqual('description')

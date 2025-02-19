@@ -1,7 +1,7 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { Connection } from '_DOMEnt/entities/connection'
-import type { ProfileReferenceList } from '_DOMEnt/entities/profile-reference-list'
-import type { Slug } from '_DOMEnt/entities/value-objects'
+import type { Connection } from '_DOM/enterprise/entities/connection'
+import type { ProfileReferenceList } from '_DOM/enterprise/entities/profile-reference-list'
+import type { Slug } from '_DOM/enterprise/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'

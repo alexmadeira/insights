@@ -1,4 +1,4 @@
-import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
+import type { ReferenceRepository } from '_DOM/application/repositories/reference-repository'
 import type {
   IDeleteReferenceUseCase,
   TDeleteReferenceUseCaseRequest,

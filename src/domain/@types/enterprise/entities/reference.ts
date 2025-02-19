@@ -1,5 +1,5 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { ReferenceStatus, Slug } from '_DOMEnt/entities/value-objects'
+import type { ReferenceStatus, Slug } from '_DOM/enterprise/entities/value-objects'
 
 import { ZEntity, ZEntityProps } from '@CORTypes/entity'
 import z from 'zod'

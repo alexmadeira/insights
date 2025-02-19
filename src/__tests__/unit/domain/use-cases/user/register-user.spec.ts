@@ -1,5 +1,5 @@
-import { UserAlreadyExistisError } from '_DOMApp/use-cases/_errors/user-already-existis-error'
-import { RegisterUserUseCase } from '_DOMApp/use-cases/user/register-user'
+import { UserAlreadyExistisError } from '_DOM/application/use-cases/_errors/user-already-existis-error'
+import { RegisterUserUseCase } from '_DOM/application/use-cases/user/register-user'
 import { makeUser } from '_TEST/utils/factories/domain/make-user'
 import { InMemoryUserRepository } from '_TEST/utils/repositories/in-memory-user-repository'
 import { FakeHasher } from '_TEST/utils/services/cryptography/fake-hasher'

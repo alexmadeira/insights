@@ -1,5 +1,6 @@
-import { Route } from '_INFServices/route'
+import { Route } from '_INF/services/route'
 import { mockController } from '_TEST/utils/factories/infra/mock/mock-controller'
+import { mockPipe } from '_TEST/utils/factories/infra/mock/mock-pipe'
 import z, { ZodSchema } from 'zod'
 
 describe('Infra', () => {
@@ -26,9 +27,30 @@ describe('Infra', () => {
           expect(routePatch.register).toBeTruthy()
           expect(routeDelete.register).toBeTruthy()
         })
+        it('should be able create with pipes', async () => {
+          const props = {
+            summary: 'summary',
+            description: 'description',
+            controller: mockController,
+            pipes: [mockPipe],
+            body: z.object({}),
+          }
+
+          const routeGet = Route.get(props)
+          const routePost = Route.post(props)
+          const routePut = Route.put(props)
+          const routePatch = Route.patch(props)
+          const routeDelete = Route.delete(props)
+
+          expect(routeGet.pipes).toHaveLength(1)
+          expect(routePost.pipes).toHaveLength(1)
+          expect(routePut.pipes).toHaveLength(1)
+          expect(routePatch.pipes).toHaveLength(1)
+          expect(routeDelete.pipes).toHaveLength(1)
+        })
         it('should be able get register', async () => {
           const route = Route.get({
-            groups: ['group'],
+            tags: ['tag'],
             summary: 'summary',
             description: 'description',
             operationId: 'operationId',
@@ -40,7 +62,7 @@ describe('Infra', () => {
         })
         it('should be able get schema', async () => {
           const route = Route.delete({
-            groups: ['group'],
+            tags: ['tag'],
             summary: 'summary',
             description: 'description',
             operationId: 'operationId',
@@ -51,7 +73,7 @@ describe('Infra', () => {
             querystring: z.object({}),
           })
 
-          expect(route.schema.tags).toEqual(['group'])
+          expect(route.schema.tags).toEqual(['tag'])
           expect(route.schema.summary).toEqual('summary')
           expect(route.schema.description).toEqual('description')
           expect(route.schema.operationId).toEqual('operationId')
@@ -69,7 +91,7 @@ describe('Infra', () => {
 
           expect(route.path).toEqual('/')
         })
-        it('should be able create without group', async () => {
+        it('should be able create without tags', async () => {
           const route = Route.get({
             summary: 'summary',
             description: 'description',
@@ -81,12 +103,12 @@ describe('Infra', () => {
         it('should be able create without operationId', async () => {
           const route = Route.get({
             summary: 'summary',
-            groups: ['group'],
+            tags: ['tag'],
             description: 'description',
             controller: mockController,
           })
 
-          expect(route.operationId).toEqual('getGroup')
+          expect(route.operationId).toEqual('getTag')
         })
         it('should be able create without body', async () => {
           const route = Route.get({

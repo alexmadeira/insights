@@ -1,8 +1,8 @@
-import type { TProfileProps } from '_DOMEnt/entities/profile'
+import type { TProfileProps } from '_DOM/enterprise/entities/profile'
 
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { Profile } from '_DOMEnt/entities/profile'
-import { ProfileReferenceList } from '_DOMEnt/entities/profile-reference-list'
+import { Profile } from '_DOM/enterprise/entities/profile'
+import { ProfileReferenceList } from '_DOM/enterprise/entities/profile-reference-list'
 import { faker } from '@faker-js/faker'
 
 export function makeProfile(overrides: Partial<TProfileProps> = {}, id?: UniqueEntityID) {

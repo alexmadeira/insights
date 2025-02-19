@@ -1,4 +1,4 @@
-import type { CompanyRepository } from '_DOMApp/repositories/company-repository'
+import type { CompanyRepository } from '_DOM/application/repositories/company-repository'
 import type {
   IDeleteCompanyUseCase,
   TDeleteCompanyUseCaseRequest,

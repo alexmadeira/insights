@@ -1,4 +1,4 @@
-import type { Reference } from '_DOMEnt/entities/reference'
+import type { Reference } from '_DOM/enterprise/entities/reference'
 
 export interface ReferenceRepository {
   findById(id: string): Promise<Reference | null>

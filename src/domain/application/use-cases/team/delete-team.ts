@@ -1,4 +1,4 @@
-import type { TeamRepository } from '_DOMApp/repositories/team-repository'
+import type { TeamRepository } from '_DOM/application/repositories/team-repository'
 import type {
   IDeleteTeamUseCase,
   TDeleteTeamUseCaseRequest,

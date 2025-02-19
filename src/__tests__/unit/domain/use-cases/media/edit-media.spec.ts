@@ -1,7 +1,7 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { InvalidTypeError } from '_DOMApp/use-cases/_errors/invalid-type-error'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
-import { EditMediaUseCase } from '_DOMApp/use-cases/media/edit-media'
+import { InvalidTypeError } from '_DOM/application/use-cases/_errors/invalid-type-error'
+import { ResourceNotFoundError } from '_DOM/application/use-cases/_errors/resource-not-found-error'
+import { EditMediaUseCase } from '_DOM/application/use-cases/media/edit-media'
 import { makeMedia } from '_TEST/utils/factories/domain/make-media'
 import { InMemoryMediaRepository } from '_TEST/utils/repositories/in-memory-media-repository'
 

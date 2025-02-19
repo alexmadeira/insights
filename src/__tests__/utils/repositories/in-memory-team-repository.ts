@@ -1,8 +1,8 @@
-import type { TeamAvatarRepository } from '_DOMApp/repositories/team-avatar-repository'
-import type { TeamMemberRepository } from '_DOMApp/repositories/team-member-repository'
-import type { TeamProfileRepository } from '_DOMApp/repositories/team-profile-repository'
-import type { TeamRepository } from '_DOMApp/repositories/team-repository'
-import type { Team } from '_DOMEnt/entities/team'
+import type { TeamAvatarRepository } from '_DOM/application/repositories/team-avatar-repository'
+import type { TeamMemberRepository } from '_DOM/application/repositories/team-member-repository'
+import type { TeamProfileRepository } from '_DOM/application/repositories/team-profile-repository'
+import type { TeamRepository } from '_DOM/application/repositories/team-repository'
+import type { Team } from '_DOM/enterprise/entities/team'
 
 export class InMemoryTeamRepository implements TeamRepository {
   public itens: Team[] = []

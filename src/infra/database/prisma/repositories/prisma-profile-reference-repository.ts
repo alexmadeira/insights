@@ -1,5 +1,5 @@
-import type { ProfileReferenceRepository } from '_DOMApp/repositories/profile-reference-repository'
-import type { ProfileReference } from '_DOMEnt/entities/profile-reference'
+import type { ProfileReferenceRepository } from '_DOM/application/repositories/profile-reference-repository'
+import type { ProfileReference } from '_DOM/enterprise/entities/profile-reference'
 
 export class PrismaProfileReferenceRepository implements ProfileReferenceRepository {
   public itens: ProfileReference[] = []

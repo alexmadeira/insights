@@ -1,7 +1,7 @@
-import type { RequestSchemaProps } from '@INFTypes/common/request-schema'
+import type { RequestSchemaProps } from '@INFTypes/services/request-schema'
 import type { ZodTypeAny } from 'zod'
 
-import { RequestSchema } from '_INFServices/request-schema'
+import { RequestSchema } from '_INF/services/request-schema'
 import z from 'zod'
 
 export function mockRequestSchema(

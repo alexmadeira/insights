@@ -1,5 +1,5 @@
 import type { Either } from '_COR/either'
-import type { Team } from '_DOMEnt/entities/team'
+import type { Team } from '_DOM/enterprise/entities/team'
 
 import z from 'zod'
 

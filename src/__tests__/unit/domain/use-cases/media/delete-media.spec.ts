@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
-import { DeleteMediaUseCase } from '_DOMApp/use-cases/media/delete-media'
+import { ResourceNotFoundError } from '_DOM/application/use-cases/_errors/resource-not-found-error'
+import { DeleteMediaUseCase } from '_DOM/application/use-cases/media/delete-media'
 import { makeMedia } from '_TEST/utils/factories/domain/make-media'
 import { InMemoryMediaRepository } from '_TEST/utils/repositories/in-memory-media-repository'
 

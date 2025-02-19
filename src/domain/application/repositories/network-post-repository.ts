@@ -1,4 +1,4 @@
-import type { NetworkPost } from '_DOMEnt/entities/network-post'
+import type { NetworkPost } from '_DOM/enterprise/entities/network-post'
 
 export interface NetworkPostRepository {
   create(networkPost: NetworkPost): Promise<NetworkPost>

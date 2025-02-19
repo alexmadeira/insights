@@ -1,7 +1,7 @@
-import type { TCompanyProfileProps } from '_DOMEnt/entities/company-profile'
+import type { TCompanyProfileProps } from '_DOM/enterprise/entities/company-profile'
 
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { CompanyProfile } from '_DOMEnt/entities/company-profile'
+import { CompanyProfile } from '_DOM/enterprise/entities/company-profile'
 
 export function makeCompanyProfile(overrides: Partial<TCompanyProfileProps> = {}, id?: UniqueEntityID) {
   return CompanyProfile.create(

@@ -1,4 +1,4 @@
-import { Role } from '_DOMEnt/entities/value-objects'
+import { Role } from '_DOM/enterprise/entities/value-objects'
 
 describe('Domain', () => {
   describe('Entities', () => {

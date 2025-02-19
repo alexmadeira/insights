@@ -1,7 +1,7 @@
 import type { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import type { TUserProps } from '_DOMEnt/entities/user'
+import type { TUserProps } from '_DOM/enterprise/entities/user'
 
-import { User } from '_DOMEnt/entities/user'
+import { User } from '_DOM/enterprise/entities/user'
 import { faker } from '@faker-js/faker'
 
 export function makeUser(overrides: Partial<TUserProps> = {}, id?: UniqueEntityID) {

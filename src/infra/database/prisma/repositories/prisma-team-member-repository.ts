@@ -1,5 +1,5 @@
-import type { TeamMemberRepository } from '_DOMApp/repositories/team-member-repository'
-import type { TeamMember } from '_DOMEnt/entities/team-member'
+import type { TeamMemberRepository } from '_DOM/application/repositories/team-member-repository'
+import type { TeamMember } from '_DOM/enterprise/entities/team-member'
 
 export class PrismaTeamMemberRepository implements TeamMemberRepository {
   public itens: TeamMember[] = []

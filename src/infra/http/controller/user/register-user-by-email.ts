@@ -2,14 +2,12 @@ import type { IRegisterUserUseCase } from '@DOMTypes/application/use-cases/user/
 import type { IController } from '@INFTypes/http/controller'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 
-import { registerByEmailSchema } from '_INFHttp/schema/user'
+import { registerByEmailSchema } from '_INF/http/schema/user'
 
 export class RegisterByEmailController implements IController {
   private readonly schema = registerByEmailSchema
 
-  constructor(private readonly registerUserUseCase: IRegisterUserUseCase) {
-    this.handler = this.handler.bind(this)
-  }
+  constructor(private readonly registerUserUseCase: IRegisterUserUseCase) {}
 
   public async handler(request: FastifyRequest, replay: FastifyReply) {
     const body = this.schema.getRequestBody(request)

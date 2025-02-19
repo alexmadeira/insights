@@ -1,4 +1,4 @@
-import type { Member } from '_DOMEnt/entities/member'
+import type { Member } from '_DOM/enterprise/entities/member'
 
 export interface MemberRepository {
   findById(id: string): Promise<Member | null>

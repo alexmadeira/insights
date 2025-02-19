@@ -1,5 +1,5 @@
-import type { MemberAvatarRepository } from '_DOMApp/repositories/member-avatar-repository'
-import type { MemberAvatar } from '_DOMEnt/entities/member-avatar'
+import type { MemberAvatarRepository } from '_DOM/application/repositories/member-avatar-repository'
+import type { MemberAvatar } from '_DOM/enterprise/entities/member-avatar'
 
 export class PrismaMemberAvatarRepository implements MemberAvatarRepository {
   public itens: MemberAvatar[] = []

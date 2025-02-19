@@ -1,7 +1,7 @@
 import type { Either } from '_COR/either'
-import type { InvalidReferenceStatusError } from '_DOMApp/use-cases/_errors/invalid-reference-status-error'
-import type { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
-import type { Reference } from '_DOMEnt/entities/reference'
+import type { InvalidReferenceStatusError } from '_DOM/application/use-cases/_errors/invalid-reference-status-error'
+import type { ResourceNotFoundError } from '_DOM/application/use-cases/_errors/resource-not-found-error'
+import type { Reference } from '_DOM/enterprise/entities/reference'
 
 import z from 'zod'
 

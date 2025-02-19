@@ -1,4 +1,4 @@
-import type { ReferenceRepository } from '_DOMApp/repositories/reference-repository'
+import type { ReferenceRepository } from '_DOM/application/repositories/reference-repository'
 import type {
   IEditReferenceUseCase,
   TEditReferenceUseCaseRequest,
@@ -7,7 +7,7 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ReferenceStatus } from '_DOMEnt/entities/value-objects'
+import { ReferenceStatus } from '_DOM/enterprise/entities/value-objects'
 
 import { InvalidReferenceStatusError } from '../_errors/invalid-reference-status-error'
 import { ResourceNotFoundError } from '../_errors/resource-not-found-error'

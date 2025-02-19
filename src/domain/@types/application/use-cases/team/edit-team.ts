@@ -1,6 +1,6 @@
 import type { Either } from '_COR/either'
-import type { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
-import type { Team } from '_DOMEnt/entities/team'
+import type { ResourceNotFoundError } from '_DOM/application/use-cases/_errors/resource-not-found-error'
+import type { Team } from '_DOM/enterprise/entities/team'
 
 import z from 'zod'
 

@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ResourceNotFoundError } from '_DOMApp/use-cases/_errors/resource-not-found-error'
-import { EditTeamUseCase } from '_DOMApp/use-cases/team/edit-team'
+import { ResourceNotFoundError } from '_DOM/application/use-cases/_errors/resource-not-found-error'
+import { EditTeamUseCase } from '_DOM/application/use-cases/team/edit-team'
 import { makeTeam } from '_TEST/utils/factories/domain/make-team'
 import { makeTeamAvatar } from '_TEST/utils/factories/domain/make-team-avatar'
 import { makeTeamMember } from '_TEST/utils/factories/domain/make-team-member'

@@ -1,4 +1,4 @@
-import { ReferenceStatus } from '_DOMEnt/entities/value-objects'
+import { ReferenceStatus } from '_DOM/enterprise/entities/value-objects'
 
 describe('Domain', () => {
   describe('Entities', () => {

@@ -1,5 +1,5 @@
-import type { ProfileReferenceRepository } from '_DOMApp/repositories/profile-reference-repository'
-import type { ProfileRepository } from '_DOMApp/repositories/profile-repository'
+import type { ProfileReferenceRepository } from '_DOM/application/repositories/profile-reference-repository'
+import type { ProfileRepository } from '_DOM/application/repositories/profile-repository'
 import type {
   IEditProfileUseCase,
   TEditProfileUseCaseRequest,
@@ -8,8 +8,8 @@ import type {
 
 import { left, right } from '_COR/either'
 import { UniqueEntityID } from '_COR/entities/unique-entity-id'
-import { ProfileReference } from '_DOMEnt/entities/profile-reference'
-import { ProfileReferenceList } from '_DOMEnt/entities/profile-reference-list'
+import { ProfileReference } from '_DOM/enterprise/entities/profile-reference'
+import { ProfileReferenceList } from '_DOM/enterprise/entities/profile-reference-list'
 
 import { ResourceNotFoundError } from '../_errors/resource-not-found-error'
 

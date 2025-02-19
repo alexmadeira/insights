@@ -1,4 +1,4 @@
-import type { AvatarRepository } from '_DOMApp/repositories/avatar-repository'
+import type { AvatarRepository } from '_DOM/application/repositories/avatar-repository'
 import type {
   ICreateAvatarUseCase,
   TCreateAvatarUseCaseRequest,
@@ -6,7 +6,7 @@ import type {
 } from '@DOMTypes/application/use-cases/avatar/create-avatar'
 
 import { right } from '_COR/either'
-import { Avatar } from '_DOMEnt/entities/avatar'
+import { Avatar } from '_DOM/enterprise/entities/avatar'
 import { ZCreateAvatarUseCaseRequest } from '@DOMTypes/application/use-cases/avatar/create-avatar'
 
 export class CreateAvatarUseCase implements ICreateAvatarUseCase {

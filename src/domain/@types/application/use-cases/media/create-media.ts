@@ -1,6 +1,6 @@
 import type { Either } from '_COR/either'
-import type { InvalidTypeError } from '_DOMApp/use-cases/_errors/invalid-type-error'
-import type { Media } from '_DOMEnt/entities/media'
+import type { InvalidTypeError } from '_DOM/application/use-cases/_errors/invalid-type-error'
+import type { Media } from '_DOM/enterprise/entities/media'
 
 import z from 'zod'
 

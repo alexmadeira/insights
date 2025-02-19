@@ -16,8 +16,6 @@ import { zodKeys } from '_COR/utils/zod'
 import { ZRouteEditProps, ZRouteGetProps, ZRouteRemoveProps, ZRouteSendProps } from '@INFTypes/services/route'
 import _ from 'lodash'
 
-import { RouteGroup } from './group'
-
 export class Route implements IRoute {
   protected constructor(
     private readonly _request: TRouteRequest,
@@ -26,27 +24,24 @@ export class Route implements IRoute {
     this.register = this.register.bind(this)
   }
 
-  protected static create(props: Optional<TRouteProps, 'headers' | 'body' | 'params' | 'querystring'>) {
-    const routeGroup = RouteGroup.create(props.routeGroup)
-    const groups = _.chain(props.groups ?? [])
-      .concat(routeGroup.name)
-      .compact()
-      .value()
+  protected static create(props: Optional<TRouteProps, 'pipes' | 'headers' | 'body' | 'params' | 'querystring'>) {
+    const tags = _.compact(props.tags)
     return new Route(
       {
-        path: routeGroup.path(props.path, zodKeys(props.params)),
+        path: props.path ?? '/',
         method: props.method,
         controller: props.controller,
+        pipes: props.pipes ?? [],
       },
       {
-        groups,
+        tags,
         body: props.body,
         params: props.params,
         summary: props.summary,
         headers: props.headers,
         description: props.description,
         querystring: props.querystring,
-        operationId: props.operationId ?? _.camelCase([httpMethodOperationId[props.method], ...groups].join(' ')),
+        operationId: props.operationId ?? _.camelCase([httpMethodOperationId[props.method], ...tags].join(' ')),
       },
     )
   }
@@ -71,6 +66,14 @@ export class Route implements IRoute {
     return this.create({ ...ZRouteRemoveProps.parse(props), method: 'delete' })
   }
 
+  public set path(path: string) {
+    this._request.path = path
+  }
+
+  public set tags(tags: string[]) {
+    this._schema.tags = tags
+  }
+
   public get path() {
     return this._request.path
   }
@@ -79,12 +82,20 @@ export class Route implements IRoute {
     return this._request.method
   }
 
+  public get paramList() {
+    return zodKeys(this.params)
+  }
+
+  public get pipes() {
+    return this._request.pipes.map((pipe) => pipe.handler)
+  }
+
   public get controller() {
     return this._request.controller.handler
   }
 
   public get tags() {
-    return this._schema.groups
+    return this._schema.tags
   }
 
   public get summary() {
@@ -130,6 +141,7 @@ export class Route implements IRoute {
 
   public register(fastify: TFastifyInstance) {
     fastify.route({
+      onRequest: this.pipes,
       url: this.path,
       method: this.method,
       schema: _.pickBy(this.schema, Boolean),

@@ -1,5 +1,5 @@
-import type { UserRepository } from '_DOMApp/repositories/user-repository'
-import type { User } from '_DOMEnt/entities/user'
+import type { UserRepository } from '_DOM/application/repositories/user-repository'
+import type { User } from '_DOM/enterprise/entities/user'
 
 export class InMemoryUserRepository implements UserRepository {
   public itens: User[] = []

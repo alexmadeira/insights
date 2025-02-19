@@ -1,5 +1,5 @@
 import type { Either } from '_COR/either'
-import type { Profile } from '_DOMEnt/entities/profile'
+import type { Profile } from '_DOM/enterprise/entities/profile'
 
 import { ZEConnectionAvailable } from '@DOMTypes/enums/connection'
 import z from 'zod'

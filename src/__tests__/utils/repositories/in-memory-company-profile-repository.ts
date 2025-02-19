@@ -1,5 +1,5 @@
-import type { CompanyProfileRepository } from '_DOMApp/repositories/company-profile-repository'
-import type { CompanyProfile } from '_DOMEnt/entities/company-profile'
+import type { CompanyProfileRepository } from '_DOM/application/repositories/company-profile-repository'
+import type { CompanyProfile } from '_DOM/enterprise/entities/company-profile'
 
 export class InMemoryCompanyProfileRepository implements CompanyProfileRepository {
   public itens: CompanyProfile[] = []

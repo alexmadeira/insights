@@ -1,4 +1,4 @@
-import type { MemberRepository } from '_DOMApp/repositories/member-repository'
+import type { MemberRepository } from '_DOM/application/repositories/member-repository'
 import type {
   ICreateMemberUseCase,
   TCreateMemberUseCaseRequest,
@@ -6,10 +6,10 @@ import type {
 } from '@DOMTypes/application/use-cases/member/create-member'
 
 import { right } from '_COR/either'
-import { Member } from '_DOMEnt/entities/member'
-import { MemberAvatarList } from '_DOMEnt/entities/member-avatar-list'
-import { MemberCompanyList } from '_DOMEnt/entities/member-company-list'
-import { MemberTeamList } from '_DOMEnt/entities/member-team-list'
+import { Member } from '_DOM/enterprise/entities/member'
+import { MemberAvatarList } from '_DOM/enterprise/entities/member-avatar-list'
+import { MemberCompanyList } from '_DOM/enterprise/entities/member-company-list'
+import { MemberTeamList } from '_DOM/enterprise/entities/member-team-list'
 
 export class CreateMemberUseCase implements ICreateMemberUseCase {
   constructor(private readonly memberRepository: MemberRepository) {}

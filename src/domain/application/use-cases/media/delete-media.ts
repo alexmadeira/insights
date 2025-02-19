@@ -1,4 +1,4 @@
-import type { MediaRepository } from '_DOMApp/repositories/media-repository'
+import type { MediaRepository } from '_DOM/application/repositories/media-repository'
 import type {
   IDeleteMediaUseCase,
   TDeleteMediaUseCaseRequest,
