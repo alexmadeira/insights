@@ -7,6 +7,8 @@ import { ModuleManager } from '_INF/services/module-manager'
 import { AuthenticateByIndetifierController } from '../controller/user/authenticate-user-by-indetifier'
 import { RegisterByEmailController } from '../controller/user/register-user-by-email'
 
+import { encrypter, hasher } from './auth'
+
 export const userRepository = ModuleManager.create(PrismaUserRepository, PrismaService)
 
 export const registerUserUseCase = ModuleManager.create(RegisterUserUseCase, userRepository, hasher)

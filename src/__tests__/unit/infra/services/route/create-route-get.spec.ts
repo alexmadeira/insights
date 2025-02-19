@@ -1,5 +1,4 @@
 import { Route } from '_INF/services/route'
-import { makeRouteGroup } from '_TEST/utils/factories/infra/common/make-route-group'
 import { mockController } from '_TEST/utils/factories/infra/mock/mock-controller'
 import z, { ZodSchema } from 'zod'
 
@@ -13,8 +12,7 @@ describe('Infra', () => {
               summary: 'summary',
               description: 'description',
               controller: mockController,
-              routeGroup: makeRouteGroup({ group: 'base router', path: 'base-path' }),
-              groups: ['group'],
+              tags: ['tag1', 'tag2'],
               operationId: 'operationId',
               path: '/route-path',
               headers: z.object({}),
@@ -22,8 +20,8 @@ describe('Infra', () => {
               querystring: z.object({}),
             })
 
-            expect(route.path).toEqual('/base-path/route-path')
-            expect(route.tags).toEqual(['group', 'base router'])
+            expect(route.path).toEqual('/route-path')
+            expect(route.tags).toEqual(['tag1', 'tag2'])
             expect(route.method).toEqual('get')
             expect(route.summary).toEqual('summary')
             expect(route.description).toEqual('description')
@@ -39,7 +37,7 @@ describe('Infra', () => {
           })
           it('should be able get schema', async () => {
             const route = Route.get({
-              groups: ['group'],
+              tags: ['tag'],
               summary: 'summary',
               description: 'description',
               operationId: 'operationId',
@@ -49,7 +47,7 @@ describe('Infra', () => {
               querystring: z.object({}),
             })
 
-            expect(route.schema.tags).toEqual(['group'])
+            expect(route.schema.tags).toEqual(['tag'])
             expect(route.schema.summary).toEqual('summary')
             expect(route.schema.description).toEqual('description')
             expect(route.schema.operationId).toEqual('operationId')

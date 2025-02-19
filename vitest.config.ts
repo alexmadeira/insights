@@ -22,7 +22,7 @@ export default defineConfig({
       '@INFTypes': path.resolve(__dirname, './src/infra/@types'),
       _DOM: path.resolve(__dirname, './src/domain'),
       _COR: path.resolve(__dirname, './src/core'),
-      _INF: path.resolve(__dirname, './rc/infra'),
+      _INF: path.resolve(__dirname, './src/infra'),
       _TEST: path.resolve(__dirname, './src/__tests__'),
     },
   },

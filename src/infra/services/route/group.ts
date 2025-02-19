@@ -11,13 +11,10 @@ export class RouteGroup extends AutoBind<TRouteGroupProps> implements IRouteGrou
   private readonly _routes: Set<TRouteGroupRoute> = new Set<TRouteGroupRoute>()
   private readonly _pipes: Set<IPipe> = new Set<IPipe>()
 
-  static create(...[group = '', path = '']: [RouteGroup | string | undefined] | [string, string]) {
-    if (group instanceof RouteGroup) return group
-
-    const basePath = this.formatPath(path || group)
+  static create(name: string = '', path: string = '') {
     return new RouteGroup({
-      name: group,
-      basePath,
+      name,
+      basePath: this.formatPath(path || name),
     })
   }
 
@@ -39,6 +36,14 @@ export class RouteGroup extends AutoBind<TRouteGroupProps> implements IRouteGrou
 
   public get name() {
     return this._props.name
+  }
+
+  public get routes() {
+    return this._routes
+  }
+
+  public get pipes() {
+    return this._pipes
   }
 
   public addMiddleware(routePipe: IPipe | IPipe[]) {
